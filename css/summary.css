@@ -15,14 +15,48 @@
   padding: 56px 0 0;
   display: flex;
   align-items: center;
+  gap: 80px;
 }
 
 .dashboard {
   height: 562px;
   width: 560px;
+  display: flex;
+  gap: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .dashboardWelcome {
   display: flex;
   flex-direction: column;
+}
+
+.contentMedium {
+  background-color: white;
+  border-radius: 30px;
+  height: 168px;
+  width: 264px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 38px 58px;
+  gap: 18px;
+}
+
+.contentSmall {
+  background-color: white;
+  border-radius: 30px;
+  height: 168px;
+  width: 168px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 25px 0;
+  gap: 13px;
+}
+.contentLarge {
+  background-color: white;
+  border-radius: 30px;
+  height: 168px;
+  width: 560px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 28px 48px;
+  gap: 61px;
 }
