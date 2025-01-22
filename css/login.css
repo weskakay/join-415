@@ -1,0 +1,114 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f6f7f8;
+  }
+  
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+  footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer span{
+    margin: 8px;
+    color: #A8A8A8;
+    font-size: 16px;
+  }
+  
+  #join-logo {
+    height: 120px;
+    width: 100px;
+    position: absolute;
+    top: 80px;
+    left: 77px;
+  }
+  
+  #signup-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 80px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  button {
+    margin-left: 35px;
+    background-color: #2A3647;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  #login-container {
+    height: 450px;
+    width: 650px;
+    padding: 50px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 50px;
+    >h1 {
+      text-align: center;
+      font-size: 61px;
+    }
+    >hr {
+      height: 3px;
+      width: 150px;
+      background-color: #29ABE2;
+      border-radius: 3px;
+      border: #29ABE2;
+    }
+  }
+  
+  #login-inputfields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
+    margin-top: 32px;
+  }
+  
+  input {
+    height: 50px;
+    width: 420px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+  }
+  
+  input::placeholder {
+    display: flex;
+    justify-content: space-between;
+    color: #D1D1D1;
+    padding: 21px;
+  }
+  
+  #login-buttons{
+    margin: 32px;
+    >button{Padding: 15px 24px 15px 24px;}
+  }
+  
+  #guest-login{
+    background-color: white;
+    color: #2A3647;
+    border: 1px solid #2A3647;
+  }
