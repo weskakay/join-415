@@ -1,6 +1,35 @@
+@font-face {
+  font-family: "Inter", serif;
+  src: url(../assets/fonts/Inter/Inter-Italic-VariableFont_opsz\wght.ttf);
+  src: url(../assets/fonts/Inter/Inter-VariableFont_opsz\wght.ttf);
+}
+
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", serif;
+}
+
+/*placeholder only!!!*/
+.menuSideBar {
+  width: 232px;
+  background-color: #2a3647;
+  height: 100vh;
+}
+
+/*placeholder only!!!*/
+body {
+  display: flex;
+  max-width: 1440px;
+  margin: auto;
+}
+
+/*placeholder only!!!*/
+header {
+  height: 96px;
+  width: 1208px;
+  background-color: brown;
 }
 
 .navbar {

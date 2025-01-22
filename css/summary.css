@@ -1,0 +1,28 @@
+.summaryContent {
+  background-color: rgba(247, 246, 248);
+  padding: 110px 96px 0;
+}
+
+.summaryHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 625px;
+  height: 73px;
+}
+
+.dashboardContent {
+  padding: 56px 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard {
+  height: 562px;
+  width: 560px;
+}
+
+.dashboardWelcome {
+  display: flex;
+  flex-direction: column;
+}
