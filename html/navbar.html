@@ -5,23 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/font_styles.css" />
   </head>
   <body>
     <div class="navbar">
       <img src="../assets/icons/join-logo.svg" />
       <div class="navbar-menu">
-        <button class="navbar-menu-button">
-          <img src="../assets/icons/summary-icon.svg" />Summary
-        </button>
-        <button class="navbar-menu-button">
-          <img src="../assets/icons/addtask-icon.svg" />Add Task
-        </button>
-        <button class="navbar-menu-button">
-          <img src="../assets/icons/board-icon.svg" />Board
-        </button>
-        <button class="navbar-menu-button">
-          <img src="../assets/icons/contacts-icon.svg" />Contacts
-        </button>
+        <div class="navbar-menu-button-wrapper">
+          <button class="navbar-menu-button" onclick="">
+            <img src="../assets/icons/summary-icon.svg" />Summary
+          </button>
+        </div>
+        <div class="navbar-menu-button-wrapper" onclick="">
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/addtask-icon.svg" />Add Task
+          </button>
+        </div>
+        <div class="navbar-menu-button-wrapper" onclick="">
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/board-icon.svg" />Board
+          </button>
+        </div>
+        <div class="navbar-menu-button-wrapper" onclick="">
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/contacts-icon.svg" />Contacs
+          </button>
+        </div>
+      </div>
+      <div class="navbar-terms-links">
+        <button class="navbar-term-button" onclick="">Privacy Policy</button>
+        <button class="navbar-term-button" onclick="">Legal notice</button>
       </div>
     </div>
   </body>
