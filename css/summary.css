@@ -33,39 +33,59 @@
   flex-direction: column;
 }
 
-.contentMedium {
+.contentContainer {
   background-color: white;
   border-radius: 30px;
   height: 168px;
-  width: 264px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-  padding: 38px 58px;
-  gap: 18px;
-  display: flex;
-  align-items: center;
-}
-
-.contentSmall {
-  background-color: white;
-  border-radius: 30px;
-  height: 168px;
-  width: 168px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-  padding: 25px 0;
-  gap: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.contentLarge {
-  background-color: white;
-  border-radius: 30px;
-  height: 168px;
-  width: 560px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  color: #2a3647;
+}
+
+.contentContainer number {
+  color: black;
+}
+
+.contentContainer:hover {
+  background-color: #2a3647;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.contentContainer:hover number {
+  color: white;
+}
+.contentContainer:hover p {
+  color: white;
+}
+
+.contentContainer:active {
+  background-color: white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.contentContainer:active p {
+  color: #2a3647;
+}
+.contentContainer:active number {
+  color: black;
+}
+
+.medium {
+  width: 264px;
+  padding: 38px 58px;
+  gap: 18px;
+}
+
+.small {
+  width: 168px;
+  padding: 25px 0;
+  gap: 13px;
+}
+.large {
+  width: 560px;
   padding: 28px 48px;
-  display: flex;
-  align-items: center;
 }
 
 .contentFull {
@@ -79,12 +99,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30.5px;
+  gap: 61px;
+}
+
+.contentFullStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
 .contentSymbol {
-  width: 69px;
+  width: 60px;
+  height: 60px;
+}
+
+.penSymbol {
+  background-image: url(../assets/icons/pen_dark.svg);
   height: 69px;
+  width: 69px;
+}
+.contentContainer:hover .penSymbol {
+  background-image: url(../assets/icons/pen_white.svg);
+}
+
+.contentContainer:active .penSymbol {
+  background-image: url(../assets/icons/pen_dark.svg);
+}
+
+.doneSymbol {
+  background-image: url(../assets/icons/done_dark.svg);
+  height: 69px;
+  width: 69px;
+}
+
+.contentContainer:hover .doneSymbol {
+  background-image: url(../assets/icons/done_white.svg);
+}
+
+.contentContainer:active .doneSymbol {
+  background-image: url(../assets/icons/done_dark.svg);
 }
 
 .contentData {
@@ -100,4 +154,19 @@
 
 .contentText {
   text-align: center;
+}
+.contentNumber {
+  color: black;
+}
+
+.separator102 {
+  height: 102px;
+  width: 2px;
+  background-color: #d1d1d1;
+}
+
+.separator59 {
+  height: 59px;
+  width: 3px;
+  background-color: #29abe2;
 }

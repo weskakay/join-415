@@ -12,13 +12,6 @@
 }
 
 /*placeholder only!!!*/
-.menuSideBar {
-  width: 232px;
-  background-color: #2a3647;
-  height: 100vh;
-}
-
-/*placeholder only!!!*/
 body {
   display: flex;
   max-width: 1440px;
