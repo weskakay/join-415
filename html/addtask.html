@@ -68,16 +68,44 @@
             </select>
           </div>
           <div class="add-task-input-fields">
-            <label>Subtasks<span class="add-task-required">*</span></label>
-            <input type="text" id="name" name="name" required />
-
-            <input type="submit" value="Send" />
+            <label>Subtasks</label>
+            <div class="add-task-input-subtasks">
+              <input type="text" id="name" name="name" required />
+              <div class="add-task-subtasks-icons-wrapper">
+                <div class="add-task-subtasks-icon">
+                  <div class="add-task-subtasks-add">
+                    <img src="../assets/icons/add-icon.svg" />
+                  </div>
+                </div>
+                <div class="add-task-subtasks-check-cross">
+                  <div class="add-task-subtasks-icon">
+                    <img src="../assets/icons/cross-icon.svg" />
+                  </div>
+                  <div class="add-task-subtasks-seperator"></div>
+                  <div class="add-task-subtasks-icon">
+                    <img
+                      class="add-task-subtasks-check"
+                      src="../assets/icons/check-icon.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="add-task-bottom">
-        <div class="add-task-bottom-required"></div>
-        <div class="add-task-bottom-buttons"></div>
+        <div class="add-task-bottom-required">
+          <span class="add-task-required">*</span>This fied is required
+        </div>
+        <div class="add-task-bottom-buttons">
+          <button class="add-tastk-button-clear">
+            Clear<img src="../assets/icons/cross-icon.svg" />
+          </button>
+          <button class="add-tastk-button-create">
+            Creat Task<img src="../assets/icons/check-icon.svg" />
+          </button>
+        </div>
       </div>
     </div>
   </body>
