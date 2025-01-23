@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "Inter", serif;
-  src: url(../assets/fonts/Inter/Inter-Italic-VariableFont_opsz\wght.ttf);
-  src: url(../assets/fonts/Inter/Inter-VariableFont_opsz\wght.ttf);
+  font-family: "Inter", sans-serif;
+  src: url(../assets/fonts/Inter/Inter-Italic-VariableFont_opszwght.ttf);
+  src: url(../assets/fonts/Inter/Inter-VariableFont_opszwght.ttf);
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Inter", serif;
+  font-family: "Inter", sans-serif;
 }
 
 /*placeholder only!!!*/
