@@ -115,30 +115,30 @@
 }
 
 .penSymbol {
-  background-image: url(../assets/icons/pen_dark.svg);
+  background-image: url(../assets/icons/summary/pen_dark.svg);
   height: 69px;
   width: 69px;
 }
 .contentContainer:hover .penSymbol {
-  background-image: url(../assets/icons/pen_white.svg);
+  background-image: url(../assets/icons/summary/pen_white.svg);
 }
 
 .contentContainer:active .penSymbol {
-  background-image: url(../assets/icons/pen_dark.svg);
+  background-image: url(../assets/icons/summary/pen_dark.svg);
 }
 
 .doneSymbol {
-  background-image: url(../assets/icons/done_dark.svg);
+  background-image: url(../assets/icons/summary/done_dark.svg);
   height: 69px;
   width: 69px;
 }
 
 .contentContainer:hover .doneSymbol {
-  background-image: url(../assets/icons/done_white.svg);
+  background-image: url(../assets/icons/summary/done_white.svg);
 }
 
 .contentContainer:active .doneSymbol {
-  background-image: url(../assets/icons/done_dark.svg);
+  background-image: url(../assets/icons/summary/done_dark.svg);
 }
 
 .contentData {
