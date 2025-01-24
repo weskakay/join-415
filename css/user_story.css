@@ -1,6 +1,6 @@
 .userStoryContainer {
   width: 525px;
-  height: 931px;
+  height: fit-content;
 }
 
 .userStory {
@@ -38,18 +38,18 @@
   justify-content: center;
 }
 
-.addTaskTable table {
+.userStoryTable table {
   border-spacing: 0;
 }
-.addTaskTable tr {
+.userStoryTable tr {
   gap: 12px;
 }
 
-.addTaskTable td {
+.userStoryTable td {
   padding: 12px 0;
 }
 
-.addTaskTable td:nth-child(2) {
+.userStoryTable td:nth-child(2) {
   padding-left: 24px;
 }
 
