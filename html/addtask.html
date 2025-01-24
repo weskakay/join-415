@@ -6,111 +6,163 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/font_styles.css" />
+    <link rel="stylesheet" href="../css/add_task.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
   </head>
   <body>
-    <div class="add-task-wrapper">
-      <div class="add-task-headline">Add Task</div>
-      <div class="add-task-input">
-        <div class="add-task-input-left">
-          <div class="add-task-input-fields">
-            <label>Title<span class="add-task-required">*</span></label>
-            <input required type="text" placeholder="Enter a title" />
-          </div>
-          <div class="add-task-input-fields">
-            <label>Description</label>
-            <textarea type="text" placeholder="Enter a Description"></textarea>
-          </div>
-          <div class="add-task-input-fields">
-            <label>Assigned to<span class="add-task-required">*</span></label>
-            <select name="contacts" id="input-contacts">
-              <option value="" disabled selected hidden>
-                Select contacts to assign
-              </option>
-              <option value="test1">Test1</option>
-              <option value="test2">Test2</option>
-              <option value="test3">Test3</option>
-            </select>
-          </div>
-          <div class="add-task-assinged-contacts">
-            <div class="background-contacts">AM</div>
-            <div class="background-contacts">AM</div>
-            <div class="background-contacts">AM</div>
-          </div>
+    <div class="navbar">
+      <img src="../assets/join_logo/join-logo.svg" />
+      <div class="navbar-menu">
+        <div class="navbar-menu-button-wrapper">
+          <button class="navbar-menu-button" onclick="">
+            <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
+          </button>
         </div>
-        <div class="add-task-seperator"></div>
-        <div class="add-task-input-right">
-          <div class="add-task-input-fields">
-            <label>Due date<span class="add-task-required">*</span></label>
-            <input required type="date" id="date" />
-          </div>
-          <div class="add-task-input-fields">
-            <label>Prio</label>
-            <div class="add-task-prio">
-              <button class="button-prio-urgent">
-                Urgent<img
-                  src="../assets/icons/add_task/prio-urgent-icon.svg"
-                />
-              </button>
-              <button class="button-prio-medium">
-                Medium<img
-                  src="../assets/icons/add_task/prio-medium-icon.svg"
-                />
-              </button>
-              <button class="button-prio-low">
-                Low<img src="../assets/icons/add_task/prio-low-icon.svg" />
-              </button>
+        <div class="navbar-menu-button-wrapper" onclick="">
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
+          </button>
+        </div>
+        <div class="navbar-menu-button-wrapper" onclick="">
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/board-icon.svg" />Board
+          </button>
+        </div>
+        <div class="navbar-menu-button-wrapper" onclick="">
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
+          </button>
+        </div>
+      </div>
+      <div class="navbar-terms-links">
+        <button class="navbar-term-button" onclick="">Privacy Policy</button>
+        <button class="navbar-term-button" onclick="">Legal notice</button>
+      </div>
+    </div>
+    <main>
+      <header>
+        <div class="header_content">
+          <p class="weight400 size20">Kanban Project Management Tool</p>
+          <div class="profileSection">
+            <a href="">
+              <img src="../assets/icons/header/help.svg" alt="help"
+            /></a>
+            <div class="userInitials">
+              <img
+                src="../assets/icons/header/user_Profile.svg"
+                alt="User Initials"
+              />
             </div>
           </div>
-          <div class="add-task-input-fields">
-            <label>Category<span class="add-task-required">*</span></label>
-            <select name="contacts" id="input-contacts">
-              <option value="" disabled selected hidden>
-                Select task category
-              </option>
-              <option value="test1">Technical Task</option>
-              <option value="test2">User Story</option>
-            </select>
+        </div>
+      </header>
+      <div class="add-task-wrapper">
+        <div class="add-task-headline">Add Task</div>
+        <div class="add-task-input">
+          <div class="add-task-input-left">
+            <div class="add-task-input-fields">
+              <label>Title<span class="add-task-required">*</span></label>
+              <input required type="text" placeholder="Enter a title" />
+            </div>
+            <div class="add-task-input-fields">
+              <label>Description</label>
+              <textarea
+                type="text"
+                placeholder="Enter a Description"
+              ></textarea>
+            </div>
+            <div class="add-task-input-fields">
+              <label>Assigned to<span class="add-task-required">*</span></label>
+              <select name="contacts" id="input-contacts">
+                <option value="" disabled selected hidden>
+                  Select contacts to assign
+                </option>
+                <option value="test1">Test1</option>
+                <option value="test2">Test2</option>
+                <option value="test3">Test3</option>
+              </select>
+            </div>
+            <div class="add-task-assinged-contacts">
+              <div class="background-contacts">AM</div>
+              <div class="background-contacts">AM</div>
+              <div class="background-contacts">AM</div>
+            </div>
           </div>
-          <div class="add-task-input-fields">
-            <label>Subtasks</label>
-            <div class="add-task-input-subtasks">
-              <input type="text" id="name" name="name" required />
-              <div class="add-task-subtasks-icons-wrapper">
-                <div class="add-task-subtasks-icon">
-                  <div class="add-task-subtasks-add">
-                    <img src="../assets/icons/add_task/add-icon.svg" />
-                  </div>
-                </div>
-                <div class="add-task-subtasks-check-cross">
+          <div class="add-task-seperator"></div>
+          <div class="add-task-input-right">
+            <div class="add-task-input-fields">
+              <label>Due date<span class="add-task-required">*</span></label>
+              <input required type="date" id="date" />
+            </div>
+            <div class="add-task-input-fields">
+              <label>Prio</label>
+              <div class="add-task-prio">
+                <button class="button-prio-urgent">
+                  Urgent<img
+                    src="../assets/icons/add_task/prio-urgent-icon.svg"
+                  />
+                </button>
+                <button class="button-prio-medium">
+                  Medium<img
+                    src="../assets/icons/add_task/prio-medium-icon.svg"
+                  />
+                </button>
+                <button class="button-prio-low">
+                  Low<img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </button>
+              </div>
+            </div>
+            <div class="add-task-input-fields">
+              <label>Category<span class="add-task-required">*</span></label>
+              <select name="contacts" id="input-contacts">
+                <option value="" disabled selected hidden>
+                  Select task category
+                </option>
+                <option value="test1">Technical Task</option>
+                <option value="test2">User Story</option>
+              </select>
+            </div>
+            <div class="add-task-input-fields">
+              <label>Subtasks</label>
+              <div class="add-task-input-subtasks">
+                <input type="text" id="name" name="name" required />
+                <div class="add-task-subtasks-icons-wrapper">
                   <div class="add-task-subtasks-icon">
-                    <img src="../assets/icons/add_task/cross-icon.svg" />
+                    <div class="add-task-subtasks-add">
+                      <img src="../assets/icons/add_task/add-icon.svg" />
+                    </div>
                   </div>
-                  <div class="add-task-subtasks-seperator"></div>
-                  <div class="add-task-subtasks-icon">
-                    <img
-                      class="add-task-subtasks-check"
-                      src="../assets/icons/add_task/check-icon.svg"
-                    />
+                  <div class="add-task-subtasks-check-cross">
+                    <div class="add-task-subtasks-icon">
+                      <img src="../assets/icons/add_task/cross-icon.svg" />
+                    </div>
+                    <div class="add-task-subtasks-seperator"></div>
+                    <div class="add-task-subtasks-icon">
+                      <img
+                        class="add-task-subtasks-check"
+                        src="../assets/icons/add_task/check-icon.svg"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="add-task-bottom">
-        <div class="add-task-bottom-required">
-          <span class="add-task-required">*</span>This fied is required
+        <div class="add-task-bottom">
+          <div class="add-task-bottom-required">
+            <span class="add-task-required">*</span>This fied is required
+          </div>
+          <div class="add-task-bottom-buttons">
+            <button class="add-tastk-button-clear">
+              Clear<img src="../assets/icons/add_task/cross-icon.svg" />
+            </button>
+            <button class="add-tastk-button-create">
+              Creat Task<img src="../assets/icons/add_task/check-icon.svg" />
+            </button>
+          </div>
         </div>
-        <div class="add-task-bottom-buttons">
-          <button class="add-tastk-button-clear">
-            Clear<img src="../assets/icons/cross-icon.svg" />
-          </button>
-          <button class="add-tastk-button-create">
-            Creat Task<img src="../assets/icons/check-icon.svg" />
-          </button>
-        </div>
       </div>
-    </div>
+    </main>
   </body>
 </html>
