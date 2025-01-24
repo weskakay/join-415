@@ -1,0 +1,85 @@
+.userStoryContainer {
+  width: 525px;
+  height: 931px;
+}
+
+.userStory {
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  padding: 54px 46px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.storyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  border-radius: 8px;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  padding: 4px 24px;
+  color: white;
+}
+
+.closeButton {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addTaskTable table {
+  border-spacing: 0;
+}
+.addTaskTable tr {
+  gap: 12px;
+}
+
+.addTaskTable td {
+  padding: 12px 0;
+}
+
+.addTaskTable td:nth-child(2) {
+  padding-left: 24px;
+}
+
+.assigneeContainer {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.assignee {
+  display: flex;
+  align-items: center;
+  padding: 7px 16px;
+  gap: 16px;
+}
+
+.subtaskContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.subtaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subtask {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 16px;
+}
