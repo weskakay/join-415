@@ -11,14 +11,12 @@
   font-family: "Inter", sans-serif;
 }
 
-/*placeholder only!!!*/
 body {
   display: flex;
   max-width: 1440px;
   margin: auto;
 }
 
-/*placeholder only!!!*/
 header {
   height: 96px;
   width: 1208px;
@@ -54,4 +52,16 @@ header {
   border-color: rgba(255, 255, 255, 1);
   color: rgba(255, 255, 255, 1);
   background-color: rgba(255, 122, 0, 1);
+}
+
+.separator102 {
+  height: 102px;
+  width: 2px;
+  background-color: #d1d1d1;
+}
+
+.separator59 {
+  height: 59px;
+  width: 3px;
+  background-color: #29abe2;
 }
