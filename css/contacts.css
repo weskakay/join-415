@@ -38,3 +38,12 @@
   justify-content: center;
   gap: 30px;
 }
+
+.contactsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px 24px;
+  gap: 35px;
+  border-radius: 10px;
+}

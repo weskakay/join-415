@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Board</title>
+    <title>Contacts</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/contacts.css" />
     <link rel="stylesheet" href="../css/font_styles.css">
 
     <script src="../js/script.js"></script>
+    <script src="../js/template.js"></script>
+
   </head>
   <body onload="init()">
      <div class="navbar">
@@ -60,10 +62,13 @@
       </header>
       <div class="contactsMain">
         <div class="contactsList">
-            <button class="add-task-button-create">
+            <button >
                 <p class="weight700 size21">Add new contact</p>
                 <img src="../assets/icons/board/person_add.svg" alt="Add Person Symbol">
-            </button> 
+            </button>
+            <div id="contactsList" class="contacts">
+              
+            </div>
 
         </div>
         <div class="contactsDetails">

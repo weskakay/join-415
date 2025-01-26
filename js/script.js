@@ -10,5 +10,20 @@ function init() {
 async function getUsers() {
   let response = await fetch(BASE_URL + ".json");
   users = await response.json();
-  console.log(users);
+  renderContacts();
+}
+
+function renderContacts() {
+  for (
+    let indexContacts = 0;
+    indexContacts < users.user.length;
+    indexContacts++
+  ) {
+    let userName = users.user[indexContacts].name;
+    let userEmail = users.user[indexContacts].email;
+    document.getElementById("contactsList").innerHTML += insertContactData(
+      userName,
+      userEmail,
+    );
+  }
 }
