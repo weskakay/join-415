@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .contactsDetails {
@@ -35,7 +36,6 @@
 .contactsDetailsHeader {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 30px;
 }
 
@@ -46,4 +46,62 @@
   padding: 15px 24px;
   gap: 35px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.contactsDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 24px;
+}
+.detailsProfile {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+}
+
+.detailsProfile img {
+  height: 120px;
+  width: 120px;
+}
+
+.detailsName {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailsEdit {
+  display: flex;
+  gap: 20px;
+}
+
+.detailsEdit button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border-style: none;
+}
+
+.detailsEdit img {
+  height: 24px;
+  width: 24px;
+}
+
+.detailsContact {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.emailLink {
+  text-decoration: none;
+}
+
+.phoneLink {
+  text-decoration: none;
+  color: black;
 }

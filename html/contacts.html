@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/contacts.css" />
-    <link rel="stylesheet" href="../css/font_styles.css">
+    <link rel="stylesheet" href="../css/font_styles.css" />
 
     <script src="../js/script.js"></script>
     <script src="../js/template.js"></script>
-
   </head>
   <body onload="init()">
-     <div class="navbar">
+    <div class="navbar">
       <img src="../assets/join_logo/join-logo.svg" />
       <div class="navbar-menu">
         <div class="navbar-menu-button-wrapper">
@@ -62,22 +61,24 @@
       </header>
       <div class="contactsMain">
         <div class="contactsList">
-            <button >
-                <p class="weight700 size21">Add new contact</p>
-                <img src="../assets/icons/board/person_add.svg" alt="Add Person Symbol">
-            </button>
-            <div id="contactsList" class="contacts">
-              
-            </div>
-
+          <button>
+            <p class="weight700 size21">Add new contact</p>
+            <img
+              src="../assets/icons/contacts/person_add.svg"
+              alt="Add Person Symbol"
+            />
+          </button>
+          <div id="contactsList" class="contacts"></div>
         </div>
         <div class="contactsDetails">
-            <div class="contactsDetailsHeader">
-                <div><p class="weight700 size61">Contacts</p></div>
-                <div class="separator59"></div>
-                <div><p class="weight400 size27">Better with a team</p></div>
-            </div>
+          <div class="contactsDetailsHeader">
+            <div><p class="weight700 size61">Contacts</p></div>
+            <div class="separator59"></div>
+            <div><p class="weight400 size27">Better with a team</p></div>
+          </div>
+          <div id="contactsDetailsDisplay" class="contactsDisplay"></div>
         </div>
       </div>
+    </main>
   </body>
 </html>
