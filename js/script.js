@@ -21,9 +21,18 @@ function renderContacts() {
   ) {
     let userName = users.user[indexContacts].name;
     let userEmail = users.user[indexContacts].email;
-    document.getElementById("contactsList").innerHTML += insertContactData(
+    document.getElementById("contactsList").innerHTML += listContactData(
       userName,
       userEmail,
+      indexContacts,
     );
   }
+}
+
+function openContactDetails(indexContacts) {
+  let userName = users.user[indexContacts].name;
+  let userEmail = users.user[indexContacts].email;
+  let userPhone = users.user[indexContacts].phone;
+  document.getElementById("contactsDetailsDisplay").innerHTML =
+    contactsFullDetails(userName, userEmail, userPhone);
 }
