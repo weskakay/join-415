@@ -50,6 +50,14 @@
   cursor: pointer;
 }
 
+.contactsContainer:hover {
+  background-color: #f9f9f9;
+}
+
+.contactsContainer:focus {
+  background-color: #2a3647;
+}
+
 .contactsDisplay {
   display: flex;
   flex-direction: column;
@@ -105,4 +113,88 @@
 .phoneLink {
   text-decoration: none;
   color: black;
+}
+
+.addContactWindow {
+  width: 1212px;
+  height: 592px;
+  display: flex;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.addContactsLogo {
+  background-color: #2a3647;
+  width: 467px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.addContactsText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.addContactsJoin {
+  position: absolute;
+  width: 55px;
+  height: 66px;
+  left: 0;
+  top: -78px;
+}
+
+.addContacsInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 48px;
+  padding-left: 83px;
+  width: 746px;
+  position: relative;
+}
+
+.dataInput {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dataInput input {
+  padding: 13px 21px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: #d1d1d1;
+  color: #d1d1d1;
+  border-style: solid;
+  background-repeat: no-repeat;
+  background-position: center right 21px;
+  width: 422px;
+}
+
+.dataInput input#nameInput {
+  background-image: url(../assets/icons/contacts/person.svg);
+}
+
+.dataInput input#mailInput {
+  background-image: url(../assets/icons/contacts/mail.svg);
+}
+
+.dataInput input#telInput {
+  background-image: url(../assets/icons/contacts/call.svg);
+}
+
+.closeAddContact {
+  position: Absolute;
+  top: 48px;
+  right: 48px;
+}
+
+.closeAddContact button {
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
 }
