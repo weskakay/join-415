@@ -37,6 +37,19 @@ function openContactDetails(indexContacts) {
     contactsFullDetails(userName, userEmail, userPhone);
 }
 
+function getContactData() {
+  let name = document.getElementById("nameInput").value;
+  let email = document.getElementById("mailInput").value;
+  let phone = document.getElementById("telInput").value;
+  //clear input fields and close window
+
+  update_data(
+    (path = `user/`),
+    (data = { "name": name, "email": email, "phone": phone }),
+  );
+  getUsers();
+}
+
 async function update_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
