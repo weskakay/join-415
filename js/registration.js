@@ -43,3 +43,11 @@ async function postData(path = "", data = {}) {
     })
     return await response.json();
 }
+
+function openSignUpHTML(){
+window.location.href = '../html/signup.html';
+}
+
+function openGuestLogin(){
+    window.location.href = '../html/summary.html';
+}

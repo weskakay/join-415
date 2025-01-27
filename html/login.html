@@ -8,26 +8,27 @@
   <link rel="stylesheet" href="../css/font_styles.css" />
   <link rel="stylesheet" href="../css/login_signup.css" />
   <script src="../js/script.js"></script>
+  <script src="../js/registration.js"></script>
 </head>
 
 <body>
   <header>
     <img src="../assets/join_logo/join-logo-capa2.svg" alt="join-logo" id="join-logo" />
-    <div id="no-user-container">Not a Join user? <button>Sign up</button></div>
+    <div id="no-user-container">Not a Join user? <button onclick="openSignUpHTML()">Sign up</button></div>
   </header>
 
   <main>
     <div id="login-container">
       <h1>Log in</h1>
       <hr />
-      <form>
+      <form onsubmit="event.preventDefault();">
         <div id="login-inputfields">
           <input type="email" placeholder="Email" id="email-login" />
           <input type="password" placeholder="Password" id="password-login" />
         </div>
         <div id="login-buttons">
           <button id="login">Log in</button>
-          <button id="guest-login">Guest Log in</button>
+          <button id="guest-login" onclick="openGuestLogin()">Guest Log in</button>
         </div>
       </form>
     </div>
