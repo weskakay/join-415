@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/font_styles.css" />
     <link rel="stylesheet" href="../css/login_signup.css" />
     <script src="../js/script.js"></script>
+    <script src="../js/registration.js"></script>
 </head>
 
 <body>
@@ -24,13 +25,13 @@
             </div>
 
             <hr />
-            <form>
+            <form onsubmit="event.preventDefault(); registrationData();">
                 <div id="signup-inputfields">
-                    <input type="text" placeholder="Name" id="name-input">
-                    <input type="email" placeholder="Email" id="email-input" />
-                    <input type="password" placeholder="Password" id="password-input" />
-                    <input type="password" placeholder="Confirm Password" id="confirm-password-input" />
-                    <label id="checkbox"><input type="checkbox" id="checkbox-input">
+                    <input type="text" placeholder="Name" id="name-input" required>
+                    <input type="email" placeholder="Email" id="email-input" required>
+                    <input type="password" placeholder="Password" id="password-input" required>
+                    <input type="password" placeholder="Confirm Password" id="confirm-password-input" required>
+                    <label id="checkbox"><input type="checkbox" id="checkbox-input" required>
                         I accept the <a href="#">Privacy Policy</a>
                     </label>  
                     
