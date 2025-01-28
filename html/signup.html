@@ -29,8 +29,10 @@
                 <div id="signup-inputfields">
                     <input type="text" placeholder="Name" id="name-input" required>
                     <input type="email" placeholder="Email" id="email-input" required>
-                    <input type="password" placeholder="Password" id="password-input" required>
-                    <input type="password" placeholder="Confirm Password" id="confirm-password-input" required>
+                    <input type="password" minlength="8" placeholder="Password" id="password-input" required>
+                    <input type="password" minlength="8" placeholder="Confirm Password" id="confirm-password-input" required>
+                    <div id="error-pw" class="d_none">Your passwords don't match. Please try again.</div>
+
                     <label id="checkbox"><input type="checkbox" id="checkbox-input" required>
                         I accept the <a href="#">Privacy Policy</a>
                     </label>  

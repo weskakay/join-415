@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.d_none{
+  display: none;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -248,6 +252,17 @@ margin-top: 35px;
   background-image: url(../assets/icons/login_signup/lock.svg);
   background-repeat: no-repeat;
   background-position: 400px;
+}
+
+#error-pw, #error-login{
+  margin-top: -8px;
+  font-size: 12px;
+  color: #FF8190;
+  font-family: 'Inter', sans-serif;
+}
+
+.wrong-password{
+  border: 1px solid #FF8190;  
 }
 
 #checkbox{
