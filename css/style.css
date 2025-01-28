@@ -65,3 +65,7 @@ header {
   width: 3px;
   background-color: #29abe2;
 }
+
+.d_none {
+  display: none;
+}

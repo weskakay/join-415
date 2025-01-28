@@ -12,7 +12,7 @@ function listContactData(userName, userEmail, indexContacts) {
     `;
 }
 
-function contactsFullDetails(userName, userEmail, userPhone) {
+function contactsFullDetails(userName, userEmail, userPhone, indexContacts) {
   return `
         <div class="detailsProfile">
             <img
@@ -29,7 +29,7 @@ function contactsFullDetails(userName, userEmail, userPhone) {
                 />
                 <p class="weight400 size16 colorDarkBlue">Edit</p>
                 </button>
-                <button>
+                <button onclick="deleteUser('user/${userKeys[indexContacts]}')">
                 <img
                     src="../assets/icons/contacts/delete.svg"
                     alt="Delete Symbol"

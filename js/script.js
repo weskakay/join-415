@@ -1,5 +1,7 @@
 let users = [];
 
+let userKeys = [];
+
 const BASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
 
@@ -7,47 +9,53 @@ function init() {
   getUsers();
 }
 
-async function getUsers() {
-  let response = await fetch(BASE_URL + ".json");
-  users = await response.json();
-  renderContacts();
+async function getUsers(path = `user/`) {
+  users = [];
+  let response = await fetch(BASE_URL + path + ".json");
+  let userData = await response.json();
+  if (userData == null) {
+    return;
+  } else {
+    users.push(...Object.values(userData));
+    userKeys.push(...Object.keys(userData));
+    renderContacts();
+    console.log(userKeys);
+  }
 }
 
 function renderContacts() {
-  for (
-    let indexContacts = 0;
-    indexContacts < users.user.length;
-    indexContacts++
-  ) {
-    let userName = users.user[indexContacts].name;
-    let userEmail = users.user[indexContacts].email;
+  document.getElementById("contactsList").innerHTML = "";
+  for (let indexContacts = 0; indexContacts < users.length; indexContacts++) {
+    let userName = users[indexContacts].name;
+    let userEmail = users[indexContacts].email;
     document.getElementById("contactsList").innerHTML += listContactData(
       userName,
       userEmail,
-      indexContacts,
+      indexContacts
     );
   }
 }
 
 function openContactDetails(indexContacts) {
-  let userName = users.user[indexContacts].name;
-  let userEmail = users.user[indexContacts].email;
-  let userPhone = users.user[indexContacts].phone;
+  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+  let userName = users[indexContacts].name;
+  let userEmail = users[indexContacts].email;
+  let userPhone = users[indexContacts].phone;
   document.getElementById("contactsDetailsDisplay").innerHTML =
-    contactsFullDetails(userName, userEmail, userPhone);
+    contactsFullDetails(userName, userEmail, userPhone, indexContacts);
 }
 
-function getContactData() {
+async function getContactData() {
   let name = document.getElementById("nameInput").value;
   let email = document.getElementById("mailInput").value;
   let phone = document.getElementById("telInput").value;
-  //clear input fields and close window
-
-  update_data(
+  await update_data(
     (path = `user/`),
-    (data = { "name": name, "email": email, "phone": phone }),
+    (data = { "name": name, "email": email, "phone": phone })
   );
   getUsers();
+  clearInput();
+  d_none("overlay");
 }
 
 async function update_data(path = "", data = {}) {
@@ -57,4 +65,30 @@ async function update_data(path = "", data = {}) {
     body: JSON.stringify(data),
   });
   return await response.json();
+}
+
+async function delete_data(path) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "DELETE",
+  });
+  return await response.json();
+}
+
+async function deleteUser(path) {
+  await delete_data(path);
+  getUsers();
+}
+
+function d_none(enterid) {
+  document.getElementById(enterid).classList.toggle("d_none");
+}
+
+function noBubble(event) {
+  event.stopPropagation();
+}
+
+function clearInput() {
+  document.getElementById("nameInput").value = "";
+  document.getElementById("mailInput").value = "";
+  document.getElementById("telInput").value = "";
 }
