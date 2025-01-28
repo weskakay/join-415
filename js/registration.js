@@ -45,6 +45,7 @@ function registrationData() {
     else {
         confPassword.classList.add('wrong-password');
         document.getElementById('error-pw').classList.remove('d_none');
+
         console.log('wrong password');
     }
 }
@@ -76,4 +77,20 @@ function confirmPassword() {
         return true
     }
     else { return false };
+}
+
+function changePWImage(){
+    let pwInput= document.getElementById('password-input');
+
+    pwInput.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)"; 
+}
+
+function changeConfPWImage(){
+    let confPWInput= document.getElementById('confirm-password-input');
+    confPWInput.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)";
+}
+
+function changeImageLogin(){
+    let pwLogin= document.getElementById('password-login');
+    pwLogin.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)";
 }

@@ -24,7 +24,7 @@
       <form onsubmit="event.preventDefault(); getData()">
         <div id="login-inputfields">
           <input type="email" placeholder="Email" id="email-login" />
-          <input type="password" placeholder="Password" id="password-login" />
+          <input type="password" placeholder="Password" id="password-login" oninput="changeImageLogin()"/>
           <div id="error-login" class="d_none">Check your email and password. Please try again.
           </div>
         </div>

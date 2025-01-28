@@ -173,11 +173,15 @@ h1 {
   margin-top: 32px;
 
   >#email-login {
-    background-position: 382px;
+    background-image: url(../assets/icons/login_signup/mail.svg);
+    background-position: 390px;
+    background-repeat: no-repeat;
   }
   
   >#password-login {
-    background-position: 380px;
+    background-image: url(../assets/icons/login_signup/lock.svg);
+    background-position: 390px;
+    background-repeat: no-repeat;
   }
 }
 
@@ -259,6 +263,10 @@ margin-top: 35px;
   font-size: 12px;
   color: #FF8190;
   font-family: 'Inter', sans-serif;
+}
+
+#name-input:focus, #email-input:focus, #password-input:focus, #confirm-password-input:focus, #email-login:focus, #password-login:focus{
+  outline-color: #29ABE2;
 }
 
 .wrong-password{
