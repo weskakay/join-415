@@ -51,7 +51,7 @@ async function getContactData() {
   let phone = document.getElementById("telInput").value;
   await update_data(
     (path = `user/`),
-    (data = { "name": name, "email": email, "phone": phone })
+    (data = { name: name, email: email, phone: phone })
   );
   getUsers();
   clearInput();
@@ -91,4 +91,8 @@ function clearInput() {
   document.getElementById("nameInput").value = "";
   document.getElementById("mailInput").value = "";
   document.getElementById("telInput").value = "";
+}
+
+function changeNavbarItems(id) {
+  window.location.href = `../html/${id}.html`;
 }

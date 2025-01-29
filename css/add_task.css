@@ -1,10 +1,10 @@
 .add-task-wrapper {
   background-color: #f5f7f9;
-  width: 100%;
-  height: 100vh;
-  padding: 64px;
+  padding: 110px 96px 0;
+  min-height: calc(100vh - 96px);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .add-task-headline {
@@ -175,6 +175,7 @@
 .add-task-bottom {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 32px;
 }
 
 .add-task-bottom-buttons {
