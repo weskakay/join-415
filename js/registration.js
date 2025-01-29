@@ -61,6 +61,10 @@ async function postData(path = "", data = {}) {
     return await response.json();
 }
 
+function openLoginHTML(){
+    window.location.href = '../html/login.html';
+}
+
 function openSignUpHTML() {
     window.location.href = '../html/signup.html';
 }
@@ -93,4 +97,18 @@ function changeConfPWImage(){
 function changeImageLogin(){
     let pwLogin= document.getElementById('password-login');
     pwLogin.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)";
+}
+
+function changeLogoSize(){
+   let joinHome =  document.getElementById('join-home');
+   
+   
+   joinHome.classList.add('logo-animation');
+
+   setTimeout(() => {
+    openLoginHTML()
+  }, 1000);
+  
+  
+
 }
