@@ -14,25 +14,38 @@
     <script src="../js/template.js"></script>
   </head>
   <body onload="init()">
-    <div class="navbar">
+    <nav class="navbar">
       <img src="../assets/join_logo/join-logo.svg" />
       <div class="navbar-menu">
-        <div class="navbar-menu-button-wrapper">
-          <button class="navbar-menu-button" onclick="">
+        <div
+          class="navbar-menu-button-wrapper"
+          onclick='changeNavbarItems("summary")'
+        >
+          <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
           </button>
         </div>
-        <div class="navbar-menu-button-wrapper" onclick="">
+        <div
+          class="navbar-menu-button-wrapper"
+          onclick='changeNavbarItems("addtask")'
+        >
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
           </button>
         </div>
-        <div class="navbar-menu-button-wrapper" onclick="">
+        <div
+          class="navbar-menu-button-wrapper"
+          onclick='changeNavbarItems("board")'
+        >
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/board-icon.svg" />Board
           </button>
         </div>
-        <div class="navbar-menu-button-wrapper" onclick="">
+        <div
+          class="navbar-menu-button-wrapper"
+          style="background-color: rgba(9, 25, 49, 1)"
+          onclick='changeNavbarItems("contacts")'
+        >
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
           </button>
@@ -42,7 +55,7 @@
         <button class="navbar-term-button" onclick="">Privacy Policy</button>
         <button class="navbar-term-button" onclick="">Legal notice</button>
       </div>
-    </div>
+    </nav>
     <main>
       <header>
         <div class="header_content">
