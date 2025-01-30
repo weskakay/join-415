@@ -1,25 +1,25 @@
-let users = [];
+let contacts = [];
 
-let userKeys = [];
+let contactKeys = [];
 
 const BASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
 
 function init() {
-  getUsers();
+  getContacts();
 }
 
-async function getUsers(path = `user/`) {
-  users = [];
+async function getContacts(path = `contacts/`) {
+  contacts = [];
   let response = await fetch(BASE_URL + path + ".json");
-  let userData = await response.json();
-  if (userData == null) {
+  let contactData = await response.json();
+  if (contactData == null) {
     document.getElementById("contactsList").innerHTML = "";
     document.getElementById("contactsDetailsDisplay").innerHTML = "";
     return;
   } else {
-    Object.entries(userData).forEach(([id, details]) => {
-      users.push({
+    Object.entries(contactData).forEach(([id, details]) => {
+      contacts.push({
         "id": id,
         "name": details.name,
         "email": details.email,
@@ -32,12 +32,12 @@ async function getUsers(path = `user/`) {
 
 function renderContacts() {
   document.getElementById("contactsList").innerHTML = "";
-  for (let indexContacts = 0; indexContacts < users.length; indexContacts++) {
-    let userName = users[indexContacts].name;
-    let userEmail = users[indexContacts].email;
+  for (let indexContacts = 0; indexContacts < contacts.length; indexContacts++) {
+    let contactName = contacts[indexContacts].name;
+    let contactEmail = contacts[indexContacts].email;
     document.getElementById("contactsList").innerHTML += listContactData(
-      userName,
-      userEmail,
+      contactName,
+      contactEmail,
       indexContacts
     );
   }
@@ -45,11 +45,11 @@ function renderContacts() {
 
 function openContactDetails(indexContacts) {
   document.getElementById("contactsDetailsDisplay").innerHTML = "";
-  let userName = users[indexContacts].name;
-  let userEmail = users[indexContacts].email;
-  let userPhone = users[indexContacts].phone;
+  let contactName = contacts[indexContacts].name;
+  let contactEmail = contacts[indexContacts].email;
+  let contactPhone = contacts[indexContacts].phone;
   document.getElementById("contactsDetailsDisplay").innerHTML =
-    contactsFullDetails(userName, userEmail, userPhone, indexContacts);
+    contactsFullDetails(contactName, contactEmail, contactPhone, indexContacts);
 }
 
 async function getContactData() {
@@ -62,10 +62,10 @@ async function getContactData() {
     alert("Your name, email and phone must be longer than 3 characters");
   } else {
     await update_data(
-      (path = `user/`),
+      (path = `contacts/`),
       (data = { "name": name, "email": email, "phone": phone })
     );
-    getUsers();
+    getContacts();
     clearInput();
     d_none("overlay");
   }
@@ -87,10 +87,10 @@ async function delete_data(path) {
   return await response.json();
 }
 
-async function deleteUser(path) {
+async function deleteContact(path) {
   await delete_data(path);
   document.getElementById("contactsDetailsDisplay").innerHTML = "";
-  getUsers();
+  getContacts();
 }
 
 function clearInput() {

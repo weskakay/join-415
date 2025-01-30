@@ -29,7 +29,7 @@ function contactsFullDetails(userName, userEmail, userPhone, indexContacts) {
                         />
                         <p class="weight400 size16 colorDarkBlue">Edit</p>
                     </button>
-                    <button onclick="deleteUser('user/${users[indexContacts].id}')">
+                    <button onclick="deleteContact('contacts/${contacts[indexContacts].id}')">
                         <img
                             src="../assets/icons/contacts/delete.svg"
                             alt="Delete Symbol"
