@@ -13,9 +13,9 @@ async function getUsers(path = `user/`) {
   users = [];
   let response = await fetch(BASE_URL + path + ".json");
   let userData = await response.json();
-  console.log(userData);
-
   if (userData == null) {
+    document.getElementById("contactsList").innerHTML = "";
+    document.getElementById("contactsDetailsDisplay").innerHTML = "";
     return;
   } else {
     Object.entries(userData).forEach(([id, details]) => {
@@ -56,13 +56,19 @@ async function getContactData() {
   let name = document.getElementById("nameInput").value;
   let email = document.getElementById("mailInput").value;
   let phone = document.getElementById("telInput").value;
-  await update_data(
-    (path = `user/`),
-    (data = { "name": name, "email": email, "phone": phone })
-  );
-  getUsers();
-  clearInput();
-  d_none("overlay");
+  if (name == "" || email == "" || phone == "") {
+    alert("Please insert name, email and phone details");
+  } else if (name.length <= 3 || email <= 3 || phone <= 3) {
+    alert("Your name, email and phone must be longer than 3 characters");
+  } else {
+    await update_data(
+      (path = `user/`),
+      (data = { "name": name, "email": email, "phone": phone })
+    );
+    getUsers();
+    clearInput();
+    d_none("overlay");
+  }
 }
 
 async function update_data(path = "", data = {}) {
@@ -83,6 +89,7 @@ async function delete_data(path) {
 
 async function deleteUser(path) {
   await delete_data(path);
+  document.getElementById("contactsDetailsDisplay").innerHTML = "";
   getUsers();
 }
 
