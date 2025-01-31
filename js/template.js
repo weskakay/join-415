@@ -1,8 +1,8 @@
 function listContactData(userName, userEmail, indexContacts, initials) {
   return /*html*/ `
-    <div class="contactsContainer" onclick="openContactDetails(${indexContacts})">
+    <div class="contactsContainer" tabindex="0" onclick="openContactDetails(${indexContacts})">
     <div class="background-contacts">${initials}</div>
-        <div>
+        <div class="contactsContainerUserinfo"> 
             <p class="weight400 size20">${userName}</p>
             <a class="weight400 size16 emailLink" href="mailto:${userEmail}">${userEmail}</a>
         </div>

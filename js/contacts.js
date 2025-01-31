@@ -30,25 +30,57 @@ async function getContacts(path = `contacts/`) {
   }
 }
 
-function renderContacts() {
-  document.getElementById("contactsList").innerHTML = "";
-  for (let index = 0; index < contacts.length; index++) {
-    let contactName = contacts[index].name;
-    let contactEmail = contacts[index].email;
-    document.getElementById("contactsList").innerHTML += listContactData(
-      contactName,
-      contactEmail,
-      index,
-      getInitials(contactName)
-    );
-  }
-}
-
 function sortContacts() {
   contacts.sort((a, b) =>
     a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
-  renderContacts();
+  groupContacts();
+}
+
+function groupContacts() {
+  let grouped = {};
+
+  for (let i = 0; i < contacts.length; i++) {
+    let contact = contacts[i];
+    let firstLetter = contact.name.charAt(0).toUpperCase();
+    if (!grouped[firstLetter]) {
+      grouped[firstLetter] = [];
+    }
+    grouped[firstLetter].push(contact);
+  }
+
+  let sortedGroups = Object.keys(grouped).sort();
+
+  renderContacts(sortedGroups, grouped);
+}
+
+function renderContacts(sortedGroups, grouped) {
+  document.getElementById("contactsList").innerHTML = "";
+
+  let globalIndex = 0;
+
+  for (let i = 0; i < sortedGroups.length; i++) {
+    let letter = sortedGroups[i];
+
+    document.getElementById("contactsList").innerHTML += /*html*/ `
+    <div class="contactsHeader size20"><p>${letter}</p></div>
+    <div class="contactsSeperator"></div>
+    `;
+
+    for (let j = 0; j < grouped[letter].length; j++) {
+      let contact = grouped[letter][j];
+      let contactName = contact.name;
+      let contactEmail = contact.email;
+      document.getElementById("contactsList").innerHTML += listContactData(
+        contactName,
+        contactEmail,
+        globalIndex,
+        getInitials(contactName)
+      );
+
+      globalIndex++;
+    }
+  }
 }
 
 function getInitials(name) {

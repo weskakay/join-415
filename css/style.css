@@ -56,13 +56,6 @@ header {
   background-color: rgba(255, 122, 0, 1);
 }
 
-.bg-details {
-  width: 120px;
-  height: 120px;
-  font-size: 47px;
-  border-radius: 60px;
-}
-
 .separator102 {
   height: 102px;
   width: 2px;
