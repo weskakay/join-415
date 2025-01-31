@@ -20,27 +20,42 @@ async function getContacts(path = `contacts/`) {
   } else {
     Object.entries(contactData).forEach(([id, details]) => {
       contacts.push({
-        "id": id,
-        "name": details.name,
-        "email": details.email,
-        "phone": details.phone,
+        id: id,
+        name: details.name,
+        email: details.email,
+        phone: details.phone,
       });
     });
-    renderContacts();
+    sortContacts();
   }
 }
 
 function renderContacts() {
   document.getElementById("contactsList").innerHTML = "";
-  for (let indexContacts = 0; indexContacts < contacts.length; indexContacts++) {
-    let contactName = contacts[indexContacts].name;
-    let contactEmail = contacts[indexContacts].email;
+  for (let index = 0; index < contacts.length; index++) {
+    let contactName = contacts[index].name;
+    let contactEmail = contacts[index].email;
     document.getElementById("contactsList").innerHTML += listContactData(
       contactName,
       contactEmail,
-      indexContacts
+      index,
+      getInitials(contactName)
     );
   }
+}
+
+function sortContacts() {
+  contacts.sort((a, b) =>
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
+  );
+  renderContacts();
+}
+
+function getInitials(name) {
+  return name
+    .split(" ")
+    .map((word) => word[0].toUpperCase())
+    .join("");
 }
 
 function openContactDetails(indexContacts) {
@@ -49,7 +64,13 @@ function openContactDetails(indexContacts) {
   let contactEmail = contacts[indexContacts].email;
   let contactPhone = contacts[indexContacts].phone;
   document.getElementById("contactsDetailsDisplay").innerHTML =
-    contactsFullDetails(contactName, contactEmail, contactPhone, indexContacts);
+    contactsFullDetails(
+      contactName,
+      contactEmail,
+      contactPhone,
+      indexContacts,
+      getInitials(contactName)
+    );
 }
 
 async function getContactData() {
@@ -63,7 +84,7 @@ async function getContactData() {
   } else {
     await update_data(
       (path = `contacts/`),
-      (data = { "name": name, "email": email, "phone": phone })
+      (data = { name: name, email: email, phone: phone })
     );
     getContacts();
     clearInput();

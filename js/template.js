@@ -1,24 +1,25 @@
-function listContactData(userName, userEmail, indexContacts) {
-  return `
+function listContactData(userName, userEmail, indexContacts, initials) {
+  return /*html*/ `
     <div class="contactsContainer" onclick="openContactDetails(${indexContacts})">
-        <div>
-            <img src="../assets/icons/add_task/user_image.svg" alt="Profile Picture">
-        </div>
+    <div class="background-contacts">${initials}</div>
         <div>
             <p class="weight400 size20">${userName}</p>
-            <a class="weight400 size16 emailLink" href="mailto:${userEmail}">${userEmail}</p>
+            <a class="weight400 size16 emailLink" href="mailto:${userEmail}">${userEmail}</a>
         </div>
     </div>
     `;
 }
 
-function contactsFullDetails(userName, userEmail, userPhone, indexContacts) {
-  return `
+function contactsFullDetails(
+  userName,
+  userEmail,
+  userPhone,
+  indexContacts,
+  initials
+) {
+  return /*html*/ `
         <div class="detailsProfile">
-            <img
-            src="../assets/icons/add_task/user_image.svg"
-            alt="Profile Picture"
-            />
+        <div class="background-contacts bg-details">${initials}</div>
             <div class="detailsName">
                 <p class="weight500 size47">${userName}</p>
                 <div class="detailsEdit">
