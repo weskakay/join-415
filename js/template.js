@@ -20,23 +20,23 @@ function contactsFullDetails(userName, userEmail, userPhone, indexContacts) {
             alt="Profile Picture"
             />
             <div class="detailsName">
-            <p class="weight500 size47">${userName}</p>
-            <div class="detailsEdit">
-                <button>
-                <img
-                    src="../assets/icons/contacts/edit.svg"
-                    alt="Edit Symbol"
-                />
-                <p class="weight400 size16 colorDarkBlue">Edit</p>
-                </button>
-                <button onclick="deleteUser('user/${userKeys[indexContacts]}')">
-                <img
-                    src="../assets/icons/contacts/delete.svg"
-                    alt="Delete Symbol"
-                />
-                <p class="weight400 size16 colorDarkBlue">Delete</p>
-                </button>
-            </div>
+                <p class="weight500 size47">${userName}</p>
+                <div class="detailsEdit">
+                    <button>
+                        <img
+                            src="../assets/icons/contacts/edit.svg"
+                            alt="Edit Symbol"
+                        />
+                        <p class="weight400 size16 colorDarkBlue">Edit</p>
+                    </button>
+                    <button onclick="deleteContact('contacts/${contacts[indexContacts].id}')">
+                        <img
+                            src="../assets/icons/contacts/delete.svg"
+                            alt="Delete Symbol"
+                        />
+                        <p class="weight400 size16 colorDarkBlue">Delete</p>
+                    </button>
+                </div>
             </div>
         </div>
         <p class="weight400 size20">Contact Information</p>
