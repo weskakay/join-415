@@ -6,7 +6,7 @@ let bgcolors = [
   { id: 4, rgba: "rgba(60, 179, 113, 1)" },
   { id: 5, rgba: "rgb(153, 197, 43)" },
   { id: 6, rgba: "rgba(218, 165, 32, 1)" },
-  { id: 7, rgba: "rgba(186, 85, 211, 1)" },
+  { id: 7, rgba: "rgb(205, 127, 224)" },
   { id: 8, rgba: "rgba(138, 43, 226, 1)" },
   { id: 9, rgba: "rgba(255, 165, 0, 1)" },
 ];
