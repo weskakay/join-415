@@ -71,7 +71,98 @@
           </div>
         </div>
       </header>
-      <div class="board-wrapper"></div>
+      <div class="board-wrapper">
+        <div class="board-header">
+          <div class="size61 weight700">Board</div>
+          <div class="board-search-add-container">
+            <div class="board-search-container">
+              <input class="size20" type="text" placeholder="Find Task" />
+              <div class="search-icon-seperator">
+                <div class="search-seperator"></div>
+                <img src="../assets/icons/board/search.svg" />
+              </div>
+            </div>
+            <button class="board-add-task-button size21">
+              Add Task<img src="../assets/icons/board/add.svg" />
+            </button>
+          </div>
+        </div>
+        <div class="board-tasks-wrapper">
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>To do</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div class="board-card-container" id="board_todo">
+              <div class="board-no-task size16 weight400">
+                <p>No tasks To Do</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div class="board-card">
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Bitte Heflen Sie mir!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>In progress</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div class="board-card-container" id="board_progress">
+              <div class="board-no-task size16">
+                <p>No tasks In Progress</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+            </div>
+          </div>
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>Await feedback</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div class="board-card-container" id="board_feedback">
+              <div class="board-no-task size16">
+                <p>No tasks Await feedback</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+            </div>
+          </div>
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>Done</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div class="board-card-container" id="board_done">
+              <div class="board-no-task size16">
+                <p>No tasks Done</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
