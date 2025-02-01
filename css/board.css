@@ -2,3 +2,77 @@
   background-color: #f5f7f9;
   min-height: calc(100vh - 96px);
 }
+
+.board-header {
+  display: flex;
+  padding: 80px 64px 0;
+  justify-content: space-between;
+}
+
+.board-search-add-container {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 8px 0;
+  gap: 32px;
+}
+
+.board-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  > input {
+    width: 312px;
+    height: 48px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgba(168, 168, 168, 1);
+    border-width: 1px;
+  }
+}
+
+.search-icon-seperator {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  > img {
+    border-radius: 16px;
+  }
+}
+
+.search-icon-seperator > img:hover {
+  cursor: pointer;
+  background-color: rgba(217, 217, 217, 1);
+}
+
+.search-seperator {
+  height: 30px;
+  width: 1px;
+  border-color: rgba(209, 209, 209, 1);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.board-add-task-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: 8px 16px;
+  gap: 4px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: rgba(42, 54, 71, 1);
+  font-weight: bold;
+  color: white;
+}
+
+.board-add-task-button:hover {
+  cursor: pointer;
+  background-color: #29abe2;
+}
