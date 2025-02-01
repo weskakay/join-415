@@ -76,3 +76,130 @@
   cursor: pointer;
   background-color: #29abe2;
 }
+
+.board-tasks-wrapper {
+  display: flex;
+  padding: 64px 64px 0;
+  justify-content: space-between;
+}
+
+.board-tasks-container {
+  display: flex;
+  flex-direction: column;
+  width: 252px;
+}
+
+.board-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  color: rgba(66, 82, 110, 1);
+
+  > img {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.board-headline > img:hover {
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%)
+    hue-rotate(164deg) brightness(96%) contrast(84%);
+}
+
+.board-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.board-no-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100%;
+  background-color: rgba(231, 231, 231, 1);
+  border-style: dashed;
+  border-radius: 10px;
+  border-color: rgba(168, 168, 168, 1);
+  border-width: 1px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  color: rgba(168, 168, 168, 1);
+}
+
+.board-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 24px;
+  gap: 24px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.board-card:hover {
+  cursor: pointer;
+  transform: scale(1.01) rotate(0.5deg) translate(1px, 1px);
+  transition: 100ms;
+}
+
+.crad-category {
+  display: flex;
+  width: 113px;
+  height: 27px;
+  border-radius: 8px;
+  padding: 4px 16px;
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 56, 255, 1);
+}
+
+.card-title-discription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.crad-subtask-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtask-progessbar {
+  height: 8px;
+  width: 128px;
+  border-radius: 8px;
+  background-color: rgba(244, 244, 244, 1);
+}
+
+.subtask-progess {
+  height: 8px;
+  width: 50%;
+  border-radius: 8px;
+  background-color: rgba(69, 137, 255, 1);
+}
+
+.crad-footer {
+  display: flex;
+  justify-content: space-between;
+
+  > img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.card-assignedto {
+  width: 96px; /* witdh = (anzahl der kontakte) - 1 x 32px, wenn nur 1 dann 32px*/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16px, max-content));
+}
+
+.card-contact-bg {
+  width: 32px;
+  height: 32px;
+  border-width: 1px;
+  background-color: palevioletred;
+}
