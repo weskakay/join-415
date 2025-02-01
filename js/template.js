@@ -1,3 +1,10 @@
+function listContactHeader(letter) {
+  return /*html*/ `
+    <div class="contactsHeader size20"><p>${letter}</p></div>
+    <div class="contactsSeperator"></div>
+    `;
+}
+
 function listContactData(userName, userEmail, indexContacts, initials) {
   return /*html*/ `
     <div class="contactsContainer" tabindex="0" onclick="openContactDetails(${indexContacts})">

@@ -62,10 +62,8 @@ function renderContacts(sortedGroups, grouped) {
   for (let i = 0; i < sortedGroups.length; i++) {
     let letter = sortedGroups[i];
 
-    document.getElementById("contactsList").innerHTML += /*html*/ `
-    <div class="contactsHeader size20"><p>${letter}</p></div>
-    <div class="contactsSeperator"></div>
-    `;
+    document.getElementById("contactsList").innerHTML +=
+      listContactHeader(letter);
 
     for (let j = 0; j < grouped[letter].length; j++) {
       let contact = grouped[letter][j];
