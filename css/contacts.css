@@ -1,17 +1,29 @@
 .contactsMain {
   display: flex;
+  position: relative;
 }
 
 .contactsList {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 96px);
+  height: calc(1024px - 96px);
   width: 456px;
   padding: 32px 24px;
   background-color: white;
   box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.contactsList::-webkit-scrollbar-thumb {
+  background: #A8A8A8;
+  border-radius: 3px;
+}
+
+.contactsList::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
 }
 
 .contacts {
