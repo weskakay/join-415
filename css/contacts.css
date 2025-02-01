@@ -271,6 +271,7 @@ input#telInput:focus {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   max-width: 1440px;
+  z-index: 3;
 }
 
 .bg-details {
