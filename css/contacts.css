@@ -14,10 +14,11 @@
   box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
   overflow-y: scroll;
   overflow-x: hidden;
+  z-index: 2;
 }
 
 .contactsList::-webkit-scrollbar-thumb {
-  background: #A8A8A8;
+  background: #a8a8a8;
   border-radius: 3px;
 }
 
@@ -111,16 +112,28 @@
 
 .detailsEdit {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  width: 160px;
 }
 
 .detailsEdit button {
   display: flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
   background-color: transparent;
   border-style: none;
+}
+
+.detailsEdit button:hover {
+  cursor: pointer;
+  > p {
+    color: #29abe2;
+    font-weight: 600;
+  }
+  > img {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%)
+      hue-rotate(164deg) brightness(96%) contrast(84%);
+  }
 }
 
 .detailsEdit img {

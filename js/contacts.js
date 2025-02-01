@@ -1,3 +1,16 @@
+let bgcolors = [
+  { id: 0, rgba: "rgba(255, 105, 135, 1)" },
+  { id: 1, rgba: "rgba(255, 180, 120, 1)" },
+  { id: 2, rgba: "rgba(186, 85, 211, 1)" },
+  { id: 3, rgba: "rgba(100, 200, 250, 1)" },
+  { id: 4, rgba: "rgba(60, 179, 113, 1)" },
+  { id: 5, rgba: "rgb(153, 197, 43)" },
+  { id: 6, rgba: "rgba(218, 165, 32, 1)" },
+  { id: 7, rgba: "rgba(186, 85, 211, 1)" },
+  { id: 8, rgba: "rgba(138, 43, 226, 1)" },
+  { id: 9, rgba: "rgba(255, 165, 0, 1)" },
+];
+
 let contacts = [];
 
 let contactKeys = [];
@@ -75,7 +88,7 @@ function renderContacts(sortedGroups, grouped) {
         globalIndex,
         getInitials(contactName)
       );
-
+      getColorById(globalIndex);
       globalIndex++;
     }
   }
@@ -101,6 +114,7 @@ function openContactDetails(indexContacts) {
       indexContacts,
       getInitials(contactName)
     );
+  getColorById(indexContacts);
 }
 
 async function getContactData() {
@@ -148,4 +162,18 @@ function clearInput() {
   document.getElementById("nameInput").value = "";
   document.getElementById("mailInput").value = "";
   document.getElementById("telInput").value = "";
+}
+
+function getColorById(id) {
+  let reducedId = id % 10;
+  let color = bgcolors[reducedId];
+
+  let element = document.getElementById(`bg-${id}`);
+  let bgelement = document.getElementById(`details-bg-${id}`);
+
+  if (bgelement === null) {
+    element.style.backgroundColor = color.rgba;
+  } else {
+    bgelement.style.backgroundColor = color.rgba;
+  }
 }

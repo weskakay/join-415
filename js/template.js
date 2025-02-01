@@ -8,7 +8,7 @@ function listContactHeader(letter) {
 function listContactData(userName, userEmail, indexContacts, initials) {
   return /*html*/ `
     <div class="contactsContainer" tabindex="0" onclick="openContactDetails(${indexContacts})">
-    <div class="background-contacts">${initials}</div>
+    <div class="background-contacts" id="bg-${indexContacts}">${initials}</div>
         <div class="contactsContainerUserinfo"> 
             <p class="weight400 size20">${userName}</p>
             <a class="weight400 size16 emailLink" href="mailto:${userEmail}">${userEmail}</a>
@@ -26,7 +26,7 @@ function contactsFullDetails(
 ) {
   return /*html*/ `
         <div class="detailsProfile">
-        <div class="background-contacts bg-details">${initials}</div>
+        <div class="background-contacts bg-details" id="details-bg-${indexContacts}">${initials}</div>
             <div class="detailsName">
                 <p class="weight500 size47">${userName}</p>
                 <div class="detailsEdit">
