@@ -75,18 +75,24 @@
         <div class="add-task-input">
           <div class="add-task-input-left">
             <div class="add-task-input-fields">
-              <label>Title<span class="add-task-required">*</span></label>
-              <input required type="text" placeholder="Enter a title" />
+              <div>Title<span class="add-task-required">*</span></div>
+              <input
+                id="taskTitle"
+                required
+                type="text"
+                placeholder="Enter a title"
+              />
             </div>
             <div class="add-task-input-fields">
-              <label>Description</label>
+              <div>Description</div>
               <textarea
+                id="taskDescription"
                 type="text"
                 placeholder="Enter a Description"
               ></textarea>
             </div>
             <div class="add-task-input-fields">
-              <label>Assigned to<span class="add-task-required">*</span></label>
+              <div>Assigned to<span class="add-task-required">*</span></div>
               <select name="contacts" id="input-contacts">
                 <option value="" disabled selected hidden>
                   Select contacts to assign
@@ -105,11 +111,11 @@
           <div class="add-task-seperator"></div>
           <div class="add-task-input-right">
             <div class="add-task-input-fields">
-              <label>Due date<span class="add-task-required">*</span></label>
+              <div>Due date<span class="add-task-required">*</span></div>
               <input required type="date" id="date" />
             </div>
             <div class="add-task-input-fields">
-              <label>Prio</label>
+              <div>Prio</div>
               <div class="add-task-prio">
                 <button class="button-prio-urgent">
                   Urgent<img
@@ -127,8 +133,8 @@
               </div>
             </div>
             <div class="add-task-input-fields">
-              <label>Category<span class="add-task-required">*</span></label>
-              <select name="contacts" id="input-contacts">
+              <div>Category<span class="add-task-required">*</span></div>
+              <select name="category" id="input-category">
                 <option value="" disabled selected hidden>
                   Select task category
                 </option>
@@ -137,9 +143,9 @@
               </select>
             </div>
             <div class="add-task-input-fields">
-              <label>Subtasks</label>
+              <div>Subtasks</div>
               <div class="add-task-input-subtasks">
-                <input type="text" id="name" name="name" required />
+                <input type="text" id="name" name="name" />
                 <div class="add-task-subtasks-icons-wrapper">
                   <div class="add-task-subtasks-icon">
                     <div class="add-task-subtasks-add">

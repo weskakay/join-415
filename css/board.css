@@ -1,0 +1,4 @@
+.board-wrapper {
+  background-color: #f5f7f9;
+  min-height: calc(100vh - 96px);
+}

@@ -209,7 +209,7 @@
   color: white;
 }
 
-.add-tastk-button-clear:hover {
+.add-task-button-clear:hover {
   cursor: pointer;
   transform: scale(1.01);
   color: rgba(41, 171, 226, 1);
@@ -220,7 +220,7 @@
   }
 }
 
-.add-tastk-button-create:hover {
+.add-task-button-create:hover {
   cursor: pointer;
   background-color: rgba(41, 171, 226, 1);
   border-color: rgba(41, 171, 226, 1);
