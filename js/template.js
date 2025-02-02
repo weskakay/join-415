@@ -22,7 +22,7 @@ function contactsFullDetails(
   userEmail,
   userPhone,
   indexContacts,
-  initials
+  initials,
 ) {
   return /*html*/ `
         <div class="detailsProfile">
@@ -30,7 +30,7 @@ function contactsFullDetails(
             <div class="detailsName">
                 <p class="weight500 size47">${userName}</p>
                 <div class="detailsEdit">
-                    <button>
+                    <button onclick="d_none('overlayEdit')">
                         <img
                             src="../assets/icons/contacts/edit.svg"
                             alt="Edit Symbol"
@@ -58,5 +58,132 @@ function contactsFullDetails(
             >${userPhone}</a
             >
         </div>
+    `;
+}
+
+function overlayCreateUser() {
+  return `
+      <div class="addContactWindow" onclick="noBubble(event) ">
+        <div class="addContactsLogo">
+          <div class="addContactsText">
+            <p class="weight700 size61">Add contact</p>
+            <p class="weight400 size27">Tasks are better with a team!</p>
+            <img
+              class="addContactsJoin"
+              src="../assets/icons/contacts/Capa 1.svg"
+              alt="Logo Join"
+            />
+            <div class="separatorHorizontal"></div>
+          </div>
+        </div>
+        <div class="addContacsInput">
+          <div class="closeAddContact">
+            <button onclick="d_none('overlay'), clearInput()">
+              <img
+                src="../assets/icons/add_task/cross-icon.svg"
+                alt="Close Button"
+              />
+            </button>
+          </div>
+          <div>
+            <img src="../assets/icons/contacts/empty_profile.svg" alt="" />
+          </div>
+          <div class="addContactFull">
+            <div class="dataInput">
+              <input
+                id="nameInput"
+                class="weight400 size20"
+                type="text"
+                placeholder="Name"
+              />
+              <input
+                id="mailInput"
+                class="weight400 size20"
+                type="email"
+                placeholder="Email"
+              />
+              <input
+                id="telInput"
+                class="weight400 size20"
+                type="tel"
+                placeholder="Phone"
+              />
+            </div>
+            <div class="add-task-bottom-buttons">
+              <button
+                class="add-task-button-clear"
+                onclick="d_none('overlay'), clearInput()"
+              >
+                Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
+              </button>
+              <button class="add-task-button-create" onclick="getContactData()">
+                Create contact<img
+                  src="../assets/icons/add_task/check-icon.svg"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+}
+
+function overlayEditUser() {
+  return `
+    <div class="addContactWindow">
+        <div class="addContactsLogo">
+          <div class="addContactsText">
+            <p class="weight700 size61">Edit contact</p>
+            <img
+              class="addContactsJoin"
+              src="../assets/icons/contacts/Capa 1.svg"
+              alt="Logo Join"
+            />
+            <div class="separatorHorizontal"></div>
+          </div>
+        </div>
+        <div class="addContacsInput">
+          <div class="closeAddContact">
+            <button>
+              <img
+                src="../assets/icons/add_task/cross-icon.svg"
+                alt="Close Button"
+              />
+            </button>
+          </div>
+          <div>
+            <img src="../assets/icons/contacts/empty_profile.svg" alt="" />
+          </div>
+          <div class="addContactFull">
+            <div class="dataInput">
+              <input
+                id="nameInput"
+                class="weight400 size20"
+                type="text"
+                placeholder="Name"
+              />
+              <input
+                id="mailInput"
+                class="weight400 size20"
+                type="email"
+                placeholder="Email"
+              />
+              <input
+                id="telInput"
+                class="weight400 size20"
+                type="tel"
+                placeholder="Phone"
+              />
+            </div>
+            <div class="add-task-bottom-buttons">
+              <button class="add-task-button-clear">Delete</button>
+              <button class="add-task-button-create" onclick="getContactData()">
+                Save<img src="../assets/icons/add_task/check-icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     `;
 }

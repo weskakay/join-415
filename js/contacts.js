@@ -150,6 +150,15 @@ async function delete_data(path) {
   return await response.json();
 }
 
+async function put_data(path = "", data = {}) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+}
+
 async function deleteContact(path) {
   await delete_data(path);
   document.getElementById("contactsDetailsDisplay").innerHTML = "";
@@ -174,4 +183,23 @@ function getColorById(id) {
   } else {
     bgelement.style.backgroundColor = color.rgba;
   }
+}
+
+function openCreateOverlay() {
+  document.getElementById("overlay").innerHTML = overlayCreateUser();
+}
+
+function openEditOverlay(indexContacts) {
+  document.getElementById("overlayEdit").innerHTML = "";
+  let contactName = contacts[indexContacts].name;
+  let contactEmail = contacts[indexContacts].email;
+  let contactPhone = contacts[indexContacts].phone;
+  document.getElementById("overlayEdit").innerHTML = overlayEditUser(
+    contactName,
+    contactEmail,
+    contactPhone,
+    indexContacts,
+    getInitials(contactName),
+  );
+  getColorById(indexContacts);
 }

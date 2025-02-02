@@ -233,18 +233,6 @@ input#telInput {
   background-image: url(../assets/icons/contacts/call.svg);
 }
 
-input#nameInput:focus-visible {
-  background-image: none;
-}
-
-input#mailInput:focus {
-  background-image: none;
-}
-
-input#telInput:focus {
-  background-image: none;
-}
-
 .closeAddContact {
   position: Absolute;
   top: 48px;

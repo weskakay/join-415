@@ -70,6 +70,12 @@ header {
   background-color: #29abe2;
 }
 
+.separatorHorizontal {
+  background-color: #29abe2;
+  height: 3px;
+  width: 90px;
+}
+
 .d_none {
   display: none;
 }
