@@ -1,22 +1,38 @@
 const FIREBASE_URL = "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
+let UserLoginKey;
 
-async function getData() {
-    let response = await fetch(FIREBASE_URL + '/login-data.json');
-    let login = await response.json();
-    proofLoginData(login)
+async function getData(path = '/login-data', login) {
+    let response = await fetch(FIREBASE_URL + path + '.json');
+    login = await response.json();
+    proofLoginData(login);
 }
 
-async function proofLoginData(login) {
+async function getUserPerID() {
+    let responseTest= await fetch(`https://join-415-default-rtdb.europe-west1.firebasedatabase.app/login-data/${UserLoginKey}.json`);
+    let test= await responseTest.json();
+    console.log(test)
+}
+
+async function proofLoginData(login, userId, findUser) {
     let emailLogin = document.getElementById('email-login');
     let passwordLogin = document.getElementById('password-login');
     let loginData = Object.values(login || {});
-    let findUser = loginData.find(user => user.email === emailLogin.value.trim() && user.password === passwordLogin.value.trim());
-
     try {
+        for (let id in loginData) {
+            if (loginData[id].email === emailLogin.value.trim() && loginData[id].password === passwordLogin.value.trim()) {
+                findUser = loginData[id];
+                userId = Object.keys(login)[id];
+                break;
+            }
+        }
+        UserLoginKey = '';
         if (findUser) {
+            UserLoginKey = userId;
+            console.log('id:', UserLoginKey);
             console.log('User found:', findUser);
             openGuestLogin()
-        } else {
+        }
+        else {
             console.log('No user found with that email.');
             emailLogin.classList.add('wrong-password');
             passwordLogin.classList.add('wrong-password');
@@ -38,6 +54,7 @@ function registrationData() {
             'email': `${email.value.trim()}`,
             'password': `${password.value.trim()}`,
             'name': `${name.value.trim()}`,
+            'contacts': `Aris Karamat`,
         });
 
         console.log('user is successfully registered')
@@ -58,10 +75,11 @@ async function postData(path = "", data = {}) {
         },
         body: JSON.stringify(data)
     })
+
     return await response.json();
 }
 
-function openLoginHTML(){
+function openLoginHTML() {
     window.location.href = '../html/login.html';
 }
 
@@ -83,25 +101,25 @@ function confirmPassword() {
     else { return false };
 }
 
-function changePWImage(){
-    let pwInput= document.getElementById('password-input');
+function changePWImage() {
+    let pwInput = document.getElementById('password-input');
 
-    pwInput.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)"; 
+    pwInput.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)";
 }
 
-function changeConfPWImage(){
-    let confPWInput= document.getElementById('confirm-password-input');
+function changeConfPWImage() {
+    let confPWInput = document.getElementById('confirm-password-input');
     confPWInput.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)";
 }
 
-function changeImageLogin(){
-    let pwLogin= document.getElementById('password-login');
+function changeImageLogin() {
+    let pwLogin = document.getElementById('password-login');
     pwLogin.style.backgroundImage = "url(../assets/icons/login_signup/visibility_off.svg)";
 }
 
-function changeLogoSize(){
-   let joinHome =  document.getElementById('join-home');
-   
-   joinHome.classList.add('logo-animation');
-   setTimeout(() => {openLoginHTML()}, 1000);
+function changeLogoSize() {
+    let joinHome = document.getElementById('join-home');
+
+    joinHome.classList.add('logo-animation');
+    setTimeout(() => { openLoginHTML() }, 1000);
 }
