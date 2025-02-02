@@ -13,8 +13,6 @@ let bgcolors = [
 
 let contacts = [];
 
-let contactKeys = [];
-
 const BASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
 
@@ -45,7 +43,7 @@ async function getContacts(path = `contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
   );
   groupContacts();
 }
@@ -86,7 +84,7 @@ function renderContacts(sortedGroups, grouped) {
         contactName,
         contactEmail,
         globalIndex,
-        getInitials(contactName)
+        getInitials(contactName),
       );
       getColorById(globalIndex);
       globalIndex++;
@@ -112,7 +110,7 @@ function openContactDetails(indexContacts) {
       contactEmail,
       contactPhone,
       indexContacts,
-      getInitials(contactName)
+      getInitials(contactName),
     );
   getColorById(indexContacts);
 }
@@ -128,7 +126,7 @@ async function getContactData() {
   } else {
     await update_data(
       (path = `contacts/`),
-      (data = { name: name, email: email, phone: phone })
+      (data = { name: name, email: email, phone: phone }),
     );
     getContacts();
     clearInput();
