@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/board.css" />
 
     <script src="../js/script.js"></script>
+    <script src="../js/board.js"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -93,12 +94,22 @@
               <p>To do</p>
               <img src="../assets/icons/board/plus button.svg" />
             </div>
-            <div class="board-card-container" id="board_todo">
-              <div class="board-no-task size16 weight400">
+            <div
+              class="board-card-container"
+              id="board_todo"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16 weight400" id="no-task-todo">
                 <p>No tasks To Do</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
-              <div class="board-card">
+              <div
+                class="board-card"
+                id="task1"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
                 <div class="crad-category size16">User Story</div>
                 <div class="card-title-discription">
                   <p class="size16 weight700">Bitte Heflen Sie mir!</p>
@@ -130,11 +141,46 @@
               <p>In progress</p>
               <img src="../assets/icons/board/plus button.svg" />
             </div>
-            <div class="board-card-container" id="board_progress">
-              <div class="board-no-task size16">
+            <div
+              class="board-card-container"
+              id="board_progress"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16" id="no-task-progress">
                 <p>No tasks In Progress</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task2"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Progress</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
             </div>
           </div>
           <div class="board-tasks-container">
@@ -142,11 +188,46 @@
               <p>Await feedback</p>
               <img src="../assets/icons/board/plus button.svg" />
             </div>
-            <div class="board-card-container" id="board_feedback">
-              <div class="board-no-task size16">
+            <div
+              class="board-card-container"
+              id="board_feedback"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16" id="no-task-feedback">
                 <p>No tasks Await feedback</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task3"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">feedback!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
             </div>
           </div>
           <div class="board-tasks-container">
@@ -154,11 +235,46 @@
               <p>Done</p>
               <img src="../assets/icons/board/plus button.svg" />
             </div>
-            <div class="board-card-container" id="board_done">
-              <div class="board-no-task size16">
+            <div
+              class="board-card-container"
+              id="board_done"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16" id="no-task-done">
                 <p>No tasks Done</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task4"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Done!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
