@@ -91,7 +91,7 @@ function overlayEditUser(
               />
             </button>
           </div>
-        <div class="background-contacts bg-details" id="details-bg-${indexContacts}">${initials}</div>
+        <div class="background-contacts bg-details" id="edit-bg-${indexContacts}">${initials}</div>
           <div class="addContactFull">
             <div class="dataInput">
             <input

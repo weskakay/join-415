@@ -190,11 +190,17 @@ function getColorById(id) {
 
   let element = document.getElementById(`bg-${id}`);
   let bgelement = document.getElementById(`details-bg-${id}`);
+  let editbgelement = document.getElementById(`edit-bg-${id}`);
 
-  if (bgelement === null) {
+  if (bgelement === null && editbgelement === null) {
     element.style.backgroundColor = color.rgba;
   } else {
-    bgelement.style.backgroundColor = color.rgba;
+    if (bgelement !== null) {
+      bgelement.style.backgroundColor = color.rgba;
+    }
+    if (editbgelement !== null) {
+      editbgelement.style.backgroundColor = color.rgba;
+    }
   }
 }
 
