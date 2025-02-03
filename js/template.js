@@ -98,6 +98,7 @@ function overlayEditUser(
               id="nameInputEdit"
               class="weight400 size20"
               type="text"
+              required
               placeholder="Name"
               value="${contactName}"
             />
@@ -112,6 +113,7 @@ function overlayEditUser(
               id="telInputEdit"
               class="weight400 size20"
               type="tel"
+              required
               placeholder="Phone"
               value="${contactPhone}"
             />
@@ -157,24 +159,32 @@ function overlayCreateUser() {
           </div>
           <div class="addContactFull">
             <div class="dataInput">
-              <input
-                id="nameInput"
-                class="weight400 size20"
-                type="text"
-                placeholder="Name"
-              />
-              <input
-                id="mailInput"
-                class="weight400 size20"
-                type="email"
-                placeholder="Email"
-              />
-              <input
-                id="telInput"
-                class="weight400 size20"
-                type="tel"
-                placeholder="Phone"
-              />
+              <form>
+                <input
+                  id="nameInput"
+                  class="weight400 size20"
+                  type="text"
+                  required
+                  placeholder="Name"
+                  pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+                />
+                <input
+                  id="mailInput"
+                  class="weight400 size20"
+                  type="email"
+                  required
+                  placeholder="Email"
+                  pattern="[^@\s]+@[^@\s]"
+                />
+                <input
+                  id="telInput"
+                  class="weight400 size20"
+                  type="tel"
+                  required
+                  placeholder="Phone"
+                  pattern="[0-9]{4,20}"
+                />
+              </form>
             </div>
             <div class="add-task-bottom-buttons">
               <button
