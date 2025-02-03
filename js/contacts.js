@@ -219,17 +219,25 @@ async function edit_data(path = "", data = {}) {
 }
 
 async function editUser(name, email, tel, id, indexContacts) {
-  let changeName = document.getElementById(name).value;
-  let changeEmail = document.getElementById(email).value;
-  let changeTel = document.getElementById(tel).value;
-  await edit_data(
-    (path = `login-data/${userLoginKey}/contacts/` + id),
-    (data = { name: changeName, email: changeEmail, phone: changeTel }),
-  );
-  await getContacts();
-  clearInput(name, email, tel);
-  d_none("overlayEdit");
-  openContactDetails(indexContacts);
+  if (checkName("nameInputEdit") === true) {
+    return;
+  } else if (checkEmail("mailInputEdit") === true) {
+    return;
+  } else if (checkPhone("telInputEdit") === true) {
+    return;
+  } else {
+    let changeName = document.getElementById(name).value;
+    let changeEmail = document.getElementById(email).value;
+    let changeTel = document.getElementById(tel).value;
+    await edit_data(
+      (path = `login-data/${userLoginKey}/contacts/` + id),
+      (data = { name: changeName, email: changeEmail, phone: changeTel }),
+    );
+    await getContacts();
+    clearInput(name, email, tel);
+    d_none("overlayEdit");
+    openContactDetails(indexContacts);
+  }
 }
 
 function clearInput(name, email, tel) {

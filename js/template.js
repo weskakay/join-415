@@ -94,29 +94,34 @@ function overlayEditUser(
         <div class="background-contacts bg-details" id="edit-bg-${indexContacts}">${initials}</div>
           <div class="addContactFull">
             <div class="dataInput">
-            <input
-              id="nameInputEdit"
-              class="weight400 size20"
-              type="text"
-              required
-              placeholder="Name"
-              value="${contactName}"
-            />
-            <input
-              id="mailInputEdit"
-              class="weight400 size20"
-              type="email"
-              placeholder="Email"
-              value="${contactEmail}"
-            />
-            <input
-              id="telInputEdit"
-              class="weight400 size20"
-              type="tel"
-              required
-              placeholder="Phone"
-              value="${contactPhone}"
-            />
+              <form>
+                <input
+                  id="nameInputEdit"
+                  class="weight400 size20"
+                  type="text"
+                  required
+                  placeholder="Name"
+                  pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+                  value="${contactName}"
+                />
+                <input
+                  id="mailInputEdit"
+                  class="weight400 size20"
+                  type="email"
+                  placeholder="Email"
+                  pattern="[^@\s]+@[^@\s]"
+                  value="${contactEmail}"
+                />
+                <input
+                  id="telInputEdit"
+                  class="weight400 size20"
+                  type="tel"
+                  required
+                  placeholder="Phone"
+                  pattern="[0-9]{4,20}"
+                  value="${contactPhone}"
+                />
+              </form>
             </div>
             <div class="add-task-bottom-buttons">
               <button class="add-task-button-clear" onclick="deleteContact('login-data/${userLoginKey}/contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
