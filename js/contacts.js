@@ -12,6 +12,7 @@ let bgcolors = [
 ];
 
 let contacts = [];
+let userLoginKey= localStorage.getItem("userKey");
 
 const BASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -20,7 +21,7 @@ function init() {
   getContacts();
 }
 
-async function getContacts(path = `contacts/`) {
+async function getContacts(path = `login-data/${userLoginKey}/contacts/`) {
   contacts = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
@@ -125,7 +126,7 @@ async function getContactData() {
     alert("Your name, email and phone must be longer than 3 characters");
   } else {
     await update_data(
-      (path = `contacts/`),
+      (path = `login-data/${userLoginKey}/contacts/`),
       (data = { name: name, email: email, phone: phone }),
     );
     getContacts();
@@ -170,7 +171,7 @@ async function editUser(name, email, tel, id, indexContacts) {
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
   await edit_data(
-    (path = "contacts/" + id),
+    (path = `login-data/${userLoginKey}/contacts/` + id),
     (data = { name: changeName, email: changeEmail, phone: changeTel }),
   );
   await getContacts();
