@@ -58,7 +58,7 @@ function registrationData() {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
       name: `${name.value.trim()}`,
-      contacts: `Aris Karamat`,
+      contacts: '',
     });
 
     console.log("user is successfully registered");
