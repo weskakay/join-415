@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/add_task.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <script src="../js/script.js"></script>
+    <script src="../js/addtask.js"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -93,14 +94,12 @@
             </div>
             <div class="add-task-input-fields">
               <div>Assigned to<span class="add-task-required">*</span></div>
-              <select name="contacts" id="input-contacts">
-                <option value="" disabled selected hidden>
-                  Select contacts to assign
-                </option>
-                <option value="test1">Test1</option>
-                <option value="test2">Test2</option>
-                <option value="test3">Test3</option>
-              </select>
+              <div class="add-task-contacts-checkbox">
+                <span class="anchor" onclick="toggleCheckbox()"
+                  >Select contacts to assign</span
+                >
+                <ul class="items" id="contacts-checkbox"></ul>
+              </div>
             </div>
             <div class="add-task-assinged-contacts">
               <div class="background-contacts">AM</div>
@@ -134,7 +133,7 @@
             </div>
             <div class="add-task-input-fields">
               <div>Category<span class="add-task-required">*</span></div>
-              <select name="category" id="input-category">
+              <select name="category" id="inputCategory">
                 <option value="" disabled selected hidden>
                   Select task category
                 </option>
@@ -177,7 +176,7 @@
             <button class="add-task-button-clear">
               Clear<img src="../assets/icons/add_task/cross-icon.svg" />
             </button>
-            <button class="add-task-button-create">
+            <button class="add-task-button-create" onclick="getTaskData()">
               Creat Task<img src="../assets/icons/add_task/check-icon.svg" />
             </button>
           </div>

@@ -37,7 +37,7 @@ function contactsFullDetails(
                         />
                         <p class="weight400 size16 colorDarkBlue">Edit</p>
                     </button>
-                    <button onclick="deleteContact('contacts/${contacts[indexContacts].id}')">
+                    <button onclick="deleteContact('login-data/${userLoginKey}/contacts/${contacts[indexContacts].id}')">
                         <img
                             src="../assets/icons/contacts/delete.svg"
                             alt="Delete Symbol"
@@ -98,6 +98,7 @@ function overlayEditUser(
               id="nameInputEdit"
               class="weight400 size20"
               type="text"
+              required
               placeholder="Name"
               value="${contactName}"
             />
@@ -112,12 +113,13 @@ function overlayEditUser(
               id="telInputEdit"
               class="weight400 size20"
               type="tel"
+              required
               placeholder="Phone"
               value="${contactPhone}"
             />
             </div>
             <div class="add-task-bottom-buttons">
-              <button class="add-task-button-clear" onclick="deleteContact('contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
+              <button class="add-task-button-clear" onclick="deleteContact('login-data/${userLoginKey}/contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
               <button class="add-task-button-create" onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}')">
                 Save<img src="../assets/icons/add_task/check-icon.svg" />
               </button>
@@ -157,24 +159,32 @@ function overlayCreateUser() {
           </div>
           <div class="addContactFull">
             <div class="dataInput">
-              <input
-                id="nameInput"
-                class="weight400 size20"
-                type="text"
-                placeholder="Name"
-              />
-              <input
-                id="mailInput"
-                class="weight400 size20"
-                type="email"
-                placeholder="Email"
-              />
-              <input
-                id="telInput"
-                class="weight400 size20"
-                type="tel"
-                placeholder="Phone"
-              />
+              <form>
+                <input
+                  id="nameInput"
+                  class="weight400 size20"
+                  type="text"
+                  required
+                  placeholder="Name"
+                  pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+                />
+                <input
+                  id="mailInput"
+                  class="weight400 size20"
+                  type="email"
+                  required
+                  placeholder="Email"
+                  pattern="[^@\s]+@[^@\s]"
+                />
+                <input
+                  id="telInput"
+                  class="weight400 size20"
+                  type="tel"
+                  required
+                  placeholder="Phone"
+                  pattern="[0-9]{4,20}"
+                />
+              </form>
             </div>
             <div class="add-task-bottom-buttons">
               <button

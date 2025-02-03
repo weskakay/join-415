@@ -204,7 +204,7 @@
   background-color: white;
 }
 
-.dataInput {
+.dataInput form {
   display: flex;
   flex-direction: column;
   gap: 32px;

@@ -225,3 +225,54 @@
   background-color: rgba(41, 171, 226, 1);
   border-color: rgba(41, 171, 226, 1);
 }
+
+.add-task-contacts-checkbox {
+  display: inline-block;
+}
+
+.add-task-contacts-checkbox .anchor {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 50px 5px 10px;
+  border: 1px solid #ccc;
+}
+
+.add-task-contacts-checkbox .anchor:after {
+  position: absolute;
+  content: "";
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  padding: 5px;
+  right: 10px;
+  top: 20%;
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.add-task-contacts-checkbox .anchor:active:after {
+  right: 8px;
+  top: 21%;
+}
+
+.add-task-contacts-checkbox ul.items {
+  padding: 2px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.add-task-contacts-checkbox ul.items li {
+  list-style: none;
+}
+
+.add-task-contacts-checkbox.visible .anchor {
+  color: #0094ff;
+}
+
+.add-task-contacts-checkbox.visible .items {
+  display: block;
+}

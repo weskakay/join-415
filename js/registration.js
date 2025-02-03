@@ -1,6 +1,5 @@
 const FIREBASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
-let UserLoginKey;
 
 async function getData(path = "/login-data", login) {
   let response = await fetch(FIREBASE_URL + path + ".json");
@@ -8,13 +7,13 @@ async function getData(path = "/login-data", login) {
   proofLoginData(login);
 }
 
-async function getUserPerID() {
-  let responseTest = await fetch(
-    `https://join-415-default-rtdb.europe-west1.firebasedatabase.app/login-data/${UserLoginKey}.json`
-  );
-  let test = await responseTest.json();
-  console.log(test);
-}
+// async function getUserPerID() {
+//   let responseTest = await fetch(
+//     `https://join-415-default-rtdb.europe-west1.firebasedatabase.app/login-data/${userLoginKey}.json`
+//   );
+//   let test = await responseTest.json();
+//   console.log(test);
+// }
 
 async function proofLoginData(login, userId, findUser) {
   let emailLogin = document.getElementById("email-login");
@@ -31,10 +30,10 @@ async function proofLoginData(login, userId, findUser) {
         break;
       }
     }
-    UserLoginKey = "";
+
     if (findUser) {
-      UserLoginKey = userId;
-      console.log("id:", UserLoginKey);
+      localStorage.setItem("userKey", userId);
+      console.log("id:", userId);
       console.log("User found:", findUser);
       openGuestLogin();
     } else {
@@ -59,7 +58,7 @@ function registrationData() {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
       name: `${name.value.trim()}`,
-      contacts: `Aris Karamat`,
+      contacts: '',
     });
 
     console.log("user is successfully registered");
@@ -81,18 +80,6 @@ async function postData(path = "", data = {}) {
   });
 
   return await response.json();
-}
-
-function openLoginHTML() {
-  window.location.href = "../html/login.html";
-}
-
-function openSignUpHTML() {
-  window.location.href = "../html/signup.html";
-}
-
-function openGuestLogin() {
-  window.location.href = "../html/summary.html";
 }
 
 function confirmPassword() {

@@ -12,6 +12,7 @@ let bgcolors = [
 ];
 
 let contacts = [];
+let userLoginKey = localStorage.getItem("userKey");
 
 const BASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -20,7 +21,7 @@ function init() {
   getContacts();
 }
 
-async function getContacts(path = `contacts/`) {
+async function getContacts(path = `login-data/${userLoginKey}/contacts/`) {
   contacts = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
@@ -116,21 +117,73 @@ function openContactDetails(indexContacts) {
 }
 
 async function getContactData() {
-  let name = document.getElementById("nameInput").value;
-  let email = document.getElementById("mailInput").value;
-  let phone = document.getElementById("telInput").value;
-  if (name == "" || email == "" || phone == "") {
-    alert("Please insert name, email and phone details");
-  } else if (name.length <= 3 || email <= 3 || phone <= 3) {
-    alert("Your name, email and phone must be longer than 3 characters");
+  if (checkName("nameInput") === true) {
+    return;
+  } else if (checkEmail("mailInput") === true) {
+    return;
+  } else if (checkPhone("telInput") === true) {
+    return;
   } else {
+    let name = document.getElementById("nameInput").value.trim();
+    let email = document.getElementById("mailInput").value.trim();
+    let phone = document.getElementById("telInput").value.trim();
+
     await update_data(
-      (path = `contacts/`),
-      (data = { name: name, email: email, phone: phone }),
+      (path = `login-data/${userLoginKey}/contacts/`),
+      (data = { "name": name, "email": email, "phone": phone }),
     );
     getContacts();
     clearInput("nameInput", "mailInput", "telInput");
     d_none("overlay");
+  }
+}
+
+function checkName(insertedName) {
+  let nameInput = document.getElementById(insertedName);
+  let name = document.getElementById(insertedName).value.trim();
+  let namePattern = new RegExp(nameInput.pattern);
+  if (!name) {
+    nameInput.setCustomValidity("Please insert a name");
+    nameInput.reportValidity();
+    return true;
+  } else if (!namePattern.test(name)) {
+    nameInput.setCustomValidity("Please insert first and last name");
+    nameInput.reportValidity();
+    return true;
+  }
+}
+
+function checkEmail(insertedEmail) {
+  let mailInput = document.getElementById(insertedEmail);
+  let email = document.getElementById(insertedEmail).value.trim();
+  let emailPattern = new RegExp(mailInput.pattern);
+  if (!email) {
+    mailInput.setCustomValidity("Please insert an email");
+    mailInput.reportValidity();
+    return true;
+  } else if (!emailPattern.test(email)) {
+    mailInput.setCustomValidity(
+      "Please insert a valid email format, e.g.: name@email.com",
+    );
+    mailInput.reportValidity();
+    return true;
+  }
+}
+
+function checkPhone(insertedPhone) {
+  let telInput = document.getElementById(insertedPhone);
+  let phone = document.getElementById(insertedPhone).value.trim();
+  let telPattern = new RegExp(telInput.pattern);
+  if (!phone) {
+    telInput.setCustomValidity("Please insert a number");
+    telInput.reportValidity();
+    return true;
+  } else if (!telPattern.test(phone)) {
+    telInput.setCustomValidity(
+      "Please insert a valid phone number, e.g.: +49123456789",
+    );
+    telInput.reportValidity();
+    return true;
   }
 }
 
@@ -170,7 +223,7 @@ async function editUser(name, email, tel, id, indexContacts) {
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
   await edit_data(
-    (path = "contacts/" + id),
+    (path = `login-data/${userLoginKey}/contacts/` + id),
     (data = { name: changeName, email: changeEmail, phone: changeTel }),
   );
   await getContacts();
