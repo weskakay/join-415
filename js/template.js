@@ -37,7 +37,7 @@ function contactsFullDetails(
                         />
                         <p class="weight400 size16 colorDarkBlue">Edit</p>
                     </button>
-                    <button onclick="deleteContact('login-data/${userLoginKey}/contacts/${contacts[indexContacts].id}')">
+                    <button onclick="deleteContact('contacts/${contacts[indexContacts].id}')">
                         <img
                             src="../assets/icons/contacts/delete.svg"
                             alt="Delete Symbol"
@@ -124,7 +124,7 @@ function overlayEditUser(
               </form>
             </div>
             <div class="add-task-bottom-buttons">
-              <button class="add-task-button-clear" onclick="deleteContact('login-data/${userLoginKey}/contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
+              <button class="add-task-button-clear" onclick="deleteContact('contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
               <button class="add-task-button-create" onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}')">
                 Save<img src="../assets/icons/add_task/check-icon.svg" />
               </button>

@@ -7,14 +7,6 @@ async function getData(path = "/login-data", login) {
   proofLoginData(login);
 }
 
-// async function getUserPerID() {
-//   let responseTest = await fetch(
-//     `https://join-415-default-rtdb.europe-west1.firebasedatabase.app/login-data/${userLoginKey}.json`
-//   );
-//   let test = await responseTest.json();
-//   console.log(test);
-// }
-
 async function proofLoginData(login, userId, findUser) {
   let emailLogin = document.getElementById("email-login");
   let passwordLogin = document.getElementById("password-login");
@@ -32,7 +24,6 @@ async function proofLoginData(login, userId, findUser) {
     }
 
     if (findUser) {
-      localStorage.setItem("userKey", userId);
       console.log("id:", userId);
       console.log("User found:", findUser);
       openGuestLogin();
