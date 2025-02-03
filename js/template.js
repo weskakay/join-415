@@ -67,9 +67,10 @@ function overlayEditUser(
   contactPhone,
   indexContacts,
   initials,
+  contactId,
 ) {
   return `
-    <div class="addContactWindow">
+    <div class="addContactWindow" onclick="noBubble(event)">
         <div class="addContactsLogo">
           <div class="addContactsText">
             <p class="weight700 size61">Edit contact</p>
@@ -83,7 +84,7 @@ function overlayEditUser(
         </div>
         <div class="addContacsInput">
           <div class="closeAddContact">
-            <button>
+            <button onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">
               <img
                 src="../assets/icons/add_task/cross-icon.svg"
                 alt="Close Button"
@@ -94,21 +95,21 @@ function overlayEditUser(
           <div class="addContactFull">
             <div class="dataInput">
             <input
-              id="nameInput"
+              id="nameInputEdit"
               class="weight400 size20"
               type="text"
               placeholder="Name"
               value="${contactName}"
             />
             <input
-              id="mailInput"
+              id="mailInputEdit"
               class="weight400 size20"
               type="email"
               placeholder="Email"
               value="${contactEmail}"
             />
             <input
-              id="telInput"
+              id="telInputEdit"
               class="weight400 size20"
               type="tel"
               placeholder="Phone"
@@ -116,8 +117,8 @@ function overlayEditUser(
             />
             </div>
             <div class="add-task-bottom-buttons">
-              <button class="add-task-button-clear">Delete</button>
-              <button class="add-task-button-create" onclick="getContactData()">
+              <button class="add-task-button-clear" onclick="deleteContact('contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
+              <button class="add-task-button-create" onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}')">
                 Save<img src="../assets/icons/add_task/check-icon.svg" />
               </button>
             </div>
@@ -144,7 +145,7 @@ function overlayCreateUser() {
         </div>
         <div class="addContacsInput">
           <div class="closeAddContact">
-            <button onclick="d_none('overlay'), clearInput()">
+            <button onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput')">
               <img
                 src="../assets/icons/add_task/cross-icon.svg"
                 alt="Close Button"
@@ -178,7 +179,7 @@ function overlayCreateUser() {
             <div class="add-task-bottom-buttons">
               <button
                 class="add-task-button-clear"
-                onclick="d_none('overlay'), clearInput()"
+                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput')"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>

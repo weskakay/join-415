@@ -129,7 +129,7 @@ async function getContactData() {
       (data = { name: name, email: email, phone: phone }),
     );
     getContacts();
-    clearInput();
+    clearInput("nameInput", "mailInput", "telInput");
     d_none("overlay");
   }
 }
@@ -150,7 +150,13 @@ async function delete_data(path) {
   return await response.json();
 }
 
-async function put_data(path = "", data = {}) {
+async function deleteContact(path) {
+  await delete_data(path);
+  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+  getContacts();
+}
+
+async function edit_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
     header: { "Content-Type": "application/json" },
@@ -159,16 +165,23 @@ async function put_data(path = "", data = {}) {
   return await response.json();
 }
 
-async function deleteContact(path) {
-  await delete_data(path);
-  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+async function editUser(name, email, tel, id) {
+  let changeName = document.getElementById(name).value;
+  let changeEmail = document.getElementById(email).value;
+  let changeTel = document.getElementById(tel).value;
+  await edit_data(
+    (path = "contacts/" + id),
+    (data = { name: changeName, email: changeEmail, phone: changeTel }),
+  );
   getContacts();
+  clearInput(name, email, tel);
+  d_none("overlayEdit");
 }
 
-function clearInput() {
-  document.getElementById("nameInput").value = "";
-  document.getElementById("mailInput").value = "";
-  document.getElementById("telInput").value = "";
+function clearInput(name, email, tel) {
+  document.getElementById(name).value = "";
+  document.getElementById(email).value = "";
+  document.getElementById(tel).value = "";
 }
 
 function getColorById(id) {
@@ -191,6 +204,7 @@ function openCreateOverlay() {
 
 function openEditOverlay(indexContacts) {
   document.getElementById("overlayEdit").innerHTML = "";
+  let contactId = contacts[indexContacts].id;
   let contactName = contacts[indexContacts].name;
   let contactEmail = contacts[indexContacts].email;
   let contactPhone = contacts[indexContacts].phone;
@@ -200,6 +214,7 @@ function openEditOverlay(indexContacts) {
     contactPhone,
     indexContacts,
     getInitials(contactName),
+    contactId,
   );
   getColorById(indexContacts);
 }
