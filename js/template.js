@@ -118,7 +118,7 @@ function overlayEditUser(
             </div>
             <div class="add-task-bottom-buttons">
               <button class="add-task-button-clear" onclick="deleteContact('contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')">Delete</button>
-              <button class="add-task-button-create" onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}')">
+              <button class="add-task-button-create" onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}')">
                 Save<img src="../assets/icons/add_task/check-icon.svg" />
               </button>
             </div>

@@ -165,7 +165,7 @@ async function edit_data(path = "", data = {}) {
   return await response.json();
 }
 
-async function editUser(name, email, tel, id) {
+async function editUser(name, email, tel, id, indexContacts) {
   let changeName = document.getElementById(name).value;
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
@@ -173,9 +173,10 @@ async function editUser(name, email, tel, id) {
     (path = "contacts/" + id),
     (data = { name: changeName, email: changeEmail, phone: changeTel }),
   );
-  getContacts();
+  await getContacts();
   clearInput(name, email, tel);
   d_none("overlayEdit");
+  openContactDetails(indexContacts);
 }
 
 function clearInput(name, email, tel) {
