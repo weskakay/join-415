@@ -44,7 +44,7 @@ async function getContacts(path = `login-data/${userLoginKey}/contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
   groupContacts();
 }
@@ -85,7 +85,7 @@ function renderContacts(sortedGroups, grouped) {
         contactName,
         contactEmail,
         globalIndex,
-        getInitials(contactName),
+        getInitials(contactName)
       );
       getColorById(globalIndex);
       globalIndex++;
@@ -111,7 +111,7 @@ function openContactDetails(indexContacts) {
       contactEmail,
       contactPhone,
       indexContacts,
-      getInitials(contactName),
+      getInitials(contactName)
     );
   getColorById(indexContacts);
 }
@@ -130,7 +130,7 @@ async function getContactData() {
 
     await update_data(
       (path = `login-data/${userLoginKey}/contacts/`),
-      (data = { "name": name, "email": email, "phone": phone }),
+      (data = { name: name, email: email, phone: phone })
     );
     getContacts();
     clearInput("nameInput", "mailInput", "telInput");
@@ -163,7 +163,7 @@ function checkEmail(insertedEmail) {
     return true;
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com",
+      "Please insert a valid email format, e.g.: name@email.com"
     );
     mailInput.reportValidity();
     return true;
@@ -180,7 +180,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789",
+      "Please insert a valid phone number, e.g.: +49123456789"
     );
     telInput.reportValidity();
     return true;
@@ -219,17 +219,25 @@ async function edit_data(path = "", data = {}) {
 }
 
 async function editUser(name, email, tel, id, indexContacts) {
-  let changeName = document.getElementById(name).value;
-  let changeEmail = document.getElementById(email).value;
-  let changeTel = document.getElementById(tel).value;
-  await edit_data(
-    (path = `login-data/${userLoginKey}/contacts/` + id),
-    (data = { name: changeName, email: changeEmail, phone: changeTel }),
-  );
-  await getContacts();
-  clearInput(name, email, tel);
-  d_none("overlayEdit");
-  openContactDetails(indexContacts);
+  if (checkName("nameInputEdit") === true) {
+    return;
+  } else if (checkEmail("mailInputEdit") === true) {
+    return;
+  } else if (checkPhone("telInputEdit") === true) {
+    return;
+  } else {
+    let changeName = document.getElementById(name).value;
+    let changeEmail = document.getElementById(email).value;
+    let changeTel = document.getElementById(tel).value;
+    await edit_data(
+      (path = `login-data/${userLoginKey}/contacts/` + id),
+      (data = { name: changeName, email: changeEmail, phone: changeTel })
+    );
+    await getContacts();
+    clearInput(name, email, tel);
+    d_none("overlayEdit");
+    openContactDetails(indexContacts);
+  }
 }
 
 function clearInput(name, email, tel) {
@@ -274,7 +282,7 @@ function openEditOverlay(indexContacts) {
     contactPhone,
     indexContacts,
     getInitials(contactName),
-    contactId,
+    contactId
   );
   getColorById(indexContacts);
 }
