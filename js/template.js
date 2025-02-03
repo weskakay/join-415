@@ -22,7 +22,7 @@ function contactsFullDetails(
   userEmail,
   userPhone,
   indexContacts,
-  initials,
+  initials
 ) {
   return /*html*/ `
         <div class="detailsProfile">
@@ -66,7 +66,7 @@ function overlayEditUser(
   contactEmail,
   contactPhone,
   indexContacts,
-  initials,
+  initials
 ) {
   return `
     <div class="addContactWindow">
@@ -90,7 +90,7 @@ function overlayEditUser(
               />
             </button>
           </div>
-        <div class="background-contacts bg-details" id="details-bg-${indexContacts}">${initials}</div>
+        <div class="background-contacts bg-details" id="edit-bg-${indexContacts}">${initials}</div>
           <div class="addContactFull">
             <div class="dataInput">
             <input

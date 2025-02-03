@@ -43,7 +43,7 @@ async function getContacts(path = `contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
   groupContacts();
 }
@@ -84,7 +84,7 @@ function renderContacts(sortedGroups, grouped) {
         contactName,
         contactEmail,
         globalIndex,
-        getInitials(contactName),
+        getInitials(contactName)
       );
       getColorById(globalIndex);
       globalIndex++;
@@ -110,7 +110,7 @@ function openContactDetails(indexContacts) {
       contactEmail,
       contactPhone,
       indexContacts,
-      getInitials(contactName),
+      getInitials(contactName)
     );
   getColorById(indexContacts);
 }
@@ -126,7 +126,7 @@ async function getContactData() {
   } else {
     await update_data(
       (path = `contacts/`),
-      (data = { name: name, email: email, phone: phone }),
+      (data = { name: name, email: email, phone: phone })
     );
     getContacts();
     clearInput();
@@ -177,11 +177,17 @@ function getColorById(id) {
 
   let element = document.getElementById(`bg-${id}`);
   let bgelement = document.getElementById(`details-bg-${id}`);
+  let editbgelement = document.getElementById(`edit-bg-${id}`);
 
-  if (bgelement === null) {
+  if (bgelement === null && editbgelement === null) {
     element.style.backgroundColor = color.rgba;
   } else {
-    bgelement.style.backgroundColor = color.rgba;
+    if (bgelement !== null) {
+      bgelement.style.backgroundColor = color.rgba;
+    }
+    if (editbgelement !== null) {
+      editbgelement.style.backgroundColor = color.rgba;
+    }
   }
 }
 
@@ -199,7 +205,7 @@ function openEditOverlay(indexContacts) {
     contactEmail,
     contactPhone,
     indexContacts,
-    getInitials(contactName),
+    getInitials(contactName)
   );
   getColorById(indexContacts);
 }
