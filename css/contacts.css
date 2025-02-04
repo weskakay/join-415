@@ -169,7 +169,6 @@
 
 .addContactWindowClosed {
   transform: translate(100%, -50%);
-  background-color: transparent;
 }
 
 .contactWindowFull {
