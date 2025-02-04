@@ -239,3 +239,28 @@ function overlayCreateUser() {
     </div>
     `;
 }
+
+function listContactsAddtask(contact) {
+  let checked = selectedContactsIDs.includes(contact.id) ? "checked" : "";
+
+  return /*html*/ `
+    <li>
+      <input type="checkbox" 
+        id="checkbox-${contact.id}" 
+        class="add-task-checkmark" 
+        value="${contact.id}" 
+        ${checked} 
+        onclick="toggleCheckbox('${contact.id}')"
+      />
+      <div class="background-contacts bg-contact-chechbox">
+        ${getInitials(contact.name)}
+      </div>
+      <p class="checkbox-name size20">${contact.name}</p>
+    </li>`;
+}
+
+function listAssingedContacts(contact) {
+  return /*html*/ `<div class="background-contacts bg-contact-chechbox">${getInitials(
+    contact.name
+  )}</div>`;
+}
