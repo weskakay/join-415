@@ -159,11 +159,6 @@
 }
 
 .addContactWindow {
-  width: 1212px;
-  height: 592px;
-  display: flex;
-  border-radius: 30px;
-  overflow: hidden;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -174,6 +169,15 @@
 
 .addContactWindowClosed {
   transform: translate(100%, -50%);
+  background-color: transparent;
+}
+
+.contactWindowFull {
+  display: flex;
+  overflow: hidden;
+  width: 1212px;
+  height: 592px;
+  border-radius: 30px;
 }
 
 .addContactsLogo {

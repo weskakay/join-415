@@ -166,76 +166,81 @@ function overlayEditUser(
 
 function overlayCreateUser() {
   return `
-      <div class="addContactWindow addContactWindowClosed" onclick="noBubble(event) ">
-        <div class="addContactsLogo">
-          <div class="addContactsText">
-            <p class="weight700 size61">Add contact</p>
-            <p class="weight400 size27">Tasks are better with a team!</p>
-            <img
-              class="addContactsJoin"
-              src="../assets/icons/contacts/Capa 1.svg"
-              alt="Logo Join"
-            />
-            <div class="separatorHorizontal"></div>
-          </div>
+    <div
+      id="contactWindow"
+      class="addContactWindowClosed addContactWindow"
+      onclick="noBubble(event) "
+    >
+      <div class="addContactsLogo">
+        <div class="addContactsText">
+          <p class="weight700 size61">Add contact</p>
+          <p class="weight400 size27">Tasks are better with a team!</p>
+          <img
+            class="addContactsJoin"
+            src="../assets/icons/contacts/Capa 1.svg"
+            alt="Logo Join"
+          />
+          <div class="separatorHorizontal"></div>
         </div>
-        <div class="addContacsInput">
-          <div class="closeAddContact">
-            <button onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput')">
-              <img
-                src="../assets/icons/add_task/cross-icon.svg"
-                alt="Close Button"
+      </div>
+      <div class="addContacsInput">
+        <div class="closeAddContact">
+          <button
+            onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), toggle_create_window()"
+          >
+            <img
+              src="../assets/icons/add_task/cross-icon.svg"
+              alt="Close Button"
+            />
+          </button>
+        </div>
+        <div>
+          <img src="../assets/icons/contacts/empty_profile.svg" alt="" />
+        </div>
+        <div class="addContactFull">
+          <div class="dataInput">
+            <form>
+              <input
+                id="nameInput"
+                class="weight400 size20"
+                type="text"
+                required
+                placeholder="Name"
+                pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+              />
+              <input
+                id="mailInput"
+                class="weight400 size20"
+                type="email"
+                required
+                placeholder="Email"
+                pattern="[^@s]+@[^@s]"
+              />
+              <input
+                id="telInput"
+                class="weight400 size20"
+                type="tel"
+                required
+                placeholder="Phone"
+                pattern="[0-9]{4,20}"
+              />
+            </form>
+          </div>
+          <div class="add-task-bottom-buttons">
+            <button
+              class="add-task-button-clear"
+              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput')"
+            >
+              Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
+            </button>
+            <button class="add-task-button-create" onclick="getContactData()">
+              Create contact<img
+                src="../assets/icons/add_task/check-icon.svg"
               />
             </button>
-          </div>
-          <div>
-            <img src="../assets/icons/contacts/empty_profile.svg" alt="" />
-          </div>
-          <div class="addContactFull">
-            <div class="dataInput">
-              <form>
-                <input
-                  id="nameInput"
-                  class="weight400 size20"
-                  type="text"
-                  required
-                  placeholder="Name"
-                  pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
-                />
-                <input
-                  id="mailInput"
-                  class="weight400 size20"
-                  type="email"
-                  required
-                  placeholder="Email"
-                  pattern="[^@\s]+@[^@\s]"
-                />
-                <input
-                  id="telInput"
-                  class="weight400 size20"
-                  type="tel"
-                  required
-                  placeholder="Phone"
-                  pattern="[0-9]{4,20}"
-                />
-              </form>
-            </div>
-            <div class="add-task-bottom-buttons">
-              <button
-                class="add-task-button-clear"
-                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput')"
-              >
-                Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
-              </button>
-              <button class="add-task-button-create" onclick="getContactData()">
-                Create contact<img
-                  src="../assets/icons/add_task/check-icon.svg"
-                />
-              </button>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    `;
+  `;
 }
