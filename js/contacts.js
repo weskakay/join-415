@@ -12,7 +12,6 @@ let bgcolors = [
 ];
 
 let contacts = [];
-let userLoginKey = localStorage.getItem("userKey");
 
 const BASE_URL =
   "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -21,7 +20,7 @@ function init() {
   getContacts();
 }
 
-async function getContacts(path = `login-data/${userLoginKey}/contacts/`) {
+async function getContacts(path = `contacts/`) {
   contacts = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
@@ -129,7 +128,7 @@ async function getContactData() {
     let phone = document.getElementById("telInput").value.trim();
 
     await update_data(
-      (path = `login-data/${userLoginKey}/contacts/`),
+      (path = `contacts/`),
       (data = { name: name, email: email, phone: phone })
     );
     getContacts();
@@ -230,7 +229,7 @@ async function editUser(name, email, tel, id, indexContacts) {
     let changeEmail = document.getElementById(email).value;
     let changeTel = document.getElementById(tel).value;
     await edit_data(
-      (path = `login-data/${userLoginKey}/contacts/` + id),
+      (path = `contacts/` + id),
       (data = { name: changeName, email: changeEmail, phone: changeTel })
     );
     await getContacts();
