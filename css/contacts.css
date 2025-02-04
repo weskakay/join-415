@@ -159,20 +159,24 @@
 }
 
 .addContactWindow {
-  width: 1212px;
-  height: 592px;
-  display: flex;
-  border-radius: 30px;
-  overflow: hidden;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: all 250ms ease-in-out;
+  z-index: 5;
 }
 
 .addContactWindowClosed {
-  transform: translateX(100%);
+  transform: translate(100%, -50%);
+}
+
+.contactWindowFull {
+  display: flex;
+  overflow: hidden;
+  width: 1212px;
+  height: 592px;
+  border-radius: 30px;
 }
 
 .addContactsLogo {
