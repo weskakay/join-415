@@ -10,11 +10,6 @@ function changeNavbarItems(id) {
   window.location.href = `../html/${id}.html`;
 }
 
-function logout(){
-  localStorage.removeItem("userKey");
-  openLoginHTML();
-}
-
 function openLoginHTML() {
   window.location.href = "../html/login.html";
 }
