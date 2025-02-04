@@ -166,11 +166,14 @@
             <div class="add-task-bottom-buttons">
               <button
                 class="add-task-button-clear"
-                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput')"
+                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), toggle_create_window()"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>
-              <button class="add-task-button-create" onclick="getContactData()">
+              <button
+                class="add-task-button-create"
+                onclick="getContactData(), toggle_create_window()"
+              >
                 Create contact<img
                   src="../assets/icons/add_task/check-icon.svg"
                 />
