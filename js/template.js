@@ -166,7 +166,7 @@ function overlayEditUser(
 
 function overlayCreateUser() {
   return `
-      <div class="addContactWindow" onclick="noBubble(event) ">
+      <div class="addContactWindow addContactWindowClosed" onclick="noBubble(event) ">
         <div class="addContactsLogo">
           <div class="addContactsText">
             <p class="weight700 size61">Add contact</p>

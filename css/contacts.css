@@ -169,10 +169,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   transition: all 250ms ease-in-out;
+  z-index: 5;
 }
 
 .addContactWindowClosed {
-  transform: translateX(100%);
+  transform: translate(100%, -50%);
 }
 
 .addContactsLogo {

@@ -1,3 +1,10 @@
+function toggle_create_window() {
+  document
+    .getElementById("contactWindow")
+    .classList.toggle("addContactWindowClosed");
+  document.getElementById("contactWindow").classList.toggle("addContactWindow");
+}
+
 function d_none(enterid) {
   document.getElementById(enterid).classList.toggle("d_none");
 }
