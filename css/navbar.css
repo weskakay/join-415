@@ -6,6 +6,7 @@
   min-height: 100vh;
   background-color: rgba(42, 54, 71, 1);
   position: relative;
+  overflow: hidden;
 
   > img {
     padding: 64px;
