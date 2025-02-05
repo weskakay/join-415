@@ -17,7 +17,31 @@
     <script src="../js/template.js"></script>
   </head>
   <body onload="init()">
-    <nav class="navbar">
+    <header>
+        <div class="header_content">
+          <p class="weight400 size20">Kanban Project Management Tool</p>
+          <div class="profileSection">
+            <a href="">
+              <img src="../assets/icons/header/help.svg" alt="help"
+            /></a>
+            <div class="userInitials">
+              <img
+                src="../assets/icons/header/user_Profile.svg"
+                alt="User Initials"
+                onclick="d_none(`dropdown-menu`)"
+              />
+            </div>
+          </div>
+        </div>
+        <section id="dropdown-menu" class="d_none">
+        <div onclick="openLegalNotice()">Legal Notice</div>
+        <div onclick="openPrivacyPolicy()">Privacy Policy</div>
+        <div onclick="openLoginHTML()">Log out</div>
+      </section>
+      </header>
+    
+    <main>
+      <nav class="navbar">
       <img src="../assets/join_logo/join-logo.svg" />
       <div class="navbar-menu">
         <div

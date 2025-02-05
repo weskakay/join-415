@@ -36,6 +36,7 @@
   background-position: center bottom;
   height: 20px;
 }
+
 .contactsList::-webkit-scrollbar-button:single-button:vertical:increment {
   background-image: url(../assets/icons/contacts/scrollbar_down.svg);
   background-repeat: no-repeat;
@@ -114,6 +115,7 @@
   gap: 48px;
   padding: 24px 0;
 }
+
 .detailsProfile {
   display: flex;
   align-items: center;
@@ -142,13 +144,14 @@
 
 .detailsEdit button:hover {
   cursor: pointer;
-  > p {
+
+  >p {
     color: #29abe2;
     font-weight: 600;
   }
-  > img {
-    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%)
-      hue-rotate(164deg) brightness(96%) contrast(84%);
+
+  >img {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%) hue-rotate(164deg) brightness(96%) contrast(84%);
   }
 }
 
@@ -186,39 +189,38 @@
   align-items: center;
   height: 58px;
 
-  > p {
+  >p {
     margin-left: 32px;
   }
 }
 
-#dropdown-menu{
+#dropdown-menu {
   position: absolute;
   display: flex;
-  left: 1040px;
+  right: 30px;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   height: 158px;
   min-width: 150px;
   background-color: #2A3647;
-  border-radius: 20px 0 20px 20px ;
+  border-radius: 20px 0 20px 20px;
   color: #CDCDCD;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
 
-  >div{
+  >div {
     padding: 10px;
     width: 120px;
   }
 }
 
-#dropdown-menu div:hover{
+#dropdown-menu div:hover {
   background-color: #3a475a;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
-.userInitials:hover{
+.userInitials:hover {
   cursor: pointer;
   filter: brightness(0.9);
 }
-
