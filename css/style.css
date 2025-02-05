@@ -82,6 +82,7 @@ header {
 
 .d_none {
   display: none;
+  visibility: hidden;
 }
 
 .contactsSeperator {

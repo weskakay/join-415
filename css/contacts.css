@@ -190,3 +190,35 @@
     margin-left: 32px;
   }
 }
+
+#dropdown-menu{
+  position: absolute;
+  display: flex;
+  left: 1040px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 158px;
+  min-width: 150px;
+  background-color: #2A3647;
+  border-radius: 20px 0 20px 20px ;
+  color: #CDCDCD;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+
+  >div{
+    padding: 10px;
+    width: 120px;
+  }
+}
+
+#dropdown-menu div:hover{
+  background-color: #3a475a;
+  cursor: pointer;  
+}
+
+.userInitials:hover{
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+

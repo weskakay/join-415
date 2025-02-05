@@ -48,3 +48,11 @@ function openSignUpHTML() {
 function openGuestLogin() {
   window.location.href = "../html/summary.html";
 }
+
+function openLegalNotice(){
+  window.location.href = "";
+}
+
+function openPrivacyPolicy(){
+  window.location.href = "";
+}
