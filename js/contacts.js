@@ -43,7 +43,7 @@ async function getContacts(path = `contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
   );
   groupContacts();
 }
@@ -84,7 +84,7 @@ function renderContacts(sortedGroups, grouped) {
         contactName,
         contactEmail,
         globalIndex,
-        getInitials(contactName)
+        getInitials(contactName),
       );
       getColorById(globalIndex);
       globalIndex++;
@@ -110,30 +110,38 @@ function openContactDetails(indexContacts) {
       contactEmail,
       contactPhone,
       indexContacts,
-      getInitials(contactName)
+      getInitials(contactName),
     );
   getColorById(indexContacts);
 }
 
-async function getContactData() {
-  if (checkName("nameInput") === true) {
+async function getContactData(
+  inputName,
+  inputEmail,
+  inputPhone,
+  overId,
+  windowId,
+) {
+  if (checkName(inputName) === true) {
     return;
-  } else if (checkEmail("mailInput") === true) {
+  } else if (checkEmail(inputEmail) === true) {
     return;
-  } else if (checkPhone("telInput") === true) {
+  } else if (checkPhone(inputPhone) === true) {
     return;
   } else {
-    let name = document.getElementById("nameInput").value.trim();
-    let email = document.getElementById("mailInput").value.trim();
-    let phone = document.getElementById("telInput").value.trim();
+    let name = document.getElementById(inputName).value.trim();
+    let email = document.getElementById(inputEmail).value.trim();
+    let phone = document.getElementById(inputPhone).value.trim();
 
     await update_data(
       (path = `contacts/`),
-      (data = { name: name, email: email, phone: phone })
+      (data = { "name": name, "email": email, "phone": phone }),
     );
     getContacts();
-    clearInput("nameInput", "mailInput", "telInput");
-    d_none("overlay");
+    clearInput(inputName, inputEmail, inputPhone);
+    d_none(overId);
+    showCreationHint();
+    toggle_create_window(windowId);
   }
 }
 
@@ -162,7 +170,7 @@ function checkEmail(insertedEmail) {
     return true;
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com"
+      "Please insert a valid email format, e.g.: name@email.com",
     );
     mailInput.reportValidity();
     return true;
@@ -179,7 +187,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789"
+      "Please insert a valid phone number, e.g.: +49123456789",
     );
     telInput.reportValidity();
     return true;
@@ -230,7 +238,7 @@ async function editUser(name, email, tel, id, indexContacts) {
     let changeTel = document.getElementById(tel).value;
     await edit_data(
       (path = `contacts/` + id),
-      (data = { name: changeName, email: changeEmail, phone: changeTel })
+      (data = { name: changeName, email: changeEmail, phone: changeTel }),
     );
     await getContacts();
     clearInput(name, email, tel);
@@ -281,7 +289,7 @@ function openEditOverlay(indexContacts) {
     contactPhone,
     indexContacts,
     getInitials(contactName),
-    contactId
+    contactId,
   );
   getColorById(indexContacts);
 }

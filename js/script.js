@@ -1,8 +1,6 @@
-function toggle_create_window() {
-  document
-    .getElementById("contactWindow")
-    .classList.toggle("addContactWindowClosed");
-  document.getElementById("contactWindow").classList.toggle("addContactWindow");
+function toggle_create_window(windowId) {
+  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
+  document.getElementById(windowId).classList.toggle("addContactWindow");
 }
 
 async function delay(seconds) {
@@ -49,10 +47,10 @@ function openGuestLogin() {
   window.location.href = "../html/summary.html";
 }
 
-function openLegalNotice(){
+function openLegalNotice() {
   window.location.href = "";
 }
 
-function openPrivacyPolicy(){
+function openPrivacyPolicy() {
   window.location.href = "";
 }
