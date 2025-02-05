@@ -78,13 +78,15 @@
       </header>
       <div class="contactsMain">
         <div class="contactsList">
-          <button onclick="d_none(`overlay`), toggle_create_window()">
-            <p class="weight700 size21">Add new contact</p>
-            <img
-              src="../assets/icons/contacts/person_add.svg"
-              alt="Add Person Symbol"
-            />
-          </button>
+          <div class="sticky">
+            <button onclick="d_none(`overlay`), toggle_create_window()">
+              <p class="weight700 size21">Add new contact</p>
+              <img
+                src="../assets/icons/contacts/person_add.svg"
+                alt="Add Person Symbol"
+              />
+            </button>
+          </div>
           <div id="contactsList" class="contacts"></div>
         </div>
         <div class="contactsDetails">
