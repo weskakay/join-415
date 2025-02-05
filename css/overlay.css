@@ -1,16 +1,71 @@
+.createdContactPosition {
+  position: relative;
+  width: 100%;
+}
+.createdContactInfoOut {
+  position: absolute;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  right: 0;
+  transform: translate(1000%);
+}
+
+.createdContactInfoIn {
+  position: absolute;
+  transition-timing-function: ease-out;
+  left: 0;
+  top: 0;
+  transition: 0.2s;
+}
+
+/*
+.createdContactInfoOut {
+  top: 80%;
+  right: 0;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  transform: translate(100%);
+  position: absolute;
+}
+
+.createdContactInfoIn {
+  top: 80%;
+  right: 50%;
+  position: absolute;
+  transition-timing-function: ease-out;
+  transition: 0.2s;
+  z-index: 5;
+  transform: translate(75%);
+}
+*/
+
+.createdContactInfo {
+  width: 326px;
+  height: 74px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: #2a3647;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .addContactWindow {
   position: absolute;
-  display: flex;
-  height: 592px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 250ms ease-in-out;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
   z-index: 5;
 }
 
 .addContactWindowClosed {
+  top: 50%;
+  right: 0;
   transform: translate(100%, -50%);
+  position: absolute;
 }
 
 .contactWindowFull {
@@ -114,16 +169,4 @@ input#telInput {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
-}
-
-.createdContactInfo {
-  width: 326px;
-  height: 74px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-  background-color: #2a3647;
-  color: white;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

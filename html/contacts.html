@@ -94,12 +94,17 @@
             <div><p class="weight400 size27">Better with a team</p></div>
           </div>
           <div id="contactsDetailsDisplay" class="contactsDisplay"></div>
-          <div class="createdContactInfo">
-            <p class="weight400 size20">Contact successfully created</p>
+          <div class="createdContactPosition">
+            <div id="createdInfo" class="createdContactInfoOut">
+              <div class="createdContactInfo">
+                <p class="weight400 size20">Contact successfully created</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </main>
+
     <div
       id="overlay"
       class="overlay d_none"
@@ -175,7 +180,7 @@
               </button>
               <button
                 class="add-task-button-create"
-                onclick="getContactData(), toggle_create_window()"
+                onclick="getContactData(), toggle_create_window(), showCreationHint()"
               >
                 Create contact<img
                   src="../assets/icons/add_task/check-icon.svg"
