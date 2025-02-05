@@ -15,7 +15,7 @@
   overflow-x: hidden;
   z-index: 2;
   height: calc(100vh - 96px);
-  padding: 0 24px;
+  padding: 0 24px 0 48px;
 }
 
 .contactsList::-webkit-scrollbar-thumb {
