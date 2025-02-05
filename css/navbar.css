@@ -7,7 +7,8 @@
   background-color: rgba(42, 54, 71, 1);
   position: relative;
   overflow: hidden;
-
+  margin-top: -96px;
+  z-index: 2;
   > img {
     padding: 64px;
   }
