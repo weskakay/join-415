@@ -134,6 +134,35 @@
   width: 440px;
 }
 
+#date{
+color: #d1d1d1;
+}
+
+#date:valid {
+  color: black;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url(../assets/icons/add_task/event.svg);
+  margin-right: 15px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover{
+  cursor: pointer;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url(../assets/icons/add_task/arrow_drop_down.svg) no-repeat right 19px center;
+  background-color: white;
+  background-size: 7px;
+}
+
 .add-task-prio {
   display: flex;
   height: 56px;
@@ -208,7 +237,7 @@
 .add-task-subtasks-icon {
   width: 24px;
   height: 24px;
-  margin: -4px;
+  margin: 0px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
