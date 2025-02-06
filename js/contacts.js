@@ -281,6 +281,18 @@ function contactCreatedEdited(windowId) {
   document.getElementById(windowId).classList.toggle("addContactWindow");
 }
 
+async function contactNoAction(windowId) {
+  document.getElementById(windowId).classList.toggle("addContactWindow");
+  document
+    .getElementById(windowId)
+    .classList.toggle("addContactWindowNoAction");
+  await delay(0.1);
+  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
+  document
+    .getElementById(windowId)
+    .classList.toggle("addContactWindowNoAction");
+}
+
 async function delay(seconds) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }

@@ -1,3 +1,4 @@
+/* Alert when Contact is created */
 .createdContactPosition {
   position: relative;
   width: 100%;
@@ -32,6 +33,7 @@
   align-items: center;
 }
 
+/*windows when creating or editing contact*/
 .addContactWindow {
   position: absolute;
   top: 50%;
@@ -47,6 +49,15 @@
   right: 0;
   transform: translate(100%, -50%);
   position: absolute;
+}
+
+.addContactWindowNoAction {
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+  position: absolute;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
 }
 
 .contactWindowFull {

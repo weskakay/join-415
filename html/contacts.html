@@ -131,7 +131,7 @@
     <div
       id="overlay"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactCreatedEdited('contactWindow')"
+      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
     ></div>
 
     <!--Window to Create Contact -->
@@ -156,7 +156,7 @@
         <div class="addContacsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactCreatedEdited('contactWindow')"
+              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
             >
               <img
                 src="../assets/icons/add_task/cross-icon.svg"
@@ -200,7 +200,7 @@
             <div class="add-task-bottom-buttons">
               <button
                 class="add-task-button-clear"
-                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactCreatedEdited('contactWindow')"
+                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>
@@ -223,7 +223,7 @@
     <div
       id="overlayEdit"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow')"
+      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
     ></div>
 
     <!--Edit Contact window-->
@@ -247,7 +247,7 @@
         <div class="addContacsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow')"
+              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
             >
               <img
                 src="../assets/icons/add_task/cross-icon.svg"
