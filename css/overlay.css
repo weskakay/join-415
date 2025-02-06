@@ -1,22 +1,23 @@
+/* Alert when Contact is created */
 .createdContactPosition {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
+
+.infoPosition {
+  width: 100vh;
+  overflow: hidden;
+}
 .createdContactInfoOut {
-  position: absolute;
   transition-timing-function: ease-in;
   transition: 0.2s;
-  right: 0;
   transform: translate(110%);
 }
 
 .createdContactInfoIn {
-  position: absolute;
   transition-timing-function: ease-out;
-  left: 0;
-  top: 0;
   transition: 0.2s;
 }
 
@@ -32,6 +33,24 @@
   align-items: center;
 }
 
+/*Opening Contact Details*/
+.detailsWindow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  z-index: 5;
+}
+
+.detailsWindowClosed {
+  top: 0;
+  right: 0;
+  transform: translate(100%);
+  position: absolute;
+}
+
+/*windows when creating or editing contact*/
 .addContactWindow {
   position: absolute;
   top: 50%;
@@ -47,6 +66,15 @@
   right: 0;
   transform: translate(100%, -50%);
   position: absolute;
+}
+
+.addContactWindowNoAction {
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+  position: absolute;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
 }
 
 .contactWindowFull {

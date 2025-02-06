@@ -113,15 +113,24 @@
             <div class="separator59"></div>
             <div><p class="weight400 size27">Better with a team</p></div>
           </div>
-          <div id="contactsDetailsDisplay" class="contactsDisplay"></div>
-
-          <!--Alert for creation of Contact-->
+          <!--Div containing rendered Details. Inserted with JS into IDs-->
           <div class="createdContactPosition">
-            <div id="createdInfo" class="createdContactInfoOut">
-              <div class="createdContactInfo">
-                <p class="weight400 size20">Contact successfully created</p>
+            <div
+              id="contactsDisplay"
+              class="contactsDisplay detailsWindowClosed"
+            >
+              <div id="detailsProfile" class="detailsProfile"></div>
+              <p class="weight400 size20">Contact Information</p>
+              <div id="detailsContact" class="detailsContact"></div>
+              <div class="infoPosition">
+                <div id="createdInfo" class="createdContactInfoOut">
+                  <div class="createdContactInfo">
+                    <p class="weight400 size20">Contact successfully created</p>
+                  </div>
+                </div>
               </div>
             </div>
+            <!--Alert for creation of Contact-->
           </div>
         </div>
       </div>
@@ -131,7 +140,7 @@
     <div
       id="overlay"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactCreatedEdited('contactWindow')"
+      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
     ></div>
 
     <!--Window to Create Contact -->
@@ -156,7 +165,7 @@
         <div class="addContacsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactCreatedEdited('contactWindow')"
+              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
             >
               <img
                 src="../assets/icons/add_task/cross-icon.svg"
@@ -200,7 +209,7 @@
             <div class="add-task-bottom-buttons">
               <button
                 class="add-task-button-clear"
-                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactCreatedEdited('contactWindow')"
+                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>
@@ -223,7 +232,7 @@
     <div
       id="overlayEdit"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow')"
+      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
     ></div>
 
     <!--Edit Contact window-->
@@ -247,7 +256,7 @@
         <div class="addContacsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow')"
+              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
             >
               <img
                 src="../assets/icons/add_task/cross-icon.svg"

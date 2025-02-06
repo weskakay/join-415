@@ -97,18 +97,22 @@ function getInitials(name) {
 }
 
 function openContactDetails(indexContacts) {
-  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+  document.getElementById("detailsProfile").innerHTML = "";
+  document.getElementById("detailsContact").innerHTML = "";
+
   let contactName = contacts[indexContacts].name;
   let contactEmail = contacts[indexContacts].email;
   let contactPhone = contacts[indexContacts].phone;
-  document.getElementById("contactsDetailsDisplay").innerHTML =
-    contactsFullDetails(
-      contactName,
-      contactEmail,
-      contactPhone,
-      indexContacts,
-      getInitials(contactName),
-    );
+
+  document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
+    contactName,
+    indexContacts,
+    getInitials(contactName),
+  );
+  document.getElementById("detailsContact").innerHTML = detailsContactInsert(
+    contactEmail,
+    contactPhone,
+  );
   getColorById(indexContacts);
 }
 
@@ -193,7 +197,7 @@ function checkPhone(insertedPhone) {
 
 async function deleteContact(path) {
   await delete_data(path);
-  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+  window.location.reload();
   getContacts();
 }
 
@@ -279,6 +283,34 @@ function openEditOverlay(indexContacts) {
 function contactCreatedEdited(windowId) {
   document.getElementById(windowId).classList.toggle("addContactWindowClosed");
   document.getElementById(windowId).classList.toggle("addContactWindow");
+}
+
+async function showContactDetails(windowId) {
+  if (
+    document.getElementById(windowId).classList ==
+    "contactsDisplay detailsWindow"
+  ) {
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    await delay(0.1);
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+  } else {
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+  }
+}
+
+async function contactNoAction(windowId) {
+  document.getElementById(windowId).classList.toggle("addContactWindow");
+  document
+    .getElementById(windowId)
+    .classList.toggle("addContactWindowNoAction");
+  await delay(0.1);
+  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
+  document
+    .getElementById(windowId)
+    .classList.toggle("addContactWindowNoAction");
 }
 
 async function delay(seconds) {
