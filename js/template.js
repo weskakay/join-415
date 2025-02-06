@@ -82,29 +82,31 @@ function detailsContactInsert(contact) {
   `;
 }
 
-function listContactsAddtask(contact) {
-  let checked = selectedContactsIDs.includes(contact.id) ? "checked" : "";
+function listContactsAddtask(id, name, colorId) {
+  let checked = selectedContactsIDs.includes(id) ? "checked" : "";
 
   return /*html*/ `
     <li>
       <input type="checkbox" 
-        id="checkbox-${contact.id}" 
+        id="checkbox-${id}" 
         class="add-task-checkmark" 
-        value="${contact.id}" 
+        value="${id}" 
         ${checked} 
-        onclick="toggleCheckbox('${contact.id}')"
+        onclick="toggleCheckbox('${id}')"
       />
-      <div class="background-contacts bg-contact-chechbox">
-        ${getInitials(contact.name)}
+      <div class="background-contacts bg-contact-chechbox" style="background-color: ${
+        bgcolors[colorId].rgba
+      };">
+        ${getInitials(name)}
       </div>
-      <p class="checkbox-name size20">${contact.name}</p>
+      <p class="checkbox-name size20">${name}</p>
     </li>`;
 }
 
-function listAssingedContacts(contact) {
-  return /*html*/ `<div class="background-contacts bg-contact-chechbox">${getInitials(
-    contact.name
-  )}</div>`;
+function listAssingedContacts(name, colorId) {
+  return /*html*/ `<div class="background-contacts bg-contact-chechbox" style="background-color: ${
+    bgcolors[colorId].rgba
+  };">${getInitials(name)}</div>`;
 }
 
 function editFormInsert(contact) {

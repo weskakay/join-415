@@ -12,6 +12,7 @@ async function getContacts(path = "contacts/") {
     name: details.name,
     email: details.email,
     phone: details.phone,
+    colorId: details.colorId,
   }));
 }
 
@@ -23,7 +24,9 @@ function renderContacts(filteredContacts = contacts) {
   let list = document.getElementById("contacts-checkbox");
 
   list.innerHTML = filteredContacts
-    .map((contact) => listContactsAddtask(contact))
+    .map((contact) =>
+      listContactsAddtask(contact.id, contact.name, contact.colorId)
+    )
     .join("");
 
   list.style.display = "block";
@@ -87,7 +90,7 @@ function renderAssignedContacts() {
 
   let content = document.getElementById("assignedContacts");
   content.innerHTML = contactInfo
-    .map((contact) => listAssingedContacts(contact))
+    .map((contact) => listAssingedContacts(contact.name, contact.colorId))
     .join("");
 }
 
