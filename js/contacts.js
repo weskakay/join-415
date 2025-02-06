@@ -1,19 +1,10 @@
-let bgcolors = [
-  { id: 0, rgba: "rgba(255, 105, 135, 1)" },
-  { id: 1, rgba: "rgba(255, 180, 120, 1)" },
-  { id: 2, rgba: "rgba(186, 85, 211, 1)" },
-  { id: 3, rgba: "rgba(100, 200, 250, 1)" },
-  { id: 4, rgba: "rgba(60, 179, 113, 1)" },
-  { id: 5, rgba: "rgb(153, 197, 43)" },
-  { id: 6, rgba: "rgba(218, 165, 32, 1)" },
-  { id: 7, rgba: "rgb(205, 127, 224)" },
-  { id: 8, rgba: "rgba(138, 43, 226, 1)" },
-  { id: 9, rgba: "rgba(255, 165, 0, 1)" },
-];
-
 let contacts = [];
 
 let lastContact = [];
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10);
+}
 
 function init() {
   getContacts();
@@ -35,8 +26,10 @@ async function getContacts(path = `contacts/`) {
         name: details.name,
         email: details.email,
         phone: details.phone,
+        colorId: details.colorId,
       });
     });
+
     lastContact = contacts[contacts.length - 1];
 
     sortContacts();
@@ -45,7 +38,7 @@ async function getContacts(path = `contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
   groupContacts();
 }
@@ -80,15 +73,10 @@ function renderContacts(sortedGroups, grouped) {
 
     for (let j = 0; j < grouped[letter].length; j++) {
       let contact = grouped[letter][j];
-      let contactName = contact.name;
-      let contactEmail = contact.email;
       document.getElementById("contactsList").innerHTML += listContactData(
-        contactName,
-        contactEmail,
-        globalIndex,
-        getInitials(contactName),
+        contact,
+        globalIndex
       );
-      getColorById(globalIndex);
       globalIndex++;
     }
   }
@@ -105,20 +93,14 @@ function openContactDetails(indexContacts) {
   document.getElementById("detailsProfile").innerHTML = "";
   document.getElementById("detailsContact").innerHTML = "";
 
-  let contactName = contacts[indexContacts].name;
-  let contactEmail = contacts[indexContacts].email;
-  let contactPhone = contacts[indexContacts].phone;
+  let contact = contacts[indexContacts];
 
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
-    contactName,
-    indexContacts,
-    getInitials(contactName),
+    contact,
+    indexContacts
   );
-  document.getElementById("detailsContact").innerHTML = detailsContactInsert(
-    contactEmail,
-    contactPhone,
-  );
-  getColorById(indexContacts);
+  document.getElementById("detailsContact").innerHTML =
+    detailsContactInsert(contact);
 }
 
 async function getContactData(
@@ -126,7 +108,7 @@ async function getContactData(
   inputEmail,
   inputPhone,
   overId,
-  windowId,
+  windowId
 ) {
   if (checkName(inputName) === true) {
     return;
@@ -141,7 +123,12 @@ async function getContactData(
 
     await update_data(
       (path = `contacts/`),
-      (data = { "name": name, "email": email, "phone": phone }),
+      (data = {
+        name: name,
+        email: email,
+        phone: phone,
+        colorId: getRandomNumber(),
+      })
     );
     await getContacts();
     clearInput(inputName, inputEmail, inputPhone);
@@ -168,21 +155,29 @@ function checkName(insertedName) {
   }
 }
 
-function checkEmail(insertedEmail) {
-  let mailInput = document.getElementById(insertedEmail);
-  let email = document.getElementById(insertedEmail).value.trim();
-  let emailPattern = new RegExp(mailInput.pattern);
+function checkEmail(inputId) {
+  let mailInput = document.getElementById(inputId);
+  if (!mailInput) {
+    console.error("Element not found:", inputId);
+    return false;
+  }
+
+  let email = mailInput.value.trim();
+  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (!email) {
     mailInput.setCustomValidity("Please insert an email");
-    mailInput.reportValidity();
-    return true;
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com",
+      "Please insert a valid email format, e.g.: name@email.com"
     );
-    mailInput.reportValidity();
-    return true;
+  } else {
+    mailInput.setCustomValidity("");
+    return false;
   }
+
+  mailInput.reportValidity();
+  return true;
 }
 
 function checkPhone(insertedPhone) {
@@ -195,7 +190,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789",
+      "Please insert a valid phone number, e.g.: +49123456789"
     );
     telInput.reportValidity();
     return true;
@@ -219,14 +214,20 @@ async function editUser(name, email, tel, id, indexContacts) {
     let changeName = document.getElementById(name).value;
     let changeEmail = document.getElementById(email).value;
     let changeTel = document.getElementById(tel).value;
+
     await edit_data(
       (path = `contacts/` + id),
-      (data = { name: changeName, email: changeEmail, phone: changeTel }),
+      (data = {
+        name: changeName,
+        email: changeEmail,
+        phone: changeTel,
+        colorId: contacts[indexContacts].colorId,
+      })
     );
     await getContacts();
-    clearInput(name, email, tel);
     d_none("overlayEdit");
     openContactDetails(indexContacts);
+    clearInput(name, email, tel);
   }
 }
 
@@ -234,26 +235,6 @@ function clearInput(name, email, tel) {
   document.getElementById(name).value = "";
   document.getElementById(email).value = "";
   document.getElementById(tel).value = "";
-}
-
-function getColorById(id) {
-  let reducedId = id % 10;
-  let color = bgcolors[reducedId];
-
-  let element = document.getElementById(`bg-${id}`);
-  let bgelement = document.getElementById(`details-bg-${id}`);
-  let editbgelement = document.getElementById(`edit-bg-${id}`);
-
-  if (bgelement === null && editbgelement === null) {
-    element.style.backgroundColor = color.rgba;
-  } else {
-    if (bgelement !== null) {
-      bgelement.style.backgroundColor = color.rgba;
-    }
-    if (editbgelement !== null) {
-      editbgelement.style.backgroundColor = color.rgba;
-    }
-  }
 }
 
 function openCreateOverlay() {
@@ -265,25 +246,14 @@ function openEditOverlay(indexContacts) {
   document.getElementById("editForm").innerHTML = "";
   document.getElementById("editButtons").innerHTML = "";
 
-  let contactName = contacts[indexContacts].name;
-  let contactEmail = contacts[indexContacts].email;
-  let contactPhone = contacts[indexContacts].phone;
-  let contactId = contacts[indexContacts].id;
-
-  document.getElementById("editForm").innerHTML = editFormInsert(
-    contactName,
-    contactEmail,
-    contactPhone,
-  );
-  document.getElementById("editInitialsColor").innerHTML = editInitialsInsert(
-    getInitials(contactName),
-    indexContacts,
-  );
-  getColorById(indexContacts);
+  let contact = contacts[indexContacts];
+  document.getElementById("editForm").innerHTML = editFormInsert(contact);
+  document.getElementById("editInitialsColor").innerHTML =
+    editInitialsInsert(contact);
 
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
-    contactId,
-    indexContacts,
+    contact,
+    indexContacts
   );
 }
 

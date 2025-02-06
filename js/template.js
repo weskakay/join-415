@@ -1,3 +1,16 @@
+let bgcolors = [
+  { id: 0, rgba: "rgba(255, 105, 135, 1)" },
+  { id: 1, rgba: "rgba(255, 180, 120, 1)" },
+  { id: 2, rgba: "rgba(186, 85, 211, 1)" },
+  { id: 3, rgba: "rgba(100, 200, 250, 1)" },
+  { id: 4, rgba: "rgba(60, 179, 113, 1)" },
+  { id: 5, rgba: "rgb(153, 197, 43)" },
+  { id: 6, rgba: "rgba(218, 165, 32, 1)" },
+  { id: 7, rgba: "rgb(205, 127, 224)" },
+  { id: 8, rgba: "rgba(138, 43, 226, 1)" },
+  { id: 9, rgba: "rgba(255, 165, 0, 1)" },
+];
+
 function listContactHeader(letter) {
   return `
     <div class="contactsHeader size20"><p>${letter}</p></div>
@@ -5,45 +18,48 @@ function listContactHeader(letter) {
   `;
 }
 
-function listContactData(userName, userEmail, indexContacts, initials) {
+function listContactData(contact, index) {
   return `
     <div
       class="contactsContainer"
       tabindex="0"
-      onclick="openContactDetails(${indexContacts}), showContactDetails('contactsDisplay')"
+      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay')"
     >
-      <div class="background-contacts" id="bg-${indexContacts}">
-        ${initials}
+      <div class="background-contacts" style="background-color: ${
+        bgcolors[contact.colorId].rgba
+      };">
+        ${getInitials(contact.name)}
       </div>
       <div class="contactsContainerUserinfo">
-        <p class="weight400 size20">${userName}</p>
-        <a class="weight400 size16 emailLink" href="mailto:${userEmail}"
-          >${userEmail}</a
+        <p class="weight400 size20">${contact.name}</p>
+        <a class="weight400 size16 emailLink" href="mailto:${contact.email}"
+          >${contact.email}</a
         >
       </div>
     </div>
   `;
 }
 
-function detailsProfileInsert(userName, indexContacts, initials) {
+function detailsProfileInsert(contact, index) {
   return `
     <div
-      class="background-contacts bg-details"
-      id="details-bg-${indexContacts}"
+      class="background-contacts bg-details" style="background-color: ${
+        bgcolors[contact.colorId].rgba
+      };"
     >
-      ${initials}
+      ${getInitials(contact.name)}
     </div>
     <div class="detailsName">
-      <p class="weight500 size47">${userName}</p>
+      <p class="weight500 size47">${contact.name}</p>
       <div class="detailsEdit">
         <button
-          onclick="d_none('overlayEdit'), openEditOverlay(${indexContacts}), contactCreatedEdited('editWindow')"
+          onclick="d_none('overlayEdit'), openEditOverlay(${index}), contactCreatedEdited('editWindow')"
         >
           <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
           <p class="weight400 size16 colorDarkBlue">Edit</p>
         </button>
         <button
-          onclick="deleteContact('contacts/${contacts[indexContacts].id}')"
+          onclick="deleteContact('contacts/${contacts[index].id}')"
         >
           <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
           <p class="weight400 size16 colorDarkBlue">Delete</p>
@@ -53,15 +69,15 @@ function detailsProfileInsert(userName, indexContacts, initials) {
   `;
 }
 
-function detailsContactInsert(userEmail, userPhone) {
+function detailsContactInsert(contact) {
   return `
     <p class="weight700 size16">Email</p>
-    <a class="weight400 size16 emailLink" href="mailto:${userEmail}"
-      >${userEmail}</a
+    <a class="weight400 size16 emailLink" href="mailto:${contact.email}"
+      >${contact.email}</a
     >
     <p class="weight700 size16">Phone</p>
-    <a class="weight400 size16 phoneLink" href="tel:${userPhone}"
-      >${userPhone}</a
+    <a class="weight400 size16 phoneLink" href="tel:${contact.phone}"
+      >${contact.phone}</a
     >
   `;
 }
@@ -91,7 +107,7 @@ function listAssingedContacts(contact) {
   )}</div>`;
 }
 
-function editFormInsert(contactName, contactEmail, contactPhone) {
+function editFormInsert(contact) {
   return `
     <input
       id="nameInputEdit"
@@ -100,7 +116,7 @@ function editFormInsert(contactName, contactEmail, contactPhone) {
       required
       placeholder="Name"
       pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
-      value="${contactName}"
+      value="${contact.name}"
     />
     <input
       id="mailInputEdit"
@@ -108,7 +124,7 @@ function editFormInsert(contactName, contactEmail, contactPhone) {
       type="email"
       placeholder="Email"
       pattern="[^@s]+@[^@s]"
-      value="${contactEmail}"
+      value="${contact.email}"
     />
     <input
       id="telInputEdit"
@@ -117,32 +133,34 @@ function editFormInsert(contactName, contactEmail, contactPhone) {
       required
       placeholder="Phone"
       pattern="[0-9]{4,20}"
-      value="${contactPhone}"
+      value="${contact.phone}"
     />
   `;
 }
 
-function editButtonsInsert(contactId, indexContacts) {
+function editButtonsInsert(contact, index) {
   return `
     <button
       class="add-task-button-clear"
-      onclick="deleteContact('contacts/${contactId}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow') "
+      onclick="deleteContact('contacts/${contact.id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow') "
     >
       Delete
     </button>
     <button
       class="add-task-button-create"
-      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}', contactCreatedEdited('editWindow'))"
+      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}', contactCreatedEdited('editWindow'))"
     >
       Save<img src="../assets/icons/add_task/check-icon.svg" />
     </button>
   `;
 }
 
-function editInitialsInsert(initials, indexContacts) {
+function editInitialsInsert(contact) {
   return `
-    <div class="background-contacts bg-details" id="edit-bg-${indexContacts}">
-      ${initials}
+    <div class="background-contacts bg-details" style="background-color: ${
+      bgcolors[contact.colorId].rgba
+    };">
+      ${getInitials(contact.name)}
     </div>
   `;
 }
