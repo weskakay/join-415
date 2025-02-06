@@ -145,13 +145,14 @@
 .detailsEdit button:hover {
   cursor: pointer;
 
-  >p {
+  > p {
     color: #29abe2;
     font-weight: 600;
   }
 
-  >img {
-    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%) hue-rotate(164deg) brightness(96%) contrast(84%);
+  > img {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%)
+      hue-rotate(164deg) brightness(96%) contrast(84%);
   }
 }
 
@@ -189,8 +190,7 @@
   align-items: center;
   height: 58px;
 
-  >p {
+  > p {
     margin-left: 32px;
   }
 }
-

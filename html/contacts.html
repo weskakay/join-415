@@ -113,7 +113,17 @@
             <div class="separator59"></div>
             <div><p class="weight400 size27">Better with a team</p></div>
           </div>
-          <div id="contactsDetailsDisplay" class="contactsDisplay"></div>
+          <!--Div containing rendered Details. Inserted with JS into IDs-->
+          <div class="createdContactPosition">
+            <div
+              id="contactsDisplay"
+              class="contactsDisplay detailsWindowClosed"
+            >
+              <div id="detailsProfile" class="detailsProfile"></div>
+              <p class="weight400 size20">Contact Information</p>
+              <div id="detailsContact" class="detailsContact"></div>
+            </div>
+          </div>
 
           <!--Alert for creation of Contact-->
           <div class="createdContactPosition">

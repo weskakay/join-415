@@ -97,18 +97,22 @@ function getInitials(name) {
 }
 
 function openContactDetails(indexContacts) {
-  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+  document.getElementById("detailsProfile").innerHTML = "";
+  document.getElementById("detailsContact").innerHTML = "";
+
   let contactName = contacts[indexContacts].name;
   let contactEmail = contacts[indexContacts].email;
   let contactPhone = contacts[indexContacts].phone;
-  document.getElementById("contactsDetailsDisplay").innerHTML =
-    contactsFullDetails(
-      contactName,
-      contactEmail,
-      contactPhone,
-      indexContacts,
-      getInitials(contactName),
-    );
+
+  document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
+    contactName,
+    indexContacts,
+    getInitials(contactName),
+  );
+  document.getElementById("detailsContact").innerHTML = detailsContactInsert(
+    contactEmail,
+    contactPhone,
+  );
   getColorById(indexContacts);
 }
 
@@ -279,6 +283,11 @@ function openEditOverlay(indexContacts) {
 function contactCreatedEdited(windowId) {
   document.getElementById(windowId).classList.toggle("addContactWindowClosed");
   document.getElementById(windowId).classList.toggle("addContactWindow");
+}
+
+function showContactDetails(windowId) {
+  document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+  document.getElementById(windowId).classList.toggle("detailsWindow");
 }
 
 async function contactNoAction(windowId) {
