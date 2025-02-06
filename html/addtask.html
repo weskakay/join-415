@@ -37,14 +37,17 @@
     </header>
     <main>
       <nav class="navbar">
-        <img src="../assets/join_logo/join-logo.svg" />
+        <img src="../assets/join_logo/join-logo.svg" alt="Join logo" />
         <div class="navbar-menu">
           <div
             class="navbar-menu-button-wrapper"
             onclick='changeNavbarItems("summary")'
           >
             <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
+              <img
+                src="../assets/icons/nav_bar/summary-icon.svg"
+                alt="Summay"
+              />Summary
             </button>
           </div>
           <div
@@ -53,7 +56,10 @@
             onclick='changeNavbarItems("addtask")'
           >
             <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
+              <img
+                src="../assets/icons/nav_bar/addtask-icon.svg"
+                alt="Add Task"
+              />Add Task
             </button>
           </div>
           <div
@@ -61,7 +67,10 @@
             onclick='changeNavbarItems("board")'
           >
             <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/board-icon.svg" />Board
+              <img
+                src="../assets/icons/nav_bar/board-icon.svg"
+                alt="Board"
+              />Board
             </button>
           </div>
           <div
@@ -69,13 +78,16 @@
             onclick='changeNavbarItems("contacts")'
           >
             <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
+              <img
+                src="../assets/icons/nav_bar/contacts-icon.svg"
+                alt="Contatcs"
+              />Contacs
             </button>
           </div>
         </div>
         <div class="navbar-terms-links">
           <button class="navbar-term-button" onclick="">Privacy Policy</button>
-          <button class="navbar-term-button" onclick="">Legal notice</button>
+          <button class="navbar-term-button" onclick="">Legal Notice</button>
         </div>
       </nav>
       <div class="add-task-wrapper">
@@ -111,7 +123,7 @@
                 <ul class="add-task-items" id="contacts-checkbox"></ul>
               </div>
             </div>
-            <div class="add-task-assinged-contacts" id="assignedContacts"></div>
+            <div class="add-task-assigned-contacts" id="assignedContacts"></div>
           </div>
           <div class="add-task-seperator"></div>
           <div class="add-task-input-right">
@@ -129,6 +141,7 @@
                 >
                   Urgent<img
                     src="../assets/icons/add_task/prio-urgent-icon.svg"
+                    alt="Urgent priority"
                   />
                 </button>
                 <button
@@ -138,15 +151,18 @@
                 >
                   Medium<img
                     src="../assets/icons/add_task/prio-medium-icon.svg"
+                    alt="Medium priority"
                   />
                 </button>
-
                 <button
                   class="button-prio-low"
                   id="buttonLow"
                   onclick="setButtonColor('Low')"
                 >
-                  Low<img src="../assets/icons/add_task/prio-low-icon.svg" />
+                  Low<img
+                    src="../assets/icons/add_task/prio-low-icon.svg"
+                    alt="Low priority"
+                  />
                 </button>
               </div>
             </div>
@@ -156,8 +172,8 @@
                 <option value="" disabled selected hidden>
                   Select task category
                 </option>
-                <option value="test1">Technical Task</option>
-                <option value="test2">User Story</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
               </select>
             </div>
             <div class="add-task-input-fields">
@@ -166,7 +182,6 @@
                 <input
                   type="text"
                   id="subtaskInput"
-                  name="name"
                   placeholder="Add new subtask"
                   onclick="showButtons()"
                 />
@@ -175,16 +190,21 @@
                     <div class="add-task-subtasks-icon">
                       <div
                         class="add-task-subtasks-add"
-                        id="addIcon"
                         onclick="selectInput()"
                       >
-                        <img src="../assets/icons/add_task/add-icon.svg" />
+                        <img
+                          src="../assets/icons/add_task/add-icon.svg"
+                          alt="Add subtask"
+                        />
                       </div>
                     </div>
                   </div>
                   <div class="add-task-subtasks-check-cross" id="checkCross">
                     <div class="add-task-subtasks-icon" onclick="clearInput()">
-                      <img src="../assets/icons/add_task/cross-icon.svg" />
+                      <img
+                        src="../assets/icons/add_task/cross-icon.svg"
+                        alt="Cancel"
+                      />
                     </div>
                     <div class="add-task-subtasks-seperator"></div>
                     <div
@@ -194,6 +214,7 @@
                       <img
                         class="add-task-subtasks-check"
                         src="../assets/icons/add_task/check-icon.svg"
+                        alt="Confirm"
                       />
                     </div>
                   </div>
@@ -207,14 +228,20 @@
         </div>
         <div class="add-task-bottom">
           <div class="add-task-bottom-required">
-            <span class="add-task-required">*</span>This fied is required
+            <span class="add-task-required">*</span>This field is required
           </div>
           <div class="add-task-bottom-buttons">
-            <button class="add-task-button-clear">
-              Clear<img src="../assets/icons/add_task/cross-icon.svg" />
+            <button class="add-task-button-clear" onclick="resetAllInputs()">
+              Clear<img
+                src="../assets/icons/add_task/cross-icon.svg"
+                alt="Clear"
+              />
             </button>
             <button class="add-task-button-create" onclick="getTaskData()">
-              Creat Task<img src="../assets/icons/add_task/check-icon.svg" />
+              Create Task<img
+                src="../assets/icons/add_task/check-icon.svg"
+                alt="Create Task"
+              />
             </button>
           </div>
         </div>
