@@ -13,9 +13,6 @@ let bgcolors = [
 
 let contacts = [];
 
-const BASE_URL =
-  "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
-
 function init() {
   getContacts();
 }
