@@ -35,8 +35,10 @@ async function getContacts(path = `contacts/`) {
         name: details.name,
         email: details.email,
         phone: details.phone,
+        color: details.color,
       });
     });
+
     lastContact = contacts[contacts.length - 1];
 
     sortContacts();
@@ -45,7 +47,7 @@ async function getContacts(path = `contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
   groupContacts();
 }
@@ -80,15 +82,10 @@ function renderContacts(sortedGroups, grouped) {
 
     for (let j = 0; j < grouped[letter].length; j++) {
       let contact = grouped[letter][j];
-      let contactName = contact.name;
-      let contactEmail = contact.email;
       document.getElementById("contactsList").innerHTML += listContactData(
-        contactName,
-        contactEmail,
-        globalIndex,
-        getInitials(contactName),
+        contact,
+        globalIndex
       );
-      getColorById(globalIndex);
       globalIndex++;
     }
   }
@@ -112,13 +109,12 @@ function openContactDetails(indexContacts) {
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contactName,
     indexContacts,
-    getInitials(contactName),
+    getInitials(contactName)
   );
   document.getElementById("detailsContact").innerHTML = detailsContactInsert(
     contactEmail,
-    contactPhone,
+    contactPhone
   );
-  getColorById(indexContacts);
 }
 
 async function getContactData(
@@ -126,7 +122,7 @@ async function getContactData(
   inputEmail,
   inputPhone,
   overId,
-  windowId,
+  windowId
 ) {
   if (checkName(inputName) === true) {
     return;
@@ -139,9 +135,17 @@ async function getContactData(
     let email = document.getElementById(inputEmail).value.trim();
     let phone = document.getElementById(inputPhone).value.trim();
 
+    let currentContactsCount = contacts.length;
+    let colorIndex = currentContactsCount % 10;
+
     await update_data(
       (path = `contacts/`),
-      (data = { "name": name, "email": email, "phone": phone }),
+      (data = {
+        name: name,
+        email: email,
+        phone: phone,
+        color: bgcolors[colorIndex].rgba,
+      })
     );
     await getContacts();
     clearInput(inputName, inputEmail, inputPhone);
@@ -178,7 +182,7 @@ function checkEmail(insertedEmail) {
     return true;
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com",
+      "Please insert a valid email format, e.g.: name@email.com"
     );
     mailInput.reportValidity();
     return true;
@@ -195,7 +199,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789",
+      "Please insert a valid phone number, e.g.: +49123456789"
     );
     telInput.reportValidity();
     return true;
@@ -221,7 +225,7 @@ async function editUser(name, email, tel, id, indexContacts) {
     let changeTel = document.getElementById(tel).value;
     await edit_data(
       (path = `contacts/` + id),
-      (data = { name: changeName, email: changeEmail, phone: changeTel }),
+      (data = { name: changeName, email: changeEmail, phone: changeTel })
     );
     await getContacts();
     clearInput(name, email, tel);
@@ -234,26 +238,6 @@ function clearInput(name, email, tel) {
   document.getElementById(name).value = "";
   document.getElementById(email).value = "";
   document.getElementById(tel).value = "";
-}
-
-function getColorById(id) {
-  let reducedId = id % 10;
-  let color = bgcolors[reducedId];
-
-  let element = document.getElementById(`bg-${id}`);
-  let bgelement = document.getElementById(`details-bg-${id}`);
-  let editbgelement = document.getElementById(`edit-bg-${id}`);
-
-  if (bgelement === null && editbgelement === null) {
-    element.style.backgroundColor = color.rgba;
-  } else {
-    if (bgelement !== null) {
-      bgelement.style.backgroundColor = color.rgba;
-    }
-    if (editbgelement !== null) {
-      editbgelement.style.backgroundColor = color.rgba;
-    }
-  }
 }
 
 function openCreateOverlay() {
@@ -273,17 +257,16 @@ function openEditOverlay(indexContacts) {
   document.getElementById("editForm").innerHTML = editFormInsert(
     contactName,
     contactEmail,
-    contactPhone,
+    contactPhone
   );
   document.getElementById("editInitialsColor").innerHTML = editInitialsInsert(
     getInitials(contactName),
-    indexContacts,
+    indexContacts
   );
-  getColorById(indexContacts);
 
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contactId,
-    indexContacts,
+    indexContacts
   );
 }
 

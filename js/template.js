@@ -5,20 +5,22 @@ function listContactHeader(letter) {
   `;
 }
 
-function listContactData(userName, userEmail, indexContacts, initials) {
+function listContactData(contact, index) {
   return `
     <div
       class="contactsContainer"
       tabindex="0"
-      onclick="openContactDetails(${indexContacts}), showContactDetails('contactsDisplay')"
+      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay')"
     >
-      <div class="background-contacts" id="bg-${indexContacts}">
-        ${initials}
+      <div class="background-contacts" style="background-color: ${
+        contact.color
+      };">
+        ${getInitials(contact.name)}
       </div>
       <div class="contactsContainerUserinfo">
-        <p class="weight400 size20">${userName}</p>
-        <a class="weight400 size16 emailLink" href="mailto:${userEmail}"
-          >${userEmail}</a
+        <p class="weight400 size20">${contact.name}</p>
+        <a class="weight400 size16 emailLink" href="mailto:${contact.email}"
+          >${contact.email}</a
         >
       </div>
     </div>
@@ -29,7 +31,6 @@ function detailsProfileInsert(userName, indexContacts, initials) {
   return `
     <div
       class="background-contacts bg-details"
-      id="details-bg-${indexContacts}"
     >
       ${initials}
     </div>
@@ -141,7 +142,7 @@ function editButtonsInsert(contactId, indexContacts) {
 
 function editInitialsInsert(initials, indexContacts) {
   return `
-    <div class="background-contacts bg-details" id="edit-bg-${indexContacts}">
+    <div class="background-contacts bg-details">
       ${initials}
     </div>
   `;
