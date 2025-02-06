@@ -17,6 +17,7 @@
     <script src="../js/template.js"></script>
   </head>
   <body onload="init()">
+    <!--Content is divided into Header and Main-->
     <header>
       <div class="header_content">
         <p class="weight400 size20">Kanban Project Management Tool</p>
@@ -40,6 +41,7 @@
       </section>
     </header>
 
+    <!--Start of Main-->
     <main>
       <nav class="navbar">
         <img src="../assets/join_logo/join-logo.svg" />
@@ -83,7 +85,10 @@
           <button class="navbar-term-button" onclick="">Legal notice</button>
         </div>
       </nav>
+
+      <!--Main section for contacts content-->
       <div class="contactsMain">
+        <!--List on the left side to create and show contacts-->
         <div class="contactsList">
           <div class="sticky">
             <button
@@ -96,8 +101,12 @@
               />
             </button>
           </div>
+
+          <!--Contacts are rendered and inserted into ID contactsList-->
           <div id="contactsList" class="contacts"></div>
         </div>
+
+        <!--Area to show contacts details to edit & delete-->
         <div class="contactsDetails">
           <div class="contactsDetailsHeader">
             <div><p class="weight700 size61">Contacts</p></div>
@@ -105,6 +114,8 @@
             <div><p class="weight400 size27">Better with a team</p></div>
           </div>
           <div id="contactsDetailsDisplay" class="contactsDisplay"></div>
+
+          <!--Alert for creation of Contact-->
           <div class="createdContactPosition">
             <div id="createdInfo" class="createdContactInfoOut">
               <div class="createdContactInfo">
@@ -115,11 +126,15 @@
         </div>
       </div>
     </main>
+
+    <!--Overlay containing Create Contact window-->
     <div
       id="overlay"
       class="overlay d_none"
       onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), toggle_create_window('contactWindow')"
     ></div>
+
+    <!--Window to Create Contact -->
     <div
       id="contactWindow"
       class="addContactWindowClosed"
@@ -153,6 +168,7 @@
             <img src="../assets/icons/contacts/empty_profile.svg" alt="" />
           </div>
           <div class="addContactFull">
+            <!--Form to insert new Contact data-->
             <div class="dataInput">
               <form>
                 <input
@@ -201,11 +217,16 @@
         </div>
       </div>
     </div>
+    <!--END: Create Contact window-->
+
+    <!--Overlay containing Edit Contact window-->
     <div
       id="overlayEdit"
       class="overlay d_none"
       onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')"
     ></div>
+
+    <!--Edit Contact window-->
     <div class="addContactWindowClosed" onclick="noBubble(event) ">
       <div class="contactWindowFull">
         <div class="addContactsLogo">
@@ -237,6 +258,7 @@
             ${initials}
           </div>
           <div class="addContactFull">
+            <!--Form to edit Contact data-->
             <div class="dataInput">
               <form>
                 <input
@@ -285,5 +307,6 @@
         </div>
       </div>
     </div>
+    <!--END: Edit Contact window-->
   </body>
 </html>
