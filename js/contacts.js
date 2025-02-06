@@ -278,6 +278,7 @@ function openCreateOverlay() {
 }
 
 function openEditOverlay(indexContacts) {
+  document.getElementById("editInitialsColor").innerHTML = "";
   document.getElementById("editForm").innerHTML = "";
   document.getElementById("editButtons").innerHTML = "";
 
@@ -291,18 +292,39 @@ function openEditOverlay(indexContacts) {
     contactEmail,
     contactPhone,
   );
+  document.getElementById("editInitialsColor").innerHTML = editInitialsInsert(
+    getInitials(contactName),
+    indexContacts,
+  );
+  getColorById(indexContacts);
+
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contactId,
     indexContacts,
   );
+}
 
-  /*  document.getElementById("overlayEdit").innerHTML = overlayEditUser(
-    contactName,
-    contactEmail,
-    contactPhone,
-    indexContacts,
-    getInitials(contactName),
-    contactId,
-  );
-  getColorById(indexContacts);*/
+function toggle_create_window(windowId) {
+  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
+  document.getElementById(windowId).classList.toggle("addContactWindow");
+}
+
+async function delay(seconds) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
+async function showCreationHint() {
+  document
+    .getElementById("createdInfo")
+    .classList.toggle("createdContactInfoIn");
+  document
+    .getElementById("createdInfo")
+    .classList.toggle("createdContactInfoOut");
+  await delay(3);
+  document
+    .getElementById("createdInfo")
+    .classList.toggle("createdContactInfoOut");
+  document
+    .getElementById("createdInfo")
+    .classList.toggle("createdContactInfoIn");
 }

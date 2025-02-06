@@ -1,28 +1,3 @@
-function toggle_create_window(windowId) {
-  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
-  document.getElementById(windowId).classList.toggle("addContactWindow");
-}
-
-async function delay(seconds) {
-  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
-}
-
-async function showCreationHint() {
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoIn");
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoOut");
-  await delay(3);
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoOut");
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoIn");
-}
-
 function d_none(enterid) {
   document.getElementById(enterid).classList.toggle("d_none");
 }

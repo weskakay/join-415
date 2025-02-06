@@ -147,3 +147,11 @@ function editButtonsInsert(contactId, indexContacts) {
     </button>
   `;
 }
+
+function editInitialsInsert(initials, indexContacts) {
+  return `
+    <div class="background-contacts bg-details" id="edit-bg-${indexContacts}">
+      ${initials}
+    </div>
+  `;
+}
