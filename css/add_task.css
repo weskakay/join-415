@@ -208,6 +208,7 @@
 .add-task-subtasks-icon {
   width: 24px;
   height: 24px;
+  margin: -4px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -215,6 +216,8 @@
 }
 
 .add-task-subtasks-icon:hover {
+  transition-duration: 100ms;
+  transform: scale(1.05) translate(-1px, 0px);
   cursor: pointer;
   background-color: rgb(238, 238, 238);
 }
@@ -277,4 +280,72 @@
   cursor: pointer;
   background-color: rgba(41, 171, 226, 1);
   border-color: rgba(41, 171, 226, 1);
+}
+
+.subtask-list {
+  margin-top: -16px;
+}
+
+.subtask-list-container {
+  list-style-position: inside;
+}
+
+.subtask-list-items {
+  margin-bottom: 4px;
+  padding: 4px;
+  padding-left: 24px;
+}
+
+.list-item-container:hover {
+  transition-duration: 100ms;
+  transform: scale(1.01);
+  cursor: pointer;
+  background-color: rgb(238, 238, 238);
+
+  > .list-icons-wrapper {
+    display: flex;
+  }
+}
+
+.list-item-container {
+  border-radius: 10px;
+  position: relative;
+}
+
+.list-icons-wrapper {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  align-items: center;
+  gap: 4px;
+}
+
+.list-icons {
+  width: 16px;
+  height: 16px;
+}
+
+.list-icons:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.list-icons > img {
+  width: 100%;
+  height: 100%;
+}
+
+.list-icon-seperator {
+  border-style: solid;
+  border-color: #d1d1d1;
+  border-width: 1px;
+  width: 1px;
+  height: 24px;
+}
+
+.check-icon {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(10%) saturate(2286%)
+    hue-rotate(176deg) brightness(104%) contrast(84%);
 }

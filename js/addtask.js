@@ -1,8 +1,6 @@
 let contacts = [];
 let selectedContactsIDs = [];
-
-const BASE_URL =
-  "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
+let subtaskInputs = [];
 
 async function getTaskData() {
   let title = document.getElementById("taskTitle").value;
@@ -158,3 +156,124 @@ function resetButtonColors() {
     }
   });
 }
+
+function selectInput() {
+  showButtons();
+  let input = document.getElementById("subtaskInput");
+  input.focus();
+  input.select();
+}
+
+function showButtons() {
+  let checkCross = document.getElementById("checkCross");
+  let addIcon = document.getElementById("addIcon");
+  checkCross.style.display = "flex";
+  addIcon.style.display = "none";
+}
+
+function hideButtons() {
+  let checkCross = document.getElementById("checkCross");
+  let addIcon = document.getElementById("addIcon");
+  checkCross.style.display = "none";
+  addIcon.style.display = "flex";
+}
+
+function clearInput() {
+  let content = document.getElementById("subtaskInput");
+  content.value = "";
+  content.focus();
+  content.select();
+}
+
+function confirmInput() {
+  let input = document.getElementById("subtaskInput");
+
+  if (input.value.trim() !== "") {
+    subtaskInputs.push(input.value);
+    renderSubtasks();
+    clearInput();
+  }
+}
+
+function renderSubtasks() {
+  let list = document.getElementById("subtaskList");
+  list.innerHTML = "";
+
+  for (let i = 0; i < subtaskInputs.length; i++) {
+    list.innerHTML += /*html*/ `
+      <div class="list-item-container">
+        <li class="subtask-list-items" id="listItem-${i}" contenteditable="false" onblur="updateListItem(${i})"  onkeydown="handleEnter(event, ${i})">${subtaskInputs[i]}</li>
+        <div class="list-icons-wrapper">
+          <div class="list-icons">
+            <img src="../assets/icons/add_task/edit.svg" alt="Edit" class="edit-icon" onclick="editListItem(${i})" id="editIcon-${i}">
+            <img src="../assets/icons/add_task/check-icon.svg" alt="Check" class="check-icon" onclick="updateListItem(${i})" id="checkIcon-${i}" style="display: none;">
+          </div>
+          <div class="list-icon-seperator"></div>
+          <div class="list-icons">
+            <img src="../assets/icons/add_task/delete.svg" alt="Delete" onclick="deleteListItem(${i})">
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function editListItem(index) {
+  let listItem = document.getElementById(`listItem-${index}`);
+  let editIcon = document.getElementById(`editIcon-${index}`);
+  let checkIcon = document.getElementById(`checkIcon-${index}`);
+
+  listItem.setAttribute("contenteditable", "true");
+  listItem.focus();
+
+  editIcon.style.display = "none";
+  checkIcon.style.display = "block";
+}
+
+function updateListItem(index) {
+  let listItem = document.getElementById(`listItem-${index}`);
+  let editIcon = document.getElementById(`editIcon-${index}`);
+  let checkIcon = document.getElementById(`checkIcon-${index}`);
+
+  subtaskInputs[index] = listItem.innerText.trim();
+
+  listItem.setAttribute("contenteditable", "false");
+
+  editIcon.style.display = "block";
+  checkIcon.style.display = "none";
+
+  renderSubtasks();
+}
+
+function handleEnter(event, index) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    updateListItem(index);
+  }
+}
+
+function deleteListItem(index) {
+  subtaskInputs.splice(index, 1);
+  renderSubtasks();
+}
+
+document
+  .getElementById("subtaskInput")
+  .addEventListener("blur", function (event) {
+    setTimeout(() => {
+      let checkIcon = document.getElementById("checkCross");
+
+      if (document.activeElement !== checkIcon) {
+        hideButtons();
+      }
+    }, 100);
+  });
+
+document
+  .getElementById("subtaskInput")
+  .addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      confirmInput();
+    }
+  });

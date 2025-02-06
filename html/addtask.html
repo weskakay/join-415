@@ -1,160 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/font_styles.css" />
+    <link rel="stylesheet" href="../css/add_task.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <script src="../js/script.js"></script>
+    <script src="../js/template.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Task</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/font_styles.css" />
-  <link rel="stylesheet" href="../css/add_task.css" />
-  <link rel="stylesheet" href="../css/navbar.css" />
-  <script src="../js/script.js"></script>
-  <script src="../js/addtask.js"></script>
-  <script src="../js/template.js"></script>
-</head>
-
-<body onload="getContacts()">
-  <header>
-    <div class="header_content">
-      <p class="weight400 size20">Kanban Project Management Tool</p>
-      <div class="profileSection">
-        <a href="">
-          <img src="../assets/icons/header/help.svg" alt="help" /></a>
-        <div class="userInitials">
-          <img src="../assets/icons/header/user_Profile.svg" alt="User Initials" onclick="d_none(`dropdown-menu`)"/>
-        </div>
-      </div>
-    </div>
-    <section id="dropdown-menu" class="d_none">
-      <div onclick="openLegalNotice()">Legal Notice</div>
-      <div onclick="openPrivacyPolicy()">Privacy Policy</div>
-      <div onclick="openLoginHTML()">Log out</div>
-    </section>
-  </header>
-  <main>
-    <nav class="navbar">
-      <img src="../assets/join_logo/join-logo.svg" />
-      <div class="navbar-menu">
-        <div class="navbar-menu-button-wrapper" onclick='changeNavbarItems("summary")'>
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
-          </button>
-        </div>
-        <div class="navbar-menu-button-wrapper" style="background-color: rgba(9, 25, 49, 1)"
-          onclick='changeNavbarItems("addtask")'>
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
-          </button>
-        </div>
-        <div class="navbar-menu-button-wrapper" onclick='changeNavbarItems("board")'>
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/board-icon.svg" />Board
-          </button>
-        </div>
-        <div class="navbar-menu-button-wrapper" onclick='changeNavbarItems("contacts")'>
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
-          </button>
-        </div>
-      </div>
-      <div class="navbar-terms-links">
-        <button class="navbar-term-button" onclick="">Privacy Policy</button>
-        <button class="navbar-term-button" onclick="">Legal notice</button>
-      </div>
-    </nav>
-    <div class="add-task-wrapper">
-      <div class="add-task-headline">Add Task</div>
-      <div class="add-task-input">
-        <div class="add-task-input-left">
-          <div class="add-task-input-fields">
-            <div>Title<span class="add-task-required">*</span></div>
-            <input id="taskTitle" required type="text" placeholder="Enter a title" />
+  <body onload="getContacts()">
+    <header>
+      <div class="header_content">
+        <p class="weight400 size20">Kanban Project Management Tool</p>
+        <div class="profileSection">
+          <a href="">
+            <img src="../assets/icons/header/help.svg" alt="help"
+          /></a>
+          <div class="userInitials">
+            <img
+              src="../assets/icons/header/user_Profile.svg"
+              alt="User Initials"
+              onclick="d_none(`dropdown-menu`)"
+            />
           </div>
-          <div class="add-task-input-fields">
-            <div>Description</div>
-            <textarea id="taskDescription" type="text" placeholder="Enter a Description"></textarea>
+        </div>
+      </div>
+      <section id="dropdown-menu" class="d_none">
+        <div onclick="openLegalNotice()">Legal Notice</div>
+        <div onclick="openPrivacyPolicy()">Privacy Policy</div>
+        <div onclick="openLoginHTML()">Log out</div>
+      </section>
+    </header>
+    <main>
+      <nav class="navbar">
+        <img src="../assets/join_logo/join-logo.svg" />
+        <div class="navbar-menu">
+          <div
+            class="navbar-menu-button-wrapper"
+            onclick='changeNavbarItems("summary")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
+            </button>
           </div>
-          <div class="add-task-input-fields">
-            <div>Assigned to<span class="add-task-required">*</span></div>
-            <div class="add-task-contacts">
-              <input type="text" id="contact-search" oninput="filterContacts()"
-                placeholder="Select contacts to assign" />
-              <ul class="add-task-items" id="contacts-checkbox"></ul>
+          <div
+            class="navbar-menu-button-wrapper"
+            style="background-color: rgba(9, 25, 49, 1)"
+            onclick='changeNavbarItems("addtask")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
+            </button>
+          </div>
+          <div
+            class="navbar-menu-button-wrapper"
+            onclick='changeNavbarItems("board")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/board-icon.svg" />Board
+            </button>
+          </div>
+          <div
+            class="navbar-menu-button-wrapper"
+            onclick='changeNavbarItems("contacts")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
+            </button>
+          </div>
+        </div>
+        <div class="navbar-terms-links">
+          <button class="navbar-term-button" onclick="">Privacy Policy</button>
+          <button class="navbar-term-button" onclick="">Legal notice</button>
+        </div>
+      </nav>
+      <div class="add-task-wrapper">
+        <div class="add-task-headline">Add Task</div>
+        <div class="add-task-input">
+          <div class="add-task-input-left">
+            <div class="add-task-input-fields">
+              <div>Title<span class="add-task-required">*</span></div>
+              <input
+                id="taskTitle"
+                required
+                type="text"
+                placeholder="Enter a title"
+              />
             </div>
-          </div>
-          <div class="add-task-assinged-contacts" id="assignedContacts"></div>
-        </div>
-        <div class="add-task-seperator"></div>
-        <div class="add-task-input-right">
-          <div class="add-task-input-fields">
-            <div>Due date<span class="add-task-required">*</span></div>
-            <input required type="date" id="date" />
-          </div>
-          <div class="add-task-input-fields">
-            <div>Prio</div>
-            <div class="add-task-prio">
-              <button class="button-prio-urgent" id="buttonUrgent" onclick="setButtonColor('Urgent')">
-                Urgent<img src="../assets/icons/add_task/prio-urgent-icon.svg" />
-              </button>
-              <button class="button-prio-medium" id="buttonMedium" onclick="setButtonColor('Medium')">
-                Medium<img src="../assets/icons/add_task/prio-medium-icon.svg" />
-              </button>
-
-              <button class="button-prio-low" id="buttonLow" onclick="setButtonColor('Low')">
-                Low<img src="../assets/icons/add_task/prio-low-icon.svg" />
-              </button>
+            <div class="add-task-input-fields">
+              <div>Description</div>
+              <textarea
+                id="taskDescription"
+                type="text"
+                placeholder="Enter a Description"
+              ></textarea>
             </div>
+            <div class="add-task-input-fields">
+              <div>Assigned to<span class="add-task-required">*</span></div>
+              <div class="add-task-contacts">
+                <input
+                  type="text"
+                  id="contact-search"
+                  oninput="filterContacts()"
+                  placeholder="Select contacts to assign"
+                />
+                <ul class="add-task-items" id="contacts-checkbox"></ul>
+              </div>
+            </div>
+            <div class="add-task-assinged-contacts" id="assignedContacts"></div>
           </div>
-          <div class="add-task-input-fields">
-            <div>Category<span class="add-task-required">*</span></div>
-            <select name="category" id="inputCategory">
-              <option value="" disabled selected hidden>
-                Select task category
-              </option>
-              <option value="test1">Technical Task</option>
-              <option value="test2">User Story</option>
-            </select>
-          </div>
-          <div class="add-task-input-fields">
-            <div>Subtasks</div>
-            <div class="add-task-input-subtasks">
-              <input type="text" id="name" name="name" />
-              <div class="add-task-subtasks-icons-wrapper">
-                <div class="add-task-subtasks-icon">
-                  <div class="add-task-subtasks-add">
-                    <img src="../assets/icons/add_task/add-icon.svg" />
+          <div class="add-task-seperator"></div>
+          <div class="add-task-input-right">
+            <div class="add-task-input-fields">
+              <div>Due date<span class="add-task-required">*</span></div>
+              <input required type="date" id="date" />
+            </div>
+            <div class="add-task-input-fields">
+              <div>Prio</div>
+              <div class="add-task-prio">
+                <button
+                  class="button-prio-urgent"
+                  id="buttonUrgent"
+                  onclick="setButtonColor('Urgent')"
+                >
+                  Urgent<img
+                    src="../assets/icons/add_task/prio-urgent-icon.svg"
+                  />
+                </button>
+                <button
+                  class="button-prio-medium"
+                  id="buttonMedium"
+                  onclick="setButtonColor('Medium')"
+                >
+                  Medium<img
+                    src="../assets/icons/add_task/prio-medium-icon.svg"
+                  />
+                </button>
+
+                <button
+                  class="button-prio-low"
+                  id="buttonLow"
+                  onclick="setButtonColor('Low')"
+                >
+                  Low<img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </button>
+              </div>
+            </div>
+            <div class="add-task-input-fields">
+              <div>Category<span class="add-task-required">*</span></div>
+              <select name="category" id="inputCategory">
+                <option value="" disabled selected hidden>
+                  Select task category
+                </option>
+                <option value="test1">Technical Task</option>
+                <option value="test2">User Story</option>
+              </select>
+            </div>
+            <div class="add-task-input-fields">
+              <div>Subtasks</div>
+              <div class="add-task-input-subtasks">
+                <input
+                  type="text"
+                  id="subtaskInput"
+                  name="name"
+                  placeholder="Add new subtask"
+                  onclick="showButtons()"
+                />
+                <div class="add-task-subtasks-icons-wrapper">
+                  <div id="addIcon">
+                    <div class="add-task-subtasks-icon">
+                      <div
+                        class="add-task-subtasks-add"
+                        id="addIcon"
+                        onclick="selectInput()"
+                      >
+                        <img src="../assets/icons/add_task/add-icon.svg" />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="add-task-subtasks-check-cross">
-                  <div class="add-task-subtasks-icon">
-                    <img src="../assets/icons/add_task/cross-icon.svg" />
-                  </div>
-                  <div class="add-task-subtasks-seperator"></div>
-                  <div class="add-task-subtasks-icon">
-                    <img class="add-task-subtasks-check" src="../assets/icons/add_task/check-icon.svg" />
+                  <div class="add-task-subtasks-check-cross" id="checkCross">
+                    <div class="add-task-subtasks-icon" onclick="clearInput()">
+                      <img src="../assets/icons/add_task/cross-icon.svg" />
+                    </div>
+                    <div class="add-task-subtasks-seperator"></div>
+                    <div
+                      class="add-task-subtasks-icon"
+                      onclick="confirmInput()"
+                    >
+                      <img
+                        class="add-task-subtasks-check"
+                        src="../assets/icons/add_task/check-icon.svg"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="subtask-list">
+              <ul id="subtaskList" class="subtask-list-container"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="add-task-bottom">
+          <div class="add-task-bottom-required">
+            <span class="add-task-required">*</span>This fied is required
+          </div>
+          <div class="add-task-bottom-buttons">
+            <button class="add-task-button-clear">
+              Clear<img src="../assets/icons/add_task/cross-icon.svg" />
+            </button>
+            <button class="add-task-button-create" onclick="getTaskData()">
+              Creat Task<img src="../assets/icons/add_task/check-icon.svg" />
+            </button>
           </div>
         </div>
       </div>
-      <div class="add-task-bottom">
-        <div class="add-task-bottom-required">
-          <span class="add-task-required">*</span>This fied is required
-        </div>
-        <div class="add-task-bottom-buttons">
-          <button class="add-task-button-clear">
-            Clear<img src="../assets/icons/add_task/cross-icon.svg" />
-          </button>
-          <button class="add-task-button-create" onclick="getTaskData()">
-            Creat Task<img src="../assets/icons/add_task/check-icon.svg" />
-          </button>
-        </div>
-      </div>
-    </div>
-  </main>
-</body>
-
+    </main>
+    <script src="../js/addtask.js"></script>
+  </body>
 </html>
