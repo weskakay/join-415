@@ -1,7 +1,6 @@
 .contactsMain {
   display: flex;
   position: relative;
-  min-height: calc(100vh - 96px);
   width: 100%;
 }
 
@@ -14,7 +13,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   z-index: 2;
-  max-height: 928px;
+  max-height: calc(100vh - 96px);
   padding: 0 24px 0 48px;
 }
 
@@ -112,6 +111,7 @@
 .contactsDisplay {
   display: flex;
   flex-direction: column;
+  height: fit-content;
   gap: 48px;
   padding: 24px 0;
 }

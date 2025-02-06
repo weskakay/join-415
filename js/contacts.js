@@ -197,7 +197,7 @@ function checkPhone(insertedPhone) {
 
 async function deleteContact(path) {
   await delete_data(path);
-  document.getElementById("contactsDetailsDisplay").innerHTML = "";
+  window.location.reload();
   getContacts();
 }
 
@@ -285,9 +285,20 @@ function contactCreatedEdited(windowId) {
   document.getElementById(windowId).classList.toggle("addContactWindow");
 }
 
-function showContactDetails(windowId) {
-  document.getElementById(windowId).classList.toggle("detailsWindowClosed");
-  document.getElementById(windowId).classList.toggle("detailsWindow");
+async function showContactDetails(windowId) {
+  if (
+    document.getElementById(windowId).classList ==
+    "contactsDisplay detailsWindow"
+  ) {
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    await delay(0.1);
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+  } else {
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+  }
 }
 
 async function contactNoAction(windowId) {

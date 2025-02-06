@@ -5,19 +5,19 @@
   height: 100%;
   overflow: hidden;
 }
+
+.infoPosition {
+  width: 100vh;
+  overflow: hidden;
+}
 .createdContactInfoOut {
-  position: absolute;
   transition-timing-function: ease-in;
   transition: 0.2s;
-  right: 0;
   transform: translate(110%);
 }
 
 .createdContactInfoIn {
-  position: absolute;
   transition-timing-function: ease-out;
-  left: 0;
-  top: 0;
   transition: 0.2s;
 }
 
