@@ -87,7 +87,7 @@ function listContactsAddtask(contact) {
 
 function listAssingedContacts(contact) {
   return /*html*/ `<div class="background-contacts bg-contact-chechbox">${getInitials(
-    contact.name,
+    contact.name
   )}</div>`;
 }
 
@@ -145,4 +145,22 @@ function editInitialsInsert(initials, indexContacts) {
       ${initials}
     </div>
   `;
+}
+
+function listSubtasks(i, content) {
+  return /*html*/ `
+      <div class="list-item-container">
+        <li class="subtask-list-items" id="listItem-${i}" contenteditable="false" onblur="updateListItem(${i})"  onkeydown="handleEnter(event, ${i})">${content}</li>
+        <div class="list-icons-wrapper">
+          <div class="list-icons">
+            <img src="../assets/icons/add_task/edit.svg" alt="Edit" class="edit-icon" onclick="editListItem(${i})" id="editIcon-${i}">
+            <img src="../assets/icons/add_task/check-icon.svg" alt="Check" class="check-icon" onclick="updateListItem(${i})" id="checkIcon-${i}" style="display: none;">
+          </div>
+          <div class="list-icon-seperator"></div>
+          <div class="list-icons">
+            <img src="../assets/icons/add_task/delete.svg" alt="Delete" onclick="deleteListItem(${i})">
+          </div>
+        </div>
+      </div>
+    `;
 }

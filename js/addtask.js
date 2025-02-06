@@ -1,37 +1,7 @@
 let contacts = [];
 let selectedContactsIDs = [];
 let subtaskInputs = [];
-
-async function getTaskData() {
-  let title = document.getElementById("taskTitle").value;
-  let description = document.getElementById("taskDescription").value;
-  let contact = document.getElementById("contact").value;
-  let date = document.getElementById("date").value;
-  let prio = document.getElementById("priority").value;
-  let category = document.getElementById("inputCategory").value;
-  let subtask = document.getElementById("subtask").value;
-
-  let data = {
-    title,
-    description,
-    contact,
-    date,
-    prio,
-    category,
-    subtask,
-  };
-
-  await updateData("tasks/", data);
-}
-
-async function updateData(path = "", data = {}) {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  return await response.json();
-}
+let selectedPrio = "";
 
 async function getContacts(path = "contacts/") {
   let response = await fetch(`${BASE_URL}${path}.json`);
@@ -124,6 +94,8 @@ function renderAssignedContacts() {
 function setButtonColor(selectedButton) {
   resetButtonColors();
   let activeButton = document.getElementById(`button${selectedButton}`);
+  selectedPrio = activeButton.id.replace("button", "").toLowerCase();
+
   if (!activeButton) return;
 
   let img = activeButton.querySelector("img");
@@ -200,21 +172,8 @@ function renderSubtasks() {
   list.innerHTML = "";
 
   for (let i = 0; i < subtaskInputs.length; i++) {
-    list.innerHTML += /*html*/ `
-      <div class="list-item-container">
-        <li class="subtask-list-items" id="listItem-${i}" contenteditable="false" onblur="updateListItem(${i})"  onkeydown="handleEnter(event, ${i})">${subtaskInputs[i]}</li>
-        <div class="list-icons-wrapper">
-          <div class="list-icons">
-            <img src="../assets/icons/add_task/edit.svg" alt="Edit" class="edit-icon" onclick="editListItem(${i})" id="editIcon-${i}">
-            <img src="../assets/icons/add_task/check-icon.svg" alt="Check" class="check-icon" onclick="updateListItem(${i})" id="checkIcon-${i}" style="display: none;">
-          </div>
-          <div class="list-icon-seperator"></div>
-          <div class="list-icons">
-            <img src="../assets/icons/add_task/delete.svg" alt="Delete" onclick="deleteListItem(${i})">
-          </div>
-        </div>
-      </div>
-    `;
+    let content = subtaskInputs[i];
+    list.innerHTML += listSubtasks(i, content);
   }
 }
 
@@ -277,3 +236,95 @@ document
       confirmInput();
     }
   });
+
+function resetAllInputs() {
+  document.getElementById("taskTitle").value = "";
+  document.getElementById("taskDescription").value = "";
+  document.getElementById("contact-search").value = "";
+  document.getElementById("date").value = "";
+  document.getElementById("inputCategory").selectedIndex = 0;
+  document.getElementById("subtaskInput").value = "";
+  subtaskInputs = [];
+  selectedContactsIDs = [];
+  renderAssignedContacts();
+  renderSubtasks();
+  hideButtons();
+}
+
+async function getTaskData() {
+  if (validateData()) {
+    let data = prepareTaskData();
+    try {
+      await updateData("tasks", data);
+      resetAllInputs();
+      window.location.href = `../html/board.html`;
+    } catch (error) {
+      console.error("Error saving task:", error);
+    }
+  } else {
+    return;
+  }
+}
+
+async function updateData(path = "", data = {}) {
+  const response = await fetch(BASE_URL + path + ".json", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  return await response.json();
+}
+
+function prepareTaskData() {
+  let title = document.getElementById("taskTitle").value;
+  let description = document.getElementById("taskDescription").value;
+  let contact = selectedContactsIDs;
+  let date = document.getElementById("date").value;
+  let prio = selectedPrio;
+  let category = document.getElementById("inputCategory").value;
+  let subtask = subtaskInputs;
+
+  return {
+    title,
+    description,
+    contact,
+    date,
+    prio,
+    category,
+    subtask,
+  };
+}
+
+function validateData() {
+  let requiredFields = document.querySelectorAll("[required]");
+  let category = document.getElementById("inputCategory").value;
+
+  for (let field of requiredFields) {
+    if (!field.value.trim()) {
+      alert(
+        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`
+      );
+      field.focus();
+      return false;
+    }
+  }
+
+  if (!Array.isArray(selectedContactsIDs) || selectedContactsIDs.length === 0) {
+    document.getElementById("contact-search").focus();
+    alert("Mindestens ein Kontakt muss zugewiesen werden.");
+    return false;
+  }
+
+  if (!category) {
+    alert("Das Feld Kategorie ist erforderlich.");
+    document.getElementById("inputCategory").focus();
+    return false;
+  }
+
+  return true;
+}
