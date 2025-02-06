@@ -13,12 +13,15 @@ let bgcolors = [
 
 let contacts = [];
 
+let lastContact = [];
+
 function init() {
   getContacts();
 }
 
 async function getContacts(path = `contacts/`) {
   contacts = [];
+  lastContact = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
   if (contactData == null) {
@@ -34,6 +37,8 @@ async function getContacts(path = `contacts/`) {
         phone: details.phone,
       });
     });
+    lastContact = contacts[contacts.length - 1];
+
     sortContacts();
   }
 }
@@ -138,11 +143,13 @@ async function getContactData(
       (path = `contacts/`),
       (data = { "name": name, "email": email, "phone": phone }),
     );
-    getContacts();
+    await getContacts();
     clearInput(inputName, inputEmail, inputPhone);
     d_none(overId);
     showCreationHint();
     contactCreatedEdited(windowId);
+    showContactDetails("contactsDisplay");
+    findLastContactIndex();
   }
 }
 

@@ -57,3 +57,12 @@ async function edit_data(path = "", data = {}) {
   });
   return await response.json();
 }
+
+function findLastContactIndex() {
+  let lastId = lastContact.id;
+  let myId = (item) => item.id == lastId;
+  let foundId = contacts.findIndex(myId);
+  openContactDetails(foundId);
+  console.log(lastId);
+  console.log(foundId);
+}
