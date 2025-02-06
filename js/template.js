@@ -44,7 +44,7 @@ function contactsFullDetails(
         <p class="weight500 size47">${userName}</p>
         <div class="detailsEdit">
           <button
-            onclick="d_none('overlayEdit'), openEditOverlay(${indexContacts}), toggle_create_window('editWindow')"
+            onclick="d_none('overlayEdit'), openEditOverlay(${indexContacts}), contactCreatedEdited('editWindow')"
           >
             <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
             <p class="weight400 size16 colorDarkBlue">Edit</p>
@@ -135,13 +135,13 @@ function editButtonsInsert(contactId, indexContacts) {
   return `
     <button
       class="add-task-button-clear"
-      onclick="deleteContact('contacts/${contactId}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), toggle_create_window('editWindow') "
+      onclick="deleteContact('contacts/${contactId}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow') "
     >
       Delete
     </button>
     <button
       class="add-task-button-create"
-      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}')"
+      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}', contactCreatedEdited('editWindow'))"
     >
       Save<img src="../assets/icons/add_task/check-icon.svg" />
     </button>

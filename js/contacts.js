@@ -141,7 +141,7 @@ async function getContactData(
     clearInput(inputName, inputEmail, inputPhone);
     d_none(overId);
     showCreationHint();
-    toggle_create_window(windowId);
+    contactCreatedEdited(windowId);
   }
 }
 
@@ -194,35 +194,10 @@ function checkPhone(insertedPhone) {
   }
 }
 
-async function update_data(path = "", data = {}) {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  return await response.json();
-}
-
-async function delete_data(path) {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "DELETE",
-  });
-  return await response.json();
-}
-
 async function deleteContact(path) {
   await delete_data(path);
   document.getElementById("contactsDetailsDisplay").innerHTML = "";
   getContacts();
-}
-
-async function edit_data(path = "", data = {}) {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "PUT",
-    header: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  return await response.json();
 }
 
 async function editUser(name, email, tel, id, indexContacts) {
@@ -304,7 +279,7 @@ function openEditOverlay(indexContacts) {
   );
 }
 
-function toggle_create_window(windowId) {
+function contactCreatedEdited(windowId) {
   document.getElementById(windowId).classList.toggle("addContactWindowClosed");
   document.getElementById(windowId).classList.toggle("addContactWindow");
 }
