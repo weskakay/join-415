@@ -278,12 +278,25 @@ function openCreateOverlay() {
 }
 
 function openEditOverlay(indexContacts) {
-  document.getElementById("overlayEdit").innerHTML = "";
-  let contactId = contacts[indexContacts].id;
+  document.getElementById("editForm").innerHTML = "";
+  document.getElementById("editButtons").innerHTML = "";
+
   let contactName = contacts[indexContacts].name;
   let contactEmail = contacts[indexContacts].email;
   let contactPhone = contacts[indexContacts].phone;
-  document.getElementById("overlayEdit").innerHTML = overlayEditUser(
+  let contactId = contacts[indexContacts].id;
+
+  document.getElementById("editForm").innerHTML = editFormInsert(
+    contactName,
+    contactEmail,
+    contactPhone,
+  );
+  document.getElementById("editButtons").innerHTML = editButtonsInsert(
+    contactId,
+    indexContacts,
+  );
+
+  /*  document.getElementById("overlayEdit").innerHTML = overlayEditUser(
     contactName,
     contactEmail,
     contactPhone,
@@ -291,5 +304,5 @@ function openEditOverlay(indexContacts) {
     getInitials(contactName),
     contactId,
   );
-  getColorById(indexContacts);
+  getColorById(indexContacts);*/
 }

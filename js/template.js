@@ -44,7 +44,7 @@ function contactsFullDetails(
         <p class="weight500 size47">${userName}</p>
         <div class="detailsEdit">
           <button
-            onclick="d_none('overlayEdit'), openEditOverlay(${indexContacts})"
+            onclick="d_none('overlayEdit'), openEditOverlay(${indexContacts}), toggle_create_window('editWindow')"
           >
             <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
             <p class="weight400 size16 colorDarkBlue">Edit</p>
@@ -75,97 +75,6 @@ function contactsFullDetails(
   `;
 }
 
-function overlayEditUser(
-  contactName,
-  contactEmail,
-  contactPhone,
-  indexContacts,
-  initials,
-  contactId,
-) {
-  return `
-    <div class="addContactWindow" onclick="noBubble(event)">
-      <div class="contactWindowFull">
-        <div class="addContactsLogo">
-          <div class="addContactsText">
-            <p class="weight700 size61">Edit contact</p>
-            <img
-              class="addContactsJoin"
-              src="../assets/icons/contacts/Capa 1.svg"
-              alt="Logo Join"
-            />
-            <div class="separatorHorizontal"></div>
-          </div>
-        </div>
-        <div class="addContacsInput">
-          <div class="closeAddContact">
-            <button
-              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')"
-            >
-              <img
-                src="../assets/icons/add_task/cross-icon.svg"
-                alt="Close Button"
-              />
-            </button>
-          </div>
-          <div
-            class="background-contacts bg-details"
-            id="edit-bg-${indexContacts}"
-          >
-            ${initials}
-          </div>
-          <div class="addContactFull">
-            <div class="dataInput">
-              <form>
-                <input
-                  id="nameInputEdit"
-                  class="weight400 size20"
-                  type="text"
-                  required
-                  placeholder="Name"
-                  pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
-                  value="${contactName}"
-                />
-                <input
-                  id="mailInputEdit"
-                  class="weight400 size20"
-                  type="email"
-                  placeholder="Email"
-                  pattern="[^@s]+@[^@s]"
-                  value="${contactEmail}"
-                />
-                <input
-                  id="telInputEdit"
-                  class="weight400 size20"
-                  type="tel"
-                  required
-                  placeholder="Phone"
-                  pattern="[0-9]{4,20}"
-                  value="${contactPhone}"
-                />
-              </form>
-            </div>
-            <div class="add-task-bottom-buttons">
-              <button
-                class="add-task-button-clear"
-                onclick="deleteContact('contacts/${contacts[indexContacts].id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit')"
-              >
-                Delete
-              </button>
-              <button
-                class="add-task-button-create"
-                onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}')"
-              >
-                Save<img src="../assets/icons/add_task/check-icon.svg" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
 function listContactsAddtask(contact) {
   let checked = selectedContactsIDs.includes(contact.id) ? "checked" : "";
 
@@ -189,4 +98,52 @@ function listAssingedContacts(contact) {
   return /*html*/ `<div class="background-contacts bg-contact-chechbox">${getInitials(
     contact.name,
   )}</div>`;
+}
+
+function editFormInsert(contactName, contactEmail, contactPhone) {
+  return `
+    <input
+      id="nameInputEdit"
+      class="weight400 size20"
+      type="text"
+      required
+      placeholder="Name"
+      pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+      value="${contactName}"
+    />
+    <input
+      id="mailInputEdit"
+      class="weight400 size20"
+      type="email"
+      placeholder="Email"
+      pattern="[^@s]+@[^@s]"
+      value="${contactEmail}"
+    />
+    <input
+      id="telInputEdit"
+      class="weight400 size20"
+      type="tel"
+      required
+      placeholder="Phone"
+      pattern="[0-9]{4,20}"
+      value="${contactPhone}"
+    />
+  `;
+}
+
+function editButtonsInsert(contactId, indexContacts) {
+  return `
+    <button
+      class="add-task-button-clear"
+      onclick="deleteContact('contacts/${contactId}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), toggle_create_window('editWindow') "
+    >
+      Delete
+    </button>
+    <button
+      class="add-task-button-create"
+      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contactId}', '${indexContacts}')"
+    >
+      Save<img src="../assets/icons/add_task/check-icon.svg" />
+    </button>
+  `;
 }
