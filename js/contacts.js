@@ -1,19 +1,10 @@
-let bgcolors = [
-  { id: 0, rgba: "rgba(255, 105, 135, 1)" },
-  { id: 1, rgba: "rgba(255, 180, 120, 1)" },
-  { id: 2, rgba: "rgba(186, 85, 211, 1)" },
-  { id: 3, rgba: "rgba(100, 200, 250, 1)" },
-  { id: 4, rgba: "rgba(60, 179, 113, 1)" },
-  { id: 5, rgba: "rgb(153, 197, 43)" },
-  { id: 6, rgba: "rgba(218, 165, 32, 1)" },
-  { id: 7, rgba: "rgb(205, 127, 224)" },
-  { id: 8, rgba: "rgba(138, 43, 226, 1)" },
-  { id: 9, rgba: "rgba(255, 165, 0, 1)" },
-];
-
 let contacts = [];
 
 let lastContact = [];
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10);
+}
 
 function init() {
   getContacts();
@@ -35,7 +26,7 @@ async function getContacts(path = `contacts/`) {
         name: details.name,
         email: details.email,
         phone: details.phone,
-        color: details.color,
+        colorId: details.colorId,
       });
     });
 
@@ -102,19 +93,14 @@ function openContactDetails(indexContacts) {
   document.getElementById("detailsProfile").innerHTML = "";
   document.getElementById("detailsContact").innerHTML = "";
 
-  let contactName = contacts[indexContacts].name;
-  let contactEmail = contacts[indexContacts].email;
-  let contactPhone = contacts[indexContacts].phone;
+  let contact = contacts[indexContacts];
 
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
-    contactName,
-    indexContacts,
-    getInitials(contactName)
+    contact,
+    indexContacts
   );
-  document.getElementById("detailsContact").innerHTML = detailsContactInsert(
-    contactEmail,
-    contactPhone
-  );
+  document.getElementById("detailsContact").innerHTML =
+    detailsContactInsert(contact);
 }
 
 async function getContactData(
@@ -135,16 +121,13 @@ async function getContactData(
     let email = document.getElementById(inputEmail).value.trim();
     let phone = document.getElementById(inputPhone).value.trim();
 
-    let currentContactsCount = contacts.length;
-    let colorIndex = currentContactsCount % 10;
-
     await update_data(
       (path = `contacts/`),
       (data = {
         name: name,
         email: email,
         phone: phone,
-        color: bgcolors[colorIndex].rgba,
+        colorId: getRandomNumber(),
       })
     );
     await getContacts();
@@ -172,21 +155,29 @@ function checkName(insertedName) {
   }
 }
 
-function checkEmail(insertedEmail) {
-  let mailInput = document.getElementById(insertedEmail);
-  let email = document.getElementById(insertedEmail).value.trim();
-  let emailPattern = new RegExp(mailInput.pattern);
+function checkEmail(inputId) {
+  let mailInput = document.getElementById(inputId);
+  if (!mailInput) {
+    console.error("Element not found:", inputId);
+    return false;
+  }
+
+  let email = mailInput.value.trim();
+  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (!email) {
     mailInput.setCustomValidity("Please insert an email");
-    mailInput.reportValidity();
-    return true;
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
       "Please insert a valid email format, e.g.: name@email.com"
     );
-    mailInput.reportValidity();
-    return true;
+  } else {
+    mailInput.setCustomValidity("");
+    return false;
   }
+
+  mailInput.reportValidity();
+  return true;
 }
 
 function checkPhone(insertedPhone) {
@@ -223,14 +214,20 @@ async function editUser(name, email, tel, id, indexContacts) {
     let changeName = document.getElementById(name).value;
     let changeEmail = document.getElementById(email).value;
     let changeTel = document.getElementById(tel).value;
+
     await edit_data(
       (path = `contacts/` + id),
-      (data = { name: changeName, email: changeEmail, phone: changeTel })
+      (data = {
+        name: changeName,
+        email: changeEmail,
+        phone: changeTel,
+        colorId: contacts[indexContacts].colorId,
+      })
     );
     await getContacts();
-    clearInput(name, email, tel);
     d_none("overlayEdit");
     openContactDetails(indexContacts);
+    clearInput(name, email, tel);
   }
 }
 
@@ -249,23 +246,13 @@ function openEditOverlay(indexContacts) {
   document.getElementById("editForm").innerHTML = "";
   document.getElementById("editButtons").innerHTML = "";
 
-  let contactName = contacts[indexContacts].name;
-  let contactEmail = contacts[indexContacts].email;
-  let contactPhone = contacts[indexContacts].phone;
-  let contactId = contacts[indexContacts].id;
-
-  document.getElementById("editForm").innerHTML = editFormInsert(
-    contactName,
-    contactEmail,
-    contactPhone
-  );
-  document.getElementById("editInitialsColor").innerHTML = editInitialsInsert(
-    getInitials(contactName),
-    indexContacts
-  );
+  let contact = contacts[indexContacts];
+  document.getElementById("editForm").innerHTML = editFormInsert(contact);
+  document.getElementById("editInitialsColor").innerHTML =
+    editInitialsInsert(contact);
 
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
-    contactId,
+    contact,
     indexContacts
   );
 }
