@@ -27,11 +27,11 @@ function openGuestLogin() {
 }
 
 function openLegalNotice() {
-  window.location.href = "";
+  window.location.href = "../html/legal_notice.html";
 }
 
 function openPrivacyPolicy() {
-  window.location.href = "";
+  window.location.href = "../html/privacy_policy.html";
 }
 
 const BASE_URL =
