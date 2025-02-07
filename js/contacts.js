@@ -278,6 +278,16 @@ async function showContactDetails(windowId) {
   }
 }
 
+function hideDetails(windowId) {
+  if (
+    document.getElementById(windowId).classList ==
+    "contactsDisplay detailsWindow"
+  ) {
+    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    document.getElementById(windowId).classList.toggle("detailsWindow");
+  }
+}
+
 async function contactNoAction(windowId) {
   document.getElementById(windowId).classList.toggle("addContactWindow");
   document

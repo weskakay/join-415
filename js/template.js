@@ -23,7 +23,7 @@ function listContactData(contact, index) {
     <div
       class="contactsContainer"
       tabindex="0"
-      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay')"
+      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay'), noBubble(event)"
     >
       <div class="background-contacts" style="background-color: ${
         bgcolors[contact.colorId].rgba

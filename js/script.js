@@ -6,7 +6,7 @@ function noBubble(event) {
   event.stopPropagation();
 }
 
-function noFocus(event) {
+function prevent(event) {
   event.preventDefault();
 }
 
