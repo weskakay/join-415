@@ -60,6 +60,10 @@
   margin-top: 259px;
 }
 
+.navbar-terms-links a:hover {
+  text-decoration: none;
+}
+
 .navbar-term-button {
   display: flex;
   border: none;
