@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contacts</title>
+    <title>Legal Notice</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/contacts.css" />
     <link rel="stylesheet" href="../css/font_styles.css" />
     <link rel="stylesheet" href="../css/add_task.css" />
     <link rel="stylesheet" href="../css/overlay.css" />
-    <link rel="stylesheet" href="../css/legal_notice.css">
+    <link rel="stylesheet" href="../css/legal_notice.css" />
 
     <script src="../js/script.js"></script>
     <script src="../js/contacts.js"></script>
@@ -18,82 +18,154 @@
     <script src="../js/template.js"></script>
   </head>
   <body onload="init()">
-    <nav class="navbar">
-      <img src="../assets/join_logo/join-logo.svg" />
-      <div class="navbar-menu">
-        <div
-          class="navbar-menu-button-wrapper"
-          onclick='changeNavbarItems("summary")'
-        >
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
-          </button>
-        </div>
-        <div
-          class="navbar-menu-button-wrapper"
-          onclick='changeNavbarItems("addtask")'
-        >
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
-          </button>
-        </div>
-        <div
-          class="navbar-menu-button-wrapper"
-          onclick='changeNavbarItems("board")'
-        >
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/board-icon.svg" />Board
-          </button>
-        </div>
-        <div
-          class="navbar-menu-button-wrapper"
-          style="background-color: rgba(9, 25, 49, 1)"
-          onclick='changeNavbarItems("contacts")'
-        >
-          <button class="navbar-menu-button">
-            <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
-          </button>
+    <header onmousedown="prevent(event)">
+      <div class="header_content">
+        <p class="weight400 size20">Kanban Project Management Tool</p>
+        <div class="profileSection">
+          <a href="">
+            <img src="../assets/icons/header/help.svg" alt="help"
+          /></a>
+          <div class="userInitials">
+            <img
+              src="../assets/icons/header/user_Profile.svg"
+              alt="User Initials"
+              onclick="d_none(`dropdown-menu`)"
+            />
+          </div>
         </div>
       </div>
-      <div class="navbar-terms-links">
-        <button class="navbar-term-button" onclick="">Privacy Policy</button>
-        <button class="navbar-term-button" onclick="">Legal notice</button>
-      </div>
-    </nav>
+      <section id="dropdown-menu" class="d_none">
+        <div onclick="openLegalNotice()">Legal Notice</div>
+        <div onclick="openPrivacyPolicy()">Privacy Policy</div>
+        <div onclick="openLoginHTML()">Log out</div>
+      </section>
+    </header>
+
     <main>
-      <header>
-        <div class="header_content">
-          <p class="weight400 size20">Kanban Project Management Tool</p>
+      <nav class="navbar" onmousedown="prevent(event)">
+        <img src="../assets/join_logo/join-logo.svg" />
+        <div class="navbar-menu">
+          <div
+            class="navbar-menu-button-wrapper"
+            onclick='changeNavbarItems("summary")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
+            </button>
+          </div>
+          <div
+            class="navbar-menu-button-wrapper"
+            onclick='changeNavbarItems("addtask")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
+            </button>
+          </div>
+          <div
+            class="navbar-menu-button-wrapper"
+            onclick='changeNavbarItems("board")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/board-icon.svg" />Board
+            </button>
+          </div>
+          <div
+            class="navbar-menu-button-wrapper"
+            style="background-color: rgba(9, 25, 49, 1)"
+            onclick='changeNavbarItems("contacts")'
+          >
+            <button class="navbar-menu-button">
+              <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
+            </button>
+          </div>
         </div>
-      </header>
+        <div class="navbar-terms-links">
+          <button class="navbar-term-button" onclick="">Privacy Policy</button>
+          <button class="navbar-term-button" onclick="">Legal notice</button>
+        </div>
+      </nav>
+
       <section id="legal-notice">
         <h1>Legal Notice</h1>
         <h2>Imprint</h2>
-        <ul><li> <b>Students Names List:</b> Aris Karamat, Valentino Strebel, Tim Swodenk</li>
-        <li> <b>JOIN Operator:</b> Aris Karamat
-        </li>
-        <li> <b>Address:</b> 65520, Bad Camberg Würges, Schulstr. 8a</li></ul>
+        <ul>
+          <li>
+            <b>Students Names List:</b> Aris Karamat, Valentino Strebel, Tim
+            Swodenk
+          </li>
+          <li><b>JOIN Operator:</b> Aris Karamat</li>
+          <li><b>Address:</b> 65520, Bad Camberg Würges, Schulstr. 8a</li>
+        </ul>
         <h3>Exploring the Board</h3>
         <span>Email: karamataris@gmail.com, tim, valentino</span>
         <h3>Acceptance of the Terms</h3>
-        <span>By accessing and using <b class="blue">Join</b> (Product), you acknowledge and agree to the following terms and conditions, and any policies, guidelines, or amendments thereto that may be presented to you from time to time. We, the listed students, may update or change the terms and conditions from time to time without notice.</span>
+        <span
+          >By accessing and using <b class="blue">Join</b> (Product), you
+          acknowledge and agree to the following terms and conditions, and any
+          policies, guidelines, or amendments thereto that may be presented to
+          you from time to time. We, the listed students, may update or change
+          the terms and conditions from time to time without notice.</span
+        >
         <h3>Scope and ownership of the product</h3>
-        <span><b class="blue">Join</b> has been developed as part of a student group project in a web development bootcamp at the <b class="blue">Developer Akademie GmbH</b>. It has an educational purpose and is not intended for extensive personal & business usage. As such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect of quality regarding this Product.
-            <br><br>
-            The design of <b class="blue">Join</b> is owned by the <b class="blue">Developer Akademie GmbH</b>. Unauthorized use, reproduction, modification, distribution, or replication of the design is strictly prohibited.</span>
+        <span
+          ><b class="blue">Join</b> has been developed as part of a student
+          group project in a web development bootcamp at the
+          <b class="blue">Developer Akademie GmbH</b>. It has an educational
+          purpose and is not intended for extensive personal & business usage.
+          As such, we cannot guarantee consistent availability, reliability,
+          accuracy, or any other aspect of quality regarding this Product.
+          <br /><br />
+          The design of <b class="blue">Join</b> is owned by the
+          <b class="blue">Developer Akademie GmbH</b>. Unauthorized use,
+          reproduction, modification, distribution, or replication of the design
+          is strictly prohibited.</span
+        >
         <h3>Proprietary rights</h3>
-        <span>Aside from the design owned by <b class="blue">Developer Akademie GmbH</b>, we, the listed students, retain all proprietary rights in <b class="blue">Join</b>, including any associated copyrighted material, trademarks, and other proprietary information.</span>
+        <span
+          >Aside from the design owned by
+          <b class="blue">Developer Akademie GmbH</b>, we, the listed students,
+          retain all proprietary rights in <b class="blue">Join</b>, including
+          any associated copyrighted material, trademarks, and other proprietary
+          information.</span
+        >
         <h3>Use of the product</h3>
-        <span><b class="blue">Join</b> is intended to be used for lawful purposes only, in accordance with all applicable laws and regulations. Any use of <b class="blue">Join</b> for illegal activities, or to harass, harm, threaten, or intimidate another person, is strictly prohibited. You are solely responsible for your interactions with other users of <b class="blue">Join</b>.</span>
+        <span
+          ><b class="blue">Join</b> is intended to be used for lawful purposes
+          only, in accordance with all applicable laws and regulations. Any use
+          of <b class="blue">Join</b> for illegal activities, or to harass,
+          harm, threaten, or intimidate another person, is strictly prohibited.
+          You are solely responsible for your interactions with other users of
+          <b class="blue">Join</b>.</span
+        >
         <h3>Disclaimer of warranties and limitation of liability</h3>
-        <span><b class="blue">Join</b> is provided "as is" without warranty of any kind, whether express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event will we, the listed students, or the <b class="blue">Developer Akademie GmbH</b>, be liable for any direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data, or other intangible losses, even if we have been advised of the possibility of such damages, arising out of or in connection with the use or performance of <b class="blue">Join</b>.</span>
+        <span
+          ><b class="blue">Join</b> is provided "as is" without warranty of any
+          kind, whether express or implied, including but not limited to the
+          implied warranties of merchantability, fitness for a particular
+          purpose, and non-infringement. In no event will we, the listed
+          students, or the <b class="blue">Developer Akademie GmbH</b>, be
+          liable for any direct, indirect, incidental, special, consequential or
+          exemplary damages, including but not limited to, damages for loss of
+          profits, goodwill, use, data, or other intangible losses, even if we
+          have been advised of the possibility of such damages, arising out of
+          or in connection with the use or performance of
+          <b class="blue">Join</b>.</span
+        >
         <h3>Indemnity</h3>
-        <span>You agree to Indemnify, defend and hold harmless US, the listed students, the <b class="blue">Developer Akademie</b>, and our affiliates, partners,
-            officers, directors agents and employees, from and against any claim, demand, loss, damage, Cost, or llablity (including reasonable
-            legal fees) arising out of or relating to your use of <b class="blue">Join</b> and/or your breach of this Legal Notice.
-            <br><br>
-            For any questions or notices, please contact us at <a href="mailto: karamataris@gmail.com">karamataris@gmail.com</a>.
-            <br><br>
-            Date: February 05, 2025</span>
-    </section>
-      
+        <span
+          >You agree to Indemnify, defend and hold harmless US, the listed
+          students, the <b class="blue">Developer Akademie</b>, and our
+          affiliates, partners, officers, directors agents and employees, from
+          and against any claim, demand, loss, damage, Cost, or llablity
+          (including reasonable legal fees) arising out of or relating to your
+          use of <b class="blue">Join</b> and/or your breach of this Legal
+          Notice. <br /><br />
+          For any questions or notices, please contact us at
+          <a href="mailto: karamataris@gmail.com">karamataris@gmail.com</a>.
+          <br /><br />
+          Date: February 05, 2025</span
+        >
+      </section>
+    </main>
+  </body>
+</html>
