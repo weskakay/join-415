@@ -1,0 +1,181 @@
+/* Alert when Contact is created */
+.createdContactPosition {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.infoPosition {
+  width: 100vh;
+  overflow: hidden;
+}
+.createdContactInfoOut {
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  transform: translate(110%);
+}
+
+.createdContactInfoIn {
+  transition-timing-function: ease-out;
+  transition: 0.2s;
+}
+
+.createdContactInfo {
+  width: 326px;
+  height: 74px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: #2a3647;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Opening Contact Details*/
+.detailsWindow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  z-index: 5;
+}
+
+.detailsWindowClosed {
+  top: 0;
+  right: 0;
+  transform: translate(100%);
+  position: absolute;
+}
+
+/*windows when creating or editing contact*/
+.addContactWindow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  z-index: 5;
+}
+
+.addContactWindowClosed {
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+  position: absolute;
+}
+
+.addContactWindowNoAction {
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+  position: absolute;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+}
+
+.contactWindowFull {
+  display: flex;
+  overflow: hidden;
+  width: 1212px;
+  height: 592px;
+  border-radius: 30px;
+}
+
+.addContactsLogo {
+  background-color: #2a3647;
+  width: 467px;
+  border-radius: 30px 0 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.addContactsText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.addContactsJoin {
+  position: absolute;
+  width: 55px;
+  height: 66px;
+  left: 0;
+  top: -78px;
+}
+
+.addContacsInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 48px;
+  padding-left: 83px;
+  border-radius: 0 30px 30px 0;
+  width: 746px;
+  position: relative;
+  background-color: white;
+}
+
+.dataInput form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dataInput input {
+  padding: 13px 21px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: #d1d1d1;
+  border-style: solid;
+  background-repeat: no-repeat;
+  background-position: center right 21px;
+  width: 422px;
+}
+
+input#nameInput {
+  background-image: url(../assets/icons/contacts/person.svg);
+}
+
+input#mailInput {
+  background-image: url(../assets/icons/contacts/mail.svg);
+}
+
+input#telInput {
+  background-image: url(../assets/icons/contacts/call.svg);
+}
+
+.closeAddContact {
+  position: Absolute;
+  top: 48px;
+  right: 48px;
+}
+
+.closeAddContact button {
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+}
+
+.addContactFull {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}

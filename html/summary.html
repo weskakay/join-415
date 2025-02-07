@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Summary</title>
 
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/font_styles.css" />
-    <link rel="stylesheet" href="../css/summary.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-    <script src="../js/script.js"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summary</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/font_styles.css" />
+  <link rel="stylesheet" href="../css/summary.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <script src="../js/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header_content">
+      <p class="weight400 size20">Kanban Project Management Tool</p>
+      <div class="profileSection">
+        <a href="">
+          <img src="../assets/icons/header/help.svg" alt="help" /></a>
+        <div class="userInitials">
+          <img src="../assets/icons/header/user_Profile.svg" alt="User Initials" onclick="d_none(`dropdown-menu`)"/>
+        </div>
+      </div>
+    </div>
+    <section id="dropdown-menu" class="d_none">
+      <div onclick="openLegalNotice()">Legal Notice</div>
+      <div onclick="openPrivacyPolicy()">Privacy Policy</div>
+      <div onclick="openLoginHTML()">Log out</div>
+    </section>
+  </header>
+  <main>
     <nav class="navbar">
       <img src="../assets/join_logo/join-logo.svg" />
       <div class="navbar-menu">
-        <div
-          class="navbar-menu-button-wrapper"
-          style="background-color: rgba(9, 25, 49, 1)"
-          onclick='changeNavbarItems("summary")'
-        >
+        <div class="navbar-menu-button-wrapper" style="background-color: rgba(9, 25, 49, 1)"
+          onclick='changeNavbarItems("summary")'>
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
           </button>
         </div>
-        <div
-          class="navbar-menu-button-wrapper"
-          onclick='changeNavbarItems("addtask")'
-        >
+        <div class="navbar-menu-button-wrapper" onclick='changeNavbarItems("addtask")'>
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
           </button>
         </div>
-        <div
-          class="navbar-menu-button-wrapper"
-          onclick='changeNavbarItems("board")'
-        >
+        <div class="navbar-menu-button-wrapper" onclick='changeNavbarItems("board")'>
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/board-icon.svg" />Board
           </button>
         </div>
-        <div
-          class="navbar-menu-button-wrapper"
-          onclick='changeNavbarItems("contacts")'
-        >
+        <div class="navbar-menu-button-wrapper" onclick='changeNavbarItems("contacts")'>
           <button class="navbar-menu-button">
             <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
           </button>
@@ -54,123 +62,104 @@
         <button class="navbar-term-button" onclick="">Legal notice</button>
       </div>
     </nav>
-    <main>
-      <header>
-        <div class="header_content">
-          <p class="weight400 size20">Kanban Project Management Tool</p>
-          <div class="profileSection">
-            <a href="">
-              <img src="../assets/icons/header/help.svg" alt="help"
-            /></a>
-            <div class="userInitials">
-              <img
-                src="../assets/icons/header/user_Profile.svg"
-                alt="User Initials"
-              />
+    <div class="summaryContent">
+      <div class="summaryHeader">
+        <p class="weight700 size61">Join 360</p>
+        <div class="separator59"></div>
+        <p class="weight400 size27 colorDarkBlue">Key Metrics at a Glance</p>
+      </div>
+      <div class="dashboardContent">
+        <div class="dashboard">
+          <div class="contentContainer medium">
+            <div class="contentFull">
+              <div class="penSymbol"></div>
+              <div class="contentData">
+                <div class="contentNumber">
+                  <number class="weight600 size64">1</number>
+                </div>
+                <div class="contentText">
+                  <p class="weight400 size20">To-do</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
-      <div class="summaryContent">
-        <div class="summaryHeader">
-          <p class="weight700 size61">Join 360</p>
-          <div class="separator59"></div>
-          <p class="weight400 size27 colorDarkBlue">Key Metrics at a Glance</p>
-        </div>
-        <div class="dashboardContent">
-          <div class="dashboard">
-            <div class="contentContainer medium">
-              <div class="contentFull">
-                <div class="penSymbol"></div>
+          <div class="contentContainer medium">
+            <div class="contentFull">
+              <div class="doneSymbol"></div>
+              <div class="contentData">
+                <div class="contentNumber">
+                  <number class="weight600 size64">1</number>
+                </div>
+                <div class="contentText">
+                  <p class="weight400 size20">Done</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contentContainer large">
+            <div class="contentFullLarge">
+              <div class="contentFullStatus">
+                <div class="contentSymbol">
+                  <img src="../assets/icons/summary/urgent_orange.svg" alt="Urgent image" />
+                </div>
                 <div class="contentData">
                   <div class="contentNumber">
                     <number class="weight600 size64">1</number>
                   </div>
                   <div class="contentText">
-                    <p class="weight400 size20">To-do</p>
+                    <p class="weight400 size20">Urgent</p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="contentContainer medium">
-              <div class="contentFull">
-                <div class="doneSymbol"></div>
-                <div class="contentData">
-                  <div class="contentNumber">
-                    <number class="weight600 size64">1</number>
-                  </div>
-                  <div class="contentText">
-                    <p class="weight400 size20">Done</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="contentContainer large">
-              <div class="contentFullLarge">
-                <div class="contentFullStatus">
-                  <div class="contentSymbol">
-                    <img
-                      src="../assets/icons/summary/urgent_orange.svg"
-                      alt="Urgent image"
-                    />
-                  </div>
-                  <div class="contentData">
-                    <div class="contentNumber">
-                      <number class="weight600 size64">1</number>
-                    </div>
-                    <div class="contentText">
-                      <p class="weight400 size20">Urgent</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="separator102"></div>
-                <div class="contentDeadline">
-                  <p class="weight700 size21">October 16, 2022</p>
-                  <p class="weight400 size16">Upcoming Deadline</p>
-                </div>
-              </div>
-            </div>
-            <div class="contentContainer small">
-              <div class="contentData">
-                <div class="contentNumber">
-                  <number class="weight600 size64">5</number>
-                </div>
-                <div class="contentText">
-                  <p class="weight400 size20">Tasks in<br />Board</p>
-                </div>
-              </div>
-            </div>
-            <div class="contentContainer small">
-              <div class="contentData">
-                <div class="contentNumber">
-                  <number class="weight600 size64">2</number>
-                </div>
-                <div class="contentText">
-                  <p class="weight400 size20">Tasks in<br />Progress</p>
-                </div>
-              </div>
-            </div>
-            <div class="contentContainer small">
-              <div class="contentData">
-                <div class="contentNumber">
-                  <number class="weight600 size64">2</number>
-                </div>
-                <div class="contentText">
-                  <p class="weight400 size20">Awaiting Feedback</p>
-                </div>
+              <div class="separator102"></div>
+              <div class="contentDeadline">
+                <p class="weight700 size21">October 16, 2022</p>
+                <p class="weight400 size16">Upcoming Deadline</p>
               </div>
             </div>
           </div>
-          <div class="dashboardWelcome">
-            <div class="timeOfDayWelcome">
-              <p class="colorDarkBlue weight500 size47">Good morning,</p>
+          <div class="contentContainer small">
+            <div class="contentData">
+              <div class="contentNumber">
+                <number class="weight600 size64">5</number>
+              </div>
+              <div class="contentText">
+                <p class="weight400 size20">Tasks in<br />Board</p>
+              </div>
             </div>
-            <div class="userWelcome">
-              <p class="colorLightBlue weight700 size64">Sofia Müller</p>
+          </div>
+          <div class="contentContainer small">
+            <div class="contentData">
+              <div class="contentNumber">
+                <number class="weight600 size64">2</number>
+              </div>
+              <div class="contentText">
+                <p class="weight400 size20">Tasks in<br />Progress</p>
+              </div>
             </div>
+          </div>
+          <div class="contentContainer small">
+            <div class="contentData">
+              <div class="contentNumber">
+                <number class="weight600 size64">2</number>
+              </div>
+              <div class="contentText">
+                <p class="weight400 size20">Awaiting Feedback</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dashboardWelcome">
+          <div class="timeOfDayWelcome">
+            <p class="colorDarkBlue weight500 size47">Good morning,</p>
+          </div>
+          <div class="userWelcome">
+            <p class="colorLightBlue weight700 size64">Sofia Müller</p>
           </div>
         </div>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>

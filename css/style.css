@@ -13,22 +13,30 @@
 
 body {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  margin: auto;
+  overflow-x: hidden;
+  background-color:#f6f7f8;
 }
 
 main {
   width: 100%;
+  display: flex;
 }
 
 header {
   position: relative;
+  padding-left: 232px;
   height: 96px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  z-index: 4;
+  width: 100%;
 }
 
 .header_content {
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,8 +60,9 @@ header {
   border-radius: 45px;
   border-style: solid;
   border-color: rgba(255, 255, 255, 1);
+  border-width: 2px;
   color: rgba(255, 255, 255, 1);
-  background-color: rgba(255, 122, 0, 1);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 }
 
 .separator102 {
@@ -68,6 +77,61 @@ header {
   background-color: #29abe2;
 }
 
+.separatorHorizontal {
+  background-color: #29abe2;
+  height: 3px;
+  width: 90px;
+}
+
 .d_none {
   display: none;
+  visibility: hidden;
+}
+
+.contactsSeperator {
+  margin: 8px 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(209, 209, 209, 1);
+}
+
+.sticky {
+  position: sticky;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  padding: 32px 0;
+}
+
+#dropdown-menu {
+  position: absolute;
+  display: flex;
+  right: 30px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 158px;
+  min-width: 150px;
+  background-color: #2A3647;
+  border-radius: 20px 0 20px 20px;
+  color: #CDCDCD;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+
+  >div {
+    padding: 10px;
+    width: 120px;
+  }
+}
+
+#dropdown-menu div:hover {
+  background-color: #3a475a;
+  cursor: pointer;
+}
+
+.userInitials:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
 }

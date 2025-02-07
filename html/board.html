@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/font_styles.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/board.css" />
+
+    <script src="../js/script.js"></script>
+    <script src="../js/board.js"></script>
+  </head>
+  <body>
+    <header>
+        <div class="header_content">
+          <p class="weight400 size20">Kanban Project Management Tool</p>
+          <div class="profileSection">
+            <a href="">
+              <img src="../assets/icons/header/help.svg" alt="help"
+            /></a>
+            <div class="userInitials">
+              <img
+                src="../assets/icons/header/user_Profile.svg"
+                alt="User Initials"
+                onclick="d_none(`dropdown-menu`)"
+              />
+            </div>
+          </div>
+        </div>
+        <section id="dropdown-menu" class="d_none">
+          <div onclick="openLegalNotice()">Legal Notice</div>
+          <div onclick="openPrivacyPolicy()">Privacy Policy</div>
+          <div onclick="openLoginHTML()">Log out</div>
+        </section>
+      </header>
+   
+    <main>
+       <nav class="navbar">
+      <img src="../assets/join_logo/join-logo.svg" />
+      <div class="navbar-menu">
+        <div
+          class="navbar-menu-button-wrapper"
+          onclick='changeNavbarItems("summary")'
+        >
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
+          </button>
+        </div>
+        <div
+          class="navbar-menu-button-wrapper"
+          onclick='changeNavbarItems("addtask")'
+        >
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
+          </button>
+        </div>
+        <div
+          class="navbar-menu-button-wrapper"
+          style="background-color: rgba(9, 25, 49, 1)"
+          onclick='changeNavbarItems("board")'
+        >
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/board-icon.svg" />Board
+          </button>
+        </div>
+        <div
+          class="navbar-menu-button-wrapper"
+          onclick='changeNavbarItems("contacts")'
+        >
+          <button class="navbar-menu-button">
+            <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
+          </button>
+        </div>
+      </div>
+      <div class="navbar-terms-links">
+        <button class="navbar-term-button" onclick="">Privacy Policy</button>
+        <button class="navbar-term-button" onclick="">Legal notice</button>
+      </div>
+    </nav>
+      <div class="board-wrapper">
+        <div class="board-header">
+          <div class="size61 weight700">Board</div>
+          <div class="board-search-add-container">
+            <div class="board-search-container">
+              <input class="size20" type="text" placeholder="Find Task" />
+              <div class="search-icon-seperator">
+                <div class="search-seperator"></div>
+                <img src="../assets/icons/board/search.svg" />
+              </div>
+            </div>
+            <button class="board-add-task-button size21">
+              Add Task<img src="../assets/icons/board/add.svg" />
+            </button>
+          </div>
+        </div>
+        <div class="board-tasks-wrapper">
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>To do</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div
+              class="board-card-container"
+              id="board_todo"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16 weight400" id="no-task-todo">
+                <p>No tasks To Do</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task1"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Bitte Heflen Sie mir!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>In progress</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div
+              class="board-card-container"
+              id="board_progress"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16" id="no-task-progress">
+                <p>No tasks In Progress</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task2"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Progress</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>Await feedback</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div
+              class="board-card-container"
+              id="board_feedback"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16" id="no-task-feedback">
+                <p>No tasks Await feedback</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task3"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">feedback!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="board-tasks-container">
+            <div class="board-headline size20 weight700">
+              <p>Done</p>
+              <img src="../assets/icons/board/plus button.svg" />
+            </div>
+            <div
+              class="board-card-container"
+              id="board_done"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            >
+              <div class="board-no-task size16" id="no-task-done">
+                <p>No tasks Done</p>
+              </div>
+              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <div
+                class="board-card"
+                id="task4"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Done!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
