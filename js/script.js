@@ -6,6 +6,10 @@ function noBubble(event) {
   event.stopPropagation();
 }
 
+function noFocus(event) {
+  event.preventDefault();
+}
+
 function changeNavbarItems(id) {
   window.location.href = `../html/${id}.html`;
 }

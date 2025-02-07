@@ -18,7 +18,7 @@
   </head>
   <body onload="init()">
     <!--Content is divided into Header and Main-->
-    <header>
+    <header onmousedown="noFocus(event)">
       <div class="header_content">
         <p class="weight400 size20">Kanban Project Management Tool</p>
         <div class="profileSection">
@@ -43,7 +43,7 @@
 
     <!--Start of Main-->
     <main>
-      <nav class="navbar">
+      <nav class="navbar" onmousedown="noFocus(event)">
         <img src="../assets/join_logo/join-logo.svg" />
         <div class="navbar-menu">
           <div
@@ -92,6 +92,7 @@
         <div class="contactsList">
           <div class="sticky">
             <button
+              onmousedown="noFocus(event)"
               onclick="d_none(`overlay`), contactCreatedEdited('contactWindow')"
             >
               <p class="weight700 size21">Add new contact</p>
@@ -107,7 +108,7 @@
         </div>
 
         <!--Area to show contacts details to edit & delete-->
-        <div class="contactsDetails">
+        <div class="contactsDetails" onmousedown="noFocus(event)">
           <div class="contactsDetailsHeader">
             <div><p class="weight700 size61">Contacts</p></div>
             <div class="separator59"></div>
@@ -140,6 +141,7 @@
     <div
       id="overlay"
       class="overlay d_none"
+      onmousedown="noFocus(event)"
       onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
     ></div>
 
@@ -147,6 +149,7 @@
     <div
       id="contactWindow"
       class="addContactWindowClosed"
+      onmousedown="noFocus(event)"
       onclick="noBubble(event) "
     >
       <div class="contactWindowFull">
@@ -232,12 +235,14 @@
     <div
       id="overlayEdit"
       class="overlay d_none"
+      onmousedown="noFocus(event)"
       onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
     ></div>
 
     <!--Edit Contact window-->
     <div
       id="editWindow"
+      onmousedown="noFocus(event)"
       class="addContactWindowClosed"
       onclick="noBubble(event) "
     >
