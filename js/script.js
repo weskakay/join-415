@@ -1,5 +1,9 @@
 let media = window.matchMedia("(max-width: 428px)");
 
+function initScript(){
+  mobileMediaQuery();
+}
+
 function d_none(enterid) {
   document.getElementById(enterid).classList.toggle("d_none");
 }
