@@ -32,7 +32,7 @@ function listContactData(contact, index) {
       </div>
       <div class="contactsContainerUserinfo">
         <p class="weight400 size20">${contact.name}</p>
-        <a class="weight400 size16 emailLink" href="mailto:${contact.email}"
+        <a class="weight400 size16 emailLink"
           >${contact.email}</a
         >
       </div>

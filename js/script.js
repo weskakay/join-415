@@ -1,7 +1,9 @@
 let media = window.matchMedia("(max-width: 428px)");
 
-function initScript(){
+function pageLoadHandler(id) {
   mobileMediaQuery();
+  getTimeGreeting();
+  getCurrentUser(id);
 }
 
 function d_none(enterid) {
@@ -28,7 +30,7 @@ function openSignUpHTML() {
   window.location.href = "../html/signup.html";
 }
 
-function openGuestLogin() {
+function openSummary() {
   window.location.href = "../html/summary.html";
 }
 
@@ -49,6 +51,11 @@ async function update_data(path = "", data = {}) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
   return await response.json();
 }
 
@@ -69,21 +76,66 @@ async function edit_data(path = "", data = {}) {
 }
 
 function mobileMediaQuery() {
-  let header = document.getElementsByClassName('navbar');
-  let footer = document.getElementsByClassName('footer_nav');
+  let header = document.getElementsByClassName("navbar");
+  let footer = document.getElementsByClassName("footer_nav");
 
   if (media.matches) {
     for (let index = 0; index < header.length; index++) {
-      header[index].classList.add('d_none');
-      footer[index].classList.remove('d_none');
+      header[index].classList.add("d_none");
+      footer[index].classList.remove("d_none");
     }
   } else {
     for (let index = 0; index < header.length; index++) {
-      header[index].classList.remove('d_none');
-      footer[index].classList.add('d_none');
+      header[index].classList.remove("d_none");
+      footer[index].classList.add("d_none");
     }
   }
 }
 
 mobileMediaQuery();
 media.addEventListener("change", mobileMediaQuery);
+
+function getTimeGreeting() {
+  const now = new Date();
+  const hours = now.getHours();
+  let greeting;
+
+  if (hours < 12) {
+    greeting = "Good morning,";
+  } else if (hours < 18) {
+    greeting = "Good day,";
+  } else {
+    greeting = "Good evening,";
+  }
+
+  let content = document.getElementById("greeting");
+  if (content) {
+    content.textContent = greeting;
+  }
+}
+
+function getInitials(name) {
+  return name
+    .split(" ")
+    .map((word) => word[0].toUpperCase())
+    .join("");
+}
+
+async function getCurrentUser(id, path = "current-user") {
+  let response = await fetch(`${BASE_URL}${path}.json`);
+  let currentUser = await response.json();
+  renderCurrentUser(currentUser);
+  renderInitials(id, currentUser);
+}
+
+function renderCurrentUser(currentUser) {
+  let content = document.getElementById("user-name");
+  if (content) {
+    content.innerHTML = currentUser.name;
+  }
+}
+
+function renderInitials(id, currentUser) {
+  let content = document.getElementById(`header-initials-${id}`);
+  content.innerHTML = getInitials(currentUser.name);
+}

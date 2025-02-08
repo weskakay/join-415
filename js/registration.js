@@ -1,10 +1,11 @@
-const FIREBASE_URL =
-  "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
-
 async function getData(path = "/login-data", login) {
-  let response = await fetch(FIREBASE_URL + path + ".json");
-  login = await response.json();
-  proofLoginData(login);
+  try {
+    let response = await fetch(BASE_URL + path + ".json");
+    login = await response.json();
+    proofLoginData(login);
+  } catch (error) {
+    console.log("Error fetching login data", error);
+  }
 }
 
 async function proofLoginData(login, userId, findUser) {
@@ -19,20 +20,15 @@ async function proofLoginData(login, userId, findUser) {
       ) {
         findUser = loginData[id];
         userId = Object.keys(login)[id];
-        break;
+        edit_data("/current-user", findUser);
+        openSummary();
+        return;
       }
     }
-
-    if (findUser) {
-      console.log("id:", userId);
-      console.log("User found:", findUser);
-      openGuestLogin();
-    } else {
-      console.log("No user found with that email.");
-      emailLogin.classList.add("wrong-password");
-      passwordLogin.classList.add("wrong-password");
-      document.getElementById("error-login").classList.remove("d_none");
-    }
+    console.log("No user found with that email.");
+    emailLogin.classList.add("wrong-password");
+    passwordLogin.classList.add("wrong-password");
+    document.getElementById("error-login").classList.remove("d_none");
   } catch (error) {
     console.error("Error fetching login data:", error);
   }
@@ -45,7 +41,7 @@ function registrationData() {
   let confPassword = document.getElementById("confirm-password-input");
 
   if (confirmPassword()) {
-    postData("/login-data", {
+    update_data("/login-data", {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
       name: `${name.value.trim()}`,
@@ -58,18 +54,6 @@ function registrationData() {
 
     console.log("wrong password");
   }
-}
-
-async function postData(path = "", data = {}) {
-  let response = await fetch(FIREBASE_URL + path + ".json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  return await response.json();
 }
 
 function confirmPassword() {
@@ -109,4 +93,12 @@ function changeLogoSize() {
   setTimeout(() => {
     openLoginHTML();
   }, 1000);
+}
+
+function openGuestLogin() {
+  let guest = {
+    name: "Guest",
+  };
+  edit_data("/current-user", guest);
+  openSummary();
 }

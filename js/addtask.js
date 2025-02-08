@@ -259,7 +259,7 @@ async function getTaskData() {
   if (validateData()) {
     let data = prepareTaskData();
     try {
-      await updateData("tasks", data);
+      await update_data("tasks", data);
       resetAllInputs();
       window.location.href = `../html/board.html`;
     } catch (error) {
@@ -268,20 +268,6 @@ async function getTaskData() {
   } else {
     return;
   }
-}
-
-async function updateData(path = "", data = {}) {
-  const response = await fetch(BASE_URL + path + ".json", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  return await response.json();
 }
 
 function prepareTaskData() {

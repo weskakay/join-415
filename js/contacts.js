@@ -2,10 +2,6 @@ let contacts = [];
 
 let lastContact = [];
 
-function getRandomNumber() {
-  return Math.floor(Math.random() * 10);
-}
-
 function init() {
   getContacts();
 }
@@ -22,11 +18,11 @@ async function getContacts(path = `contacts/`) {
   } else {
     Object.entries(contactData).forEach(([id, details]) => {
       contacts.push({
-        "id": id,
-        "name": details.name,
-        "email": details.email,
-        "phone": details.phone,
-        "colorId": details.colorId,
+        id: id,
+        name: details.name,
+        email: details.email,
+        phone: details.phone,
+        colorId: details.colorId,
       });
     });
     lastContact = contacts[contacts.length - 1];
@@ -36,7 +32,7 @@ async function getContacts(path = `contacts/`) {
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
   groupContacts();
 }
@@ -66,18 +62,11 @@ function renderContacts(sortedGroups, grouped) {
       let contact = grouped[letter][j];
       document.getElementById("contactsList").innerHTML += listContactData(
         contact,
-        globalIndex,
+        globalIndex
       );
       globalIndex++;
     }
   }
-}
-
-function getInitials(name) {
-  return name
-    .split(" ")
-    .map((word) => word[0].toUpperCase())
-    .join("");
 }
 
 function openContactDetails(indexContacts) {
@@ -86,7 +75,7 @@ function openContactDetails(indexContacts) {
   let contact = contacts[indexContacts];
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
-    indexContacts,
+    indexContacts
   );
   document.getElementById("detailsContact").innerHTML =
     detailsContactInsert(contact);
@@ -113,12 +102,16 @@ async function userCreateSuccess(inputName, inputEmail, inputPhone) {
   await update_data(
     (path = `contacts/`),
     (data = {
-      "name": name,
-      "email": email,
-      "phone": phone,
-      "colorId": getRandomNumber(),
-    }),
+      name: name,
+      email: email,
+      phone: phone,
+      colorId: getRandomNumber(),
+    })
   );
+}
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10);
 }
 
 function cleanWindow(inputName, inputEmail, inputPhone, overId) {
@@ -127,12 +120,12 @@ function cleanWindow(inputName, inputEmail, inputPhone, overId) {
   showCreationHint(
     "createdInfo",
     "createdContactInfoIn",
-    "createdContactInfoOut",
+    "createdContactInfoOut"
   );
   toggleStyleChange(
     "contactWindow",
     "addContactWindowClosed",
-    "addContactWindow",
+    "addContactWindow"
   );
   showContactDetails("contactsDisplay", "detailsWindowClosed", "detailsWindow");
   findLastContactIndex();
@@ -172,7 +165,7 @@ function checkEmail(inputId) {
     mailInput.setCustomValidity("Please insert an email");
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com",
+      "Please insert a valid email format, e.g.: name@email.com"
     );
   } else {
     mailInput.setCustomValidity("");
@@ -192,7 +185,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789",
+      "Please insert a valid phone number, e.g.: +49123456789"
     );
     telInput.reportValidity();
     return true;
@@ -224,11 +217,11 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   await edit_data(
     (path = `contacts/` + id),
     (data = {
-      "name": changeName,
-      "email": changeEmail,
-      "phone": changeTel,
-      "colorId": contacts[indexContacts].colorId,
-    }),
+      name: changeName,
+      email: changeEmail,
+      phone: changeTel,
+      colorId: contacts[indexContacts].colorId,
+    })
   );
   await getContacts();
   d_none("overlayEdit");
@@ -257,7 +250,7 @@ function openEditOverlay(indexContacts) {
     editInitialsInsert(contact);
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
-    indexContacts,
+    indexContacts
   );
 }
 
