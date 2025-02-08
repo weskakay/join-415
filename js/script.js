@@ -1,3 +1,5 @@
+let media = window.matchMedia("(max-width: 428px)");
+
 function d_none(enterid) {
   document.getElementById(enterid).classList.toggle("d_none");
 }
@@ -61,3 +63,23 @@ async function edit_data(path = "", data = {}) {
   });
   return await response.json();
 }
+
+function mobileMediaQuery() {
+  let header = document.getElementsByClassName('navbar');
+  let footer = document.getElementsByClassName('footer_nav');
+
+  if (media.matches) {
+    for (let index = 0; index < header.length; index++) {
+      header[index].classList.add('d_none');
+      footer[index].classList.remove('d_none');
+    }
+  } else {
+    for (let index = 0; index < header.length; index++) {
+      header[index].classList.remove('d_none');
+      footer[index].classList.add('d_none');
+    }
+  }
+}
+
+mobileMediaQuery();
+media.addEventListener("change", mobileMediaQuery);

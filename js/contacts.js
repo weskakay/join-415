@@ -8,6 +8,7 @@ function getRandomNumber() {
 
 function init() {
   getContacts();
+  mobileMediaQuery();
 }
 
 async function getContacts(path = `contacts/`) {
