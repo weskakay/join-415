@@ -82,7 +82,9 @@
         </div>
         <div class="navbar-terms-links">
           <a href="../html/privacy_policy.html">
-            <button class="navbar-term-button" onclick="">Privacy Policy</button>
+            <button class="navbar-term-button" onclick="">
+              Privacy Policy
+            </button>
           </a>
           <a href="../html/legal_notice.html">
             <button class="navbar-term-button" onclick="">Legal notice</button>
@@ -93,10 +95,13 @@
       <!--Main section for contacts content-->
       <div class="contactsMain">
         <!--List on the left side to create and show contacts-->
-        <div class="contactsList" onclick="hideDetails('contactsDisplay')">
+        <div
+          class="contactsList"
+          onclick="hideDetails('contactsDisplay', 'detailsWindowClosed', 'detailsWindow')"
+        >
           <div class="sticky" onmousedown="prevent(event)">
             <button
-              onclick="d_none(`overlay`), contactCreatedEdited('contactWindow')"
+              onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
             >
               <p class="weight700 size21">Add new contact</p>
               <img
@@ -144,7 +149,7 @@
     <div
       id="overlay"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
+      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
       onmousedown="prevent(event)"
     ></div>
 
@@ -170,7 +175,7 @@
         <div class="addContacsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
+              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
             >
               <img
                 src="../assets/icons/add_task/cross-icon.svg"
@@ -214,13 +219,13 @@
             <div class="add-task-bottom-buttons">
               <button
                 class="add-task-button-clear"
-                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow')"
+                onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>
               <button
                 class="add-task-button-create"
-                onclick="getContactData('nameInput', 'mailInput', 'telInput', 'overlay', 'contactWindow')"
+                onclick="getContactData('nameInput', 'mailInput', 'telInput', 'overlay')"
               >
                 Create contact<img
                   src="../assets/icons/add_task/check-icon.svg"
@@ -237,7 +242,7 @@
     <div
       id="overlayEdit"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
+      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
       onmousedown="prevent(event)"
     ></div>
     <!--Edit Contact window-->
@@ -261,7 +266,7 @@
         <div class="addContacsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow')"
+              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
             >
               <img
                 src="../assets/icons/add_task/cross-icon.svg"

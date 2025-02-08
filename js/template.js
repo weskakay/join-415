@@ -23,7 +23,7 @@ function listContactData(contact, index) {
     <div
       class="contactsContainer"
       tabindex="0"
-      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay'), noBubble(event)"
+      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay', 'detailsWindowClosed', 'detailsWindow'), noBubble(event)"
     >
       <div class="background-contacts" style="background-color: ${
         bgcolors[contact.colorId].rgba
@@ -53,7 +53,7 @@ function detailsProfileInsert(contact, index) {
       <p class="weight500 size47">${contact.name}</p>
       <div class="detailsEdit">
         <button
-          onclick="d_none('overlayEdit'), openEditOverlay(${index}), contactCreatedEdited('editWindow')"
+          onclick="d_none('overlayEdit'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"
         >
           <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
           <p class="weight400 size16 colorDarkBlue">Edit</p>
@@ -144,13 +144,13 @@ function editButtonsInsert(contact, index) {
   return `
     <button
       class="add-task-button-clear"
-      onclick="deleteContact('contacts/${contact.id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactCreatedEdited('editWindow') "
+      onclick="deleteContact('contacts/${contact.id}'), d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow') "
     >
       Delete
     </button>
     <button
       class="add-task-button-create"
-      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}', contactCreatedEdited('editWindow'))"
+      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}')"
     >
       Save<img src="../assets/icons/add_task/check-icon.svg" />
     </button>

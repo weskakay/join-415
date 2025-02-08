@@ -22,30 +22,27 @@ async function getContacts(path = `contacts/`) {
   } else {
     Object.entries(contactData).forEach(([id, details]) => {
       contacts.push({
-        id: id,
-        name: details.name,
-        email: details.email,
-        phone: details.phone,
-        colorId: details.colorId,
+        "id": id,
+        "name": details.name,
+        "email": details.email,
+        "phone": details.phone,
+        "colorId": details.colorId,
       });
     });
-
     lastContact = contacts[contacts.length - 1];
-
     sortContacts();
   }
 }
 
 function sortContacts() {
   contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
   );
   groupContacts();
 }
 
 function groupContacts() {
   let grouped = {};
-
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
     let firstLetter = contact.name.charAt(0).toUpperCase();
@@ -54,28 +51,22 @@ function groupContacts() {
     }
     grouped[firstLetter].push(contact);
   }
-
   let sortedGroups = Object.keys(grouped).sort();
-
   renderContacts(sortedGroups, grouped);
 }
 
 function renderContacts(sortedGroups, grouped) {
   document.getElementById("contactsList").innerHTML = "";
-
   let globalIndex = 0;
-
   for (let i = 0; i < sortedGroups.length; i++) {
     let letter = sortedGroups[i];
-
     document.getElementById("contactsList").innerHTML +=
       listContactHeader(letter);
-
     for (let j = 0; j < grouped[letter].length; j++) {
       let contact = grouped[letter][j];
       document.getElementById("contactsList").innerHTML += listContactData(
         contact,
-        globalIndex
+        globalIndex,
       );
       globalIndex++;
     }
@@ -92,24 +83,16 @@ function getInitials(name) {
 function openContactDetails(indexContacts) {
   document.getElementById("detailsProfile").innerHTML = "";
   document.getElementById("detailsContact").innerHTML = "";
-
   let contact = contacts[indexContacts];
-
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
-    indexContacts
+    indexContacts,
   );
   document.getElementById("detailsContact").innerHTML =
     detailsContactInsert(contact);
 }
 
-async function getContactData(
-  inputName,
-  inputEmail,
-  inputPhone,
-  overId,
-  windowId
-) {
+async function getContactData(inputName, inputEmail, inputPhone, overId) {
   if (checkName(inputName) === true) {
     return;
   } else if (checkEmail(inputEmail) === true) {
@@ -117,27 +100,49 @@ async function getContactData(
   } else if (checkPhone(inputPhone) === true) {
     return;
   } else {
-    let name = document.getElementById(inputName).value.trim();
-    let email = document.getElementById(inputEmail).value.trim();
-    let phone = document.getElementById(inputPhone).value.trim();
-
-    await update_data(
-      (path = `contacts/`),
-      (data = {
-        name: name,
-        email: email,
-        phone: phone,
-        colorId: getRandomNumber(),
-      })
-    );
+    await userCreateSuccess(inputName, inputEmail, inputPhone);
     await getContacts();
-    clearInput(inputName, inputEmail, inputPhone);
-    d_none(overId);
-    showCreationHint();
-    contactCreatedEdited(windowId);
-    showContactDetails("contactsDisplay");
-    findLastContactIndex();
+    cleanWindow(inputName, inputEmail, inputPhone, overId);
   }
+}
+
+async function userCreateSuccess(inputName, inputEmail, inputPhone) {
+  let name = document.getElementById(inputName).value.trim();
+  let email = document.getElementById(inputEmail).value.trim();
+  let phone = document.getElementById(inputPhone).value.trim();
+  await update_data(
+    (path = `contacts/`),
+    (data = {
+      "name": name,
+      "email": email,
+      "phone": phone,
+      "colorId": getRandomNumber(),
+    }),
+  );
+}
+
+function cleanWindow(inputName, inputEmail, inputPhone, overId) {
+  clearInput(inputName, inputEmail, inputPhone);
+  d_none(overId);
+  showCreationHint(
+    "createdInfo",
+    "createdContactInfoIn",
+    "createdContactInfoOut",
+  );
+  toggleStyleChange(
+    "contactWindow",
+    "addContactWindowClosed",
+    "addContactWindow",
+  );
+  showContactDetails("contactsDisplay", "detailsWindowClosed", "detailsWindow");
+  findLastContactIndex();
+}
+
+function findLastContactIndex() {
+  let lastId = lastContact.id;
+  let myId = (item) => item.id == lastId;
+  let foundId = contacts.findIndex(myId);
+  openContactDetails(foundId);
 }
 
 function checkName(insertedName) {
@@ -161,21 +166,18 @@ function checkEmail(inputId) {
     console.error("Element not found:", inputId);
     return false;
   }
-
   let email = mailInput.value.trim();
   let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   if (!email) {
     mailInput.setCustomValidity("Please insert an email");
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com"
+      "Please insert a valid email format, e.g.: name@email.com",
     );
   } else {
     mailInput.setCustomValidity("");
     return false;
   }
-
   mailInput.reportValidity();
   return true;
 }
@@ -190,7 +192,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789"
+      "Please insert a valid phone number, e.g.: +49123456789",
     );
     telInput.reportValidity();
     return true;
@@ -211,24 +213,28 @@ async function editUser(name, email, tel, id, indexContacts) {
   } else if (checkPhone("telInputEdit") === true) {
     return;
   } else {
-    let changeName = document.getElementById(name).value;
-    let changeEmail = document.getElementById(email).value;
-    let changeTel = document.getElementById(tel).value;
-
-    await edit_data(
-      (path = `contacts/` + id),
-      (data = {
-        name: changeName,
-        email: changeEmail,
-        phone: changeTel,
-        colorId: contacts[indexContacts].colorId,
-      })
-    );
-    await getContacts();
-    d_none("overlayEdit");
-    openContactDetails(indexContacts);
-    clearInput(name, email, tel);
+    editUserSuccess(name, email, tel, id, indexContacts);
   }
+}
+
+async function editUserSuccess(name, email, tel, id, indexContacts) {
+  let changeName = document.getElementById(name).value;
+  let changeEmail = document.getElementById(email).value;
+  let changeTel = document.getElementById(tel).value;
+  await edit_data(
+    (path = `contacts/` + id),
+    (data = {
+      "name": changeName,
+      "email": changeEmail,
+      "phone": changeTel,
+      "colorId": contacts[indexContacts].colorId,
+    }),
+  );
+  await getContacts();
+  d_none("overlayEdit");
+  toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
+  openContactDetails(indexContacts);
+  clearInput(name, email, tel);
 }
 
 function clearInput(name, email, tel) {
@@ -253,69 +259,49 @@ function openEditOverlay(indexContacts) {
 
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
-    indexContacts
+    indexContacts,
   );
 }
 
-function contactCreatedEdited(windowId) {
-  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
-  document.getElementById(windowId).classList.toggle("addContactWindow");
+function toggleStyleChange(windowId, styleA, styleB) {
+  document.getElementById(windowId).classList.toggle(styleA);
+  document.getElementById(windowId).classList.toggle(styleB);
 }
 
-async function showContactDetails(windowId) {
+async function showContactDetails(windowId, styleA, styleB) {
   if (
     document.getElementById(windowId).classList ==
     "contactsDisplay detailsWindow"
   ) {
-    document.getElementById(windowId).classList.toggle("detailsWindow");
-    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
+    toggleStyleChange(windowId, styleA, styleB);
     await delay(0.1);
-    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
-    document.getElementById(windowId).classList.toggle("detailsWindow");
+    toggleStyleChange(windowId, styleA, styleB);
   } else {
-    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
-    document.getElementById(windowId).classList.toggle("detailsWindow");
+    toggleStyleChange(windowId, styleA, styleB);
   }
 }
 
-function hideDetails(windowId) {
+function hideDetails(windowId, styleA, styleB) {
   if (
     document.getElementById(windowId).classList ==
     "contactsDisplay detailsWindow"
   ) {
-    document.getElementById(windowId).classList.toggle("detailsWindowClosed");
-    document.getElementById(windowId).classList.toggle("detailsWindow");
+    toggleStyleChange(windowId, styleA, styleB);
   }
 }
 
-async function contactNoAction(windowId) {
-  document.getElementById(windowId).classList.toggle("addContactWindow");
-  document
-    .getElementById(windowId)
-    .classList.toggle("addContactWindowNoAction");
+async function contactNoAction(windowId, styleA, styleB, styleC) {
+  toggleStyleChange(windowId, styleA, styleC);
   await delay(0.1);
-  document.getElementById(windowId).classList.toggle("addContactWindowClosed");
-  document
-    .getElementById(windowId)
-    .classList.toggle("addContactWindowNoAction");
+  toggleStyleChange(windowId, styleC, styleB);
 }
 
 async function delay(seconds) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
 
-async function showCreationHint() {
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoIn");
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoOut");
+async function showCreationHint(windowId, styleA, styleB) {
+  toggleStyleChange(windowId, styleA, styleB);
   await delay(3);
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoOut");
-  document
-    .getElementById("createdInfo")
-    .classList.toggle("createdContactInfoIn");
+  toggleStyleChange(windowId, styleA, styleB);
 }
