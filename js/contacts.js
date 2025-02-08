@@ -251,12 +251,10 @@ function openEditOverlay(indexContacts) {
   document.getElementById("editInitialsColor").innerHTML = "";
   document.getElementById("editForm").innerHTML = "";
   document.getElementById("editButtons").innerHTML = "";
-
   let contact = contacts[indexContacts];
   document.getElementById("editForm").innerHTML = editFormInsert(contact);
   document.getElementById("editInitialsColor").innerHTML =
     editInitialsInsert(contact);
-
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
     indexContacts,
