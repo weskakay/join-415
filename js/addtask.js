@@ -13,6 +13,7 @@ async function getContacts(path = "contacts/") {
     email: details.email,
     phone: details.phone,
     colorId: details.colorId,
+    status: details.status,
   }));
 }
 
@@ -291,6 +292,7 @@ function prepareTaskData() {
   let prio = selectedPrio;
   let category = document.getElementById("inputCategory").value;
   let subtask = subtaskInputs;
+  let status = "to-do";
 
   return {
     title,
@@ -300,6 +302,7 @@ function prepareTaskData() {
     prio,
     category,
     subtask,
+    status,
   };
 }
 
