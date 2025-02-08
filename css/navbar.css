@@ -65,7 +65,10 @@
 }
 
 .navbar-terms-links a:hover {
-  text-decoration: none;
+  cursor: pointer;
+  color: rgba(41, 171, 226, 1);
+  transform: translateX(1px);
+  font-weight: 600;
 }
 
 .navbar-term-button {
