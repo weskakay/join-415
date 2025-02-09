@@ -1,4 +1,4 @@
-let media = window.matchMedia("(max-width: 428px)");
+let media = window.matchMedia("(max-width: 960px)");
 
 let currentUser = null;
 
