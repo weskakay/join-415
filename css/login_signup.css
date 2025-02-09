@@ -361,5 +361,31 @@ input::placeholder {
   border: none;
 }
 
-#login {
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#password-login {
+  width: 100%;
+  padding-right: 40px;
+}
+
+#toggle-password {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+}
+
+#toggle-password img {
+  width: 24px;
+  height: 24px;
+}
+
+.toogle-visibility:hover {
+  cursor: pointer;
+  box-shadow: none;
+  transform: scale(1.1);
 }

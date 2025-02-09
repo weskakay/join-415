@@ -100,9 +100,9 @@ function getTimeGreeting() {
   const hours = now.getHours();
   let greeting;
 
-  if (hours < 12) {
+  if (hours >= 3 && hours < 12) {
     greeting = "Good morning,";
-  } else if (hours < 18) {
+  } else if (hours >= 12 && hours < 18) {
     greeting = "Good day,";
   } else {
     greeting = "Good evening,";

@@ -29,13 +29,24 @@
         <form onsubmit="event.preventDefault(); getData()">
           <div id="login-inputfields">
             <input type="email" placeholder="Email" id="email-login" />
-            <input
-              type="password"
-              placeholder="Password"
-              id="password-login"
-              oninput="changeImageLogin()"
-              onclick="showPassword()"
-            />
+            <div class="password-container">
+              <input
+                type="password"
+                id="password-login"
+                placeholder="Password"
+              />
+              <button
+                type="button"
+                id="toggle-password"
+                class="toogle-visibility"
+              >
+                <img
+                  id="eye-icon"
+                  src="../assets/icons/login_signup/lock.svg"
+                  alt="Lock icon"
+                />
+              </button>
+            </div>
             <div id="error-login" class="d_none">
               Check your email and password. Please try again.
             </div>

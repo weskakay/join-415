@@ -103,11 +103,54 @@ function openGuestLogin() {
   openSummary();
 }
 
-function showPassword() {
-  var x = document.getElementById("password-login");
-  if (x.type === "password") {
-    x.type = "text";
+document.addEventListener("DOMContentLoaded", function () {
+  let passwordField = document.getElementById("password-login");
+  let toggleButton = document.getElementById("toggle-password");
+
+  toggleButton.addEventListener("click", togglePasswordVisibility);
+  passwordField.addEventListener("focus", handleFocus);
+  passwordField.addEventListener("blur", handleBlur);
+});
+
+function togglePasswordVisibility() {
+  let { passwordField, eyeIcon } = getContent();
+
+  if (passwordField.type === "password") {
+    setPasswordVisible(passwordField, eyeIcon);
   } else {
-    x.type = "password";
+    setPasswordHidden(passwordField, eyeIcon);
   }
+}
+
+function setPasswordVisible(passwordField, eyeIcon) {
+  passwordField.type = "text";
+  eyeIcon.src = "../assets/icons/login_signup/visibility.svg";
+}
+
+function setPasswordHidden(passwordField, eyeIcon) {
+  passwordField.type = "password";
+  eyeIcon.src = "../assets/icons/login_signup/visibility_off.svg";
+}
+
+function handleFocus() {
+  let { passwordField, eyeIcon } = getContent();
+
+  if (passwordField.value === "") {
+    eyeIcon.src = "../assets/icons/login_signup/visibility_off.svg";
+  }
+}
+
+function handleBlur() {
+  let { passwordField, eyeIcon } = getContent();
+
+  if (passwordField.value === "") {
+    eyeIcon.src = "../assets/icons/login_signup/lock.svg";
+  }
+}
+
+function getContent() {
+  return {
+    eyeIcon: document.getElementById("eye-icon"),
+    passwordField: document.getElementById("password-login"),
+  };
 }
