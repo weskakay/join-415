@@ -147,3 +147,24 @@ header {
   cursor: pointer;
   background-color: rgba(168, 168, 168, 0.3);
 }
+
+
+@media(max-width: 428px){
+  header{
+    padding-left: 0px;
+  }
+
+  .header_content{
+    padding: 0px;
+  }
+
+  .profileSection{
+    margin-right: 20px;
+  }
+  
+  .join-mobile-logo{
+    width: 32px;
+    height: 40px;
+    margin-left: 20px;
+  }
+}

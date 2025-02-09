@@ -15,9 +15,14 @@
   <body onload="pageLoadHandler('board')">
     <header>
       <div class="header_content">
-        <p class="weight400 size20">Kanban Project Management Tool</p>
+        <img
+        src="../assets/join_logo/join-logo-capa2.svg"
+        alt="join-logo"
+        class="join-mobile-logo d_none"
+      />
+        <p class="weight400 size20 kanban">Kanban Project Management Tool</p>
         <div class="profileSection">
-          <a href="../html/help.html">
+          <a href="../html/help.html" class="help">
             <img src="../assets/icons/header/help.svg" alt="help"
           /></a>
           <div
@@ -68,7 +73,7 @@
             onclick='changeNavbarItems("contacts")'
           >
             <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
+              <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacts
             </button>
           </div>
         </div>
@@ -311,7 +316,9 @@
           </button>
           <span>Add Task</span>
         </div>
-        <div class="navbar-wrapper-footer" onclick='changeNavbarItems("board")'>
+        <div class="navbar-wrapper-footer" 
+        style="background-color: rgba(9, 25, 49, 1)"
+        onclick='changeNavbarItems("board")'>
           <button class="navbar-menu-button navbar-footer-button">
             <img src="../assets/icons/nav_bar/board-icon.svg" />
           </button>
@@ -319,7 +326,6 @@
         </div>
         <div
           class="navbar-wrapper-footer"
-          style="background-color: rgba(9, 25, 49, 1)"
           onclick='changeNavbarItems("contacts")'
         >
           <button class="navbar-menu-button navbar-footer-button">
