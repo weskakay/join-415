@@ -102,3 +102,12 @@ function openGuestLogin() {
   edit_data("/current-user", guest);
   openSummary();
 }
+
+function showPassword() {
+  var x = document.getElementById("password-login");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
