@@ -148,21 +148,21 @@ header {
   background-color: rgba(168, 168, 168, 0.3);
 }
 
-
-@media(max-width: 428px){
-  header{
+@media (max-width: 428px) {
+  header {
+    position: fixed;
     padding-left: 0px;
   }
 
-  .header_content{
+  .header_content {
     padding: 0px;
   }
 
-  .profileSection{
+  .profileSection {
     margin-right: 20px;
   }
-  
-  .join-mobile-logo{
+
+  .join-mobile-logo {
     width: 32px;
     height: 40px;
     margin-left: 20px;
