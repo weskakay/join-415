@@ -18,7 +18,7 @@ function listContactHeader(letter) {
   `;
 }
 
-function listContactData(contact, index) {
+function listContactData(contact, index, currentUser) {
   return `
     <div
       class="contactsContainer"
@@ -31,7 +31,9 @@ function listContactData(contact, index) {
         ${getInitials(contact.name)}
       </div>
       <div class="contactsContainerUserinfo">
-        <p class="weight400 size20">${contact.name}</p>
+        <p class="weight400 size20">${contact.name}${
+    currentUser.name === contact.name ? " (You)" : ""
+  }</p>
         <a class="weight400 size16 emailLink"
           >${contact.email}</a
         >

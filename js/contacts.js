@@ -2,7 +2,10 @@ let contacts = [];
 
 let lastContact = [];
 
-function init() {
+let currUser = null;
+
+async function init() {
+  await getCurrUser();
   getContacts();
 }
 
@@ -62,7 +65,8 @@ function renderContacts(sortedGroups, grouped) {
       let contact = grouped[letter][j];
       document.getElementById("contactsList").innerHTML += listContactData(
         contact,
-        globalIndex
+        globalIndex,
+        currUser
       );
       globalIndex++;
     }
@@ -295,4 +299,9 @@ async function showCreationHint(windowId, styleA, styleB) {
   toggleStyleChange(windowId, styleA, styleB);
   await delay(3);
   toggleStyleChange(windowId, styleA, styleB);
+}
+
+async function getCurrUser(id, path = "current-user") {
+  let response = await fetch(`${BASE_URL}${path}.json`);
+  currUser = await response.json();
 }

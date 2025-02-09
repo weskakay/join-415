@@ -103,7 +103,7 @@ function getTimeGreeting() {
   if (hours >= 3 && hours < 12) {
     greeting = "Good morning,";
   } else if (hours >= 12 && hours < 18) {
-    greeting = "Good day,";
+    greeting = "Hello,";
   } else {
     greeting = "Good evening,";
   }
