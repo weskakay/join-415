@@ -84,7 +84,7 @@ function detailsContactInsert(contact) {
   `;
 }
 
-function listContactsAddtask(id, name, colorId) {
+function listContactsAddtask(id, name, colorId, currentUser) {
   let checked = selectedContactsIDs.includes(id) ? "checked" : "";
 
   return /*html*/ `
@@ -101,7 +101,9 @@ function listContactsAddtask(id, name, colorId) {
       };">
         ${getInitials(name)}
       </div>
-      <p class="checkbox-name size20">${name}</p>
+      <p class="checkbox-name size20">${name}${
+    currentUser.name === name ? " (You)" : ""
+  }</p>
     </li>`;
 }
 

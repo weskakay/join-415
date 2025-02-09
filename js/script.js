@@ -1,9 +1,11 @@
 let media = window.matchMedia("(max-width: 428px)");
 
+let currentUser = null;
+
 function pageLoadHandler(id) {
   mobileMediaQuery();
   getTimeGreeting();
-  getCurrentUser(id);
+  loadCurrentUser(id);
 }
 
 function d_none(enterid) {
@@ -123,7 +125,11 @@ function getInitials(name) {
 
 async function getCurrentUser(id, path = "current-user") {
   let response = await fetch(`${BASE_URL}${path}.json`);
-  let currentUser = await response.json();
+  currentUser = await response.json();
+}
+
+async function loadCurrentUser(id) {
+  await getCurrentUser();
   renderCurrentUser(currentUser);
   renderInitials(id, currentUser);
 }

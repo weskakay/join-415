@@ -2,10 +2,8 @@ let contacts = [];
 
 let lastContact = [];
 
-let currUser = null;
-
 async function init() {
-  await getCurrUser();
+  await getCurrentUser();
   getContacts();
 }
 
@@ -66,7 +64,7 @@ function renderContacts(sortedGroups, grouped) {
       document.getElementById("contactsList").innerHTML += listContactData(
         contact,
         globalIndex,
-        currUser
+        currentUser
       );
       globalIndex++;
     }
@@ -299,9 +297,4 @@ async function showCreationHint(windowId, styleA, styleB) {
   toggleStyleChange(windowId, styleA, styleB);
   await delay(3);
   toggleStyleChange(windowId, styleA, styleB);
-}
-
-async function getCurrUser(id, path = "current-user") {
-  let response = await fetch(`${BASE_URL}${path}.json`);
-  currUser = await response.json();
 }

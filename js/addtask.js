@@ -26,18 +26,16 @@ function renderContacts(filteredContacts = contacts) {
 
   list.innerHTML = filteredContacts
     .map((contact) =>
-      listContactsAddtask(contact.id, contact.name, contact.colorId)
+      listContactsAddtask(
+        contact.id,
+        contact.name,
+        contact.colorId,
+        currentUser
+      )
     )
     .join("");
 
   list.style.display = "block";
-}
-
-function getInitials(name) {
-  return name
-    .split(" ")
-    .map((word) => word[0].toUpperCase())
-    .join("");
 }
 
 function filterContacts() {
