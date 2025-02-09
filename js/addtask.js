@@ -2,29 +2,32 @@ let contacts = [];
 let selectedContactsIDs = [];
 let subtaskInputs = [];
 let selectedPrio = "";
+let colors = {
+  Urgent: "rgba(255, 61, 0, 1)",
+  Medium: "rgba(255, 168, 0, 1)",
+  Low: "rgba(122, 226, 41, 1)",
+};
 
 async function getContacts(path = "contacts/") {
-  let response = await fetch(`${BASE_URL}${path}.json`);
-  let contactData = await response.json();
+  try {
+    let response = await fetch(`${BASE_URL}${path}.json`);
+    let contactData = await response.json();
 
-  contacts = Object.entries(contactData).map(([id, details]) => ({
-    id,
-    name: details.name,
-    email: details.email,
-    phone: details.phone,
-    colorId: details.colorId,
-    status: details.status,
-  }));
+    contacts = Object.entries(contactData).map(([id, details]) => ({
+      id,
+      name: details.name,
+      email: details.email,
+      phone: details.phone,
+      colorId: details.colorId,
+      status: details.status,
+    }));
+  } catch (error) {
+    showError("Kontakte konnten nicht geladen werden");
+  }
 }
 
-function renderContacts(filteredContacts = contacts) {
-  filteredContacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
-  );
-
-  let list = document.getElementById("contacts-checkbox");
-
-  list.innerHTML = filteredContacts
+function generateContactsHTML(contacts) {
+  return contacts
     .map((contact) =>
       listContactsAddtask(
         contact.id,
@@ -34,7 +37,13 @@ function renderContacts(filteredContacts = contacts) {
       )
     )
     .join("");
+}
 
+function renderContacts(filteredContacts = contacts) {
+  let sortedContacts = sortContacts(filteredContacts);
+  let list = document.getElementById("contacts-checkbox");
+
+  list.innerHTML = generateContactsHTML(sortedContacts);
   list.style.display = "block";
 }
 
@@ -96,24 +105,18 @@ function renderAssignedContacts() {
 function setButtonColor(selectedButton) {
   resetButtonColors();
   let activeButton = document.getElementById(`button${selectedButton}`);
-  selectedPrio = activeButton.id.replace("button", "").toLowerCase();
-
   if (!activeButton) return;
 
   let img = activeButton.querySelector("img");
   if (!img) return;
 
-  const colors = {
-    Urgent: "rgba(255, 61, 0, 1)",
-    Medium: "rgba(255, 168, 0, 1)",
-    Low: "rgba(122, 226, 41, 1)",
-  };
-
-  activeButton.style.backgroundColor = colors[selectedButton] || colors["Low"];
-  activeButton.style.color = "rgba(255, 255, 255, 1)";
+  activeButton.style.backgroundColor = colors[selectedButton];
+  activeButton.style.color = "#FFFFFF";
 
   img.style.filter =
     "brightness(0) saturate(100%) invert(93%) sepia(100%) saturate(0%) hue-rotate(141deg) brightness(104%) contrast(101%)";
+
+  selectedPrio = selectedButton.toLowerCase();
 }
 
 function resetButtonColors() {
@@ -290,9 +293,8 @@ function prepareTaskData() {
   };
 }
 
-function validateData() {
+function validateRequiredFields() {
   let requiredFields = document.querySelectorAll("[required]");
-  let category = document.getElementById("inputCategory").value;
 
   for (let field of requiredFields) {
     if (!field.value.trim()) {
@@ -304,11 +306,25 @@ function validateData() {
     }
   }
 
-  if (!Array.isArray(selectedContactsIDs) || selectedContactsIDs.length === 0) {
+  return true;
+}
+
+function validateContacts() {
+  if (
+    !selectedContactsIDs ||
+    !Array.isArray(selectedContactsIDs) ||
+    selectedContactsIDs.length === 0
+  ) {
+    alert("Bitte wähle mindestens einen Kontakt aus.");
     document.getElementById("contact-search").focus();
-    alert("Mindestens ein Kontakt muss zugewiesen werden.");
     return false;
   }
+
+  return true;
+}
+
+function validateCategory() {
+  let category = document.getElementById("inputCategory").value;
 
   if (!category) {
     alert("Das Feld Kategorie ist erforderlich.");
@@ -317,4 +333,8 @@ function validateData() {
   }
 
   return true;
+}
+
+function validateData() {
+  return validateRequiredFields() && validateContacts() && validateCategory();
 }

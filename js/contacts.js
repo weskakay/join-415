@@ -1,5 +1,4 @@
 let contacts = [];
-
 let lastContact = [];
 
 async function init() {
@@ -12,7 +11,7 @@ async function getContacts(path = `contacts/`) {
   lastContact = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
-  if (contactData == null) {
+  if (!contactData) {
     document.getElementById("contactsList").innerHTML = "";
     document.getElementById("contactsDetailsDisplay").innerHTML = "";
     return;
@@ -27,18 +26,12 @@ async function getContacts(path = `contacts/`) {
       });
     });
     lastContact = contacts[contacts.length - 1];
-    sortContacts();
+    groupContacts();
   }
 }
 
-function sortContacts() {
-  contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
-  );
-  groupContacts();
-}
-
 function groupContacts() {
+  sortContacts(contacts);
   let grouped = {};
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
@@ -84,17 +77,17 @@ function openContactDetails(indexContacts) {
 }
 
 async function getContactData(inputName, inputEmail, inputPhone, overId) {
-  if (checkName(inputName) === true) {
+  if (
+    [inputName, inputEmail, inputPhone].some((input, i) =>
+      [checkName, checkEmail, checkPhone][i](input)
+    )
+  ) {
     return;
-  } else if (checkEmail(inputEmail) === true) {
-    return;
-  } else if (checkPhone(inputPhone) === true) {
-    return;
-  } else {
-    await userCreateSuccess(inputName, inputEmail, inputPhone);
-    await getContacts();
-    cleanWindow(inputName, inputEmail, inputPhone, overId);
   }
+
+  await userCreateSuccess(inputName, inputEmail, inputPhone);
+  await getContacts();
+  cleanWindow(inputName, inputEmail, inputPhone, overId);
 }
 
 async function userCreateSuccess(inputName, inputEmail, inputPhone) {

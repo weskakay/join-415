@@ -92,7 +92,6 @@ function mobileMediaQuery() {
       help[index].classList.add("d_none");
       logo[index].classList.remove("d_none");
     }
-    
   } else {
     for (let index = 0; index < header.length; index++) {
       header[index].classList.remove("d_none");
@@ -154,4 +153,10 @@ function renderCurrentUser(currentUser) {
 function renderInitials(id, currentUser) {
   let content = document.getElementById(`header-initials-${id}`);
   content.innerHTML = getInitials(currentUser.name);
+}
+
+function sortContacts(contacts) {
+  return contacts.sort((a, b) =>
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
+  );
 }
