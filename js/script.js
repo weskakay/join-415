@@ -80,16 +80,26 @@ async function edit_data(path = "", data = {}) {
 function mobileMediaQuery() {
   let header = document.getElementsByClassName("navbar");
   let footer = document.getElementsByClassName("footer_nav");
+  let kanban = document.getElementsByClassName("kanban");
+  let help = document.getElementsByClassName("help");
+  let logo = document.getElementsByClassName("join-mobile-logo");
 
   if (media.matches) {
     for (let index = 0; index < header.length; index++) {
       header[index].classList.add("d_none");
       footer[index].classList.remove("d_none");
+      kanban[index].classList.add("d_none");
+      help[index].classList.add("d_none");
+      logo[index].classList.remove("d_none");
     }
+    
   } else {
     for (let index = 0; index < header.length; index++) {
       header[index].classList.remove("d_none");
       footer[index].classList.add("d_none");
+      kanban[index].classList.remove("d_none");
+      help[index].classList.remove("d_none");
+      logo[index].classList.add("d_none");
     }
   }
 }
@@ -105,7 +115,7 @@ function getTimeGreeting() {
   if (hours >= 3 && hours < 12) {
     greeting = "Good morning,";
   } else if (hours >= 12 && hours < 18) {
-    greeting = "Hello,";
+    greeting = "Good afternoon,";
   } else {
     greeting = "Good evening,";
   }
