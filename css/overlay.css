@@ -83,19 +83,26 @@
 .contactWindowFull {
   display: flex;
   overflow: hidden;
-  width: 1212px;
-  height: 592px;
+  height: 594px;
   border-radius: 30px;
 }
 
 .addContactsLogo {
   background-color: #2a3647;
-  width: 467px;
-  border-radius: 30px 0 0 30px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   color: white;
+  padding: 66px 48px;
+  width: 467px;
+}
+
+.addContactsText headline {
+  font-size: 61px;
+}
+
+.addContactsText subtitle {
+  font-size: 27px;
 }
 
 .addContactsText {
@@ -113,16 +120,15 @@
   top: -78px;
 }
 
-.addContacsInput {
+.addContactsInput {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-right: 48px;
   padding-left: 83px;
-  border-radius: 0 30px 30px 0;
-  width: 746px;
   position: relative;
   background-color: white;
+  width: 745px;
 }
 
 .dataInput form {
@@ -164,6 +170,11 @@ input#telInput {
   background-color: transparent;
   border-style: none;
   cursor: pointer;
+  background-image: url(../assets/icons/add_task/cross-icon.svg);
+  background-repeat: no-repeat;
+  height: 32px;
+  width: 32px;
+  background-position: center center;
 }
 
 .addContactFull {
@@ -181,4 +192,73 @@ input#telInput {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
+}
+
+@media (max-width: 1211px) {
+  .contactWindowFull {
+    flex-direction: column;
+    height: 760px;
+  }
+
+  .addContactsLogo {
+    width: 396px;
+    padding: 66px 24px;
+    height: 352px;
+  }
+
+  .addContactsInput {
+    width: 396px;
+    padding: 0;
+    height: 409px;
+    justify-content: center;
+  }
+  .addContactsText headline {
+    font-size: 47px;
+  }
+
+  .addContactsText subtitle {
+    font-size: 24px;
+  }
+
+  .addContactsJoin {
+    display: none;
+  }
+
+  .emptyProfile {
+    position: absolute;
+    top: -60px;
+    right: 138px;
+  }
+
+  .emptyProfile img {
+    height: 120px;
+    width: 120px;
+  }
+  .dataInput input {
+    width: 364px;
+  }
+
+  .dataInput form {
+    gap: 24px;
+  }
+  .addContactFull {
+    gap: 24px;
+  }
+
+  .add-task-bottom-buttons {
+    justify-content: center;
+  }
+
+  .add-task-button-clear {
+    display: none !important;
+  }
+
+  .closeAddContact {
+    top: -324px;
+    right: 24px;
+  }
+
+  .closeAddContact button {
+    background-image: url(../assets/icons/add_task/cross-icon-white.svg);
+  }
 }

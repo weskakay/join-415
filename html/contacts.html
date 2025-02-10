@@ -21,10 +21,10 @@
     <header onmousedown="prevent(event)">
       <div class="header_content">
         <img
-        src="../assets/join_logo/join-logo-capa2.svg"
-        alt="join-logo"
-        class="join-mobile-logo d_none"
-      />
+          src="../assets/join_logo/join-logo-capa2.svg"
+          alt="join-logo"
+          class="join-mobile-logo d_none"
+        />
         <p class="weight400 size20 kanban">Kanban Project Management Tool</p>
         <div class="profileSection">
           <a href="../html/help.html" class="help">
@@ -165,8 +165,8 @@
       <div class="contactWindowFull">
         <div class="addContactsLogo">
           <div class="addContactsText">
-            <p class="weight700 size61">Add contact</p>
-            <p class="weight400 size27">Tasks are better with a team!</p>
+            <headline class="weight700">Add contact</headline>
+            <subtitle class="weight400">Tasks are better with a team!</subtitle>
             <img
               class="addContactsJoin"
               src="../assets/icons/contacts/Capa 1.svg"
@@ -175,18 +175,13 @@
             <div class="separatorHorizontal"></div>
           </div>
         </div>
-        <div class="addContacsInput">
+        <div class="addContactsInput">
           <div class="closeAddContact">
             <button
               onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
-            >
-              <img
-                src="../assets/icons/add_task/cross-icon.svg"
-                alt="Close Button"
-              />
-            </button>
+            ></button>
           </div>
-          <div>
+          <div class="emptyProfile">
             <img src="../assets/icons/contacts/empty_profile.svg" alt="" />
           </div>
           <div class="addContactFull">
@@ -257,7 +252,7 @@
       <div class="contactWindowFull">
         <div class="addContactsLogo">
           <div class="addContactsText">
-            <p class="weight700 size61">Edit contact</p>
+            <headline class="weight700">Edit contact</headline>
             <img
               class="addContactsJoin"
               src="../assets/icons/contacts/Capa 1.svg"
@@ -266,18 +261,15 @@
             <div class="separatorHorizontal"></div>
           </div>
         </div>
-        <div class="addContacsInput">
+        <div class="addContactsInput">
           <div class="closeAddContact">
             <button
               onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
-            >
-              <img
-                src="../assets/icons/add_task/cross-icon.svg"
-                alt="Close Button"
-              />
-            </button>
+            ></button>
           </div>
-          <div id="editInitialsColor"></div>
+          <div class="emptyProfile">
+            <div id="editInitialsColor"></div>
+          </div>
           <div class="addContactFull">
             <!--Form to edit Contact data. Inserted by JS-->
             <div class="dataInput">
