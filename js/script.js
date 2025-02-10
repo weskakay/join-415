@@ -83,6 +83,7 @@ function mobileMediaQuery() {
   let kanban = document.getElementsByClassName("kanban");
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
+  let welcome = document.getElementById("welcome-dash");
 
   if (media.matches) {
     for (let index = 0; index < header.length; index++) {
@@ -92,6 +93,7 @@ function mobileMediaQuery() {
       help[index].classList.add("d_none");
       logo[index].classList.remove("d_none");
     }
+    welcome.classList.add("d_none");
   } else {
     for (let index = 0; index < header.length; index++) {
       header[index].classList.remove("d_none");
@@ -100,6 +102,7 @@ function mobileMediaQuery() {
       help[index].classList.remove("d_none");
       logo[index].classList.add("d_none");
     }
+    welcome.classList.remove("d_none");
   }
 }
 
