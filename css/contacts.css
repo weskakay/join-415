@@ -14,6 +14,8 @@
   overflow-x: hidden;
   z-index: 2;
   max-height: calc(100vh - 96px);
+  max-width: 456px;
+  width: 100%;
   padding: 0 24px 0 48px;
 }
 
@@ -191,5 +193,24 @@
 
   > p {
     margin-left: 32px;
+  }
+}
+
+@media(max-width: 960px){
+  .contactsList{
+    max-width: 960px;
+  }
+  #person-add{
+    position: absolute;
+    bottom: 112px;
+    right: 22px;
+    z-index: 10;
+    height: 56px;
+    width: 56px;
+    border-radius: 46px;
+    border: 1px;
+    background: url(../assets/icons/contacts/person_add.svg) no-repeat center;
+    background-color:#2A3647;
+
   }
 }

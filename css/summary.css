@@ -24,6 +24,7 @@
   .dashboard {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 24px;
     justify-content: space-between;
   }
@@ -166,26 +167,22 @@
 
 @media(max-width: 428px){
   main{
-    max-height: 100vh;
+    max-height: 100vh;     
     position: relative;
     overflow: hidden;
   }
   .summaryContent{
-    padding-left: 16px;
-    padding-top: 144px;
-    padding-right: 16px;
+   padding: 136px 16px 40px 16px;
     overflow-x: hidden;
     overflow-y: scroll;
     margin-bottom: 120px;
   }
-
   .summaryContent::-webkit-scrollbar-thumb {
     background: #a8a8a8;
     border-radius: 45px;
     border: 8px solid transparent;
     background-clip: content-box;
   }
-
   .summaryContent::-webkit-scrollbar {
     width: 0px;
   }
@@ -194,15 +191,12 @@
     width: 90px;
     order: 3;
   }
-
   .separator102{
     height: 68px;
   }
-
   .contentFullLarge{
     gap: 20px;
   }
-
   .summaryHeader{
     flex-direction: column;
     align-items: flex-start;
@@ -215,10 +209,6 @@
     height: 384px;
     width: 396px;
   }
-  .dashboard{
-    gap: 24px;
-  }
-
   .large{
     width: 396px;
     height: 110px;

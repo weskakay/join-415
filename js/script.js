@@ -3,7 +3,7 @@ let media = window.matchMedia("(max-width: 960px)");
 let currentUser = null;
 
 function pageLoadHandler(id) {
-  mobileMediaQuery();
+  MediaQuery();
   getTimeGreeting();
   loadCurrentUser(id);
 }
@@ -22,6 +22,10 @@ function prevent(event) {
 
 function changeNavbarItems(id) {
   window.location.href = `../html/${id}.html`;
+}
+
+function openHelp(){
+  window.location.href = "../html/help.html";
 }
 
 function openLoginHTML() {
@@ -57,7 +61,6 @@ async function update_data(path = "", data = {}) {
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
-
   return await response.json();
 }
 
@@ -77,37 +80,57 @@ async function edit_data(path = "", data = {}) {
   return await response.json();
 }
 
-function mobileMediaQuery() {
+function MediaQuery() {
   let header = document.getElementsByClassName("navbar");
   let footer = document.getElementsByClassName("footer_nav");
   let kanban = document.getElementsByClassName("kanban");
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
-  let welcome = document.getElementById("welcome-dash");
-
+  summaryMedia();
+  contactsMedia();
   if (media.matches) {
-    for (let index = 0; index < header.length; index++) {
-      header[index].classList.add("d_none");
-      footer[index].classList.remove("d_none");
-      kanban[index].classList.add("d_none");
-      help[index].classList.add("d_none");
-      logo[index].classList.remove("d_none");
-    }
-    welcome.classList.add("d_none");
+    Array.from(header).forEach(el => el.classList.add("d_none"));
+    Array.from(footer).forEach(el => el.classList.remove("d_none"));
+    Array.from(kanban).forEach(el => el.classList.add("d_none"));
+    Array.from(help).forEach(el => el.classList.add("d_none"));
+    Array.from(logo).forEach(el => el.classList.remove("d_none"));
   } else {
-    for (let index = 0; index < header.length; index++) {
-      header[index].classList.remove("d_none");
-      footer[index].classList.add("d_none");
-      kanban[index].classList.remove("d_none");
-      help[index].classList.remove("d_none");
-      logo[index].classList.add("d_none");
-    }
-    welcome.classList.remove("d_none");
+    Array.from(header).forEach(el => el.classList.remove("d_none"));
+    Array.from(footer).forEach(el => el.classList.add("d_none"));
+    Array.from(kanban).forEach(el => el.classList.remove("d_none"));
+    Array.from(help).forEach(el => el.classList.remove("d_none"));
+    Array.from(logo).forEach(el => el.classList.add("d_none"));
   }
 }
 
-mobileMediaQuery();
-media.addEventListener("change", mobileMediaQuery);
+function summaryMedia(){
+  let welcome = document.getElementById("welcome-dash");
+  let helpMenu = document.getElementById("help-menu");
+
+  if(media.matches){
+    if (welcome) welcome.classList.add("d_none");
+    if (helpMenu) helpMenu.classList.remove("d_none");
+  }
+  else{
+    if (welcome) welcome.classList.remove("d_none");
+    if (helpMenu) helpMenu.classList.add("d_none");
+  }
+}
+
+
+function contactsMedia(){
+  let details = document.getElementsByClassName("contactsDetails");
+
+  if(media.matches){
+    Array.from(details).forEach(el => el.classList.add("d_none"));
+  }
+  else{
+    Array.from(details).forEach(el => el.classList.remove("d_none"));
+  }
+}
+
+MediaQuery();
+media.addEventListener("change", MediaQuery);
 
 function getTimeGreeting() {
   const now = new Date();
