@@ -267,6 +267,16 @@ async function showContactDetails(windowId, styleA, styleB) {
   }
 }
 
+function closeDetailsMenu(windowId, styleA, styleB) {
+  if (
+    window.innerWidth <= 960 &&
+    document.getElementById("editButtonsPosition").classList ==
+      "editButtonsPositionOpen"
+  ) {
+    toggleStyleChange(windowId, styleA, styleB);
+  }
+}
+
 function hideDetails(windowId, styleA, styleB) {
   if (
     document.getElementById(windowId).classList ==

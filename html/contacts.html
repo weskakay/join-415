@@ -99,57 +99,63 @@
       <!--Main section for contacts content-->
       <div class="contactsMain">
         <!--List on the left side to create and show contacts-->
-        <div
-          class="contactsList"
-          onclick="hideDetails('contactsDisplay', 'detailsWindowClosed', 'detailsWindow')"
-        >
-          <div class="sticky" onmousedown="prevent(event)">
-            <button
-              onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
-            >
-              <p class="weight700 size21">Add new contact</p>
-              <img
-                src="../assets/icons/contacts/person_add.svg"
-                alt="Add Person Symbol"
-              />
-            </button>
-          </div>
-
-          <!--Contacts are rendered and inserted into ID contactsList-->
-          <div id="contactsList" class="contacts"></div>
+        <div class="contactsList" onclick="hideDetails('contactsDisplay',
+        'detailsWindowClosed', 'detailsWindow')"" >
+        <div class="sticky" onmousedown="prevent(event)">
+          <button
+            onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
+          >
+            <p class="weight700 size21">Add new contact</p>
+            <img
+              src="../assets/icons/contacts/person_add.svg"
+              alt="Add Person Symbol"
+            />
+          </button>
         </div>
 
-        <!--Area to show contacts details to edit & delete-->
+        <!--Contacts are rendered and inserted into ID contactsList-->
+        <div id="contactsList" class="contacts"></div>
+      </div>
+
+      <!--Area to show contacts details to edit & delete-->
+      <div
+        id="contactsDetailsMobile"
+        class="contactsDetails"
+        onmousedown="prevent(event)"
+        onclick="closeDetailsMenu('editButtonsPosition', 'editButtonsPosition','editButtonsPositionOpen')"
+      >
         <div
-          id="contactsDetailsMobile"
-          class="contactsDetails"
-          onmousedown="prevent(event)"
+          class="backButton"
+          onclick="mobileContactDetails('contactsDetailsMobile', 'contactsDetails', 'contactsDetailsOpen')"
         >
-          <div class="contactsDetailsHeader">
-            <headline class="weight700">Contacts</headline>
-            <div class="separator59"></div>
-            <subtitle class="weight400">Better with a team</subtitle>
-            <div class="separatorHorizontal"></div>
-          </div>
-          <!--Div containing rendered Details. Inserted with JS into IDs-->
-          <div class="createdContactPosition">
-            <div
-              id="contactsDisplay"
-              class="contactsDisplay detailsWindowClosed"
-            >
-              <div id="detailsProfile" class="detailsProfile"></div>
-              <p class="weight400 size20">Contact Information</p>
-              <div id="detailsContact" class="detailsContact"></div>
-              <div class="infoPosition">
-                <div id="createdInfo" class="createdContactInfoOut">
-                  <div class="createdContactInfo">
-                    <p class="weight400 size20">Contact successfully created</p>
-                  </div>
+          <button>
+            <img
+              src="../assets/icons/contacts/arrow-left-line.svg"
+              alt="Button Back"
+            />
+          </button>
+        </div>
+        <div class="contactsDetailsHeader">
+          <headline class="weight700">Contacts</headline>
+          <div class="separator59"></div>
+          <subtitle class="weight400">Better with a team</subtitle>
+          <div class="separatorHorizontal"></div>
+        </div>
+        <!--Div containing rendered Details. Inserted with JS into IDs-->
+        <div class="createdContactPosition">
+          <div id="contactsDisplay" class="contactsDisplay detailsWindowClosed">
+            <div id="detailsProfile" class="detailsProfile"></div>
+            <p class="weight400 size20">Contact Information</p>
+            <div id="detailsContact" class="detailsContact"></div>
+            <div class="infoPosition">
+              <div id="createdInfo" class="createdContactInfoOut">
+                <div class="createdContactInfo">
+                  <p class="weight400 size20">Contact successfully created</p>
                 </div>
               </div>
             </div>
-            <!--Alert for creation of Contact-->
           </div>
+          <!--Alert for creation of Contact-->
         </div>
       </div>
     </main>

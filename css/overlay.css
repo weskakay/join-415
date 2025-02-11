@@ -182,6 +182,10 @@ input#telInput {
   gap: 40px;
 }
 
+.backButton {
+  display: none;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -271,7 +275,7 @@ input#telInput {
     display: block;
     position: absolute;
     bottom: 32px;
-    right: 16px;
+    right: 0;
     z-index: 5;
   }
 
@@ -309,5 +313,23 @@ input#telInput {
 
   .infoPosition {
     display: none;
+  }
+
+  .backButton {
+    display: block;
+    position: absolute;
+    top: 48px;
+    right: 16px;
+  }
+
+  .backButton button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
   }
 }

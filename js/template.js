@@ -71,7 +71,7 @@ function detailsProfileInsert(contact, index) {
       </div>
       <div
         class="openContactMenu"
-        onclick="toggleStyleChange('editButtonsPosition', 'editButtonsPosition', 'editButtonsPositionOpen')"
+        onclick="toggleStyleChange('editButtonsPosition', 'editButtonsPosition', 'editButtonsPositionOpen'), noBubble(event)"
       >
         <button>
           <img
