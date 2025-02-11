@@ -2,7 +2,7 @@
 .createdContactPosition {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 96px);
   overflow: hidden;
 }
 
@@ -170,11 +170,10 @@ input#telInput {
   background-color: transparent;
   border-style: none;
   cursor: pointer;
-  background-image: url(../assets/icons/add_task/cross-icon.svg);
-  background-repeat: no-repeat;
+  background: url(../assets/icons/add_task/cross-icon.svg) no-repeat center
+    center;
   height: 32px;
   width: 32px;
-  background-position: center center;
 }
 
 .addContactFull {
@@ -192,6 +191,10 @@ input#telInput {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
+}
+
+.openContactMenu {
+  display: none;
 }
 
 @media (max-width: 1211px) {
@@ -264,4 +267,45 @@ input#telInput {
 }
 
 @media (max-width: 960px) {
+  .openContactMenu {
+    display: block;
+    position: absolute;
+    bottom: 32px;
+    right: 16px;
+    z-index: 5;
+  }
+
+  .openContactMenu button {
+    height: 56px;
+    width: 56px;
+    background-color: transparent;
+    border-radius: 45px;
+    background-color: #2a3647;
+    border-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .editButtonsPosition {
+    position: absolute;
+    bottom: 32px;
+    right: 0;
+    transform: translate(110%);
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+  }
+
+  .editButtonsPositionOpen {
+    position: absolute;
+    bottom: 32px;
+    right: 0;
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+  }
+
+  .infoPosition {
+    display: none;
+  }
 }

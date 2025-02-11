@@ -31,16 +31,14 @@
 }
 
 .contactsList::-webkit-scrollbar-button:single-button:vertical:decrement {
-  background-image: url(../assets/icons/contacts/scrollbar_up.svg);
-  background-repeat: no-repeat;
-  background-position: center bottom;
+  background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
+    bottom;
   height: 20px;
 }
 
 .contactsList::-webkit-scrollbar-button:single-button:vertical:increment {
-  background-image: url(../assets/icons/contacts/scrollbar_down.svg);
-  background-repeat: no-repeat;
-  background-position: center top;
+  background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
+    top;
   height: 20px;
 }
 
@@ -311,6 +309,8 @@
   .contactsDisplay {
     padding: 48px 0;
     gap: 21px;
+    width: 100%;
+    height: 100%;
   }
 
   .detailsName listedName {

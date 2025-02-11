@@ -52,7 +52,7 @@ function detailsProfileInsert(contact, index) {
     </div>
     <div class="detailsName">
       <listedName>${contact.name}</listedName>
-      <div id="eidtButtonsPosition" class="eidtButtonsPosition">
+      <div id="editButtonsPosition" class="editButtonsPosition">
         <div class="detailsEdit">
           <button
             onclick="d_none('overlayEdit'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"
