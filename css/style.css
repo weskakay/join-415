@@ -9,6 +9,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -152,6 +153,7 @@ header {
   header {
     position: fixed;
     padding-left: 0px;
+    height: 80px;
   }
 
   .header_content {

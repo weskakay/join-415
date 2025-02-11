@@ -54,3 +54,15 @@ function showNoTask(id) {
     content.style.display = "flex";
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  let container = document.querySelector('.board-card-container');
+  if (container) {
+    container.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      container.scrollLeft += e.deltaY * 2;
+    });
+  } else {
+    console.error("Element '.board-card-container' nicht gefunden!");
+  }
+});

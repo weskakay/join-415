@@ -88,6 +88,7 @@ function MediaQuery() {
   let logo = document.getElementsByClassName("join-mobile-logo");
   summaryMedia();
   contactsMedia();
+  boardMedia();
   if (media.matches) {
     Array.from(header).forEach((el) => el.classList.add("d_none"));
     Array.from(footer).forEach((el) => el.classList.remove("d_none"));
@@ -106,7 +107,6 @@ function MediaQuery() {
 function summaryMedia() {
   let welcome = document.getElementById("welcome-dash");
   let helpMenu = document.getElementById("help-menu");
-
   if (media.matches) {
     if (welcome) welcome.classList.add("d_none");
     if (helpMenu) helpMenu.classList.remove("d_none");
@@ -116,16 +116,33 @@ function summaryMedia() {
   }
 }
 
-/*function contactsMedia(){
-  let details = document.getElementsByClassName("contactsDetails");
+function boardMedia(){
+  let boardSearch= document.getElementById("board-search-container");
+  let mobileSearch= document.getElementById("mobile-board-search");
+  let addTaskSpan= document.getElementById("addtask-span");
 
   if(media.matches){
-    Array.from(details).forEach(el => el.classList.add("d_none"));
+    if(boardSearch) boardSearch.classList.add("d_none");
+    if(mobileSearch) mobileSearch.classList.remove("d_none");
+    if(addTaskSpan) addTaskSpan.classList.add("d_none");
   }
   else{
+    if (boardSearch) boardSearch.classList.remove("d_none");
+    if(mobileSearch) mobileSearch.classList.add("d_none");
+    if (addTaskSpan) addTaskSpan.classList.remove("d_none");
+  }
+}
+
+function contactsMedia() {
+  let details = document.getElementsByClassName("contactsDetails");
+
+  if (media.matches) {
+    Array.from(details).forEach(el => el.classList.add("d_none"));
+  }
+  else {
     Array.from(details).forEach(el => el.classList.remove("d_none"));
   }
-}*/
+}
 
 MediaQuery();
 media.addEventListener("change", MediaQuery);

@@ -93,7 +93,7 @@
         <div class="board-header">
           <div class="size61 weight700">Board</div>
           <div class="board-search-add-container">
-            <div class="board-search-container">
+            <div id="board-search-container" class="search-input">
               <input class="size20" type="text" placeholder="Find Task" />
               <div class="search-icon-seperator">
                 <div class="search-seperator"></div>
@@ -101,8 +101,17 @@
               </div>
             </div>
             <button class="board-add-task-button size21">
-              Add Task<img src="../assets/icons/board/add.svg" />
+              <span id="addtask-span">Add Task </span><img src="../assets/icons/board/add.svg" />
             </button>
+          </div>
+          </div>
+          <div id="mobile-board-search" class="d_none">
+            <div class="search-input">
+            <input class="size20" type="text" placeholder="Find Task" />
+            <div class="search-icon-seperator">
+              <div class="search-seperator"></div>
+              <img src="../assets/icons/board/search.svg" />
+            </div>
           </div>
         </div>
         <div class="board-tasks-wrapper">

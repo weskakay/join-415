@@ -165,7 +165,7 @@
   color: black;
 }
 
-@media(max-width: 428px){
+@media(max-width: 960px){
   main{
     max-height: 100vh;     
     position: relative;
