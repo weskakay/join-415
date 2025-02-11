@@ -283,7 +283,10 @@
     </div>
     <!--END: Edit Contact -->
 
-    <div id="person-add"></div>
+    <div
+      class="person-add"
+      onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
+    ></div>
 
     <footer class="d_none footer_nav">
       <nav class="nav-footer" onmousedown="prevent(event)">
