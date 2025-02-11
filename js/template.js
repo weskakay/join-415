@@ -45,27 +45,29 @@ function listContactData(contact, index, currentUser) {
 function detailsProfileInsert(contact, index) {
   return `
     <div
-      class="background-contacts bg-details" style="background-color: ${
-        bgcolors[contact.colorId].rgba
-      };"
+      class="background-contacts bg-details"
+      style="background-color: ${bgcolors[contact.colorId].rgba};"
     >
       ${getInitials(contact.name)}
     </div>
     <div class="detailsName">
       <listedName>${contact.name}</listedName>
-      <div class="detailsEdit">
-        <button
-          onclick="d_none('overlayEdit'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"
-        >
-          <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
-          <p class="weight400 size16 colorDarkBlue">Edit</p>
-        </button>
-        <button
-          onclick="deleteContact('contacts/${contacts[index].id}')"
-        >
-          <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
-          <p class="weight400 size16 colorDarkBlue">Delete</p>
-        </button>
+      <div id="eidtButtonsPosition" class="eidtButtonsPosition">
+        <div class="detailsEdit">
+          <button
+            onclick="d_none('overlayEdit'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"
+          >
+            <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
+            <p class="weight400 size16 colorDarkBlue">Edit</p>
+          </button>
+          <button onclick="deleteContact('contacts/${contacts[index].id}')">
+            <img
+              src="../assets/icons/contacts/delete.svg"
+              alt="Delete Symbol"
+            />
+            <p class="weight400 size16 colorDarkBlue">Delete</p>
+          </button>
+        </div>
       </div>
     </div>
   `;

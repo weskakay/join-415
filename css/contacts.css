@@ -230,7 +230,7 @@
     background: url(../assets/icons/contacts/person_add.svg) no-repeat center;
     background-color: #2a3647;
     cursor: pointer;
-    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.8);
+    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.2);
   }
 
   .contactsList::-webkit-scrollbar-thumb {
@@ -319,5 +319,24 @@
   }
   .detailsProfile {
     gap: 20px;
+  }
+
+  .detailsEdit {
+    flex-direction: column;
+    width: 116px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px 20px 0 20px;
+    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.2);
+  }
+
+  .detailsEdit button {
+    width: 96px;
+    height: 40px;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
   }
 }
