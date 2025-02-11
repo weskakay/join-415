@@ -69,6 +69,17 @@ function detailsProfileInsert(contact, index) {
           </button>
         </div>
       </div>
+      <div
+        class="openContactMenu"
+        onclick="toggleStyleChange('editButtonsPosition', 'editButtonsPosition', 'editButtonsPositionOpen')"
+      >
+        <button>
+          <img
+            src="../assets/icons/contacts/Menu_Contact_options.svg"
+            alt="Open Menu Button"
+          />
+        </button>
+      </div>
     </div>
   `;
 }
