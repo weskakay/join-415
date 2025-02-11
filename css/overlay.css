@@ -264,8 +264,4 @@ input#telInput {
 }
 
 @media (max-width: 960px) {
-  .detailsWindow {
-    top: 0;
-    left: -1000px;
-  }
 }

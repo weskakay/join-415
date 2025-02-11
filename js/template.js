@@ -23,7 +23,7 @@ function listContactData(contact, index, currentUser) {
     <div
       class="contactsContainer"
       tabindex="0"
-      onclick="openContactDetails(${index}), showContactDetails('contactsDisplay', 'detailsWindowClosed', 'detailsWindow'), noBubble(event)"
+      onclick="mobileContactDetails('contactsDetailsMobile', 'contactsDetails', 'contactsDetailsOpen'), openContactDetails(${index}), showContactDetails('contactsDisplay', 'detailsWindowClosed', 'detailsWindow'), noBubble(event)"
     >
       <div class="background-contacts" style="background-color: ${
         bgcolors[contact.colorId].rgba
@@ -52,7 +52,7 @@ function detailsProfileInsert(contact, index) {
       ${getInitials(contact.name)}
     </div>
     <div class="detailsName">
-      <p class="weight500 size47">${contact.name}</p>
+      <listedName>${contact.name}</listedName>
       <div class="detailsEdit">
         <button
           onclick="d_none('overlayEdit'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"

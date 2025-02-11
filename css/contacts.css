@@ -83,6 +83,18 @@
   gap: 30px;
 }
 
+.contactsDetailsHeader headline {
+  font-size: 61px;
+}
+
+.contactsDetailsHeader subtitle {
+  font-size: 27px;
+}
+
+.contactsDetailsHeader .separatorHorizontal {
+  display: none;
+}
+
 .contactsContainer {
   display: flex;
   justify-content: flex-start;
@@ -127,6 +139,11 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.detailsName listedName {
+  font-weight: 500;
+  font-size: 47px;
 }
 
 .detailsEdit {
@@ -237,5 +254,70 @@
 
   .contactsList {
     padding: 0 12px 0 24px;
+  }
+
+  .contactsMain {
+    position: relative;
+  }
+
+  .contactsDetails {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    transform: translate(100%);
+  }
+
+  .contactsDetailsOpen {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    padding: 48px 16px;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: #f6f7f9;
+  }
+
+  .contactsDetailsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .contactsDetailsHeader .separator59 {
+    display: none;
+  }
+
+  .contactsDetailsHeader .separatorHorizontal {
+    display: block;
+  }
+
+  .contactsDetailsHeader headline {
+    font-size: 47px;
+  }
+
+  .contactsDetailsHeader subtitle {
+    font-size: 20px;
+  }
+
+  .bg-details {
+    width: 80px;
+    height: 80px;
+    font-size: 27px;
+  }
+
+  .contactsDisplay {
+    padding: 48px 0;
+    gap: 21px;
+  }
+
+  .detailsName listedName {
+    font-weight: 700;
+    font-size: 36px;
+  }
+  .detailsProfile {
+    gap: 20px;
   }
 }

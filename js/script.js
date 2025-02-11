@@ -24,7 +24,7 @@ function changeNavbarItems(id) {
   window.location.href = `../html/${id}.html`;
 }
 
-function openHelp(){
+function openHelp() {
   window.location.href = "../html/help.html";
 }
 
@@ -89,36 +89,34 @@ function MediaQuery() {
   summaryMedia();
   contactsMedia();
   if (media.matches) {
-    Array.from(header).forEach(el => el.classList.add("d_none"));
-    Array.from(footer).forEach(el => el.classList.remove("d_none"));
-    Array.from(kanban).forEach(el => el.classList.add("d_none"));
-    Array.from(help).forEach(el => el.classList.add("d_none"));
-    Array.from(logo).forEach(el => el.classList.remove("d_none"));
+    Array.from(header).forEach((el) => el.classList.add("d_none"));
+    Array.from(footer).forEach((el) => el.classList.remove("d_none"));
+    Array.from(kanban).forEach((el) => el.classList.add("d_none"));
+    Array.from(help).forEach((el) => el.classList.add("d_none"));
+    Array.from(logo).forEach((el) => el.classList.remove("d_none"));
   } else {
-    Array.from(header).forEach(el => el.classList.remove("d_none"));
-    Array.from(footer).forEach(el => el.classList.add("d_none"));
-    Array.from(kanban).forEach(el => el.classList.remove("d_none"));
-    Array.from(help).forEach(el => el.classList.remove("d_none"));
-    Array.from(logo).forEach(el => el.classList.add("d_none"));
+    Array.from(header).forEach((el) => el.classList.remove("d_none"));
+    Array.from(footer).forEach((el) => el.classList.add("d_none"));
+    Array.from(kanban).forEach((el) => el.classList.remove("d_none"));
+    Array.from(help).forEach((el) => el.classList.remove("d_none"));
+    Array.from(logo).forEach((el) => el.classList.add("d_none"));
   }
 }
 
-function summaryMedia(){
+function summaryMedia() {
   let welcome = document.getElementById("welcome-dash");
   let helpMenu = document.getElementById("help-menu");
 
-  if(media.matches){
+  if (media.matches) {
     if (welcome) welcome.classList.add("d_none");
     if (helpMenu) helpMenu.classList.remove("d_none");
-  }
-  else{
+  } else {
     if (welcome) welcome.classList.remove("d_none");
     if (helpMenu) helpMenu.classList.add("d_none");
   }
 }
 
-
-function contactsMedia(){
+/*function contactsMedia(){
   let details = document.getElementsByClassName("contactsDetails");
 
   if(media.matches){
@@ -127,7 +125,7 @@ function contactsMedia(){
   else{
     Array.from(details).forEach(el => el.classList.remove("d_none"));
   }
-}
+}*/
 
 MediaQuery();
 media.addEventListener("change", MediaQuery);

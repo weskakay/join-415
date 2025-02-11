@@ -120,11 +120,16 @@
         </div>
 
         <!--Area to show contacts details to edit & delete-->
-        <div class="contactsDetails" onmousedown="prevent(event)">
+        <div
+          id="contactsDetailsMobile"
+          class="contactsDetails"
+          onmousedown="prevent(event)"
+        >
           <div class="contactsDetailsHeader">
-            <div><p class="weight700 size61">Contacts</p></div>
+            <headline class="weight700">Contacts</headline>
             <div class="separator59"></div>
-            <div><p class="weight400 size27">Better with a team</p></div>
+            <subtitle class="weight400">Better with a team</subtitle>
+            <div class="separatorHorizontal"></div>
           </div>
           <!--Div containing rendered Details. Inserted with JS into IDs-->
           <div class="createdContactPosition">

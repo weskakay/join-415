@@ -291,3 +291,9 @@ async function showCreationHint(windowId, styleA, styleB) {
   await delay(3);
   toggleStyleChange(windowId, styleA, styleB);
 }
+
+function mobileContactDetails(windowId, styleA, styleB) {
+  if (window.innerWidth < 960) {
+    toggleStyleChange(windowId, styleA, styleB);
+  }
+}
