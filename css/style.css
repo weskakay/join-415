@@ -155,7 +155,6 @@ header {
 
 @media (max-width: 960px) {
   header {
-    position: fixed;
     padding-left: 0px;
     height: 80px;
   }

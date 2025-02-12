@@ -88,6 +88,10 @@
   font-weight: 600;
 }
 
+.footer_nav {
+  display: none;
+}
+
 /* style for footer navbar*/
 
 @media (max-width: 1060px) {
@@ -97,12 +101,15 @@
 }
 
 @media (max-width: 960px) {
+  .footer_nav {
+    display: block;
+  }
+
   .navbar {
     display: none;
   }
 
   .nav-footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;

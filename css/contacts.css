@@ -214,6 +214,7 @@
 @media (max-width: 960px) {
   .contactsList {
     max-width: 960px;
+    padding: 24px 12px 0px 24px;
   }
 
   .person-add {
@@ -255,11 +256,12 @@
   }
 
   .contactsList {
-    padding: 80px 12px 0px 24px;
+    padding: 24px 12px 0px 24px;
   }
 
   .contactsMain {
     position: relative;
+    height: calc(100vh - 160px);
   }
 
   .contactsDetails {
@@ -274,7 +276,7 @@
 
   .contactsDetailsOpen {
     position: absolute;
-    top: 80px;
+    top: 0;
     right: 0;
     padding: 48px 16px;
     height: 100%;
