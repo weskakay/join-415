@@ -143,9 +143,9 @@ function boardMedia() {
   else {
     Array.from(details).forEach(el => el.classList.remove("d_none"));
   }
-}
+}*/
 MediaQuery();
-media.addEventListener("change", MediaQuery);*/
+media.addEventListener("change", MediaQuery);
 
 function getTimeGreeting() {
   const now = new Date();
