@@ -307,3 +307,11 @@ function mobileContactDetails(windowId, styleA, styleB) {
     toggleStyleChange(windowId, styleA, styleB);
   }
 }
+
+function changeMobileDesktop(windowId, styleA, styleB) {
+  let windowWidth = window.innerWidth;
+  let detailsClass = document.getElementById(windowId).classList;
+  if (windowWidth >= 961 && detailsClass == styleA) {
+    toggleStyleChange(windowId, styleA, styleB);
+  }
+}
