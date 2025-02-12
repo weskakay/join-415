@@ -292,6 +292,10 @@ input#telInput {
     cursor: pointer;
   }
 
+  .openContactMenu button:active {
+    background-color: #29abe2;
+  }
+
   .editButtonsPosition {
     position: absolute;
     bottom: 32px;

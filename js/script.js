@@ -116,24 +116,25 @@ function summaryMedia() {
   }
 }
 
-function boardMedia(){
-  let boardSearch= document.getElementById("board-search-container");
-  let mobileSearch= document.getElementById("mobile-board-search");
-  let addTaskSpan= document.getElementById("addtask-span");
+function boardMedia() {
+  let boardSearch = document.getElementById("board-search-container");
+  let mobileSearch = document.getElementById("mobile-board-search");
+  let addTaskSpan = document.getElementById("addtask-span");
 
-  if(media.matches){
-    if(boardSearch) boardSearch.classList.add("d_none");
-    if(mobileSearch) mobileSearch.classList.remove("d_none");
-    if(addTaskSpan) addTaskSpan.classList.add("d_none");
-  }
-  else{
+  if (media.matches) {
+    if (boardSearch) boardSearch.classList.add("d_none");
+    if (mobileSearch) mobileSearch.classList.remove("d_none");
+    if (addTaskSpan) addTaskSpan.classList.add("d_none");
+  } else {
     if (boardSearch) boardSearch.classList.remove("d_none");
-    if(mobileSearch) mobileSearch.classList.add("d_none");
+    if (mobileSearch) mobileSearch.classList.add("d_none");
     if (addTaskSpan) addTaskSpan.classList.remove("d_none");
   }
 }
 
-function contactsMedia() {
+//Funktion muss ausgeblendet sein, da sonst in Mobile die User Details nicht angezeigt werden
+
+/*function contactsMedia() {
   let details = document.getElementsByClassName("contactsDetails");
 
   if (media.matches) {
@@ -143,9 +144,8 @@ function contactsMedia() {
     Array.from(details).forEach(el => el.classList.remove("d_none"));
   }
 }
-
 MediaQuery();
-media.addEventListener("change", MediaQuery);
+media.addEventListener("change", MediaQuery);*/
 
 function getTimeGreeting() {
   const now = new Date();
