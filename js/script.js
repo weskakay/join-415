@@ -3,7 +3,7 @@ let media = window.matchMedia("(max-width: 960px)");
 let currentUser = null;
 
 function pageLoadHandler(id) {
-  MediaQuery();
+  mediaQuery();
   getTimeGreeting();
   loadCurrentUser(id);
 }
@@ -80,14 +80,14 @@ async function edit_data(path = "", data = {}) {
   return await response.json();
 }
 
-function MediaQuery() {
+function mediaQuery() {
   let header = document.getElementsByClassName("navbar");
   let footer = document.getElementsByClassName("footer_nav");
   let kanban = document.getElementsByClassName("kanban");
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
   summaryMedia();
-  contactsMedia();
+  // contactsMedia();
   boardMedia();
   if (media.matches) {
     Array.from(header).forEach((el) => el.classList.add("d_none"));
@@ -144,8 +144,8 @@ function boardMedia() {
     Array.from(details).forEach(el => el.classList.remove("d_none"));
   }
 }*/
-MediaQuery();
-media.addEventListener("change", MediaQuery);
+mediaQuery();
+media.addEventListener("change", mediaQuery);
 
 function getTimeGreeting() {
   const now = new Date();

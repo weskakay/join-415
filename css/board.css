@@ -280,6 +280,7 @@
     flex-direction: column;
     padding: 16px 16px 0;
     gap: 24px;
+    margin-bottom: 80px;
   }
   .board-card-container{
     height: auto;
