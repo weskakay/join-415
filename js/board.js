@@ -110,20 +110,7 @@ function openAddTaskOverlay() {
 function closeAddTaskOverlay() {
   document.getElementById("addTaskOverlay").classList.add("hidden");
 }
-/**
- * Enables horizontal scrolling in the board container using the mouse wheel.
- */
-document.addEventListener("DOMContentLoaded", () => {
-  let container = document.querySelector('.board-card-container');
-  if (container) {
-    container.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      container.scrollLeft += e.deltaY * 2;
-    });
-  } else {
-    console.error("Element '.board-card-container' nicht gefunden!");
-  }
-});
+
 /**
  * Event listener for search input
  */

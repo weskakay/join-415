@@ -35,6 +35,10 @@ header {
   width: 100%;
 }
 
+footer{
+  z-index: 6;
+}
+
 .header_content {
   height: 100%;
   width: 100%;
@@ -157,6 +161,7 @@ header {
   header {
     padding-left: 0px;
     height: 80px;
+    z-index: 6;
   }
 
   header p {
