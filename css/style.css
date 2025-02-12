@@ -149,11 +149,19 @@ header {
   background-color: rgba(168, 168, 168, 0.3);
 }
 
+.join-mobile-logo {
+  display: none;
+}
+
 @media (max-width: 960px) {
   header {
     position: fixed;
     padding-left: 0px;
     height: 80px;
+  }
+
+  header p {
+    display: none;
   }
 
   .header_content {
@@ -165,6 +173,7 @@ header {
   }
 
   .join-mobile-logo {
+    display: block;
     width: 32px;
     height: 40px;
     margin-left: 20px;
