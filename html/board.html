@@ -118,7 +118,8 @@
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>To do</p>
-              <img src="../assets/icons/board/plus button.svg" />
+              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()" />
+
             </div>
             <div
               class="board-card-container"
@@ -165,7 +166,7 @@
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>In progress</p>
-              <img src="../assets/icons/board/plus button.svg" />
+              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()"/>
             </div>
             <div
               class="board-card-container"
@@ -212,7 +213,7 @@
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>Await feedback</p>
-              <img src="../assets/icons/board/plus button.svg" />
+              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()" />
             </div>
             <div
               class="board-card-container"
@@ -259,7 +260,7 @@
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>Done</p>
-              <img src="../assets/icons/board/plus button.svg" />
+              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()" />
             </div>
             <div
               class="board-card-container"
@@ -305,6 +306,14 @@
           </div>
         </div>
       </div>
+      <!-- Add Task Overlay -->
+      <div id="addTaskOverlay" class="overlay hidden">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="closeAddTaskOverlay()">&times;</span>
+            <iframe src="addtask.html" id="addTaskFrame"></iframe>
+        </div>
+      </div>
+
     </main>
     <footer class="d_none footer_nav">
       <nav class="nav-footer" onmousedown="prevent(event)">
