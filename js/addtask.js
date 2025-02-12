@@ -242,6 +242,9 @@ document
     }
   });
 
+/**
+ * Clears all input fields in the Add Task form.
+ */
 function resetAllInputs() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
