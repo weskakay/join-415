@@ -89,6 +89,7 @@ function mediaQuery() {
   summaryMedia();
   // contactsMedia();
   boardMedia();
+  mobileIntro();
   if (media.matches) {
     Array.from(header).forEach((el) => el.classList.add("d_none"));
     Array.from(footer).forEach((el) => el.classList.remove("d_none"));
@@ -102,6 +103,23 @@ function mediaQuery() {
     Array.from(help).forEach((el) => el.classList.remove("d_none"));
     Array.from(logo).forEach((el) => el.classList.add("d_none"));
   }
+}
+
+function mobileIntro() {
+  let joinDesktop = document.getElementById("join-home");
+  let joinMobile = document.getElementById("join-mobile-intro");
+
+ if (media.matches) {
+    if (joinDesktop) joinDesktop.classList.add("d_none");
+    if (joinMobile) joinMobile.classList.remove("d_none");
+  } else {
+    if (joinDesktop) joinDesktop.classList.remove("d_none");
+    if (joinMobile) joinMobile.classList.add("d_none");
+  }
+  setTimeout(() => {
+    document.getElementById("intro-body").style.backgroundColor = "white";
+    if (joinMobile) joinMobile.classList.add("transition-active");
+  }, 500);
 }
 
 function summaryMedia() {
@@ -201,3 +219,4 @@ function sortContacts(contacts) {
     a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
 }
+
