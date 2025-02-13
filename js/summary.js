@@ -48,7 +48,6 @@ function showTaskNumbers() {
     priorities.push(tasksNumbersList[indexTasks].prio.trim());
     dates.push(tasksNumbersList[indexTasks].date);
   }
-  console.log(dates);
   showurgentNumber(priorities);
   showClosestDate(dates);
 }
