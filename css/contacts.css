@@ -213,12 +213,13 @@
 
 @media (max-width: 960px) {
   .contactsList {
-    max-width: 960px;
+    max-width: initial;
+    max-height: initial;
     padding: 24px 12px 0px 24px;
   }
 
   .person-add {
-    position: absolute;
+    position: fixed;
     bottom: 112px;
     right: 22px;
     z-index: 4;
@@ -255,13 +256,8 @@
     display: none;
   }
 
-  .contactsList {
-    padding: 24px 12px 0px 24px;
-  }
-
   .contactsMain {
     position: relative;
-    height: calc(100vh - 160px);
   }
 
   .contactsDetails {
@@ -344,5 +340,20 @@
     align-items: center;
     gap: 8px;
     padding: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .size20{
+    font-size: 18px !important;
+  }
+
+  .size16{
+    font-size: 14px !important;
+  }
+
+  .contactsContainer{
+    gap: 20px;
+    padding: 16px;
   }
 }

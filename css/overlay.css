@@ -290,6 +290,9 @@ input#telInput {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: fixed;
+    right: 22px;
+    bottom: 112px;
   }
 
   .openContactMenu button:active {
