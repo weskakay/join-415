@@ -436,10 +436,6 @@ select {
   .add-task-seperator {
     display: none;
   }
-
-  .add-task-wrapper {
-    padding: 110px 60px;
-  }
 }
 
 @media (max-width: 1000px) {
@@ -450,11 +446,6 @@ select {
 }
 
 @media (max-width: 960px) {
-  .add-task-wrapper {
-    min-height: auto;
-    height: calc(100vh - 176px);
-  }
-
   .add-task-input-left,
   .add-task-input-right {
     width: 360px;
@@ -463,19 +454,22 @@ select {
   .add-task-seperator {
     display: flex;
   }
-}
-
-@media (max-width: 860px) {
-  .add-task-wrapper {
-    padding: 40px 16px;
-    min-height: auto;
-    height: auto;
+  .add-task-headline {
+    position: fixed;
+    display: flex;
+    align-items: end;
+    top: 80px;
+    width: 100%;
+    height: 112px;
+    background-color: #f6f7f8;
+    font-size: 47px;
+    font-weight: bold;
+    padding: 16px;
   }
-
   .add-task-input {
     flex-direction: column;
-    margin-top: calc(96px + 112px);
-    margin-bottom: 80px;
+    padding-top: 120px;
+    padding-bottom: 60px;
   }
 
   .add-task-seperator {
@@ -495,24 +489,6 @@ select {
     width: 100%;
     height: 41px;
   }
-
-  .add-task-bottom {
-    margin-bottom: 100px;
-  }
-
-  .add-task-headline {
-    position: fixed;
-    display: flex;
-    align-items: end;
-    top: 80px;
-    width: 100%;
-    height: 112px;
-    background-color: #f6f7f8;
-    font-size: 47px;
-    font-weight: bold;
-    padding: 8px;
-  }
-
   .add-task-input-fields > input,
   .add-task-input-fields > textarea,
   .add-task-input-fields > select {
@@ -531,6 +507,7 @@ select {
     width: 100%;
     height: 80px;
     background-color: #f6f7f8;
+    gap: 32px;
   }
 
   .add-task-bottom-buttons > button {
@@ -544,4 +521,26 @@ select {
   .add-task-bottom-required {
     display: none;
   }
+
+  .add-task-wrapper{
+    padding: 0 16px 0 16px;
+  }
 }
+
+@media (max-width: 428px) {
+  .add-task-bottom-buttons > button {
+    font-size: 21px;
+}
+}
+
+@media (max-width: 380px) {
+  .add-task-bottom-buttons > button {
+    font-size: 18px;
+    padding: 8px;
+}
+}
+
+@media (max-width: 350px) {
+  .add-task-bottom-buttons{
+    padding-right: 16px;
+  }}

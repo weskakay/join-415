@@ -162,6 +162,17 @@ footer {
     padding-left: 0px;
     height: 80px;
     z-index: 6;
+    position: sticky;
+    top: 0;
+  }
+
+  footer{
+    position: sticky;
+    bottom: 0;
+  }
+
+  .navbar-wrapper-footer span{
+    font-size: 14px;
   }
 
   header p {
