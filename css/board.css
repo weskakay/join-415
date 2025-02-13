@@ -303,6 +303,7 @@
 
   .board-headline{
     width: 252px;
+    margin-bottom: 16px;
   }
   .board-tasks-container{
     width: auto;
