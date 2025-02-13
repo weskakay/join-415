@@ -31,27 +31,33 @@ async function getTasks(path = `tasks/`) {
  * Shows a message if no tasks match the search criteria.
  */
 function searchTasks() {
-  let searchInput = document.querySelector("#board-search-container input").value.toLowerCase();
+  let searchInput = document
+    .querySelector("#board-search-container input")
+    .value.toLowerCase();
   let taskContainers = document.querySelectorAll(".board-card");
   let noResultsMessage = document.getElementById("no-results-message");
   let foundTasks = false;
 
-  taskContainers.forEach(task => {
-      let title = task.querySelector(".card-title-discription p.weight700").innerText.toLowerCase();
-      let description = task.querySelector(".card-title-discription p.weight400").innerText.toLowerCase();
+  taskContainers.forEach((task) => {
+    let title = task
+      .querySelector(".card-title-discription p.weight700")
+      .innerText.toLowerCase();
+    let description = task
+      .querySelector(".card-title-discription p.weight400")
+      .innerText.toLowerCase();
 
-      if (title.includes(searchInput) || description.includes(searchInput)) {
-          task.style.display = "flex";
-          foundTasks = true;
-      } else {
-          task.style.display = "none";
-      }
+    if (title.includes(searchInput) || description.includes(searchInput)) {
+      task.style.display = "flex";
+      foundTasks = true;
+    } else {
+      task.style.display = "none";
+    }
   });
 
   if (!foundTasks) {
-      noResultsMessage.style.display = "block";
+    noResultsMessage.style.display = "block";
   } else {
-      noResultsMessage.style.display = "none";
+    noResultsMessage.style.display = "none";
   }
 }
 /**
@@ -119,17 +125,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let boardWrapper = document.querySelector(".board-wrapper");
 
   if (searchInput) {
-      searchInput.addEventListener("input", searchTasks);
+    searchInput.addEventListener("input", searchTasks);
 
-      let noResultsMessage = document.createElement("div");
-      noResultsMessage.id = "no-results-message";
-      noResultsMessage.innerText = "No results found.";
-      noResultsMessage.style.display = "none";
-      noResultsMessage.style.textAlign = "center";
-      noResultsMessage.style.marginTop = "20px";
-      noResultsMessage.style.fontSize = "18px";
-      noResultsMessage.style.color = "#8B0000";
-      
-      boardWrapper.appendChild(noResultsMessage);
+    let noResultsMessage = document.createElement("div");
+    noResultsMessage.id = "no-results-message";
+    noResultsMessage.innerText = "No results found.";
+    noResultsMessage.style.display = "none";
+    noResultsMessage.style.textAlign = "center";
+    noResultsMessage.style.marginTop = "20px";
+    noResultsMessage.style.fontSize = "18px";
+    noResultsMessage.style.color = "#8B0000";
+
+    boardWrapper.appendChild(noResultsMessage);
   }
 });
