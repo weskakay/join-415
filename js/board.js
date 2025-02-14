@@ -185,6 +185,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/**
+ * Valention was passiert hier? clearTask not defined
+ */
+/*
 function getTaskData(taskId) {
   clearTaskDetails();
   document.getElementById("taskDetailsHeader").innerHTML =
@@ -202,6 +206,7 @@ function getTaskData(taskId) {
   getAssigneeData(taskId);
   getSubtaskData(taskId);
 }
+  */
 
 function getAssigneeData(taskId) {
   for (
