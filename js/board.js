@@ -1,6 +1,5 @@
 let tasks = [];
 let contactsBoard = [];
-let cleanTasks = [];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
@@ -24,7 +23,6 @@ async function getContactsBoard(path = `contacts/`) {
 async function getTasks(path = `tasks/`) {
   await getContactsBoard();
   tasks = [];
-  cleanTasks = [];
   let response = await fetch(BASE_URL + path + ".json");
   let tasksData = await response.json();
   Object.entries(tasksData).forEach(([id, content]) => {
@@ -35,12 +33,11 @@ async function getTasks(path = `tasks/`) {
       title: content.title,
       description: content.description,
       subtasks: content.subtask,
-      assingned: content.contact,
+      assigned: content.contact,
       prio: content.prio,
       date: content.date,
     });
   });
-  console.log(tasks);
   renderTasks();
 }
 
@@ -73,7 +70,7 @@ function renderTasks() {
       default:
         console.warn("Unbekannter Status:", task.status);
     }
-    getAssignedContacts(task.assingned, i);
+    getAssignedContacts(task.assigned, i);
   }
 }
 
@@ -81,11 +78,11 @@ function getAssignedContacts(contactIDs, index) {
   let content = document.getElementById("card_contact_" + index);
   content.innerHTML = "";
 
-  let assingnedContacts = contacts.filter((contact) =>
+  let assignedContacts = contacts.filter((contact) =>
     contactIDs.includes(contact.id)
   );
-  for (let i = 0; i < assingnedContacts.length; i++) {
-    content.innerHTML += listCardContacts(assingnedContacts[i]);
+  for (let i = 0; i < assignedContacts.length; i++) {
+    content.innerHTML += listCardContacts(assignedContacts[i]);
   }
 }
 
@@ -195,9 +192,6 @@ function drag(ev) {
 function showNoTask(id) {
   let container = document.getElementById(`board_${id}`);
   let content = document.getElementById(`no-task-${id}`);
-
-  console.log(container.children.length);
-
   if ((container.children.length = 1)) {
     content.style.display = "flex";
   }
@@ -251,32 +245,39 @@ function getTaskData(taskId) {
     .join("/");
   document.getElementById("priorityDetails").innerHTML = tasks[taskKey].prio;
   document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
-  //getAssigneeData(taskKey);
-  //getSubtaskData(taskKey);
+  getAssigneeData(taskKey);
+  getSubtaskData(taskKey);
 }
 
 function getAssigneeData(taskKey) {
   for (
     let indexAssignee = 0;
-    indexAssignee < tasks[taskKey].contact.length;
+    indexAssignee < tasks[taskKey].assigned.length;
     indexAssignee++
   ) {
-    let assigneeId = tasks[taskKey].contact[indexAssignee];
-    let assignee = cleanContacts[assigneeId].name;
+    let assigneeId = tasks[taskKey].assigned[indexAssignee];
+    let assigneeKey = Object.keys(contactsBoard).find(
+      (key) => contactsBoard[key].id == assigneeId
+    );
+    let assignee = contactsBoard[assigneeKey].name;
     document.getElementById("assigneeDetails").innerHTML +=
       detailsAssigneesInsert(assignee);
   }
 }
 
-function getSubtaskData(taskId) {
-  for (
-    let indexSubtask = 0;
-    indexSubtask < cleanTasks[taskId].subtask.length;
-    indexSubtask++
-  ) {
-    let subtaskList = cleanTasks[taskId].subtask[indexSubtask];
-    document.getElementById("substaskListDetails").innerHTML +=
-      detailsSubtaskInsert(subtaskList);
+function getSubtaskData(taskKey) {
+  if (tasks[taskKey].subtasks == undefined) {
+    return;
+  } else {
+    for (
+      let indexSubtask = 0;
+      indexSubtask < tasks[taskKey].subtasks.length;
+      indexSubtask++
+    ) {
+      let subtaskList = tasks[taskKey].subtasks[indexSubtask];
+      document.getElementById("substaskListDetails").innerHTML +=
+        detailsSubtaskInsert(subtaskList);
+    }
   }
 }
 
