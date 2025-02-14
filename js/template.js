@@ -202,8 +202,11 @@ function listSubtasks(i, content) {
     `;
 }
 
-function tasksDetailsInsert() {
+function detailsAssigneesInsert(assignee) {
   return `
-
-`;
+    <div class="assignee">
+      <img src="../assets/icons/add_task/user_image.svg" alt="User Img" />
+      <p class="weight400 size19">${assignee}</p>
+    </div>
+  `;
 }

@@ -4,8 +4,9 @@ let cleanTasks = [];
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
  */
-async function getTasks(path = `tasks/`) {
+async function getTasksBoard(path = `tasks/`) {
   tasks = [];
+  cleanTasks = [];
   let response = await fetch(BASE_URL + path + ".json");
   let tasksData = await response.json();
   if (tasksData == null) {
@@ -15,7 +16,24 @@ async function getTasks(path = `tasks/`) {
   } else {
     tasks.push(tasksData);
     cleanTasks = tasks[0];
-    console.log(cleanTasks);
+  }
+}
+
+let contactsBoard = [];
+let cleanContacts = [];
+
+async function getContactsBoard(path = `contacts/`) {
+  contactsBoard = [];
+  cleanContacts = [];
+  let response = await fetch(BASE_URL + path + ".json");
+  let contactData = await response.json();
+  if (!contactData) {
+    document.getElementById("contactsList").innerHTML = "";
+    document.getElementById("contactsDetailsDisplay").innerHTML = "";
+    return;
+  } else {
+    contactsBoard.push(contactData);
+    cleanContacts = contactsBoard[0];
   }
 }
 /**
@@ -133,5 +151,39 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function getTaskData(taskId) {
-  console.log(cleanTasks[taskId].category);
+  clearTaskDetails();
+  document.getElementById("taskDetailsHeader").innerHTML =
+    cleanTasks[taskId].title;
+  document.getElementById("taskDetailDescription").innerHTML =
+    cleanTasks[taskId].description;
+  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date;
+  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date;
+  document.getElementById("priorityDetails").innerHTML =
+    cleanTasks[taskId].prio;
+  document.getElementById("taskTagDetails").innerHTML =
+    cleanTasks[taskId].category;
+  getAssigneeData(taskId);
+}
+
+function getAssigneeData(taskId) {
+  for (
+    let indexAssignee = 0;
+    indexAssignee < cleanTasks[taskId].contact.length;
+    indexAssignee++
+  ) {
+    let assigneeId = cleanTasks[taskId].contact[indexAssignee];
+    let assignee = cleanContacts[assigneeId].name;
+    document.getElementById("assigneeDetails").innerHTML +=
+      detailsAssigneesInsert(assignee);
+  }
+}
+
+function clearTaskDetails() {
+  document.getElementById("taskDetailsHeader").innerHTML = "";
+  document.getElementById("taskDetailDescription").innerHTML = "";
+  document.getElementById("dueDateDetails").innerHTML = "";
+  document.getElementById("dueDateDetails").innerHTML = "";
+  document.getElementById("priorityDetails").innerHTML = "";
+  document.getElementById("taskTagDetails").innerHTML = "";
+  document.getElementById("assigneeDetails").innerHTML = "";
 }
