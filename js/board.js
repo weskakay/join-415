@@ -1,5 +1,6 @@
 let tasks = [];
 let contacts = [];
+let cleanTasks = [];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
@@ -46,6 +47,7 @@ function renderTasks() {
   let feedback = document.getElementById("board_feedback");
   let done = document.getElementById("board_done");
 
+  let tasksTodo = {};
   for (let i = 0; i < tasks.length; i++) {
     (todo.innerHTML += listTasks(tasks[i], i)),
       getAssignedContacts(tasks[i].assingned, i);
@@ -181,3 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     boardWrapper.appendChild(noResultsMessage);
   }
 });
+
+function getTaskData(taskId) {
+  console.log(cleanTasks[taskId].category);
+}

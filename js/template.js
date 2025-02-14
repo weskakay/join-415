@@ -240,3 +240,9 @@ function listCardContacts(contact) {
           };">${getInitials(contact.name)}</div>
           `;
 }
+
+function tasksDetailsInsert() {
+  return `
+
+`;
+}

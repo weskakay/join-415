@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="../css/font_styles.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="../css/user_story.css" />
+    <link rel="stylesheet" href="../css/overlay.css" />
+    <link rel="stylesheet" href="../css/contacts.css" />
 
     <script src="../js/script.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/template.js"></script>
+    <script src="../js/contacts.js"></script>
   </head>
   <body onload="pageLoadHandler('board'), getTasks()">
     <header>
@@ -138,6 +142,39 @@
                 <p>No tasks To Do</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
+              <<<<<<< HEAD =======
+              <div
+                class="board-card"
+                id="-OIb1ahbSTdCoQXBeHDU"
+                draggable="true"
+                ondragstart="drag(event)"
+                onclick="getTaskData(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
+              >
+                <div class="crad-category size16">User Story</div>
+                <div class="card-title-discription">
+                  <p class="size16 weight700">Bitte Heflen Sie mir!</p>
+                  <p class="size16 weight400 colorGrey">
+                    Hier könnte etwas Produktives stehen.
+                  </p>
+                </div>
+                <!--ausblenden, wenn keine subtask hinzugefügt-->
+                <div class="crad-subtask-wrapper" id="subtask">
+                  <div class="subtask-progessbar">
+                    <div class="subtask-progess"></div>
+                  </div>
+                  <p class="size12">1/2 Subtasks</p>
+                </div>
+                <div class="crad-footer">
+                  <div class="card-assignedto" id="card_contact">
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                    <div class="background-contacts card-contact-bg">AM</div>
+                  </div>
+                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
+                </div>
+              </div>
+              >>>>>>> main
             </div>
           </div>
           <div class="board-tasks-container">
@@ -210,6 +247,101 @@
         </div>
       </div>
     </main>
+
+    <!--Overlay containing Task Details window-->
+    <div
+      id="overlayTasksDetail"
+      class="overlay d_none"
+      onclick="d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
+      onmousedown="prevent(event)"
+    ></div>
+    <!--Task Details window-->
+    <div
+      id="taskDetailsWindow"
+      class="addContactWindowClosed"
+      onclick="noBubble(event) "
+    >
+      <div class="userStoryContainer">
+        <div class="userStory">
+          <div class="storyHeader">
+            <div class="tagContainer">
+              <div class="tag"><p class="size23">Some Tag</p></div>
+            </div>
+            <div
+              class="closeButton"
+              onclick="contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction'), d_none('overlayTasksDetail')"
+            ></div>
+          </div>
+          <p class="weight700 size61">Kochwelt Page & Recipe Recommender</p>
+          <p class="weight400 size20">
+            Build start page with recipe recommendation.
+          </p>
+          <div class="userStoryTable">
+            <table>
+              <tr>
+                <td class="weight400 size20 colorDarkBlue">Due Date:</td>
+                <td id="dueDateDetails" class="weight400 size20">-</td>
+              </tr>
+              <tr>
+                <td class="weight400 size20 colorDarkBlue">Priority:</td>
+                <td id="priorityDetails" class="weight400 size20">
+                  -
+                  <img
+                    src="../assets/icons/add_task/prio-low-icon.svg"
+                    alt=""
+                  />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="assigneeContainer">
+            <p class="weight400 size20 colorDarkBlue">Assigned to:</p>
+            <div id="assigneeDetails" class="assigneeList">
+              <div class="assignee">
+                <img
+                  src="../assets/icons/add_task/user_image.svg"
+                  alt="User Img"
+                />
+                <p class="weight400 size19">Guy 1</p>
+              </div>
+              <div class="assignee">
+                <img
+                  src="../assets/icons/add_task/user_image.svg"
+                  alt="User Img"
+                />
+                <p class="weight400 size19">Guy 2</p>
+              </div>
+              <div class="assignee">
+                <img
+                  src="../assets/icons/add_task/user_image.svg"
+                  alt="User Img"
+                />
+                <p class="weight400 size19">Guy 3</p>
+              </div>
+            </div>
+          </div>
+          <div class="subtaskContainer">
+            <p class="weight400 size20 colorDarkBlue">Substasks</p>
+            <div id="substaskListDetails" class="subtaskList">
+              <div class="subtask">
+                <input type="checkbox" />
+                <p class="weight400 size16">Some Subtask</p>
+              </div>
+              <div class="subtask">
+                <input type="checkbox" />
+                <p class="weight400 size16">Some Subtask 2</p>
+              </div>
+              <div class="subtask">
+                <input type="checkbox" />
+                <p class="weight400 size16">Some Subtask 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--END: Task Details -->
     <footer class="d_none footer_nav">
       <nav class="nav-footer" onmousedown="prevent(event)">
         <div
