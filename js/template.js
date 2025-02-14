@@ -206,7 +206,7 @@ function listTasks(task, i) {
   return /*html*/ `
     <div
       class="board-card"
-      id="${i}"
+      id="${task.id}"
       draggable="true"
       ondragstart="drag(event)"
     >

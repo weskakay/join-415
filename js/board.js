@@ -22,7 +22,7 @@ async function getContacts(path = `contacts/`) {
 }
 
 async function getTasks(path = `tasks/`) {
-  getContacts();
+  await getContacts();
   tasks = [];
   cleanTasks = [];
   let response = await fetch(BASE_URL + path + ".json");
@@ -47,11 +47,31 @@ function renderTasks() {
   let progress = document.getElementById("board_progress");
   let feedback = document.getElementById("board_feedback");
   let done = document.getElementById("board_done");
+  clearTasksContent();
 
-  let tasksTodo = {};
   for (let i = 0; i < tasks.length; i++) {
-    (todo.innerHTML += listTasks(tasks[i], i)),
-      getAssignedContacts(tasks[i].assingned, i);
+    let task = tasks[i];
+    let taskElement = document.createElement("div");
+    taskElement.innerHTML = listTasks(task, i);
+    taskElement = taskElement.firstElementChild;
+
+    switch (task.status) {
+      case "todo":
+        todo.appendChild(taskElement);
+        break;
+      case "progress":
+        progress.appendChild(taskElement);
+        break;
+      case "feedback":
+        feedback.appendChild(taskElement);
+        break;
+      case "done":
+        done.appendChild(taskElement);
+        break;
+      default:
+        console.warn("Unbekannter Status:", task.status);
+    }
+    getAssignedContacts(task.assingned, i);
   }
 }
 
@@ -105,36 +125,67 @@ function searchTasks() {
     noResultsMessage.style.display = "none";
   }
 }
-/**
- * Allows task elements to be dropped into a new column.
- * @param {Event} ev - The drag event.
- */
+
+async function drop(ev, targetColumn) {
+  ev.preventDefault();
+  let taskId = ev.dataTransfer.getData("text");
+  let draggedElement = document.getElementById(taskId);
+  let dropTarget = document.getElementById("board_" + targetColumn);
+
+  if (dropTarget && draggedElement) {
+    dropTarget.appendChild(draggedElement);
+
+    let dropTargetId = dropTarget.id;
+    let task = tasks.find((t) => t.id === taskId);
+    if (task) {
+      task.status = dropTargetId.replace("board_", "");
+
+      try {
+        await updateTaskStatusInFirebase(taskId, task.status);
+      } catch (error) {
+        console.error("Error updating task status in Firebase:", error);
+      }
+    }
+  }
+}
+
+async function updateTaskStatusInFirebase(taskId, newStatus) {
+  try {
+    const getResponse = await fetch(`${BASE_URL}tasks/${taskId}.json`);
+    const existingData = await getResponse.json();
+
+    existingData.status = newStatus;
+
+    const response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(existingData),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Fehler beim Aktualisieren der Task: ${response.statusText}`
+      );
+    }
+  } catch (error) {
+    console.error(
+      "Fehler beim Aktualisieren des Task-Status in Firebase:",
+      error
+    );
+    throw error;
+  }
+}
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
-/**
- * Stores the ID of the dragged task element.
- * @param {Event} ev - The drag start event.
- */
+
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
 }
-/**
- * Handles the drop event, moves the task to the new column, and saves its position.
- * @param {Event} ev - The drop event.
- * @param {string} targetColumn - The ID of the target column where the task should be moved.
- */
-function drop(ev) {
-  ev.preventDefault();
-  const draggedElement = document.getElementById(
-    ev.dataTransfer.getData("text")
-  );
-  const dropTarget = ev.target.closest(".board-card-container");
 
-  if (dropTarget) {
-    dropTarget.appendChild(draggedElement);
-  }
-}
 /**
  * Displays the "No tasks" message if a column is empty.
  * @param {string} id - The ID of the board column.
@@ -241,4 +292,11 @@ function clearTaskDetails() {
   document.getElementById("taskTagDetails").innerHTML = "";
   document.getElementById("assigneeDetails").innerHTML = "";
   document.getElementById("substaskListDetails").innerHTML = "";
+}
+
+function clearTasksContent() {
+  document.getElementById("board_todo").innerHTML = "";
+  document.getElementById("board_progress").innerHTML = "";
+  document.getElementById("board_feedback").innerHTML = "";
+  document.getElementById("board_done").innerHTML = "";
 }

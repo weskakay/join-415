@@ -134,8 +134,10 @@
             <div
               class="board-card-container"
               id="board_todo"
-              ondrop="drop(event)"
-              ondragover="allowDrop(event)"
+              class="board-card-container"
+              id="board_todo"
+              ondrop="drop(event, 'todo')"
+              ondragover='allowDrop(event, "to-do")'
             >
               <div class="board-no-task size16 weight400" id="no-task-todo">
                 <p>No tasks To Do</p>
@@ -185,8 +187,8 @@
             <div
               class="board-card-container"
               id="board_progress"
-              ondrop="drop(event)"
-              ondragover="allowDrop(event)"
+              ondrop="drop(event, 'progress')"
+              ondragover='allowDrop(event, "progress")'
             >
               <div class="board-no-task size16" id="no-task-progress">
                 <p>No tasks In Progress</p>
@@ -205,8 +207,8 @@
             <div
               class="board-card-container"
               id="board_feedback"
-              ondrop="drop(event)"
-              ondragover="allowDrop(event)"
+              ondrop="drop(event, 'feedback')"
+              ondragover='allowDrop(event, "feedback")'
             >
               <div class="board-no-task size16" id="no-task-feedback">
                 <p>No tasks Await feedback</p>
@@ -225,8 +227,8 @@
             <div
               class="board-card-container"
               id="board_done"
-              ondrop="drop(event)"
-              ondragover="allowDrop(event)"
+              ondrop="drop(event, 'done')"
+              ondragover='allowDrop(event, "done")'
             >
               <div class="board-no-task size16" id="no-task-done">
                 <p>No tasks Done</p>
@@ -236,6 +238,7 @@
           </div>
         </div>
       </div>
+
       <!-- Add Task Overlay -->
       <div id="addTaskOverlay" class="overlay hidden">
         <div class="overlay-content">

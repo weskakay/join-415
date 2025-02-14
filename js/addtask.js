@@ -282,7 +282,7 @@ function prepareTaskData() {
   let prio = selectedPrio;
   let category = document.getElementById("inputCategory").value;
   let subtask = subtaskInputs;
-  let status = "to-do";
+  let status = "todo";
 
   return {
     title,
