@@ -201,3 +201,9 @@ function listSubtasks(i, content) {
       </div>
     `;
 }
+
+function tasksDetailsInsert() {
+  return `
+
+`;
+}

@@ -12,18 +12,8 @@ async function getTasks(path = `tasks/`) {
     document.getElementById("").innerHTML = "";
     return;
   } else {
-    Object.entries(tasksData).forEach(([id, content]) => {
-      tasks.push({
-        id: id,
-        category: content.category,
-        title: content.title,
-        discription: content.discription,
-        prio: content.prio,
-        assingned: content.assingned,
-        subtasks: content.sub,
-      });
-    });
-    sortContacts();
+    tasks.push(tasksData);
+    console.log(tasks);
   }
 }
 /**
