@@ -506,12 +506,12 @@ select {
     bottom: 80px;
     width: 100%;
     height: 80px;
-    background-color: #f6f7f8;
+    background-color: #F6F7F8;
     gap: 32px;
   }
 
   .add-task-bottom-buttons > button {
-    height: 56px;
+    height: 51px;
   }
 
   .required-mobile {
