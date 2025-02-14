@@ -109,7 +109,7 @@ function mobileIntro() {
   let joinDesktop = document.getElementById("join-home");
   let joinMobile = document.getElementById("join-mobile-intro");
 
- if (media.matches) {
+  if (media.matches) {
     if (joinDesktop) joinDesktop.classList.add("d_none");
     if (joinMobile) joinMobile.classList.remove("d_none");
   } else {
@@ -117,7 +117,7 @@ function mobileIntro() {
     if (joinMobile) joinMobile.classList.add("d_none");
   }
   setTimeout(() => {
-    document.getElementById("intro-body").style.backgroundColor = "white";
+    /*--document.getElementById("intro-body").style.backgroundColor = "white";--*/
     if (joinMobile) joinMobile.classList.add("transition-active");
   }, 500);
 }
@@ -219,4 +219,3 @@ function sortContacts(contacts) {
     a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
 }
-

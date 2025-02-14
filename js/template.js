@@ -201,3 +201,42 @@ function listSubtasks(i, content) {
       </div>
     `;
 }
+
+function listTasks(task, i) {
+  return /*html*/ `
+    <div
+      class="board-card"
+      id="${i}"
+      draggable="true"
+      ondragstart="drag(event)"
+    >
+      <div class="crad-category size16">${task.category}</div>
+      <div class="card-title-discription">
+        <p class="size16 weight700">${task.title}</p>
+        <p class="size16 weight400 colorGrey">
+        ${truncateText(task.description === undefined ? "" : task.description)}
+        </p>
+      </div>
+      <!--ausblenden, wenn keine subtask hinzugefügt-->
+      <div class="crad-subtask-wrapper" id="subtask">
+        <div class="subtask-progessbar">
+          <div class="subtask-progess"></div>
+        </div>
+        <p class="size12">1/2 Subtasks</p>
+      </div>
+      <div class="crad-footer">
+        <div class="card-assignedto" id="card_contact_${i}">
+        </div>
+        <img src="../assets/icons/add_task/prio-${task.prio}-icon.svg" />
+      </div>
+    </div>
+  `;
+}
+
+function listCardContacts(contact) {
+  return /*html*/ `
+          <div class="background-contacts card-contact-bg">${getInitials(
+            contact.name
+          )}</div>
+          `;
+}

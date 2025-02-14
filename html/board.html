@@ -11,14 +11,15 @@
 
     <script src="../js/script.js"></script>
     <script src="../js/board.js"></script>
+    <script src="../js/template.js"></script>
   </head>
-  <body onload="pageLoadHandler('board')">
+  <body onload="pageLoadHandler('board'), getTasks()">
     <header>
       <div class="header_content">
         <img
-        src="../assets/join_logo/join-logo-capa2.svg"
-        alt="join-logo"
-        class="join-mobile-logo d_none"
+          src="../assets/join_logo/join-logo-capa2.svg"
+          alt="join-logo"
+          class="join-mobile-logo d_none"
         />
         <p class="weight400 size20 kanban">Kanban Project Management Tool</p>
         <div class="profileSection">
@@ -100,13 +101,17 @@
                 <img src="../assets/icons/board/search.svg" />
               </div>
             </div>
-            <button class="board-add-task-button size21"onclick="openAddTaskOverlay()">
-              <span id="addtask-span">Add Task </span><img src="../assets/icons/board/add.svg" />
+            <button
+              class="board-add-task-button size21"
+              onclick="openAddTaskOverlay()"
+            >
+              <span id="addtask-span">Add Task </span
+              ><img src="../assets/icons/board/add.svg" />
             </button>
           </div>
-          </div>
-          <div id="mobile-board-search" class="d_none">
-            <div class="search-input">
+        </div>
+        <div id="mobile-board-search" class="d_none">
+          <div class="search-input">
             <input class="size20" type="text" placeholder="Find Task" />
             <div class="search-icon-seperator">
               <div class="search-seperator"></div>
@@ -118,8 +123,10 @@
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>To do</p>
-              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()" />
-
+              <img
+                src="../assets/icons/board/plus button.svg"
+                onclick="openAddTaskOverlay()"
+              />
             </div>
             <div
               class="board-card-container"
@@ -131,42 +138,15 @@
                 <p>No tasks To Do</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
-              <div
-                class="board-card"
-                id="task1"
-                draggable="true"
-                ondragstart="drag(event)"
-              >
-                <div class="crad-category size16">User Story</div>
-                <div class="card-title-discription">
-                  <p class="size16 weight700">Bitte Heflen Sie mir!</p>
-                  <p class="size16 weight400 colorGrey">
-                    Hier könnte etwas Produktives stehen.
-                  </p>
-                </div>
-                <!--ausblenden, wenn keine subtask hinzugefügt-->
-                <div class="crad-subtask-wrapper" id="subtask">
-                  <div class="subtask-progessbar">
-                    <div class="subtask-progess"></div>
-                  </div>
-                  <p class="size12">1/2 Subtasks</p>
-                </div>
-                <div class="crad-footer">
-                  <div class="card-assignedto" id="card_contact">
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                  </div>
-                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
-                </div>
-              </div>
             </div>
           </div>
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>In progress</p>
-              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()"/>
+              <img
+                src="../assets/icons/board/plus button.svg"
+                onclick="openAddTaskOverlay()"
+              />
             </div>
             <div
               class="board-card-container"
@@ -178,42 +158,15 @@
                 <p>No tasks In Progress</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
-              <div
-                class="board-card"
-                id="task2"
-                draggable="true"
-                ondragstart="drag(event)"
-              >
-                <div class="crad-category size16">User Story</div>
-                <div class="card-title-discription">
-                  <p class="size16 weight700">Progress</p>
-                  <p class="size16 weight400 colorGrey">
-                    Hier könnte etwas Produktives stehen.
-                  </p>
-                </div>
-                <!--ausblenden, wenn keine subtask hinzugefügt-->
-                <div class="crad-subtask-wrapper" id="subtask">
-                  <div class="subtask-progessbar">
-                    <div class="subtask-progess"></div>
-                  </div>
-                  <p class="size12">1/2 Subtasks</p>
-                </div>
-                <div class="crad-footer">
-                  <div class="card-assignedto" id="card_contact">
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                  </div>
-                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
-                </div>
-              </div>
             </div>
           </div>
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>Await feedback</p>
-              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()" />
+              <img
+                src="../assets/icons/board/plus button.svg"
+                onclick="openAddTaskOverlay()"
+              />
             </div>
             <div
               class="board-card-container"
@@ -225,42 +178,15 @@
                 <p>No tasks Await feedback</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
-              <div
-                class="board-card"
-                id="task3"
-                draggable="true"
-                ondragstart="drag(event)"
-              >
-                <div class="crad-category size16">User Story</div>
-                <div class="card-title-discription">
-                  <p class="size16 weight700">feedback!</p>
-                  <p class="size16 weight400 colorGrey">
-                    Hier könnte etwas Produktives stehen.
-                  </p>
-                </div>
-                <!--ausblenden, wenn keine subtask hinzugefügt-->
-                <div class="crad-subtask-wrapper" id="subtask">
-                  <div class="subtask-progessbar">
-                    <div class="subtask-progess"></div>
-                  </div>
-                  <p class="size12">1/2 Subtasks</p>
-                </div>
-                <div class="crad-footer">
-                  <div class="card-assignedto" id="card_contact">
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                  </div>
-                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
-                </div>
-              </div>
             </div>
           </div>
           <div class="board-tasks-container">
             <div class="board-headline size20 weight700">
               <p>Done</p>
-              <img src="../assets/icons/board/plus button.svg" onclick="openAddTaskOverlay()" />
+              <img
+                src="../assets/icons/board/plus button.svg"
+                onclick="openAddTaskOverlay()"
+              />
             </div>
             <div
               class="board-card-container"
@@ -272,36 +198,6 @@
                 <p>No tasks Done</p>
               </div>
               <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
-              <div
-                class="board-card"
-                id="task4"
-                draggable="true"
-                ondragstart="drag(event)"
-              >
-                <div class="crad-category size16">User Story</div>
-                <div class="card-title-discription">
-                  <p class="size16 weight700">Done!</p>
-                  <p class="size16 weight400 colorGrey">
-                    Hier könnte etwas Produktives stehen.
-                  </p>
-                </div>
-                <!--ausblenden, wenn keine subtask hinzugefügt-->
-                <div class="crad-subtask-wrapper" id="subtask">
-                  <div class="subtask-progessbar">
-                    <div class="subtask-progess"></div>
-                  </div>
-                  <p class="size12">1/2 Subtasks</p>
-                </div>
-                <div class="crad-footer">
-                  <div class="card-assignedto" id="card_contact">
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                  </div>
-                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -309,11 +205,10 @@
       <!-- Add Task Overlay -->
       <div id="addTaskOverlay" class="overlay hidden">
         <div class="overlay-content">
-            <span class="close-btn" onclick="closeAddTaskOverlay()">&times;</span>
-            <iframe src="addtask.html" id="addTaskFrame"></iframe>
+          <span class="close-btn" onclick="closeAddTaskOverlay()">&times;</span>
+          <iframe src="addtask.html" id="addTaskFrame"></iframe>
         </div>
       </div>
-
     </main>
     <footer class="d_none footer_nav">
       <nav class="nav-footer" onmousedown="prevent(event)">
@@ -326,9 +221,11 @@
           </button>
           <span>Summary</span>
         </div>
-        <div class="navbar-wrapper-footer" 
-        style="background-color: rgba(9, 25, 49, 1)"
-        onclick='changeNavbarItems("board")'>
+        <div
+          class="navbar-wrapper-footer"
+          style="background-color: rgba(9, 25, 49, 1)"
+          onclick='changeNavbarItems("board")'
+        >
           <button class="navbar-menu-button navbar-footer-button">
             <img src="../assets/icons/nav_bar/board-icon.svg" />
           </button>

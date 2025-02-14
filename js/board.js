@@ -1,31 +1,73 @@
 let tasks = [];
+let contacts = [];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
  */
+
+async function getContacts(path = `contacts/`) {
+  contacts = [];
+  let response = await fetch(BASE_URL + path + ".json");
+  let contactData = await response.json();
+  Object.entries(contactData).forEach(([id, details]) => {
+    contacts.push({
+      id: id,
+      name: details.name,
+      email: details.email,
+      phone: details.phone,
+      colorId: details.colorId,
+    });
+  });
+}
+
 async function getTasks(path = `tasks/`) {
+  getContacts();
   tasks = [];
   let response = await fetch(BASE_URL + path + ".json");
   let tasksData = await response.json();
-  if (tasksData == null) {
-    document.getElementById("").innerHTML = "";
-    document.getElementById("").innerHTML = "";
-    return;
-  } else {
-    Object.entries(tasksData).forEach(([id, content]) => {
-      tasks.push({
-        id: id,
-        category: content.category,
-        title: content.title,
-        discription: content.discription,
-        prio: content.prio,
-        assingned: content.assingned,
-        subtasks: content.sub,
-      });
+  Object.entries(tasksData).forEach(([id, content]) => {
+    tasks.push({
+      id: id,
+      status: content.status,
+      category: content.category,
+      title: content.title,
+      description: content.description,
+      subtasks: content.subtask,
+      assingned: content.contact,
+      prio: content.prio,
     });
-    sortContacts();
+  });
+  renderTasks();
+}
+
+function renderTasks() {
+  let todo = document.getElementById("board_todo");
+  let progress = document.getElementById("board_progress");
+  let feedback = document.getElementById("board_feedback");
+  let done = document.getElementById("board_done");
+
+  for (let i = 0; i < tasks.length; i++) {
+    (todo.innerHTML += listTasks(tasks[i], i)),
+      getAssignedContacts(tasks[i].assingned, i);
   }
 }
+
+function getAssignedContacts(contactIDs, index) {
+  let content = document.getElementById("card_contact_" + index);
+  content.innerHTML = "";
+
+  let assingnedContacts = contacts.filter((contact) =>
+    contactIDs.includes(contact.id)
+  );
+  for (let i = 0; i < assingnedContacts.length; i++) {
+    content.innerHTML += listCardContacts(assingnedContacts[i]);
+  }
+}
+
+function truncateText(text) {
+  return text.length > 48 ? text.substring(0, 48) + "..." : text;
+}
+
 /**
  * Filters tasks based on search input and updates the board.
  * Shows a message if no tasks match the search criteria.
