@@ -24,6 +24,7 @@ async function getContacts(path = `contacts/`) {
 async function getTasks(path = `tasks/`) {
   getContacts();
   tasks = [];
+  cleanTasks = [];
   let response = await fetch(BASE_URL + path + ".json");
   let tasksData = await response.json();
   Object.entries(tasksData).forEach(([id, content]) => {
@@ -185,5 +186,54 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function getTaskData(taskId) {
-  console.log(cleanTasks[taskId].category);
+  clearTaskDetails();
+  document.getElementById("taskDetailsHeader").innerHTML =
+    cleanTasks[taskId].title;
+  document.getElementById("taskDetailDescription").innerHTML =
+    cleanTasks[taskId].description;
+  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date
+    .split("-")
+    .reverse()
+    .join("/");
+  document.getElementById("priorityDetails").innerHTML =
+    cleanTasks[taskId].prio;
+  document.getElementById("taskTagDetails").innerHTML =
+    cleanTasks[taskId].category;
+  getAssigneeData(taskId);
+  getSubtaskData(taskId);
+}
+
+function getAssigneeData(taskId) {
+  for (
+    let indexAssignee = 0;
+    indexAssignee < cleanTasks[taskId].contact.length;
+    indexAssignee++
+  ) {
+    let assigneeId = cleanTasks[taskId].contact[indexAssignee];
+    let assignee = cleanContacts[assigneeId].name;
+    document.getElementById("assigneeDetails").innerHTML +=
+      detailsAssigneesInsert(assignee);
+  }
+}
+
+function getSubtaskData(taskId) {
+  for (
+    let indexSubtask = 0;
+    indexSubtask < cleanTasks[taskId].subtask.length;
+    indexSubtask++
+  ) {
+    let subtaskList = cleanTasks[taskId].subtask[indexSubtask];
+    document.getElementById("substaskListDetails").innerHTML +=
+      detailsSubtaskInsert(subtaskList);
+  }
+}
+
+function clearTaskDetails() {
+  document.getElementById("taskDetailsHeader").innerHTML = "";
+  document.getElementById("taskDetailDescription").innerHTML = "";
+  document.getElementById("dueDateDetails").innerHTML = "";
+  document.getElementById("priorityDetails").innerHTML = "";
+  document.getElementById("taskTagDetails").innerHTML = "";
+  document.getElementById("assigneeDetails").innerHTML = "";
+  document.getElementById("substaskListDetails").innerHTML = "";
 }
