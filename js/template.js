@@ -55,7 +55,7 @@ function detailsProfileInsert(contact, index) {
       <div id="editButtonsPosition" class="editButtonsPosition">
         <div class="detailsEdit">
           <button
-            onclick="d_none('overlayEdit'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"
+            onclick="d_none('overlayEdit'), d_none('editWindow'), openEditOverlay(${index}), toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')"
           >
             <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
             <p class="weight400 size16 colorDarkBlue">Edit</p>
@@ -167,7 +167,7 @@ function editButtonsInsert(contact, index) {
     </button>
     <button
       class="add-task-button-create"
-      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}')"
+      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}'), d_none('editWindow')"
     >
       Save<img src="../assets/icons/add_task/check-icon.svg" />
     </button>

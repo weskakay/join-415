@@ -87,7 +87,7 @@ function mediaQuery() {
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
   summaryMedia();
-  // contactsMedia();
+  contactsMedia();
   boardMedia();
   mobileIntro();
   if (media.matches) {
@@ -108,6 +108,7 @@ function mediaQuery() {
 function mobileIntro() {
   let joinDesktop = document.getElementById("join-home");
   let joinMobile = document.getElementById("join-mobile-intro");
+  let introBody= document.getElementById("intro-body");
 
   if (media.matches) {
     if (joinDesktop) joinDesktop.classList.add("d_none");
@@ -117,7 +118,7 @@ function mobileIntro() {
     if (joinMobile) joinMobile.classList.add("d_none");
   }
   setTimeout(() => {
-    /*--document.getElementById("intro-body").style.backgroundColor = "white";--*/
+    if (introBody) introBody.style.backgroundColor = "white";
     if (joinMobile) joinMobile.classList.add("transition-active");
   }, 500);
 }
@@ -150,18 +151,20 @@ function boardMedia() {
   }
 }
 
-//Funktion muss ausgeblendet sein, da sonst in Mobile die User Details nicht angezeigt werden
+// Funktion muss ausgeblendet sein, da sonst in Mobile die User Details nicht angezeigt werden
 
-/*function contactsMedia() {
-  let details = document.getElementsByClassName("contactsDetails");
+function contactsMedia() {
+  let details = document.getElementById("contactsDetailsMobile");
+  let editWindow= document.getElementById("editWindow");
+  let contactWindow= document.getElementById("contactWindow");
 
   if (media.matches) {
-    Array.from(details).forEach(el => el.classList.add("d_none"));
+    if (details) details.classList.add("d_none");
+    if (editWindow) editWindow.classList.add("d_none");
+    if (contactWindow) contactWindow.classList.add("d_none");
   }
-  else {
-    Array.from(details).forEach(el => el.classList.remove("d_none"));
-  }
-}*/
+}
+
 mediaQuery();
 media.addEventListener("change", mediaQuery);
 

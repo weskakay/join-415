@@ -68,7 +68,10 @@ function renderContacts(sortedGroups, grouped) {
 function openContactDetails(indexContacts) {
   document.getElementById("detailsProfile").innerHTML = "";
   document.getElementById("detailsContact").innerHTML = "";
+  let detailsMobile = document.getElementById("contactsDetailsMobile");
   let contact = contacts[indexContacts];
+
+  detailsMobile.classList.remove("d_none");
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
     indexContacts
