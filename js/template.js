@@ -210,3 +210,12 @@ function detailsAssigneesInsert(assignee) {
     </div>
   `;
 }
+
+function detailsSubtaskInsert(subtaskList) {
+  return `
+    <div class="subtask">
+      <input type="checkbox" />
+      <p class="weight400 size16">${subtaskList}</p>
+    </div>
+  `;
+}

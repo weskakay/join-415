@@ -165,6 +165,7 @@ function getTaskData(taskId) {
   document.getElementById("taskTagDetails").innerHTML =
     cleanTasks[taskId].category;
   getAssigneeData(taskId);
+  getSubtaskData(taskId);
 }
 
 function getAssigneeData(taskId) {
@@ -180,12 +181,24 @@ function getAssigneeData(taskId) {
   }
 }
 
+function getSubtaskData(taskId) {
+  for (
+    let indexSubtask = 0;
+    indexSubtask < cleanTasks[taskId].subtask.length;
+    indexSubtask++
+  ) {
+    let subtaskList = cleanTasks[taskId].subtask[indexSubtask];
+    document.getElementById("substaskListDetails").innerHTML +=
+      detailsSubtaskInsert(subtaskList);
+  }
+}
+
 function clearTaskDetails() {
   document.getElementById("taskDetailsHeader").innerHTML = "";
   document.getElementById("taskDetailDescription").innerHTML = "";
   document.getElementById("dueDateDetails").innerHTML = "";
-  document.getElementById("dueDateDetails").innerHTML = "";
   document.getElementById("priorityDetails").innerHTML = "";
   document.getElementById("taskTagDetails").innerHTML = "";
   document.getElementById("assigneeDetails").innerHTML = "";
+  document.getElementById("substaskListDetails").innerHTML = "";
 }
