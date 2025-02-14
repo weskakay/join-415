@@ -27,6 +27,7 @@ async function getContacts(path = `contacts/`) {
     });
     lastContact = contacts[contacts.length - 1];
     groupContacts();
+    console.log(contacts);
   }
 }
 

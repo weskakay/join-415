@@ -209,12 +209,15 @@ function listTasks(task, i) {
       id="${task.id}"
       draggable="true"
       ondragstart="drag(event)"
+      onclick="getTaskData(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
     >
       <div class="crad-category size16">${task.category}</div>
       <div class="card-title-discription">
         <p class="size16 weight700">${task.title}</p>
         <p class="size16 weight400 colorGrey">
-        ${truncateText(task.description === undefined ? "" : task.description)}
+          ${truncateText(
+            task.description === undefined ? "" : task.description
+          )}
         </p>
       </div>
       <!--ausblenden, wenn keine subtask hinzugefügt-->
@@ -225,8 +228,7 @@ function listTasks(task, i) {
         <p class="size12">1/2 Subtasks</p>
       </div>
       <div class="crad-footer">
-        <div class="card-assignedto" id="card_contact_${i}">
-        </div>
+        <div class="card-assignedto" id="card_contact_${i}"></div>
         <img src="../assets/icons/add_task/prio-${task.prio}-icon.svg" />
       </div>
     </div>

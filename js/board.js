@@ -1,17 +1,17 @@
 let tasks = [];
-let contacts = [];
+let contactsBoard = [];
 let cleanTasks = [];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
  */
 
-async function getContacts(path = `contacts/`) {
-  contacts = [];
+async function getContactsBoard(path = `contacts/`) {
+  contactsBoard = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
   Object.entries(contactData).forEach(([id, details]) => {
-    contacts.push({
+    contactsBoard.push({
       id: id,
       name: details.name,
       email: details.email,
@@ -22,7 +22,7 @@ async function getContacts(path = `contacts/`) {
 }
 
 async function getTasks(path = `tasks/`) {
-  await getContacts();
+  await getContactsBoard();
   tasks = [];
   cleanTasks = [];
   let response = await fetch(BASE_URL + path + ".json");
@@ -37,8 +37,10 @@ async function getTasks(path = `tasks/`) {
       subtasks: content.subtask,
       assingned: content.contact,
       prio: content.prio,
+      date: content.date,
     });
   });
+  console.log(tasks);
   renderTasks();
 }
 
@@ -236,36 +238,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/**
- * Valention was passiert hier? clearTask not defined
- */
-/*
 function getTaskData(taskId) {
+  let targetId = taskId;
+  let taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   clearTaskDetails();
-  document.getElementById("taskDetailsHeader").innerHTML =
-    cleanTasks[taskId].title;
+  document.getElementById("taskDetailsHeader").innerHTML = tasks[taskKey].title;
   document.getElementById("taskDetailDescription").innerHTML =
-    cleanTasks[taskId].description;
-  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date
+    tasks[taskKey].description;
+  document.getElementById("dueDateDetails").innerHTML = tasks[taskKey].date
     .split("-")
     .reverse()
     .join("/");
-  document.getElementById("priorityDetails").innerHTML =
-    cleanTasks[taskId].prio;
-  document.getElementById("taskTagDetails").innerHTML =
-    cleanTasks[taskId].category;
-  getAssigneeData(taskId);
-  getSubtaskData(taskId);
+  document.getElementById("priorityDetails").innerHTML = tasks[taskKey].prio;
+  document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
+  //getAssigneeData(taskKey);
+  //getSubtaskData(taskKey);
 }
-  */
 
-function getAssigneeData(taskId) {
+function getAssigneeData(taskKey) {
   for (
     let indexAssignee = 0;
-    indexAssignee < cleanTasks[taskId].contact.length;
+    indexAssignee < tasks[taskKey].contact.length;
     indexAssignee++
   ) {
-    let assigneeId = cleanTasks[taskId].contact[indexAssignee];
+    let assigneeId = tasks[taskKey].contact[indexAssignee];
     let assignee = cleanContacts[assigneeId].name;
     document.getElementById("assigneeDetails").innerHTML +=
       detailsAssigneesInsert(assignee);
