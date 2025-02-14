@@ -235,8 +235,8 @@ function listTasks(task, i) {
 
 function listCardContacts(contact) {
   return /*html*/ `
-          <div class="background-contacts card-contact-bg">${getInitials(
-            contact.name
-          )}</div>
+          <div class="background-contacts card-contact-bg" style="background-color:${
+            bgcolors[contact.colorId].rgba
+          };">${getInitials(contact.name)}</div>
           `;
 }
