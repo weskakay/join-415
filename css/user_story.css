@@ -33,10 +33,20 @@
 .closeButton {
   height: 24px;
   width: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: url(../assets/icons/task_details/cross_default.svg) no-repeat
+    center center;
   cursor: pointer;
+  border-radius: 100%;
+}
+
+.closeButton:hover {
+  background-color: #eeeeee;
+}
+
+.closeButton:active {
+  background: url(../assets/icons/task_details/cross_active.svg) no-repeat
+    center center;
+  background-color: #29abe2;
 }
 
 .userStoryTable table {
