@@ -1,4 +1,5 @@
 let tasks = [];
+let cleanTasks = [];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
@@ -13,7 +14,8 @@ async function getTasks(path = `tasks/`) {
     return;
   } else {
     tasks.push(tasksData);
-    console.log(tasks);
+    cleanTasks = tasks[0];
+    console.log(cleanTasks);
   }
 }
 /**
@@ -129,3 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     boardWrapper.appendChild(noResultsMessage);
   }
 });
+
+function getTaskData(taskId) {
+  console.log(cleanTasks[taskId].category);
+}
