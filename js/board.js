@@ -156,8 +156,10 @@ function getTaskData(taskId) {
     cleanTasks[taskId].title;
   document.getElementById("taskDetailDescription").innerHTML =
     cleanTasks[taskId].description;
-  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date;
-  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date;
+  document.getElementById("dueDateDetails").innerHTML = cleanTasks[taskId].date
+    .split("-")
+    .reverse()
+    .join("/");
   document.getElementById("priorityDetails").innerHTML =
     cleanTasks[taskId].prio;
   document.getElementById("taskTagDetails").innerHTML =
