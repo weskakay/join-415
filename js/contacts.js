@@ -27,7 +27,6 @@ async function getContacts(path = `contacts/`) {
     });
     lastContact = contacts[contacts.length - 1];
     groupContacts();
-    console.log(contacts);
   }
 }
 
@@ -92,6 +91,7 @@ async function getContactData(inputName, inputEmail, inputPhone, overId) {
   await userCreateSuccess(inputName, inputEmail, inputPhone);
   await getContacts();
   cleanWindow(inputName, inputEmail, inputPhone, overId);
+  closeAddContact();
 }
 
 async function userCreateSuccess(inputName, inputEmail, inputPhone) {
@@ -213,6 +213,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   let changeName = document.getElementById(name).value;
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
+  let editWindow= document.getElementById("editWindow");
   await edit_data(
     (path = `contacts/` + id),
     (data = {
@@ -224,6 +225,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   );
   await getContacts();
   d_none("overlayEdit");
+  if(editWindow) editWindow.classList.add("d_none");
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
   openContactDetails(indexContacts);
   clearInput(name, email, tel);
@@ -235,14 +237,27 @@ function clearInput(name, email, tel) {
   document.getElementById(tel).value = "";
 }
 
-function openCreateOverlay() {
-  document.getElementById("overlay").innerHTML = overlayCreateUser();
+function openAddContact(){
+  let contactWindow= document.getElementById('contactWindow');
+  let contactOverlay= document.getElementById("overlay");
+
+  if (contactWindow) contactWindow.classList.remove("d_none");
+  if (contactOverlay) contactOverlay.classList.remove('d_none');
+}
+
+function closeAddContact(){
+  let contactWindow= document.getElementById('contactWindow');
+  let contactOverlay= document.getElementById("overlay");
+
+  if (contactWindow) contactWindow.classList.add("d_none");
+  if (contactOverlay) contactOverlay.classList.add('d_none');
 }
 
 function openEditOverlay(indexContacts) {
   document.getElementById("editInitialsColor").innerHTML = "";
   document.getElementById("editForm").innerHTML = "";
   document.getElementById("editButtons").innerHTML = "";
+  document.getElementById("editWindow").classList.remove("d_none");
   let contact = contacts[indexContacts];
   document.getElementById("editForm").innerHTML = editFormInsert(contact);
   document.getElementById("editInitialsColor").innerHTML =

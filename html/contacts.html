@@ -106,7 +106,7 @@
         'detailsWindowClosed', 'detailsWindow')"" >
         <div class="sticky" onmousedown="prevent(event)">
           <button
-            onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
+            onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow'), openAddContact()"
           >
             <p class="weight700 size21">Add new contact</p>
             <img
@@ -193,7 +193,7 @@
         <div class="addContactsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlay'), d_none('contactWindow'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+              onclick="closeAddContact(), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
             ></button>
           </div>
           <div class="emptyProfile">
@@ -232,13 +232,13 @@
             <div class="add-task-bottom-buttons">
               <button
                 class="add-task-button-clear"
-                onclick="d_none('overlay'), d_none('contactWindow'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+                onclick="closeAddContact(), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>
               <button
                 class="add-task-button-create"
-                onclick="getContactData('nameInput', 'mailInput', 'telInput', 'overlay'), d_none('contactWindow')"
+                onclick="getContactData('nameInput', 'mailInput', 'telInput', 'overlay')"
               >
                 Create contact<img
                   src="../assets/icons/add_task/check-icon.svg"
@@ -279,7 +279,7 @@
         <div class="addContactsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlayEdit'), d_none('editWindow'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
             ></button>
           </div>
           <div class="emptyProfile">
