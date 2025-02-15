@@ -281,9 +281,13 @@ function getAssigneeData(taskKey) {
     let assigneeKey = Object.keys(contactsBoard).find(
       (key) => contactsBoard[key].id == assigneeId
     );
-    let assignee = contactsBoard[assigneeKey].name;
-    document.getElementById("assigneeDetails").innerHTML +=
-      detailsAssigneesInsert(assignee);
+    if (contactsBoard[assigneeKey] == undefined) {
+      continue;
+    } else {
+      let assignee = contactsBoard[assigneeKey].name;
+      document.getElementById("assigneeDetails").innerHTML +=
+        detailsAssigneesInsert(assignee);
+    }
   }
 }
 
@@ -311,6 +315,7 @@ function clearTaskDetails() {
   document.getElementById("taskTagDetails").innerHTML = "";
   document.getElementById("assigneeDetails").innerHTML = "";
   document.getElementById("substaskListDetails").innerHTML = "";
+  document.getElementById("priorityIcon").src = "";
 }
 
 function clearTasksContent() {
