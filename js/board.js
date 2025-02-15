@@ -248,10 +248,27 @@ function getTaskData(taskId) {
     .split("-")
     .reverse()
     .join("/");
-  document.getElementById("priorityDetails").innerHTML = tasks[taskKey].prio;
+  let setPrio = tasks[taskKey].prio;
+  document.getElementById("priorityDetails").innerHTML = setPrio;
   document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
   getAssigneeData(taskKey);
   getSubtaskData(taskKey);
+  getPrioImage(setPrio);
+}
+
+function getPrioImage(setPrio) {
+  let prioUrl = document.getElementById("priorityIcon");
+  console.log(prioUrl);
+  switch (setPrio) {
+    case "low":
+      prioUrl.src = urgencySymbols[0];
+      break;
+    case "medium":
+      prioUrl.src = urgencySymbols[1];
+      break;
+    case "urgent":
+      prioUrl.src = urgencySymbols[2];
+  }
 }
 
 function getAssigneeData(taskKey) {

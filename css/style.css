@@ -157,6 +157,10 @@ footer {
   display: none;
 }
 
+.displayFlex {
+  display: flex;
+}
+
 @media (max-width: 960px) {
   header {
     padding-left: 0px;
@@ -166,12 +170,12 @@ footer {
     top: 0;
   }
 
-  footer{
+  footer {
     position: sticky;
     bottom: 0;
   }
 
-  .navbar-wrapper-footer span{
+  .navbar-wrapper-footer span {
     font-size: 14px;
   }
 
