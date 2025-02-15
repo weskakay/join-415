@@ -172,7 +172,7 @@
     overflow: hidden;
   }
   .summaryContent{
-   padding: 136px 16px 40px 16px;
+   padding: 40px 16px 40px 16px;
     overflow-x: hidden;
     overflow-y: scroll;
     margin-bottom: 120px;
@@ -238,5 +238,31 @@
   }
   .size16{
     font-size: 14px;
+  }
+}
+
+@media(max-width: 430px){
+  #medium-container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .large{
+    width: calc(320px - 32px);
+  }
+  #small-container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .dashboard{
+    margin-top: 400px;
+    }
+  .contentFullStatus{
+    gap: 8px;
+  }
+}
+
+@media(max-width: 350px){
+  .summaryContent{
+    padding: 30px 8px 30px 8px;
   }
 }
