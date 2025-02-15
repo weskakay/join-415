@@ -1,5 +1,10 @@
 let tasks = [];
 let contactsBoard = [];
+let urgencySymbols = [
+  "../assets/icons/add_task/prio-low-icon.svg",
+  "../assets/icons/add_task/prio-medium-icon.svg",
+  "../assets/icons/add_task/prio-urgent-icon.svg",
+];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
