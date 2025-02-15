@@ -249,7 +249,8 @@ function getTaskData(taskId) {
     .reverse()
     .join("/");
   let setPrio = tasks[taskKey].prio;
-  document.getElementById("priorityDetails").innerHTML = setPrio;
+  document.getElementById("priorityDetails").innerHTML =
+    String(setPrio).charAt(0).toUpperCase() + String(setPrio).slice(1);
   document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
   getAssigneeData(taskKey);
   getSubtaskData(taskKey);
@@ -258,7 +259,6 @@ function getTaskData(taskId) {
 
 function getPrioImage(setPrio) {
   let prioUrl = document.getElementById("priorityIcon");
-  console.log(prioUrl);
   switch (setPrio) {
     case "low":
       prioUrl.src = urgencySymbols[0];
