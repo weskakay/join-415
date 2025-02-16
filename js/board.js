@@ -318,24 +318,32 @@ function getSubtaskData(taskKey) {
       indexSubtask++
     ) {
       let subtaskList = tasks[taskKey].subtasks[indexSubtask].text;
-      let subtaskStatus = tasks[taskKey].subtasks[indexSubtask].checked;
       document.getElementById("substaskListDetails").innerHTML +=
         detailsSubtaskInsert(subtaskList, indexSubtask);
-      getSubtaskStatus(subtaskStatus, indexSubtask);
+    }
+  }
+  getSubtaskStatus(taskKey);
+}
+
+function getSubtaskStatus(taskKey) {
+  for (
+    let indexSubStatus = 0;
+    indexSubStatus < tasks[taskKey].subtasks.length;
+    indexSubStatus++
+  ) {
+    let subtaskStatus = tasks[taskKey].subtasks[indexSubStatus].checked;
+
+    let statusCheck = document.getElementById(`subtaskCheck${indexSubStatus}`);
+    switch (subtaskStatus) {
+      case 0:
+        statusCheck.checked = false;
+        break;
+      case 1:
+        statusCheck.checked = true;
     }
   }
 }
 
-function getSubtaskStatus(subtaskStatus, indexSubtask) {
-  let statusCheck = document.getElementById(`subtaskCheck${indexSubtask}`);
-  switch (subtaskStatus) {
-    case 0:
-      statusCheck.checked = false;
-      break;
-    case 1:
-      statusCheck.checked = true;
-  }
-}
 function renderProgressbarSubtask(cardSubtasks, index) {
   let statusContainer = document.getElementById("subtaskStatus-" + index);
   let progress = document.getElementById("subtaskProgress-" + index);
