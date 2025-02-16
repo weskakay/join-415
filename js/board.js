@@ -311,10 +311,23 @@ function getSubtaskData(taskKey) {
       indexSubtask < tasks[taskKey].subtasks.length;
       indexSubtask++
     ) {
-      let subtaskList = tasks[taskKey].subtasks[indexSubtask];
+      let subtaskList = tasks[taskKey].subtasks[indexSubtask].text;
+      let subtaskStatus = tasks[taskKey].subtasks[indexSubtask].checked;
       document.getElementById("substaskListDetails").innerHTML +=
         detailsSubtaskInsert(subtaskList, indexSubtask);
+      getSubtaskStatus(subtaskStatus, indexSubtask);
     }
+  }
+}
+
+function getSubtaskStatus(subtaskStatus, indexSubtask) {
+  let statusCheck = document.getElementById(`subtaskCheck${indexSubtask}`);
+  switch (subtaskStatus) {
+    case 0:
+      statusCheck.checked = false;
+      break;
+    case 1:
+      statusCheck.checked = true;
   }
 }
 

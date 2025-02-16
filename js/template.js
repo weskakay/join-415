@@ -255,8 +255,8 @@ function detailsAssigneesInsert(assignee) {
 function detailsSubtaskInsert(subtaskList, indexSubtask) {
   return `
     <div class="subtask">
-      <input id="subtaskCheck${indexSubtask} type="checkbox" />
-      <p class="weight400 size16">${subtaskList.text}</p>
+      <input id="subtaskCheck${indexSubtask}" type="checkbox" />
+      <p class="weight400 size16">${subtaskList}</p>
     </div>
   `;
 }
