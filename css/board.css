@@ -177,16 +177,15 @@
   justify-content: space-between;
 }
 
-.subtask-progessbar {
+.subtask-progressbar {
   height: 8px;
   width: 128px;
   border-radius: 8px;
   background-color: rgba(244, 244, 244, 1);
 }
 
-.subtask-progess {
+.subtask-progress {
   height: 8px;
-  width: 50%;
   border-radius: 8px;
   background-color: rgba(69, 137, 255, 1);
 }
