@@ -156,7 +156,14 @@
   border-radius: 8px;
   padding: 4px 16px;
   color: rgba(255, 255, 255, 1);
+}
+
+.crad-category.user {
   background-color: rgba(0, 56, 255, 1);
+}
+
+.crad-category.technical {
+  background-color: rgba(31, 215, 193, 1);
 }
 
 .card-title-discription {

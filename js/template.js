@@ -202,7 +202,7 @@ function listSubtasks(i, content) {
     `;
 }
 
-function listTasks(task, i) {
+function listTasks(task, i, category) {
   return /*html*/ `
     <div
       class="board-card"
@@ -211,7 +211,7 @@ function listTasks(task, i) {
       ondragstart="drag(event)"
       onclick="getTaskData(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
     >
-      <div class="crad-category size16">${task.category}</div>
+      <div class="crad-category size16 ${category}">${task.category}</div>
       <div class="card-title-discription">
         <p class="size16 weight700">${task.title}</p>
         <p class="size16 weight400 colorGrey">

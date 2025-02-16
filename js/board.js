@@ -56,7 +56,11 @@ function renderTasks() {
   for (let i = 0; i < tasks.length; i++) {
     let task = tasks[i];
     let taskElement = document.createElement("div");
-    taskElement.innerHTML = listTasks(task, i);
+    taskElement.innerHTML = listTasks(
+      task,
+      i,
+      formatCategoryText(task.category)
+    );
     taskElement = taskElement.firstElementChild;
 
     switch (task.status) {
@@ -89,6 +93,13 @@ function getAssignedContacts(contactIDs, index) {
   for (let i = 0; i < assignedContacts.length; i++) {
     content.innerHTML += listCardContacts(assignedContacts[i]);
   }
+}
+
+function formatCategoryText(category) {
+  let formatCategory = category.trim().split(" ");
+  formatCategory.pop().toLowerCase();
+  let formattedText = formatCategory.join(" ").toLowerCase();
+  return formattedText;
 }
 
 function truncateText(text) {
