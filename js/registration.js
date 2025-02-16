@@ -1,14 +1,20 @@
-async function getData(path = "/login-data", login) {
+let login;
+
+async function getLoggedIn() {
   try {
-    let response = await fetch(BASE_URL + path + ".json");
-    login = await response.json();
+    await getLoginData(path = "/login-data")
     proofLoginData(login);
   } catch (error) {
     console.log("Error fetching login data", error);
   }
 }
 
-async function proofLoginData(login, userId, findUser) {
+async function getLoginData(path = "") {
+  let response = await fetch(BASE_URL + path + ".json");
+  login = await response.json();
+}
+
+async function proofLoginData(userId, findUser) {
   let emailLogin = document.getElementById("email-login");
   let passwordLogin = document.getElementById("password-login");
   let loginData = Object.values(login || {});
@@ -34,12 +40,12 @@ async function proofLoginData(login, userId, findUser) {
   }
 }
 
-function registrationData() {
+async function registrationData() {
   let email = document.getElementById("email-input");
   let password = document.getElementById("password-input");
   let name = document.getElementById("name-input");
   let confPassword = document.getElementById("confirm-password-input");
-
+  
   if (confirmPassword()) {
     update_data("/login-data", {
       email: `${email.value.trim()}`,
@@ -53,8 +59,7 @@ function registrationData() {
     document.getElementById("error-pw").classList.remove("d_none");
 
     console.log("wrong password");
-  }
-}
+  }}
 
 function confirmPassword() {
   let passwordInput = document.getElementById("password-input");

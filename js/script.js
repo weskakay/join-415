@@ -1,5 +1,5 @@
+const BASE_URL = "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
 let media = window.matchMedia("(max-width: 960px)");
-
 let currentUser = null;
 
 function pageLoadHandler(id) {
@@ -55,9 +55,6 @@ function openLegalNotice() {
 function openPrivacyPolicy() {
   window.location.href = "../html/privacy_policy.html";
 }
-
-const BASE_URL =
-  "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function update_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
@@ -167,8 +164,6 @@ function boardMedia() {
     if (addTaskSpan) addTaskSpan.classList.remove("d_none");
   }
 }
-
-// Funktion muss ausgeblendet sein, da sonst in Mobile die User Details nicht angezeigt werden
 
 function contactsMedia() {
   let details = document.getElementById("contactsDetailsMobile");
