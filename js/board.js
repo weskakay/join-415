@@ -270,7 +270,7 @@ function getTaskData(taskId) {
     String(setPrio).charAt(0).toUpperCase() + String(setPrio).slice(1);
   document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
   getAssigneeData(taskKey);
-  getSubtaskData(taskKey);
+  getSubtaskData(taskKey, taskId);
   getPrioImage(setPrio);
 }
 
@@ -308,7 +308,7 @@ function getAssigneeData(taskKey) {
   }
 }
 
-function getSubtaskData(taskKey) {
+function getSubtaskData(taskKey, taskId) {
   if (tasks[taskKey].subtasks == undefined) {
     return;
   } else {
@@ -319,7 +319,7 @@ function getSubtaskData(taskKey) {
     ) {
       let subtaskList = tasks[taskKey].subtasks[indexSubtask].text;
       document.getElementById("substaskListDetails").innerHTML +=
-        detailsSubtaskInsert(subtaskList, indexSubtask);
+        detailsSubtaskInsert(subtaskList, indexSubtask, taskId);
     }
   }
   getSubtaskStatus(taskKey);
@@ -393,4 +393,28 @@ function clearTasksContent() {
   document.getElementById("board_progress").innerHTML = "";
   document.getElementById("board_feedback").innerHTML = "";
   document.getElementById("board_done").innerHTML = "";
+}
+
+async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
+  let checkStatus = document.getElementById(subtaskId);
+  console.log(checkStatus.checked);
+  if (checkStatus.checked == true) {
+    let statusTrue = 1;
+    await edit_data(
+      (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
+      (data = {
+        checked: statusTrue,
+      })
+    );
+  } else {
+    let statusFalse = 0;
+
+    await edit_data(
+      (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
+      (data = {
+        checked: statusFalse,
+      })
+    );
+  }
+  getTasks();
 }

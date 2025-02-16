@@ -251,10 +251,14 @@ function detailsAssigneesInsert(assignee) {
   `;
 }
 
-function detailsSubtaskInsert(subtaskList, indexSubtask) {
+function detailsSubtaskInsert(subtaskList, indexSubtask, taskId) {
   return `
     <div class="subtask">
-      <input id="subtaskCheck${indexSubtask}" type="checkbox" />
+      <input
+        onclick="subtaskStatusChange('${indexSubtask}', '${taskId}', this.id)"
+        id="subtaskCheck${indexSubtask}"
+        type="checkbox"
+      />
       <p class="weight400 size16">${subtaskList}</p>
     </div>
   `;
