@@ -313,7 +313,7 @@ function getSubtaskData(taskKey) {
     ) {
       let subtaskList = tasks[taskKey].subtasks[indexSubtask];
       document.getElementById("substaskListDetails").innerHTML +=
-        detailsSubtaskInsert(subtaskList);
+        detailsSubtaskInsert(subtaskList, indexSubtask);
     }
   }
 }
