@@ -17,27 +17,31 @@
 
     <script src="../js/template.js"></script>
   </head>
-  <body>
+  <body onload="pageLoadHandler('privacy')">
     <header onmousedown="prevent(event)">
       <div class="header_content">
-        <p class="weight400 size20">Kanban Project Management Tool</p>
+        <img
+          src="../assets/join_logo/join-logo-capa2.svg"
+          alt="join-logo"
+          class="join-mobile-logo"
+        />
+        <p class="weight400 size20 kanban">Kanban Project Management Tool</p>
         <div class="profileSection">
-          <a href="../html/help.html">
+          <a href="../html/help.html" class="help">
             <img src="../assets/icons/header/help.svg" alt="help"
           /></a>
-          <div class="userInitials">
-            <img
-              src="../assets/icons/header/user_Profile.svg"
-              alt="User Initials"
-              onclick="d_none(`dropdown-menu`)"
-            />
-          </div>
+          <div
+            class="headerInitails size20 weight600"
+            onclick="d_none(`dropdown-menu`)"
+            id="header-initials-privacy"
+          ></div>
         </div>
       </div>
       <section id="dropdown-menu" class="d_none">
+        <div id="help-menu" onclick="openHelp()">Help</div>
         <div onclick="openLegalNotice()">Legal Notice</div>
         <div onclick="openPrivacyPolicy()">Privacy Policy</div>
-        <div onclick="openLoginHTML()">Log out</div>
+        <div onclick="logOut()">Log out</div>
       </section>
     </header>
 
@@ -281,5 +285,42 @@
         </p>
       </section>
     </main>
+    <footer class="footer_nav">
+      <nav class="nav-footer" onmousedown="prevent(event)">
+        <div
+          class="navbar-wrapper-footer"
+          onclick='changeNavbarItems("summary")'
+        >
+          <button class="navbar-menu-button navbar-footer-button">
+            <img src="../assets/icons/nav_bar/summary-icon.svg" />
+          </button>
+          <span>Summary</span>
+        </div>
+        <div class="navbar-wrapper-footer" onclick='changeNavbarItems("board")'>
+          <button class="navbar-menu-button navbar-footer-button">
+            <img src="../assets/icons/nav_bar/board-icon.svg" />
+          </button>
+          <span>Board</span>
+        </div>
+        <div
+          class="navbar-wrapper-footer"
+          onclick='changeNavbarItems("addtask")'
+        >
+          <button class="navbar-menu-button navbar-footer-button">
+            <img src="../assets/icons/nav_bar/addtask-icon.svg" />
+          </button>
+          <span>Add Task</span>
+        </div>
+        <div
+          class="navbar-wrapper-footer"
+          onclick='changeNavbarItems("contacts")'
+        >
+          <button class="navbar-menu-button navbar-footer-button">
+            <img src="../assets/icons/nav_bar/contacts-icon.svg" />
+          </button>
+          <span>Contacts</span>
+        </div>
+      </nav>
+    </footer>
   </body>
 </html>

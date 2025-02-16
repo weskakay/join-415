@@ -267,6 +267,11 @@
     padding: 24px 12px 0px 24px;
   }
 
+  .detailsProfile{
+    flex-direction: row;
+    align-items: center;
+  }
+
   .person-add {
     position: fixed;
     bottom: 112px;
@@ -402,6 +407,10 @@
 
   .size16 {
     font-size: 14px !important;
+  }
+
+  .detailsName >listedName {
+    font-size: 28px;
   }
 
   .contactsContainer {

@@ -20,7 +20,7 @@ async function proofLoginData(login, userId, findUser) {
       ) {
         findUser = loginData[id];
         userId = Object.keys(login)[id];
-        edit_data("/current-user", findUser);
+        await edit_data("/current-user", findUser);
         openSummary();
         return;
       }
@@ -95,11 +95,11 @@ function changeLogoSize() {
   }, 1000);
 }
 
-function openGuestLogin() {
+async function openGuestLogin() {
   let guest = {
     name: "Guest",
   };
-  edit_data("/current-user", guest);
+  await edit_data("/current-user", guest);
   openSummary();
 }
 

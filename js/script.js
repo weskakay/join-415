@@ -32,6 +32,14 @@ function openLoginHTML() {
   window.location.href = "../html/login.html";
 }
 
+async function logOut() {
+  let user = {
+    name: ""
+  }
+  await edit_data("/current-user", user);
+  openLoginHTML();
+}
+
 function openSignUpHTML() {
   window.location.href = "../html/signup.html";
 }
