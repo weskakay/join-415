@@ -80,6 +80,15 @@ async function edit_data(path = "", data = {}) {
   return await response.json();
 }
 
+async function patch_data(path = "", data = {}) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PATCH",
+    header: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+}
+
 function mediaQuery() {
   let header = document.getElementsByClassName("navbar");
   let footer = document.getElementsByClassName("footer_nav");
@@ -108,7 +117,7 @@ function mediaQuery() {
 function mobileIntro() {
   let joinDesktop = document.getElementById("join-home");
   let joinMobile = document.getElementById("join-mobile-intro");
-  let introBody= document.getElementById("intro-body");
+  let introBody = document.getElementById("intro-body");
 
   if (media.matches) {
     if (joinDesktop) joinDesktop.classList.add("d_none");
@@ -155,8 +164,8 @@ function boardMedia() {
 
 function contactsMedia() {
   let details = document.getElementById("contactsDetailsMobile");
-  let editWindow= document.getElementById("editWindow");
-  let contactWindow= document.getElementById("contactWindow");
+  let editWindow = document.getElementById("editWindow");
+  let contactWindow = document.getElementById("contactWindow");
 
   if (media.matches) {
     if (details) details.classList.add("d_none");

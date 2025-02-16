@@ -397,10 +397,9 @@ function clearTasksContent() {
 
 async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
   let checkStatus = document.getElementById(subtaskId);
-  console.log(checkStatus.checked);
   if (checkStatus.checked == true) {
     let statusTrue = 1;
-    await edit_data(
+    await patch_data(
       (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
       (data = {
         checked: statusTrue,
@@ -408,8 +407,7 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
     );
   } else {
     let statusFalse = 0;
-
-    await edit_data(
+    await patch_data(
       (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
       (data = {
         checked: statusFalse,
