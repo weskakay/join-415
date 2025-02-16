@@ -80,19 +80,25 @@ function renderTasks() {
         console.warn("Unbekannter Status:", task.status);
     }
     getAssignedContacts(task.assigned, i);
+    renderProgressbarSubtask(task.subtasks, i);
   }
 }
 
 function getAssignedContacts(contactIDs, index) {
-  let content = document.getElementById("card_contact_" + index);
+  let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
 
-  let assignedContacts = contacts.filter((contact) =>
+  let assignedContacts = contactsBoard.filter((contact) =>
     contactIDs.includes(contact.id)
   );
   for (let i = 0; i < assignedContacts.length; i++) {
     content.innerHTML += listCardContacts(assignedContacts[i]);
   }
+
+  let witdhContainer =
+    assignedContacts.length === 1 ? 32 : (assignedContacts.length - 1) * 32;
+
+  content.style.width = witdhContainer + "px";
 }
 
 function formatCategoryText(category) {
@@ -316,6 +322,39 @@ function getSubtaskData(taskKey) {
         detailsSubtaskInsert(subtaskList);
     }
   }
+}
+
+function renderProgressbarSubtask(cardSubtasks, index) {
+  let statusContainer = document.getElementById("subtaskStatus-" + index);
+  let progress = document.getElementById("subtaskProgress-" + index);
+  let tasksDone = document.getElementById("subtaskDone-" + index);
+
+  if (cardSubtasks === undefined) {
+    statusContainer.style.display = "none";
+    return;
+  }
+  let progressData = calcProgressSubtask(cardSubtasks);
+  let percentage =
+    (progressData.checkedQuantity / progressData.totalQuantity) * 100;
+
+  progress.style.width = percentage + "%";
+  tasksDone.innerHTML =
+    progressData.checkedQuantity +
+    "/" +
+    progressData.totalQuantity +
+    " Subtasks";
+}
+
+function calcProgressSubtask(cardSubtasks) {
+  let totalQuantity = cardSubtasks.length;
+  let checkedQuantity = cardSubtasks.filter(
+    (task) => task.checked === 1
+  ).length;
+
+  return {
+    totalQuantity,
+    checkedQuantity,
+  };
 }
 
 function clearTaskDetails() {

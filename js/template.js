@@ -220,15 +220,14 @@ function listTasks(task, i, category) {
           )}
         </p>
       </div>
-      <!--ausblenden, wenn keine subtask hinzugefügt-->
-      <div class="crad-subtask-wrapper" id="subtask">
-        <div class="subtask-progessbar">
-          <div class="subtask-progess"></div>
+      <div class="crad-subtask-wrapper" id="subtaskStatus-${i}">
+        <div class="subtask-progressbar">
+          <div class="subtask-progress" id="subtaskProgress-${i}"></div>
         </div>
-        <p class="size12">1/2 Subtasks</p>
+        <p class="size12" id="subtaskDone-${i}"></p>
       </div>
       <div class="crad-footer">
-        <div class="card-assignedto" id="card_contact_${i}"></div>
+        <div class="card-assignedto" id="cardContact-${i}"></div>
         <img src="../assets/icons/add_task/prio-${task.prio}-icon.svg" />
       </div>
     </div>
