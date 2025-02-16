@@ -166,7 +166,10 @@ function confirmInput() {
   let input = document.getElementById("subtaskInput");
 
   if (input.value.trim() !== "") {
-    subtaskInputs.push(input.value);
+    subtaskInputs.push({
+      text: input.value.trim(),
+      checked: 0,
+    });
     renderSubtasks();
     clearInput();
   }
@@ -177,7 +180,7 @@ function renderSubtasks() {
   list.innerHTML = "";
 
   for (let i = 0; i < subtaskInputs.length; i++) {
-    let content = subtaskInputs[i];
+    let content = subtaskInputs[i].text;
     list.innerHTML += listSubtasks(i, content);
   }
 }
@@ -199,7 +202,7 @@ function updateListItem(index) {
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
 
-  subtaskInputs[index] = listItem.innerText.trim();
+  subtaskInputs[index].text = listItem.innerText.trim();
 
   listItem.setAttribute("contenteditable", "false");
 
