@@ -256,7 +256,7 @@ function detailsSubtaskInsert(subtaskList) {
   return `
     <div class="subtask">
       <input type="checkbox" />
-      <p class="weight400 size16">${subtaskList}</p>
+      <p class="weight400 size16">${subtaskList.text}</p>
     </div>
   `;
 }
