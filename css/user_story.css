@@ -1,5 +1,5 @@
 .userStoryContainer {
-  width: 525px;
+  max-width: 525px;
   height: fit-content;
 }
 
@@ -28,6 +28,11 @@
   align-items: center;
   padding: 4px 24px;
   color: white;
+}
+
+.taskDetailsButtons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .closeButton {

@@ -194,7 +194,6 @@ function checkPhone(insertedPhone) {
 async function deleteContact(path) {
   await delete_data(path);
   window.location.reload();
-  getContacts();
 }
 
 async function editUser(name, email, tel, id, indexContacts) {
@@ -213,7 +212,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   let changeName = document.getElementById(name).value;
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
-  let editWindow= document.getElementById("editWindow");
+  let editWindow = document.getElementById("editWindow");
   await edit_data(
     (path = `contacts/` + id),
     (data = {
@@ -225,7 +224,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   );
   await getContacts();
   d_none("overlayEdit");
-  if(editWindow) editWindow.classList.add("d_none");
+  if (editWindow) editWindow.classList.add("d_none");
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
   openContactDetails(indexContacts);
   clearInput(name, email, tel);
@@ -237,20 +236,20 @@ function clearInput(name, email, tel) {
   document.getElementById(tel).value = "";
 }
 
-function openAddContact(){
-  let contactWindow= document.getElementById('contactWindow');
-  let contactOverlay= document.getElementById("overlay");
+function openAddContact() {
+  let contactWindow = document.getElementById("contactWindow");
+  let contactOverlay = document.getElementById("overlay");
 
   if (contactWindow) contactWindow.classList.remove("d_none");
-  if (contactOverlay) contactOverlay.classList.remove('d_none');
+  if (contactOverlay) contactOverlay.classList.remove("d_none");
 }
 
-function closeAddContact(){
-  let contactWindow= document.getElementById('contactWindow');
-  let contactOverlay= document.getElementById("overlay");
+function closeAddContact() {
+  let contactWindow = document.getElementById("contactWindow");
+  let contactOverlay = document.getElementById("overlay");
 
   if (contactWindow) contactWindow.classList.add("d_none");
-  if (contactOverlay) contactOverlay.classList.add('d_none');
+  if (contactOverlay) contactOverlay.classList.add("d_none");
 }
 
 function openEditOverlay(indexContacts) {

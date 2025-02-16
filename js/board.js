@@ -272,6 +272,8 @@ function getTaskData(taskId) {
   getAssigneeData(taskKey);
   getSubtaskData(taskKey, taskId);
   getPrioImage(setPrio);
+  document.getElementById("taskDetailsButtons").innerHTML =
+    detailsEditDeleteButtons(targetId);
 }
 
 function getPrioImage(setPrio) {
@@ -386,6 +388,7 @@ function clearTaskDetails() {
   document.getElementById("assigneeDetails").innerHTML = "";
   document.getElementById("substaskListDetails").innerHTML = "";
   document.getElementById("priorityIcon").src = "";
+  document.getElementById("taskDetailsButtons").innerHTML = "";
 }
 
 function clearTasksContent() {
@@ -415,4 +418,9 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
     );
   }
   getTasks();
+}
+
+async function deleteTask(path) {
+  await delete_data(path);
+  window.location.reload();
 }
