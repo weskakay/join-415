@@ -99,3 +99,10 @@
   padding: 4px 16px;
   gap: 16px;
 }
+
+.buttonPrioContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}

@@ -253,7 +253,7 @@
     <div
       id="overlayTasksDetail"
       class="overlay d_none"
-      onclick="resetEditWindow(), d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
+      onclick="d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
       onmousedown="prevent(event)"
     ></div>
     <!--Task Details window-->
@@ -265,37 +265,21 @@
       <div class="userStoryContainer">
         <div class="userStory">
           <div class="storyHeader">
-            <div id="tagContainer" class="tagContainer">
-              <div class="tag"><p id="taskTagDetails" class="size23"></p></div>
-            </div>
+            <div id="tagContainer" class="tagContainer"></div>
             <div
               class="closeButton"
               onclick="contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction'), d_none('overlayTasksDetail')"
             ></div>
           </div>
-          <div id="taskDetailsHeader" class="weight700 size61"></div>
-          <div id="taskDetailDescription" class="weight400 size20"></div>
+          <div id="taskDetailsHeader"></div>
+          <div id="taskDetailDescription"></div>
           <div class="userStoryTable">
             <table>
-              <tr>
-                <td id="dueDateTD" class="weight400 size20 colorDarkBlue">
-                  Due Date:
-                </td>
-                <td id="dueDateDetails" class="weight400 size20">-</td>
-              </tr>
-              <tr>
-                <td class="weight400 size20 colorDarkBlue">Priority:</td>
-                <td class="displayFlex">
-                  <p id="priorityDetails" class="weight400 size20"></p>
-                  <img id="priorityIcon" src="" alt="Priority Icon" />
-                </td>
-              </tr>
+              <tr id="dueDateTR"></tr>
+              <tr id="priorityDetailsTR"></tr>
             </table>
           </div>
-          <div class="assigneeContainer">
-            <p class="weight400 size20 colorDarkBlue">Assigned to:</p>
-            <div id="assigneeDetails" class="assigneeList"></div>
-          </div>
+          <div id="assigneeDetails" class="assigneeContainer"></div>
           <div class="subtaskContainer">
             <p class="weight400 size20 colorDarkBlue">Substasks</p>
             <div id="substaskListDetails" class="subtaskList"></div>

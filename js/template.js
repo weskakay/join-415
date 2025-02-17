@@ -242,6 +242,52 @@ function listCardContacts(contact) {
           `;
 }
 
+//from here task details window
+
+function detailsTagInsert(taskTag) {
+  return `
+    <div class="tag">
+      <p class="size23">${taskTag}</p>
+    </div>
+  `;
+}
+
+function detailsHeaderInsert(cleanHeader) {
+  return `
+  <p id="detailsHeader" class="weight700 size61">${cleanHeader}</p>
+  `;
+}
+
+function detailsDescriptionInsert(cleanDescription) {
+  return `
+  <p id="detailsDescription" class="weight400 size20">${cleanDescription}</p>
+  `;
+}
+
+function detailsDueDateInsert(cleanDate) {
+  return `
+    <td class="weight400 size20 colorDarkBlue">Due Date:</td>
+    <td id="dueDateDetails" class="weight400 size20">${cleanDate}</td>
+  `;
+}
+
+function detailsPriorityInsert(cleanPriority) {
+  return `
+    <td class="weight400 size20 colorDarkBlue">Priority:</td>
+    <td class="displayFlex">
+      <p class="weight400 size20">${cleanPriority}</p>
+      <img id="priorityIcon" src="" alt="Priority Icon" />
+    </td>
+  `;
+}
+
+function assigneeContainerInsert() {
+  return `
+    <p class="weight400 size20 colorDarkBlue">Assigned to:</p>
+    <div id="assigneeList" class="assigneeList"></div>
+  `;
+}
+
 function detailsAssigneesInsert(assignee) {
   return `
     <div class="assignee">
@@ -279,23 +325,35 @@ function detailsEditDeleteButtons(targetId) {
   `;
 }
 
+//from here task edit window
 function insertEditHeader(headerText) {
   return `
-    <p class="weight400 size20 colorDarkBlue">Title</p>
+    <p class="weight400 size16"">Title</p>
     <input id="inputTitleEdit" type="text" value="${headerText}" />
   `;
 }
 
 function insertEditDescription(descriptionText) {
   return `
-    <p class="weight400 size20 colorDarkBlue">Description</p>
+    <p class="weight400 size16">Description</p>
     <input id="inputDescriptionEdit" type="text" value="${descriptionText}" />
   `;
 }
 
 function insertEditDueDate(dueDateText) {
   return `
-    <p class="weight400 size20 colorDarkBlue">Due Date</p>
+    <p class="weight400 size16">Due Date</p>
     <input id="inputDueDateEdit" type="date" value="${dueDateText}" />
+  `;
+}
+
+function insertEditPriority() {
+  return `
+    <p class="weight400 size16 colorLightGrey">Priority</p>
+    <div class="buttonPrioContainer">
+      <button>Low</button>
+      <button>Medium</button>
+      <button>Urgent</button>
+    </div>
   `;
 }

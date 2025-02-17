@@ -3,25 +3,50 @@ function getTaskData(taskId) {
   let taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   let setPrio = tasks[taskKey].prio;
   clearTaskDetails();
-  getTaskDataDom(targetId, taskKey, setPrio);
-  getAssigneeData(taskKey);
+  getTag(taskKey);
+  getHeader(taskKey);
+  getDescription(taskKey);
+  getTaskDataDom(targetId, taskKey);
+  getDueDate(taskKey);
+  getPriority(setPrio);
+  getAssigneeContainer(taskKey);
   getSubtaskData(taskKey, taskId);
-  getPrioImage(setPrio);
 }
 
-function getTaskDataDom(targetId, taskKey, setPrio) {
-  document.getElementById("taskDetailsHeader").innerHTML = tasks[taskKey].title;
-  document.getElementById("taskDetailDescription").innerHTML =
-    tasks[taskKey].description;
-  document.getElementById("dueDateDetails").innerHTML = tasks[taskKey].date
-    .split("-")
-    .reverse()
-    .join("/");
-  document.getElementById("priorityDetails").innerHTML =
-    String(setPrio).charAt(0).toUpperCase() + String(setPrio).slice(1);
-  document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
+function getTaskDataDom(targetId, taskKey) {
   document.getElementById("taskDetailsButtons").innerHTML =
     detailsEditDeleteButtons(targetId);
+}
+
+function getTag(taskKey) {
+  let taskTag = tasks[taskKey].category;
+  document.getElementById("tagContainer").innerHTML = detailsTagInsert(taskTag);
+}
+
+function getHeader(taskKey) {
+  let cleanHeader = tasks[taskKey].title;
+  document.getElementById("taskDetailsHeader").innerHTML =
+    detailsHeaderInsert(cleanHeader);
+}
+
+function getDescription(taskKey) {
+  let cleanDescription = tasks[taskKey].description;
+  document.getElementById("taskDetailDescription").innerHTML =
+    detailsDescriptionInsert(cleanDescription);
+}
+
+function getDueDate(taskKey) {
+  let cleanDate = tasks[taskKey].date.split("-").reverse().join("/");
+  document.getElementById("dueDateTR").innerHTML =
+    detailsDueDateInsert(cleanDate);
+}
+
+function getPriority(setPrio) {
+  let cleanPriority =
+    String(setPrio).charAt(0).toUpperCase() + String(setPrio).slice(1);
+  document.getElementById("priorityDetailsTR").innerHTML =
+    detailsPriorityInsert(cleanPriority);
+  getPrioImage(setPrio);
 }
 
 function getPrioImage(setPrio) {
@@ -38,6 +63,12 @@ function getPrioImage(setPrio) {
   }
 }
 
+function getAssigneeContainer(taskKey) {
+  document.getElementById("assigneeDetails").innerHTML =
+    assigneeContainerInsert();
+  getAssigneeData(taskKey);
+}
+
 function getAssigneeData(taskKey) {
   for (
     let indexAssignee = 0;
@@ -52,7 +83,7 @@ function getAssigneeData(taskKey) {
       continue;
     } else {
       let assignee = contactsBoard[assigneeKey].name;
-      document.getElementById("assigneeDetails").innerHTML +=
+      document.getElementById("assigneeList").innerHTML +=
         detailsAssigneesInsert(assignee);
     }
   }
@@ -97,14 +128,56 @@ function getSubtaskStatus(taskKey) {
 function clearTaskDetails() {
   document.getElementById("taskDetailsHeader").innerHTML = "";
   document.getElementById("taskDetailDescription").innerHTML = "";
-  document.getElementById("dueDateDetails").innerHTML = "";
-  document.getElementById("priorityDetails").innerHTML = "";
-  document.getElementById("taskTagDetails").innerHTML = "";
+  document.getElementById("dueDateTR").innerHTML = "";
+  document.getElementById("priorityDetailsTR").innerHTML = "";
+  document.getElementById("tagContainer").innerHTML = "";
   document.getElementById("assigneeDetails").innerHTML = "";
   document.getElementById("substaskListDetails").innerHTML = "";
-  document.getElementById("priorityIcon").src = "";
   document.getElementById("taskDetailsButtons").innerHTML = "";
 }
+
+//edit task window from here on
+
+function editTaskDetails() {
+  editTag();
+  editHeader();
+  editDescription();
+  editDueDate();
+  editPriority();
+}
+
+function editTag() {
+  document.getElementById("tagContainer").innerHTML = "";
+}
+
+function editHeader() {
+  let headerText = document.getElementById("detailsHeader").innerHTML;
+  document.getElementById("taskDetailsHeader").innerHTML =
+    insertEditHeader(headerText);
+}
+
+function editDescription() {
+  let descriptionText = document.getElementById("detailsDescription").innerHTML;
+  document.getElementById("taskDetailDescription").innerHTML =
+    insertEditDescription(descriptionText);
+}
+
+function editDueDate() {
+  let dueDateText = document.getElementById("dueDateDetails").innerHTML;
+  let fixedDateFormat = dueDateText.split("/").reverse().join("-");
+  document.getElementById("dueDateTR").innerHTML =
+    insertEditDueDate(fixedDateFormat);
+}
+
+function editPriority() {
+  document.getElementById("priorityDetailsTR").innerHTML = insertEditPriority();
+}
+
+function editAssignee() {
+  document.getElementById("").innerHTML = insertEditAssignee();
+}
+
+//update & delete task
 
 async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
   let checkStatus = document.getElementById(subtaskId);
@@ -126,46 +199,4 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
 async function deleteTask(path) {
   await delete_data(path);
   window.location.reload();
-}
-
-function editTaskDetails() {
-  document.getElementById("tagContainer").classList.toggle("d_none");
-  editTaskDetailsDom();
-}
-
-function editTaskDetailsDom() {
-  editHeader();
-  editDescription();
-  editDueDate();
-}
-
-function editHeader() {
-  let headerText = document.getElementById("taskDetailsHeader").innerHTML;
-  document.getElementById("taskDetailsHeader").innerHTML =
-    insertEditHeader(headerText);
-}
-
-function editDescription() {
-  let descriptionText = document.getElementById(
-    "taskDetailDescription"
-  ).innerHTML;
-  document.getElementById("taskDetailDescription").innerHTML =
-    insertEditDescription(descriptionText);
-}
-
-function editDueDate() {
-  document.getElementById("dueDateTD").classList.toggle("d_none");
-  let dueDateText = document.getElementById("dueDateDetails").innerHTML;
-  let fixedDateFormat = dueDateText.split("/").reverse().join("-");
-  document.getElementById("dueDateDetails").innerHTML =
-    insertEditDueDate(fixedDateFormat);
-}
-
-function resetEditWindow() {
-  if (
-    document.getElementById("tagContainer").classList == "tagContainer d_none"
-  ) {
-    document.getElementById("dueDateTD").classList.toggle("d_none");
-    document.getElementById("tagContainer").classList.toggle("d_none");
-  }
 }
