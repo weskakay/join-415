@@ -357,3 +357,19 @@ function insertEditPriority() {
     </div>
   `;
 }
+
+function insertEditAssignee() {
+  return `
+    <p class="weight400 size16 colorLightGrey">Assigned to</p>
+    <select name="assignees" id="editAssigneeList" name="color">
+      <option value="" disabled selected hidden>
+        Select contacts to assign
+      </option>
+    </select>
+  `;
+}
+
+function insertAssigneeList(cleanedContact, cleanedContactId) {
+  return ` 
+    <option value="${cleanedContactId}">${cleanedContact}</option> `;
+}

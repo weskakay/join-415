@@ -144,6 +144,7 @@ function editTaskDetails() {
   editDescription();
   editDueDate();
   editPriority();
+  editAssignee();
 }
 
 function editTag() {
@@ -174,7 +175,23 @@ function editPriority() {
 }
 
 function editAssignee() {
-  document.getElementById("").innerHTML = insertEditAssignee();
+  document.getElementById("assigneeDetails").innerHTML = insertEditAssignee();
+  editAssigneeList();
+}
+
+function editAssigneeList() {
+  for (
+    let indexAssList = 0;
+    indexAssList < contactsBoard.length;
+    indexAssList++
+  ) {
+    let cleanedContact = contactsBoard[indexAssList].name;
+    let cleanedContactId = contactsBoard[indexAssList].id;
+    document.getElementById("editAssigneeList").innerHTML += insertAssigneeList(
+      cleanedContact,
+      cleanedContactId
+    );
+  }
 }
 
 //update & delete task
