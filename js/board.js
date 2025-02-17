@@ -257,7 +257,15 @@ document.addEventListener("DOMContentLoaded", () => {
 function getTaskData(taskId) {
   let targetId = taskId;
   let taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
+  let setPrio = tasks[taskKey].prio;
   clearTaskDetails();
+  getTaskDataDom(targetId, taskKey, setPrio);
+  getAssigneeData(taskKey);
+  getSubtaskData(taskKey, taskId);
+  getPrioImage(setPrio);
+}
+
+function getTaskDataDom(targetId, taskKey, setPrio) {
   document.getElementById("taskDetailsHeader").innerHTML = tasks[taskKey].title;
   document.getElementById("taskDetailDescription").innerHTML =
     tasks[taskKey].description;
@@ -265,13 +273,9 @@ function getTaskData(taskId) {
     .split("-")
     .reverse()
     .join("/");
-  let setPrio = tasks[taskKey].prio;
   document.getElementById("priorityDetails").innerHTML =
     String(setPrio).charAt(0).toUpperCase() + String(setPrio).slice(1);
   document.getElementById("taskTagDetails").innerHTML = tasks[taskKey].category;
-  getAssigneeData(taskKey);
-  getSubtaskData(taskKey, taskId);
-  getPrioImage(setPrio);
   document.getElementById("taskDetailsButtons").innerHTML =
     detailsEditDeleteButtons(targetId);
 }
@@ -398,28 +402,6 @@ function clearTasksContent() {
   document.getElementById("board_done").innerHTML = "";
 }
 
-/*async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
-  let checkStatus = document.getElementById(subtaskId);
-  if (checkStatus.checked == true) {
-    let statusTrue = 1;
-    await patch_data(
-      (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
-      (data = {
-        checked: statusTrue,
-      })
-    );
-  } else {
-    let statusFalse = 0;
-    await patch_data(
-      (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
-      (data = {
-        checked: statusFalse,
-      })
-    );
-  }
-  getTasks();
-}*/
-
 async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
   let checkStatus = document.getElementById(subtaskId);
   let statusChange = 0;
@@ -428,7 +410,6 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
   } else {
     statusChange = 0;
   }
-
   await patch_data(
     (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
     (data = {
