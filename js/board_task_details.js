@@ -138,6 +138,7 @@ function getSubtaskStatus(taskKey) {
 }
 
 function clearTaskDetails() {
+  document.getElementById("tagContainer").innerHTML = "";
   document.getElementById("taskDetailsHeader").innerHTML = "";
   document.getElementById("taskDetailDescription").innerHTML = "";
   document.getElementById("dueDateTR").innerHTML = "";
@@ -217,6 +218,7 @@ function editAssigneeImage() {
 }
 
 function editSubtasks() {
+  document.getElementById("subtaskContainer").innerHTML = "";
   document.getElementById("subtaskContainer").innerHTML =
     insertSubtaskContainer();
   editSubtasksList();
@@ -229,8 +231,9 @@ function editSubtasksList() {
     indexTaskKey++
   ) {
     let subtaskText = tasks[taskKey].subtasks[indexTaskKey].text;
+    let mainTaskKey = tasks[taskKey].id;
     document.getElementById("substaskListDetails").innerHTML +=
-      insertSubtasksList(subtaskText);
+      insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey);
   }
 }
 
@@ -256,4 +259,17 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
 async function deleteTask(path) {
   await delete_data(path);
   window.location.reload();
+}
+
+async function deleteSubtask(path) {
+  await delete_data(path);
+  getTasks();
+  editSubtasks();
+}
+
+function showButtonEdit() {
+  let checkCross = document.getElementById("checkCrossEdit");
+  let addIcon = document.getElementById("addIconEdit");
+  checkCross.style.display = "flex";
+  addIcon.style.display = "none";
 }

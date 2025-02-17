@@ -82,6 +82,12 @@ footer {
   background-color: #29abe2;
 }
 
+.separator24 {
+  height: 24px;
+  width: 1px;
+  background-color: #a8a8a8;
+}
+
 .separatorHorizontal {
   background-color: #29abe2;
   height: 3px;

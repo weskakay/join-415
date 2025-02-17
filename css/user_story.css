@@ -106,3 +106,26 @@
   align-items: center;
   gap: 16px;
 }
+
+.subtaskDetailsEdit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtaskEditButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtaskEditButton button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}

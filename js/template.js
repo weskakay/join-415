@@ -397,13 +397,64 @@ function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
 
 function insertSubtaskContainer() {
   return `
-    <p class="weight400 size16 colorLightGrey">Substasks</p>
+    <div class="add-task-input-fields">
+      <div>Subtasks</div>
+      <div class="add-task-input-subtasks">
+        <input
+          type="text"
+          id="subtaskEditInput"
+          placeholder="Add new subtask"
+          onclick="showButtonEdit('addIconEdit','checkCrossEdit')"
+        />
+        <div class="add-task-subtasks-icons-wrapper">
+          <div id="addIconEdit">
+            <div class="add-task-subtasks-icon">
+              <div class="add-task-subtasks-add" onclick="selectInput()">
+                <img
+                  src="../assets/icons/add_task/add-icon.svg"
+                  alt="Add subtask"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="add-task-subtasks-check-cross" id="checkCrossEdit">
+            <div class="add-task-subtasks-icon" onclick="clearInput()">
+              <img src="../assets/icons/add_task/cross-icon.svg" alt="Cancel" />
+            </div>
+            <div class="add-task-subtasks-seperator"></div>
+            <div class="add-task-subtasks-icon" onclick="confirmInput()">
+              <img
+                class="add-task-subtasks-check"
+                src="../assets/icons/add_task/check-icon.svg"
+                alt="Confirm"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="subtaskList">
       <ul id="substaskListDetails"></ul>
     </div>
   `;
 }
 
-function insertSubtasksList(subtaskText) {
-  return ` <li>${subtaskText}</li> `;
+function insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey) {
+  return `
+    <div class="subtaskDetailsEdit">
+      <li>${subtaskText}</li>
+      <div class="subtaskEditButton">
+        <button class="subtaskEdit">
+          <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
+        </button>
+        <div class="separator24"></div>
+        <button
+          class="subtaskDelete"
+          onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${indexTaskKey}')"
+        >
+          <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
+        </button>
+      </div>
+    </div>
+  `;
 }
