@@ -1,10 +1,9 @@
 #legal-notice {
-  padding-left: 96px;
-  padding-right: 96px;
-  padding-top: 110px;
+  padding: 110px 96px;
   background-color: #f6f7f8;
   font-family: "Inter", sans-serif;
   height: 100%;
+  max-height: calc(100vh - 96px);
   max-width: 1920px;
   overflow: hidden scroll;
   scrollbar-width: none;
