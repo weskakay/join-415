@@ -1,3 +1,5 @@
+let assigneeEditKey = [];
+
 function getTaskData(taskId) {
   let targetId = taskId;
   let taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
@@ -70,6 +72,7 @@ function getAssigneeContainer(taskKey) {
 }
 
 function getAssigneeData(taskKey) {
+  assigneeEditKey = [];
   for (
     let indexAssignee = 0;
     indexAssignee < tasks[taskKey].assigned.length;
@@ -82,6 +85,7 @@ function getAssigneeData(taskKey) {
     if (contactsBoard[assigneeKey] == undefined) {
       continue;
     } else {
+      assigneeEditKey.push(assigneeKey);
       let assignee = contactsBoard[assigneeKey].name;
       let assigneeInitials = contactsBoard[assigneeKey].initials;
       let assigneeColor = contactsBoard[assigneeKey].colorId;
@@ -115,7 +119,6 @@ function getSubtaskStatus(taskKey) {
     indexSubStatus++
   ) {
     let subtaskStatus = tasks[taskKey].subtasks[indexSubStatus].checked;
-
     let statusCheck = document.getElementById(`subtaskCheck${indexSubStatus}`);
     switch (subtaskStatus) {
       case 0:
@@ -179,6 +182,7 @@ function editPriority() {
 function editAssignee() {
   document.getElementById("assigneeDetails").innerHTML = insertEditAssignee();
   editAssigneeList();
+  editAssigneeImage();
 }
 
 function editAssigneeList() {
@@ -193,6 +197,16 @@ function editAssigneeList() {
       cleanedContact,
       cleanedContactId
     );
+  }
+}
+
+function editAssigneeImage() {
+  for (let indexFind = 0; indexFind < assigneeEditKey.length; indexFind++) {
+    let assigneeImageColor = contactsBoard[assigneeEditKey[indexFind]].colorId;
+    let assigneeImageInitials =
+      contactsBoard[assigneeEditKey[indexFind]].initials;
+    document.getElementById("editAssigneeImage").innerHTML +=
+      insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials);
   }
 }
 

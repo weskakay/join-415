@@ -368,10 +368,22 @@ function insertEditAssignee() {
         Select contacts to assign
       </option>
     </select>
+    <div class="displayFlex" id="editAssigneeImage"></div>
   `;
 }
 
 function insertAssigneeList(cleanedContact, cleanedContactId) {
   return ` 
     <option value="${cleanedContactId}">${cleanedContact}</option> `;
+}
+
+function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
+  return `
+    <div
+      class="background-contacts"
+      style="background-color: ${bgcolors[assigneeImageColor].rgba}"
+    >
+      <p class="weight400 size12">${assigneeImageInitials}</p>
+    </div>
+  `;
 }
