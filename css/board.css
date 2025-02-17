@@ -119,7 +119,8 @@
 
 .board-card-container-highlight {
   background-color: rgba(39, 39, 39, 0.1);
-  transition: background-color 0.3s ease-in-out; 
+  border: 3px dashed #00162e;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
 
