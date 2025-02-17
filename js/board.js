@@ -398,7 +398,7 @@ function clearTasksContent() {
   document.getElementById("board_done").innerHTML = "";
 }
 
-async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
+/*async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
   let checkStatus = document.getElementById(subtaskId);
   if (checkStatus.checked == true) {
     let statusTrue = 1;
@@ -417,6 +417,24 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
       })
     );
   }
+  getTasks();
+}*/
+
+async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
+  let checkStatus = document.getElementById(subtaskId);
+  let statusChange = 0;
+  if (checkStatus.checked == true) {
+    statusChange = 1;
+  } else {
+    statusChange = 0;
+  }
+
+  await patch_data(
+    (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
+    (data = {
+      checked: statusChange,
+    })
+  );
   getTasks();
 }
 
