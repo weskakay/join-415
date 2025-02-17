@@ -20,6 +20,7 @@ async function getContacts(path = `contacts/`) {
       contacts.push({
         id: id,
         name: details.name,
+        initials: getInitials(details.name),
         email: details.email,
         phone: details.phone,
         colorId: details.colorId,
