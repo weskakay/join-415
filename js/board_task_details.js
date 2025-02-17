@@ -1,8 +1,9 @@
 let assigneeEditKey = [];
+let taskKey = "";
 
 function getTaskData(taskId) {
   let targetId = taskId;
-  let taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
+  taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   let setPrio = tasks[taskKey].prio;
   clearTaskDetails();
   getTag(taskKey);
@@ -12,7 +13,7 @@ function getTaskData(taskId) {
   getDueDate(taskKey);
   getPriority(setPrio);
   getAssigneeContainer(taskKey);
-  getSubtaskData(taskKey, taskId);
+  getSubtaskContainer(taskKey, taskId);
 }
 
 function getTaskDataDom(targetId, taskKey) {
@@ -95,6 +96,12 @@ function getAssigneeData(taskKey) {
   }
 }
 
+function getSubtaskContainer(taskKey, taskId) {
+  document.getElementById("subtaskContainer").innerHTML =
+    detailsSubtaskContainer();
+  getSubtaskData(taskKey, taskId);
+}
+
 function getSubtaskData(taskKey, taskId) {
   if (tasks[taskKey].subtasks == undefined) {
     return;
@@ -137,7 +144,7 @@ function clearTaskDetails() {
   document.getElementById("priorityDetailsTR").innerHTML = "";
   document.getElementById("tagContainer").innerHTML = "";
   document.getElementById("assigneeDetails").innerHTML = "";
-  document.getElementById("substaskListDetails").innerHTML = "";
+  document.getElementById("subtaskContainer").innerHTML = "";
   document.getElementById("taskDetailsButtons").innerHTML = "";
 }
 
@@ -150,6 +157,7 @@ function editTaskDetails() {
   editDueDate();
   editPriority();
   editAssignee();
+  editSubtasks();
 }
 
 function editTag() {
@@ -193,10 +201,8 @@ function editAssigneeList() {
   ) {
     let cleanedContact = contactsBoard[indexAssList].name;
     let cleanedContactId = contactsBoard[indexAssList].id;
-    document.getElementById("editAssigneeList").innerHTML += insertAssigneeList(
-      cleanedContact,
-      cleanedContactId
-    );
+    document.getElementById("editAssigneeList").innerHTML +=
+      insertAssigneeSelectionList(cleanedContact, cleanedContactId);
   }
 }
 
@@ -207,6 +213,24 @@ function editAssigneeImage() {
       contactsBoard[assigneeEditKey[indexFind]].initials;
     document.getElementById("editAssigneeImage").innerHTML +=
       insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials);
+  }
+}
+
+function editSubtasks() {
+  document.getElementById("subtaskContainer").innerHTML =
+    insertSubtaskContainer();
+  editSubtasksList();
+}
+
+function editSubtasksList() {
+  for (
+    let indexTaskKey = 0;
+    indexTaskKey < tasks[taskKey].subtasks.length;
+    indexTaskKey++
+  ) {
+    let subtaskText = tasks[taskKey].subtasks[indexTaskKey].text;
+    document.getElementById("substaskListDetails").innerHTML +=
+      insertSubtasksList(subtaskText);
   }
 }
 

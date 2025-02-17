@@ -299,6 +299,13 @@ function detailsAssigneesInsert(assignee, assigneeInitials, assigneeColor) {
   `;
 }
 
+function detailsSubtaskContainer() {
+  return `
+    <p class="weight400 size20 colorDarkBlue">Substasks</p>
+    <div id="substaskListDetails" class="subtaskList"></div>
+  `;
+}
+
 function detailsSubtaskInsert(subtaskList, indexSubtask, taskId) {
   return `
     <div class="subtask">
@@ -372,7 +379,7 @@ function insertEditAssignee() {
   `;
 }
 
-function insertAssigneeList(cleanedContact, cleanedContactId) {
+function insertAssigneeSelectionList(cleanedContact, cleanedContactId) {
   return ` 
     <option value="${cleanedContactId}">${cleanedContact}</option> `;
 }
@@ -386,4 +393,17 @@ function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
       <p class="weight400 size12">${assigneeImageInitials}</p>
     </div>
   `;
+}
+
+function insertSubtaskContainer() {
+  return `
+    <p class="weight400 size16 colorLightGrey">Substasks</p>
+    <div class="subtaskList">
+      <ul id="substaskListDetails"></ul>
+    </div>
+  `;
+}
+
+function insertSubtasksList(subtaskText) {
+  return ` <li>${subtaskText}</li> `;
 }
