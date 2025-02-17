@@ -21,6 +21,7 @@ async function getContactsBoard(path = `contacts/`) {
       email: details.email,
       phone: details.phone,
       colorId: details.colorId,
+      initials: getInitials(details.name),
     });
   });
 }
@@ -150,7 +151,7 @@ function searchTasks() {
 async function drop(ev, targetColumn) {
   ev.preventDefault();
   removeHighlight(targetColumn);
-  
+
   let taskId = ev.dataTransfer.getData("text");
   let draggedElement = document.getElementById(taskId);
   let dropTarget = document.getElementById("board_" + targetColumn);
@@ -213,9 +214,9 @@ function drag(ev) {
  * @param {string} columnId - Example: 'todo', 'progress', 'feedback', 'done'
  */
 function highlight(columnId) {
-  const column = document.getElementById('board_' + columnId);
+  const column = document.getElementById("board_" + columnId);
   if (column) {
-    column.classList.add('board-card-container-highlight');
+    column.classList.add("board-card-container-highlight");
   }
 }
 /**
@@ -223,9 +224,9 @@ function highlight(columnId) {
  * @param {string} columnId - Example: 'todo', 'progress', 'feedback', 'done'
  */
 function removeHighlight(columnId) {
-  const column = document.getElementById('board_' + columnId);
+  const column = document.getElementById("board_" + columnId);
   if (column) {
-    column.classList.remove('board-card-container-highlight');
+    column.classList.remove("board-card-container-highlight");
   }
 }
 

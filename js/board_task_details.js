@@ -83,8 +83,10 @@ function getAssigneeData(taskKey) {
       continue;
     } else {
       let assignee = contactsBoard[assigneeKey].name;
+      let assigneeInitials = contactsBoard[assigneeKey].initials;
+      let assigneeColor = contactsBoard[assigneeKey].colorId;
       document.getElementById("assigneeList").innerHTML +=
-        detailsAssigneesInsert(assignee);
+        detailsAssigneesInsert(assignee, assigneeInitials, assigneeColor);
     }
   }
 }

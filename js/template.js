@@ -288,10 +288,12 @@ function assigneeContainerInsert() {
   `;
 }
 
-function detailsAssigneesInsert(assignee) {
+function detailsAssigneesInsert(assignee, assigneeInitials, assigneeColor) {
   return `
     <div class="assignee">
-      <img src="../assets/icons/add_task/user_image.svg" alt="User Img" />
+      <div class="background-contacts" style="background-color: ${bgcolors[assigneeColor].rgba}">
+        <p class="weight400 size12">${assigneeInitials}</p>
+      </div>
       <p class="weight400 size19">${assignee}</p>
     </div>
   `;
