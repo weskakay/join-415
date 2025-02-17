@@ -253,7 +253,7 @@
     <div
       id="overlayTasksDetail"
       class="overlay d_none"
-      onclick="d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
+      onclick="resetEditWindow(), d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
       onmousedown="prevent(event)"
     ></div>
     <!--Task Details window-->
@@ -265,7 +265,7 @@
       <div class="userStoryContainer">
         <div class="userStory">
           <div class="storyHeader">
-            <div class="tagContainer">
+            <div id="tagContainer" class="tagContainer">
               <div class="tag"><p id="taskTagDetails" class="size23"></p></div>
             </div>
             <div
@@ -273,12 +273,14 @@
               onclick="contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction'), d_none('overlayTasksDetail')"
             ></div>
           </div>
-          <p id="taskDetailsHeader" class="weight700 size61"></p>
-          <p id="taskDetailDescription" class="weight400 size20"></p>
+          <div id="taskDetailsHeader" class="weight700 size61"></div>
+          <div id="taskDetailDescription" class="weight400 size20"></div>
           <div class="userStoryTable">
             <table>
               <tr>
-                <td class="weight400 size20 colorDarkBlue">Due Date:</td>
+                <td id="dueDateTD" class="weight400 size20 colorDarkBlue">
+                  Due Date:
+                </td>
                 <td id="dueDateDetails" class="weight400 size20">-</td>
               </tr>
               <tr>

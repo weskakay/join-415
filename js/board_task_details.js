@@ -127,3 +127,45 @@ async function deleteTask(path) {
   await delete_data(path);
   window.location.reload();
 }
+
+function editTaskDetails() {
+  document.getElementById("tagContainer").classList.toggle("d_none");
+  editTaskDetailsDom();
+}
+
+function editTaskDetailsDom() {
+  editHeader();
+  editDescription();
+  editDueDate();
+}
+
+function editHeader() {
+  let headerText = document.getElementById("taskDetailsHeader").innerHTML;
+  document.getElementById("taskDetailsHeader").innerHTML =
+    insertEditHeader(headerText);
+}
+
+function editDescription() {
+  let descriptionText = document.getElementById(
+    "taskDetailDescription"
+  ).innerHTML;
+  document.getElementById("taskDetailDescription").innerHTML =
+    insertEditDescription(descriptionText);
+}
+
+function editDueDate() {
+  document.getElementById("dueDateTD").classList.toggle("d_none");
+  let dueDateText = document.getElementById("dueDateDetails").innerHTML;
+  let fixedDateFormat = dueDateText.split("/").reverse().join("-");
+  document.getElementById("dueDateDetails").innerHTML =
+    insertEditDueDate(fixedDateFormat);
+}
+
+function resetEditWindow() {
+  if (
+    document.getElementById("tagContainer").classList == "tagContainer d_none"
+  ) {
+    document.getElementById("dueDateTD").classList.toggle("d_none");
+    document.getElementById("tagContainer").classList.toggle("d_none");
+  }
+}

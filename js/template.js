@@ -271,10 +271,31 @@ function detailsEditDeleteButtons(targetId) {
         <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
         <p class="weight400 size16 colorDarkBlue">Delete</p>
       </button>
-      <button>
+      <button onclick="editTaskDetails()">
         <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
         <p class="weight400 size16 colorDarkBlue">Edit</p>
       </button>
     </div>
+  `;
+}
+
+function insertEditHeader(headerText) {
+  return `
+    <p class="weight400 size20 colorDarkBlue">Title</p>
+    <input id="inputTitleEdit" type="text" value="${headerText}" />
+  `;
+}
+
+function insertEditDescription(descriptionText) {
+  return `
+    <p class="weight400 size20 colorDarkBlue">Description</p>
+    <input id="inputDescriptionEdit" type="text" value="${descriptionText}" />
+  `;
+}
+
+function insertEditDueDate(dueDateText) {
+  return `
+    <p class="weight400 size20 colorDarkBlue">Due Date</p>
+    <input id="inputDueDateEdit" type="date" value="${dueDateText}" />
   `;
 }
