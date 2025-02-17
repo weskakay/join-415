@@ -137,8 +137,10 @@
               id="board_todo"
               class="board-card-container"
               id="board_todo"
-              ondrop="drop(event, 'todo')"
-              ondragover='allowDrop(event, "to-do")'
+              ondrop="drop(event, 'todo'); removeHighlight('todo')"
+              ondragover="allowDrop(event, 'todo')"
+              ondragenter="highlight('todo')"
+              ondragleave="removeHighlight('todo')"
             >
               <div class="board-no-task size16 weight400" id="no-task-todo">
                 <p>No tasks To Do</p>
@@ -188,8 +190,10 @@
             <div
               class="board-card-container"
               id="board_progress"
-              ondrop="drop(event, 'progress')"
-              ondragover='allowDrop(event, "progress")'
+              ondrop="drop(event, 'progress'); removeHighlight('progress')"
+              ondragover="allowDrop(event, 'progress')"
+              ondragenter="highlight('progress')"
+              ondragleave="removeHighlight('progress')"
             >
               <div class="board-no-task size16" id="no-task-progress">
                 <p>No tasks In Progress</p>
@@ -208,8 +212,10 @@
             <div
               class="board-card-container"
               id="board_feedback"
-              ondrop="drop(event, 'feedback')"
-              ondragover='allowDrop(event, "feedback")'
+              ondrop="drop(event, 'feedback'); removeHighlight('feedback')"
+              ondragover="allowDrop(event, 'feedback')"
+              ondragenter="highlight('feedback')"
+              ondragleave="removeHighlight('feedback')"
             >
               <div class="board-no-task size16" id="no-task-feedback">
                 <p>No tasks Await feedback</p>
@@ -228,8 +234,10 @@
             <div
               class="board-card-container"
               id="board_done"
-              ondrop="drop(event, 'done')"
-              ondragover='allowDrop(event, "done")'
+              ondrop="drop(event, 'done'); removeHighlight('done')"
+              ondragover="allowDrop(event, 'done')"
+              ondragenter="highlight('done')"
+              ondragleave="removeHighlight('done')"
             >
               <div class="board-no-task size16" id="no-task-done">
                 <p>No tasks Done</p>

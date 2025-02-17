@@ -149,6 +149,8 @@ function searchTasks() {
 
 async function drop(ev, targetColumn) {
   ev.preventDefault();
+  removeHighlight(targetColumn);
+  
   let taskId = ev.dataTransfer.getData("text");
   let draggedElement = document.getElementById(taskId);
   let dropTarget = document.getElementById("board_" + targetColumn);
@@ -199,12 +201,32 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
   }
 }
 
-function allowDrop(ev) {
+function allowDrop(ev, targetColumn) {
   ev.preventDefault();
 }
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
+}
+/**
+ * Adds a CSS class to highlight the specified column.
+ * @param {string} columnId - Example: 'todo', 'progress', 'feedback', 'done'
+ */
+function highlight(columnId) {
+  const column = document.getElementById('board_' + columnId);
+  if (column) {
+    column.classList.add('board-card-container-highlight');
+  }
+}
+/**
+ * Removes the highlight CSS class from the specified column.
+ * @param {string} columnId - Example: 'todo', 'progress', 'feedback', 'done'
+ */
+function removeHighlight(columnId) {
+  const column = document.getElementById('board_' + columnId);
+  if (column) {
+    column.classList.remove('board-card-container-highlight');
+  }
 }
 
 /**
