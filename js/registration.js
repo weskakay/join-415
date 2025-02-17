@@ -31,7 +31,6 @@ async function proofLoginData(userId, findUser) {
         return;
       }
     }
-    console.log("No user found with that email.");
     emailLogin.classList.add("wrong-password");
     passwordLogin.classList.add("wrong-password");
     document.getElementById("error-login").classList.remove("d_none");
@@ -52,8 +51,6 @@ async function registrationData() {
       password: `${password.value.trim()}`,
       name: `${name.value.trim()}`,
     });
-
-    console.log("user is successfully registered");
   } else {
     confPassword.classList.add("wrong-password");
     document.getElementById("error-pw").classList.remove("d_none");

@@ -50,3 +50,10 @@ a:hover {
   cursor: pointer;
   text-decoration: underline solid;
 }
+
+
+@media (max-width: 960px) {
+  #legal-notice{
+    padding: 40px 16px;
+  }
+}

@@ -234,3 +234,37 @@ function sortContacts(contacts) {
     a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
 }
+
+async function checkLoggedIn() {
+  await getCurrentUser();
+  if(currentUser.name.length > 0){
+    return true;
+  }
+  else if(currentUser.name.length == 0){
+    return false;
+  }
+}
+
+async function changeNavbar(styleID) {
+  let styleDiv= document.getElementsByClassName("loggedOutButtons");
+  let desktopID= document.getElementById('desktop-nav');
+  let footerID= document.getElementById('mobile-footer');
+  let profile = document.getElementsByClassName('profileSection');
+  let help = document.getElementsByClassName('help');
+    footerID.innerHTML = '';
+    desktopID.innerHTML='';
+  if(await checkLoggedIn()){
+    
+    footerID.innerHTML = mobileFooterLoggedIn();
+    desktopID.innerHTML= desktopNavbarLoggedIn();
+    for (let index = 0; index < profile.length; index++) {
+      profile[index].classList.remove('d_none');
+      help[index].classList.add('d_none');}
+  } else{
+    desktopID.innerHTML = desktopNavbarLoggedOut();
+    footerID.innerHTML = mobileFooterLoggedOut();
+    styleDiv[styleID].style.backgroundColor = "rgba(9, 25, 49, 1)";
+    for (let index = 0; index < profile.length; index++) {
+      profile[index].classList.add('d_none');}
+  };
+}

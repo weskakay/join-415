@@ -17,7 +17,7 @@
 
     <script src="../js/template.js"></script>
   </head>
-  <body onload="pageLoadHandler('legalNotice')">
+  <body onload="pageLoadHandler('legalNotice'), changeNavbar(1)">
     <header onmousedown="prevent(event)">
       <div class="header_content">
         <img
@@ -48,41 +48,10 @@
     <main>
       <nav class="navbar" onmousedown="prevent(event)">
         <img src="../assets/join_logo/join-logo.svg" />
-        <div class="navbar-menu">
-          <div
-            class="navbar-menu-button-wrapper"
-            onclick='changeNavbarItems("summary")'
-          >
-            <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/summary-icon.svg" />Summary
-            </button>
-          </div>
-          <div
-            class="navbar-menu-button-wrapper"
-            onclick='changeNavbarItems("addtask")'
-          >
-            <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/addtask-icon.svg" />Add Task
-            </button>
-          </div>
-          <div
-            class="navbar-menu-button-wrapper"
-            onclick='changeNavbarItems("board")'
-          >
-            <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/board-icon.svg" />Board
-            </button>
-          </div>
-          <div
-            class="navbar-menu-button-wrapper"
-            style="background-color: rgba(9, 25, 49, 1)"
-            onclick='changeNavbarItems("contacts")'
-          >
-            <button class="navbar-menu-button">
-              <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
-            </button>
-          </div>
+        <div class="navbar-menu" id="desktop-nav">
+          
         </div>
+        
         <div class="navbar-terms-links">
           <a href="../html/privacy_policy.html">
             <button class="navbar-term-button" onclick="">Privacy Policy</button>
@@ -182,40 +151,7 @@
       </section>
     </main>
     <footer class="footer_nav">
-      <nav class="nav-footer" onmousedown="prevent(event)">
-        <div
-          class="navbar-wrapper-footer"
-          onclick='changeNavbarItems("summary")'
-        >
-          <button class="navbar-menu-button navbar-footer-button">
-            <img src="../assets/icons/nav_bar/summary-icon.svg" />
-          </button>
-          <span>Summary</span>
-        </div>
-        <div class="navbar-wrapper-footer" onclick='changeNavbarItems("board")'>
-          <button class="navbar-menu-button navbar-footer-button">
-            <img src="../assets/icons/nav_bar/board-icon.svg" />
-          </button>
-          <span>Board</span>
-        </div>
-        <div
-          class="navbar-wrapper-footer"
-          onclick='changeNavbarItems("addtask")'
-        >
-          <button class="navbar-menu-button navbar-footer-button">
-            <img src="../assets/icons/nav_bar/addtask-icon.svg" />
-          </button>
-          <span>Add Task</span>
-        </div>
-        <div
-          class="navbar-wrapper-footer"
-          onclick='changeNavbarItems("contacts")'
-        >
-          <button class="navbar-menu-button navbar-footer-button">
-            <img src="../assets/icons/nav_bar/contacts-icon.svg" />
-          </button>
-          <span>Contacts</span>
-        </div>
+      <nav class="nav-footer loggedOutFooter" id="mobile-footer" onmousedown="prevent(event)">
       </nav>
     </footer>
   </body>
