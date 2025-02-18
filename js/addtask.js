@@ -11,16 +11,16 @@ function generateContactsHTML(contacts) {
     .join("");
 }
 
-async function renderContacts(filteredContacts = contacts) {
+async function renderContacts(filteredContacts, divId) {
   let sortedContacts = await sortContacts(filteredContacts);
-  let list = document.getElementById("contacts-checkbox");
+  let list = document.getElementById(divId);
 
   list.innerHTML = generateContactsHTML(sortedContacts);
   list.style.display = "none";
 }
 
-function filterContacts() {
-  let searchTerm = document.getElementById("contact-search");
+function filterContacts(contactsCheck) {
+  let searchTerm = document.getElementById(contactsCheck);
   searchTerm = searchTerm.value.toLowerCase();
   if (searchTerm === "") {
     renderContacts();

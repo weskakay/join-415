@@ -1,4 +1,4 @@
-function getTaskData(taskId) {
+function getTaskDetails(taskId) {
   let targetId = taskId;
   taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   let setPrio = tasks[taskKey].prio;
@@ -6,14 +6,14 @@ function getTaskData(taskId) {
   getTag(taskKey);
   getHeader(taskKey);
   getDescription(taskKey);
-  getTaskDataDom(targetId, taskKey);
+  getTaskDetailsDom(targetId, taskKey);
   getDueDate(taskKey);
   getPriority(setPrio);
   getAssigneeContainer(taskKey);
   getSubtaskContainer(taskKey, taskId);
 }
 
-function getTaskDataDom(targetId, taskKey) {
+function getTaskDetailsDom(targetId, taskKey) {
   document.getElementById("taskDetailsButtons").innerHTML =
     detailsEditDeleteButtons(targetId);
 }
@@ -191,6 +191,7 @@ function editAssignee() {
   document.getElementById("assigneeDetails").innerHTML = insertEditAssignee();
   editAssigneeList();
   editAssigneeImage();
+  renderContacts(contacts, "editAssigneesCheckbox");
 }
 
 function editAssigneeList() {
@@ -199,11 +200,7 @@ function editAssigneeList() {
     let cleanedContact = contacts[indexAssList].name;
     let cleanedContactId = contacts[indexAssList].id;
     document.getElementById("editAssigneeList").innerHTML +=
-      insertEditAssigneeSelectionList(
-        cleanedContact,
-        cleanedContactId,
-        mainTaskKey
-      );
+      insertEditAssigneeSelectionList();
   }
 }
 

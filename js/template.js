@@ -196,7 +196,7 @@ function listTasks(task, i, category) {
       id="${task.id}"
       draggable="true"
       ondragstart="drag(event)"
-      onclick="getTaskData(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
+      onclick="getTaskDetails(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
     >
       <div class="crad-category size16 ${category}">${task.category}</div>
       <div class="card-title-discription">
@@ -394,31 +394,33 @@ function insertEditPriority() {
 
 function insertEditAssignee() {
   return `
-    <p class="weight400 size16 colorLightGrey">Assigned to</p>
-    <select name="assignees" id="editAssigneeList" name="color">
-      <option value="" disabled selected hidden>
-        Select contacts to assign
-      </option>
-    </select>
+    <div class="add-task-input-fields">
+      <div>Assigned to<span class="add-task-required">*</span></div>
+    </div>
+    <div class="add-task-contacts">
+      <input
+        type="text"
+        id="editAssigneesSearch"
+        onclick="openContactsList('editAssigneesCheckbox')"
+        oninput="filterContacts('editAssigneesCheckbox')"
+        placeholder="Select contacts to assign"
+      />
+    </div>
+    <div class="displayFlex" id="editAssigneeList"></div>
     <div class="displayFlex" id="editAssigneeImage"></div>
   `;
 }
 
-function insertEditAssigneeSelectionList(
-  cleanedContact,
-  cleanedContactId,
-  mainTaskKey
-) {
+function insertEditAssigneeSelectionList() {
   return `
-    <option
-      onclick="addEditContact('${cleanedContactId}', '${mainTaskKey}')"
-      value="${cleanedContactId}"
-    >
-      ${cleanedContact} <input type="checkbox" />
-    </option>
+    <ul
+      class="add-task-items"
+      id="editAssigneesCheckbox"
+      style="display: none"
+    ></ul>
   `;
 }
-
+//inserts image of assigned user
 function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
   return `
     <div

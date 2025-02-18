@@ -61,7 +61,7 @@ async function loadDataSummary() {
 
 async function loadDataAddTask() {
   await getContacts();
-  renderContacts();
+  renderContacts(contacts, "contacts-checkbox");
 }
 
 async function getContacts(path = `contacts/`) {
