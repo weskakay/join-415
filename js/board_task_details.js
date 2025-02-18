@@ -258,7 +258,8 @@ async function deleteTask(path) {
 
 async function deleteSubtask(path) {
   await delete_data(path);
-  getTasks();
+  await loadDataBoard();
+  editSubtasks();
 }
 
 function showButtonEdit() {
@@ -274,7 +275,7 @@ function clearSubtaskInput(inputId) {
 
 async function addEditSubtask(inputId, mainTaskId) {
   let inputText = document.getElementById(inputId).value.trim();
-  update_data(
+  await update_data(
     (path = `tasks/${mainTaskId}/subtask`),
     (data = {
       "text": inputText,
@@ -282,4 +283,6 @@ async function addEditSubtask(inputId, mainTaskId) {
     })
   );
   clearSubtaskInput(inputId);
+  await loadDataBoard();
+  editSubtasks();
 }
