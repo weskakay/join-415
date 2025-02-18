@@ -233,46 +233,122 @@
 }
 
 .overlay-content {
-  width: 60%;
-  height: 80%;
+  width: 70%;
   background: white;
-  padding: 20px;
+  padding: 0px 74px;
   border-radius: 10px;
   position: relative;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 35px;
-  height: 35px;
-  background-color: darkred;
-  color: white;
-  border: none;
-  border-radius: 20%;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
+.add-task-overlay-header{
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-}
-.close-btn:hover {
-  background-color: red;
-  transform: scale(1.1);
+  padding: 64px 0;
+  font-size: 61px;
 }
 
-.hidden {
-  display: none;
+.add-task-headline-overlay {
+  font-size: 61px;
+  font-weight: bold;
 }
 
-iframe {
+
+
+.add-task-overlay-wrapper{
   width: 100%;
-  height: 100%;
-  border: none;
+  max-width: 1144px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.add-task-overlay-input{
+  display: flex;
+  flex-direction: row;
+  gap: 64px;
+}
+
+.add-task-bottom-overlay {
+  display: flex;
+  justify-content: space-between;
+  padding: 64px 74px;
+}
+
+.add-task-bottom-buttons-overlay {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  height: 56px;
+  > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    padding: 16px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(42, 54, 71, 1);
+    cursor: pointer;
+    > img {
+      margin-left: 8px;
+    }
+  }
+}
+
+.add-tastk-button-clear-overlay {
+  background-color: transparent;
+  color: rgba(42, 54, 71, 1);
+}
+
+.add-task-button-create-overlay {
+  background-color: rgba(42, 54, 71, 1);
+  font-weight: bold;
+  color: white;
+}
+
+.add-task-button-clear-overlay:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  color: rgba(41, 171, 226, 1);
+  border-color: rgba(41, 171, 226, 1);
+  > img {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(54%) saturate(655%)
+      hue-rotate(157deg) brightness(89%) contrast(98%);
+  }
+}
+
+.add-task-button-create-overlay:hover {
+  cursor: pointer;
+  background-color: rgba(41, 171, 226, 1);
+  border-color: rgba(41, 171, 226, 1);
+}
+
+.close-add-task{
+  align-self: flex-start;
+}
+
+.close-add-task:hover{
+  cursor: pointer;
+
+}
+
+@media (max-width: 1250px){
+  .add-task-bottom-overlay{
+    padding: 40px 32px;
+  }
+
+  .overlay-content{
+    padding: 0 32px;
+  }
+
+  .add-task-overlay-input{
+    gap: 32px;
+  }
+
+} 
 
 @media (max-width: 960px) {
   .board-header {

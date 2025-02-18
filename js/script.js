@@ -251,10 +251,10 @@ async function changeNavbar(styleID) {
   let footerID= document.getElementById('mobile-footer');
   let profile = document.getElementsByClassName('profileSection');
   let help = document.getElementsByClassName('help');
+  
     footerID.innerHTML = '';
     desktopID.innerHTML='';
   if(await checkLoggedIn()){
-    
     footerID.innerHTML = mobileFooterLoggedIn();
     desktopID.innerHTML= desktopNavbarLoggedIn();
     for (let index = 0; index < profile.length; index++) {
