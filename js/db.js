@@ -2,6 +2,8 @@ let tasks = [];
 
 let subtasks = [];
 
+let subtaskInputs = [];
+
 let contacts = [];
 
 let assigneeEditKey = [];

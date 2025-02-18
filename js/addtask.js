@@ -139,14 +139,12 @@ function confirmInput() {
 
   if (input.value.trim() !== "") {
     subtaskInputs.push({
-      text: input.value.trim(),
-      checked: 0,
+      "text": input.value.trim(),
+      "checked": 0,
     });
-    console.log;
     renderSubtasks();
     clearInput();
   }
-  console.log(subtaskInputs);
 }
 
 function renderSubtasks() {
