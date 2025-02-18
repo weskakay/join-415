@@ -1,52 +1,10 @@
-let tasksNumbersList = [];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-async function tasksNumbers(path = `tasks/`) {
-  tasksNumbersList = [];
-  let response = await fetch(BASE_URL + path + ".json");
-  let tasksData = await response.json();
-  if (tasksData == null) {
-    document.getElementById("").innerHTML = "";
-    document.getElementById("").innerHTML = "";
-    return;
-  } else {
-    Object.entries(tasksData).forEach(([id, content]) => {
-      tasksNumbersList.push({
-        id: id,
-        category: content.category,
-        title: content.title,
-        discription: content.discription,
-        prio: content.prio,
-        assingned: content.assingned,
-        subtasks: content.sub,
-        date: content.date,
-      });
-    });
-  }
-  showTaskNumbers();
-}
-
 function showTaskNumbers() {
   let priorities = [];
   let dates = [];
-  document.getElementById("tasks_board").innerHTML = tasksNumbersList.length;
-  for (let indexTasks = 0; indexTasks < tasksNumbersList.length; indexTasks++) {
-    priorities.push(tasksNumbersList[indexTasks].prio.trim());
-    dates.push(tasksNumbersList[indexTasks].date);
+  document.getElementById("tasks_board").innerHTML = tasks.length;
+  for (let indexTasks = 0; indexTasks < tasks.length; indexTasks++) {
+    priorities.push(tasks[indexTasks].prio.trim());
+    dates.push(tasks[indexTasks].date);
   }
   showurgentNumber(priorities);
   showClosestDate(dates);

@@ -1,34 +1,9 @@
-let contacts = [];
 let lastContact = [];
 
-async function init() {
-  await getCurrentUser();
-  getContacts();
-}
-
-async function getContacts(path = `contacts/`) {
-  contacts = [];
+function orderContactsBoard() {
   lastContact = [];
-  let response = await fetch(BASE_URL + path + ".json");
-  let contactData = await response.json();
-  if (!contactData) {
-    document.getElementById("contactsList").innerHTML = "";
-    document.getElementById("contactsDetailsDisplay").innerHTML = "";
-    return;
-  } else {
-    Object.entries(contactData).forEach(([id, details]) => {
-      contacts.push({
-        id: id,
-        name: details.name,
-        initials: getInitials(details.name),
-        email: details.email,
-        phone: details.phone,
-        colorId: details.colorId,
-      });
-    });
-    lastContact = contacts[contacts.length - 1];
-    groupContacts();
-  }
+  lastContact = contacts[contacts.length - 1];
+  groupContacts();
 }
 
 function groupContacts() {

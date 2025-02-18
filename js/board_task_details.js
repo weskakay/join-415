@@ -1,6 +1,3 @@
-let assigneeEditKey = [];
-let taskKey = "";
-
 function getTaskData(taskId) {
   let targetId = taskId;
   taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
@@ -80,16 +77,16 @@ function getAssigneeData(taskKey) {
     indexAssignee++
   ) {
     let assigneeId = tasks[taskKey].assigned[indexAssignee];
-    let assigneeKey = Object.keys(contactsBoard).find(
-      (key) => contactsBoard[key].id == assigneeId
+    let assigneeKey = Object.keys(contacts).find(
+      (key) => contacts[key].id == assigneeId
     );
-    if (contactsBoard[assigneeKey] == undefined) {
+    if (contacts[assigneeKey] == undefined) {
       continue;
     } else {
       assigneeEditKey.push(assigneeKey);
-      let assignee = contactsBoard[assigneeKey].name;
-      let assigneeInitials = contactsBoard[assigneeKey].initials;
-      let assigneeColor = contactsBoard[assigneeKey].colorId;
+      let assignee = contacts[assigneeKey].name;
+      let assigneeInitials = contacts[assigneeKey].initials;
+      let assigneeColor = contacts[assigneeKey].colorId;
       document.getElementById("assigneeList").innerHTML +=
         detailsAssigneesInsert(assignee, assigneeInitials, assigneeColor);
     }
@@ -195,13 +192,9 @@ function editAssignee() {
 }
 
 function editAssigneeList() {
-  for (
-    let indexAssList = 0;
-    indexAssList < contactsBoard.length;
-    indexAssList++
-  ) {
-    let cleanedContact = contactsBoard[indexAssList].name;
-    let cleanedContactId = contactsBoard[indexAssList].id;
+  for (let indexAssList = 0; indexAssList < contacts.length; indexAssList++) {
+    let cleanedContact = contacts[indexAssList].name;
+    let cleanedContactId = contacts[indexAssList].id;
     document.getElementById("editAssigneeList").innerHTML +=
       insertAssigneeSelectionList(cleanedContact, cleanedContactId);
   }
@@ -209,9 +202,8 @@ function editAssigneeList() {
 
 function editAssigneeImage() {
   for (let indexFind = 0; indexFind < assigneeEditKey.length; indexFind++) {
-    let assigneeImageColor = contactsBoard[assigneeEditKey[indexFind]].colorId;
-    let assigneeImageInitials =
-      contactsBoard[assigneeEditKey[indexFind]].initials;
+    let assigneeImageColor = contacts[assigneeEditKey[indexFind]].colorId;
+    let assigneeImageInitials = contacts[assigneeEditKey[indexFind]].initials;
     document.getElementById("editAssigneeImage").innerHTML +=
       insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials);
   }

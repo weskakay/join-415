@@ -1,51 +1,7 @@
-let tasks = [];
-let contactsBoard = [];
-let urgencySymbols = [
-  "../assets/icons/add_task/prio-low-icon.svg",
-  "../assets/icons/add_task/prio-medium-icon.svg",
-  "../assets/icons/add_task/prio-urgent-icon.svg",
-];
 /**
  * Fetches tasks from the database and stores them in the tasks array.
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
  */
-
-async function getContactsBoard(path = `contacts/`) {
-  contactsBoard = [];
-  let response = await fetch(BASE_URL + path + ".json");
-  let contactData = await response.json();
-  Object.entries(contactData).forEach(([id, details]) => {
-    contactsBoard.push({
-      id: id,
-      name: details.name,
-      email: details.email,
-      phone: details.phone,
-      colorId: details.colorId,
-      initials: getInitials(details.name),
-    });
-  });
-}
-
-async function getTasks(path = `tasks/`) {
-  await getContactsBoard();
-  tasks = [];
-  let response = await fetch(BASE_URL + path + ".json");
-  let tasksData = await response.json();
-  Object.entries(tasksData).forEach(([id, content]) => {
-    tasks.push({
-      id: id,
-      status: content.status,
-      category: content.category,
-      title: content.title,
-      description: content.description,
-      subtasks: content.subtask,
-      assigned: content.contact,
-      prio: content.prio,
-      date: content.date,
-    });
-  });
-  renderTasks();
-}
 
 function renderTasks() {
   let todo = document.getElementById("board_todo");
@@ -89,7 +45,7 @@ function getAssignedContacts(contactIDs, index) {
   let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
 
-  let assignedContacts = contactsBoard.filter((contact) =>
+  let assignedContacts = contacts.filter((contact) =>
     contactIDs.includes(contact.id)
   );
   for (let i = 0; i < assignedContacts.length; i++) {

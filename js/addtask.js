@@ -1,31 +1,3 @@
-let contacts = [];
-let selectedContactsIDs = [];
-let subtaskInputs = [];
-let selectedPrio = "";
-let colors = {
-  Urgent: "rgba(255, 61, 0, 1)",
-  Medium: "rgba(255, 168, 0, 1)",
-  Low: "rgba(122, 226, 41, 1)",
-};
-
-async function getContacts(path = "contacts/") {
-  try {
-    let response = await fetch(`${BASE_URL}${path}.json`);
-    let contactData = await response.json();
-
-    contacts = Object.entries(contactData).map(([id, details]) => ({
-      id,
-      name: details.name,
-      email: details.email,
-      phone: details.phone,
-      colorId: details.colorId,
-      status: details.status,
-    }));
-  } catch (error) {
-    showError("Kontakte konnten nicht geladen werden");
-  }
-}
-
 function generateContactsHTML(contacts) {
   return contacts
     .map((contact) =>
@@ -170,9 +142,11 @@ function confirmInput() {
       text: input.value.trim(),
       checked: 0,
     });
+    console.log;
     renderSubtasks();
     clearInput();
   }
+  console.log(subtaskInputs);
 }
 
 function renderSubtasks() {

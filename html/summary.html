@@ -12,9 +12,10 @@
     <script src="../js/board.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/summary.js"></script>
+    <script src="../js/db.js"></script>
   </head>
 
-  <body onload="pageLoadHandler('summary'),tasksNumbers(path = `tasks/`)">
+  <body onload="pageLoadHandler('summary'),loadDataSummary()">
     <header>
       <div class="header_content">
         <img
