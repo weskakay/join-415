@@ -74,7 +74,7 @@ function renderAssignedContacts() {
     .join("");
 }
 
-function setButtonColor(selectedButton) {
+function setButtonColor(selectedButton, colorCode) {
   resetButtonColors();
   let activeButton = document.getElementById(`button${selectedButton}`);
   if (!activeButton) return;
@@ -82,7 +82,7 @@ function setButtonColor(selectedButton) {
   let img = activeButton.querySelector("img");
   if (!img) return;
 
-  activeButton.style.backgroundColor = colors[selectedButton];
+  activeButton.style.backgroundColor = colorCode;
   activeButton.style.color = "#FFFFFF";
 
   img.style.filter =
