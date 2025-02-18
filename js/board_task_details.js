@@ -218,20 +218,20 @@ function editAssigneeImage() {
 }
 
 function editSubtasks() {
+  let mainTaskKey = tasks[taskKey].id;
   document.getElementById("subtaskContainer").innerHTML = "";
   document.getElementById("subtaskContainer").innerHTML =
-    insertSubtaskContainer();
-  editSubtasksList();
+    insertSubtaskContainer(mainTaskKey);
+  editSubtasksList(mainTaskKey);
 }
 
-function editSubtasksList() {
+function editSubtasksList(mainTaskKey) {
   for (
     let indexTaskKey = 0;
     indexTaskKey < tasks[taskKey].subtasks.length;
     indexTaskKey++
   ) {
     let subtaskText = tasks[taskKey].subtasks[indexTaskKey].text;
-    let mainTaskKey = tasks[taskKey].id;
     document.getElementById("substaskListDetails").innerHTML +=
       insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey);
   }
@@ -272,4 +272,19 @@ function showButtonEdit() {
   let addIcon = document.getElementById("addIconEdit");
   checkCross.style.display = "flex";
   addIcon.style.display = "none";
+}
+
+function clearSubtaskInput(inputId) {
+  document.getElementById(inputId).value = "";
+}
+
+async function addEditSubtask(inputId, mainTaskId) {
+  let inputText = document.getElementById(inputId).value.trim();
+  await update_data(
+    (path = `tasks/${mainTaskId}/subtask`),
+    (data = {
+      "text": inputText,
+      "checked": 0,
+    })
+  );
 }

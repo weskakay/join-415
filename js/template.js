@@ -337,32 +337,70 @@ function detailsEditDeleteButtons(targetId) {
 //from here task edit window
 function insertEditHeader(headerText) {
   return `
-    <p class="weight400 size16"">Title</p>
-    <input id="inputTitleEdit" type="text" value="${headerText}" />
+    <p class="weight400 size16">Title</p>
+    <div class="add-task-input-fields">
+      <input id="inputTitleEdit" value="${headerText}" type="text" />
+    </div>
   `;
 }
 
 function insertEditDescription(descriptionText) {
   return `
     <p class="weight400 size16">Description</p>
-    <input id="inputDescriptionEdit" type="text" value="${descriptionText}" />
+    <div class="add-task-input-fields">
+      <textarea
+        id="inputDescriptionEdit"
+        type="text"
+      >${descriptionText}</textarea>
+    </div>
   `;
 }
 
 function insertEditDueDate(dueDateText) {
   return `
     <p class="weight400 size16">Due Date</p>
-    <input id="inputDueDateEdit" type="date" value="${dueDateText}" />
+    <div class="add-task-input-fields">
+      <input value="${dueDateText}"  type="date" id="inputDueDateEdit" />
+    </div>
   `;
 }
 
 function insertEditPriority() {
   return `
     <p class="weight400 size16 colorLightGrey">Priority</p>
-    <div class="buttonPrioContainer">
-      <button>Low</button>
-      <button>Medium</button>
-      <button>Urgent</button>
+    <div class="add-task-input-fields">
+      <div class="add-task-prio">
+        <button
+          class="button-prio-urgent"
+          id="buttonUrgent"
+          onclick="setButtonColor('Urgent')"
+        >
+          Urgent<img
+            src="../assets/icons/add_task/prio-urgent-icon.svg"
+            alt="Urgent priority"
+          />
+        </button>
+        <button
+          class="button-prio-medium"
+          id="buttonMedium"
+          onclick="setButtonColor('Medium')"
+        >
+          Medium<img
+            src="../assets/icons/add_task/prio-medium-icon.svg"
+            alt="Medium priority"
+          />
+        </button>
+        <button
+          class="button-prio-low"
+          id="buttonLow"
+          onclick="setButtonColor('Low')"
+        >
+          Low<img
+            src="../assets/icons/add_task/prio-low-icon.svg"
+            alt="Low priority"
+          />
+        </button>
+      </div>
     </div>
   `;
 }
@@ -395,10 +433,10 @@ function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
   `;
 }
 
-function insertSubtaskContainer() {
+function insertSubtaskContainer(mainTaskKey) {
   return `
     <div class="add-task-input-fields">
-      <div>Subtasks</div>
+      <p class="weight400 size16 colorLightGrey">Subtasks</p>
       <div class="add-task-input-subtasks">
         <input
           type="text"
@@ -418,11 +456,17 @@ function insertSubtaskContainer() {
             </div>
           </div>
           <div class="add-task-subtasks-check-cross" id="checkCrossEdit">
-            <div class="add-task-subtasks-icon" onclick="clearInput()">
+            <div
+              class="add-task-subtasks-icon"
+              onclick="clearSubtaskInput('subtaskEditInput')"
+            >
               <img src="../assets/icons/add_task/cross-icon.svg" alt="Cancel" />
             </div>
             <div class="add-task-subtasks-seperator"></div>
-            <div class="add-task-subtasks-icon" onclick="confirmInput()">
+            <div
+              class="add-task-subtasks-icon"
+              onclick="addEditSubtask('subtaskEditInput', '${mainTaskKey}')"
+            >
               <img
                 class="add-task-subtasks-check"
                 src="../assets/icons/add_task/check-icon.svg"
@@ -459,8 +503,8 @@ function insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey) {
   `;
 }
 
-function mobileFooterLoggedOut(){
- return `
+function mobileFooterLoggedOut() {
+  return `
   <div class="navbar-wrapper-footer logIn" onclick='changeNavbarItems("login")'>
         <button class="navbar-menu-button navbar-footer-button">
           <img src="../assets/icons/nav_bar/log-in.svg" />
@@ -483,11 +527,11 @@ function mobileFooterLoggedOut(){
           </button>
         </div>
       </div>
-  `
+  `;
 }
 
-function mobileFooterLoggedIn(){
-return `
+function mobileFooterLoggedIn() {
+  return `
 <div
           class="navbar-wrapper-footer"
           onclick='changeNavbarItems("summary")'
@@ -521,11 +565,11 @@ return `
           </button>
           <span>Contacts</span>
         </div>
-`
+`;
 }
 
-function desktopNavbarLoggedIn(){
-return `
+function desktopNavbarLoggedIn() {
+  return `
          <div
             class="navbar-menu-button-wrapper"
             onclick='changeNavbarItems("summary")'
@@ -558,11 +602,11 @@ return `
               <img src="../assets/icons/nav_bar/contacts-icon.svg" />Contacs
             </button>
           </div>
-`
+`;
 }
 
-function desktopNavbarLoggedOut(){
-return `
+function desktopNavbarLoggedOut() {
+  return `
           <div
             class="navbar-menu-button-wrapper"
             onclick='changeNavbarItems("login")'
@@ -571,5 +615,5 @@ return `
               <img src="../assets/icons/nav_bar/log-in.svg" />Log In
             </button>
           </div>
-`
+`;
 }
