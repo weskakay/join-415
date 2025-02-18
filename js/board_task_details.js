@@ -109,8 +109,10 @@ function getSubtaskData(taskKey, taskId) {
       indexSubtask++
     ) {
       let subtaskList = tasks[taskKey].subtasks[indexSubtask].text;
+      let subtaskId = tasks[taskKey].subtasks[indexSubtask].id;
+
       document.getElementById("substaskListDetails").innerHTML +=
-        detailsSubtaskInsert(subtaskList, indexSubtask, taskId);
+        detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId);
     }
   }
   getSubtaskStatus(taskKey);
@@ -224,15 +226,16 @@ function editSubtasksList(mainTaskKey) {
     indexTaskKey++
   ) {
     let subtaskText = tasks[taskKey].subtasks[indexTaskKey].text;
+    let subtaskId = tasks[taskKey].subtasks[indexTaskKey].id;
     document.getElementById("substaskListDetails").innerHTML +=
-      insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey);
+      insertSubtasksList(subtaskText, subtaskId, mainTaskKey);
   }
 }
 
 //update & delete task
 
-async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
-  let checkStatus = document.getElementById(subtaskId);
+async function subtaskStatusChange(subtaskId, taskKey, subtaskEditId) {
+  let checkStatus = document.getElementById(subtaskEditId);
   let statusChange = 0;
   if (checkStatus.checked == true) {
     statusChange = 1;
@@ -240,7 +243,7 @@ async function subtaskStatusChange(indexSubtask, taskKey, subtaskId) {
     statusChange = 0;
   }
   await patch_data(
-    (path = `tasks/${taskKey}/subtask/${indexSubtask}`),
+    (path = `tasks/${taskKey}/subtask/${subtaskId}`),
     (data = {
       checked: statusChange,
     })
@@ -256,7 +259,6 @@ async function deleteTask(path) {
 async function deleteSubtask(path) {
   await delete_data(path);
   getTasks();
-  editSubtasks();
 }
 
 function showButtonEdit() {
@@ -272,11 +274,12 @@ function clearSubtaskInput(inputId) {
 
 async function addEditSubtask(inputId, mainTaskId) {
   let inputText = document.getElementById(inputId).value.trim();
-  await update_data(
+  update_data(
     (path = `tasks/${mainTaskId}/subtask`),
     (data = {
       "text": inputText,
       "checked": 0,
     })
   );
+  clearSubtaskInput(inputId);
 }

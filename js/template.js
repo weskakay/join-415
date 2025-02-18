@@ -293,11 +293,11 @@ function detailsSubtaskContainer() {
   `;
 }
 
-function detailsSubtaskInsert(subtaskList, indexSubtask, taskId) {
+function detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId) {
   return `
     <div class="subtask">
       <input
-        onclick="subtaskStatusChange('${indexSubtask}', '${taskId}', this.id)"
+        onclick="subtaskStatusChange('${subtaskId}', '${taskId}', this.id)"
         id="subtaskCheck${indexSubtask}"
         type="checkbox"
       />
@@ -470,7 +470,7 @@ function insertSubtaskContainer(mainTaskKey) {
   `;
 }
 
-function insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey) {
+function insertSubtasksList(subtaskText, subtaskId, mainTaskKey) {
   return `
     <div class="subtaskDetailsEdit">
       <li>${subtaskText}</li>
@@ -481,7 +481,7 @@ function insertSubtasksList(subtaskText, indexTaskKey, mainTaskKey) {
         <div class="separator24"></div>
         <button
           class="subtaskDelete"
-          onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${indexTaskKey}')"
+          onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${subtaskId}')"
         >
           <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
         </button>

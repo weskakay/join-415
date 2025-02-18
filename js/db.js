@@ -1,6 +1,10 @@
 let tasks = [];
 
+let subtasks = [];
+
 let contacts = [];
+
+let assigneeEditKey = [];
 
 let urgencySymbols = [
   "../assets/icons/add_task/prio-low-icon.svg",
@@ -74,13 +78,23 @@ async function getTasks(path = `tasks/`) {
   let response = await fetch(BASE_URL + path + ".json");
   let tasksData = await response.json();
   Object.entries(tasksData).forEach(([id, content]) => {
+    let subtasksArray = [];
+    if (content.subtask) {
+      subtasksArray = Object.entries(content.subtask).map(
+        ([subtaskId, subtaskContent]) => ({
+          id: subtaskId,
+          checked: subtaskContent.checked,
+          text: subtaskContent.text,
+        })
+      );
+    }
     tasks.push({
       id: id,
       status: content.status,
       category: content.category,
       title: content.title,
       description: content.description,
-      subtasks: content.subtask,
+      subtasks: subtasksArray,
       assigned: content.contact,
       prio: content.prio,
       date: content.date,
