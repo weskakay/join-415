@@ -201,13 +201,13 @@ function showNoTask(id) {
  * Opens the "Add Task" overlay and hides the left navbar.
  */
 function openAddTaskOverlay() {
-  document.getElementById("addTaskOverlay").classList.remove("hidden");
+  document.getElementById("addTaskOverlay").classList.remove("d_none");
 }
 /**
  * Closes the "Add Task" overlay and makes the left navbar visible again.
  */
 function closeAddTaskOverlay() {
-  document.getElementById("addTaskOverlay").classList.add("hidden");
+  document.getElementById("addTaskOverlay").classList.add("d_none");
 }
 
 /**

@@ -251,12 +251,184 @@
       </div>
 
       <!-- Add Task Overlay -->
-      <div id="addTaskOverlay" class="overlay hidden">
+      <div id="addTaskOverlay" class="overlay d_none">
         <div class="overlay-content">
-          <span class="close-btn" onclick="closeAddTaskOverlay()">&times;</span>
-          <iframe src="addtask.html" id="addTaskFrame"></iframe>
+            <div class="add-task-overlay-wrapper">
+              <div class="add-task-overlay-header">
+                <div class="add-task-headline-overlay">Add Task</div>
+                <div class="close-add-task" onclick="closeAddTaskOverlay()"><img src="../assets/icons/add_task/close.svg" alt="close-btn"></div>
+              </div>
+              <div class="add-task-overlay-input">
+                <div class="add-task-input-left">
+                  <div class="add-task-input-fields">
+                    <div>Title<span class="add-task-required">*</span></div>
+                    <input
+                      id="taskTitle"
+                      required
+                      type="text"
+                      placeholder="Enter a title"
+                    />
+                  </div>
+                  <div class="add-task-input-fields">
+                    <div>Description</div>
+                    <textarea
+                      id="taskDescription"
+                      type="text"
+                      placeholder="Enter a Description"
+                    ></textarea>
+                  </div>
+                  <div class="add-task-input-fields">
+                    <div>Assigned to<span class="add-task-required">*</span></div>
+                    <div class="add-task-contacts">
+                      <input
+                        type="text"
+                        id="contact-search"
+                        onclick="openContactsList('contacts-checkbox')"
+                        oninput="filterContacts('contacts-checkbox')"
+                        placeholder="Select contacts to assign"
+                      />
+                      <ul
+                        class="add-task-items"
+                        id="contacts-checkbox"
+                        style="display: none"
+                      ></ul>
+                    </div>
+                  </div>
+                  <div
+                    class="add-task-assigned-contacts"
+                    id="assignedContacts"
+                  ></div>
+                </div>
+                <div class="add-task-seperator"></div>
+                <div class="add-task-input-right">
+                  <div class="add-task-input-fields">
+                    <div>Due date<span class="add-task-required">*</span></div>
+                    <input required type="date" id="date" />
+                  </div>
+                  <div class="add-task-input-fields">
+                    <div>Prio</div>
+                    <div class="add-task-prio">
+                      <button
+                        class="button-prio-urgent"
+                        id="buttonUrgent"
+                        onclick="setButtonColor('Urgent')"
+                      >
+                        Urgent<img
+                          src="../assets/icons/add_task/prio-urgent-icon.svg"
+                          alt="Urgent priority"
+                        />
+                      </button>
+                      <button
+                        class="button-prio-medium"
+                        id="buttonMedium"
+                        onclick="setButtonColor('Medium')"
+                      >
+                        Medium<img
+                          src="../assets/icons/add_task/prio-medium-icon.svg"
+                          alt="Medium priority"
+                        />
+                      </button>
+                      <button
+                        class="button-prio-low"
+                        id="buttonLow"
+                        onclick="setButtonColor('Low')"
+                      >
+                        Low<img
+                          src="../assets/icons/add_task/prio-low-icon.svg"
+                          alt="Low priority"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="add-task-input-fields">
+                    <div>Category<span class="add-task-required">*</span></div>
+                    <select name="category" id="inputCategory">
+                      <option value="" disabled selected hidden>
+                        Select task category
+                      </option>
+                      <option value="Technical Task">Technical Task</option>
+                      <option value="User Story">User Story</option>
+                    </select>
+                  </div>
+                  <div class="add-task-input-fields">
+                    <div>Subtasks</div>
+                    <div class="add-task-input-subtasks">
+                      <input
+                        type="text"
+                        id="subtaskInput"
+                        placeholder="Add new subtask"
+                        onclick="showButtons()"
+                      />
+                      <div class="add-task-subtasks-icons-wrapper">
+                        <div id="addIcon">
+                          <div class="add-task-subtasks-icon">
+                            <div
+                              class="add-task-subtasks-add"
+                              onclick="selectInput()"
+                            >
+                              <img
+                                src="../assets/icons/add_task/add-icon.svg"
+                                alt="Add subtask"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="add-task-subtasks-check-cross" id="checkCross">
+                          <div
+                            class="add-task-subtasks-icon"
+                            onclick="clearInput()"
+                          >
+                            <img
+                              src="../assets/icons/add_task/cross-icon.svg"
+                              alt="Cancel"
+                            />
+                          </div>
+                          <div class="add-task-subtasks-seperator"></div>
+                          <div
+                            class="add-task-subtasks-icon"
+                            onclick="confirmInput()"
+                          >
+                            <img
+                              class="add-task-subtasks-check"
+                              src="../assets/icons/add_task/check-icon.svg"
+                              alt="Confirm"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="subtask-list">
+                    <ul id="subtaskList" class="subtask-list-container"></ul>
+                  </div>
+                </div>
+                <div class="required-mobile">
+                  <span class="add-task-required">*</span>This field is required
+                </div>
+              </div>
+              <div class="add-task-bottom-overlay">
+                <div class="add-task-bottom-required">
+                  <span class="add-task-required">*</span>This field is required
+                </div>
+                <div class="add-task-bottom-buttons-overlay">
+                  <button class="add-task-button-clear-overlay" onclick="resetAllInputs()">
+                    Clear<img
+                      src="../assets/icons/add_task/cross-icon.svg"
+                      alt="Clear"
+                    />
+                  </button>
+                  <button class="add-task-button-create-overlay" onclick="getTaskData()">
+                    Create Task<img
+                      src="../assets/icons/add_task/check-icon.svg"
+                      alt="Create Task"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+
     </main>
 
     <!--Overlay containing Task Details window-->
