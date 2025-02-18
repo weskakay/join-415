@@ -404,9 +404,19 @@ function insertEditAssignee() {
   `;
 }
 
-function insertAssigneeSelectionList(cleanedContact, cleanedContactId) {
-  return ` 
-    <option value="${cleanedContactId}">${cleanedContact}</option> `;
+function insertEditAssigneeSelectionList(
+  cleanedContact,
+  cleanedContactId,
+  mainTaskKey
+) {
+  return `
+    <option
+      onclick="addEditContact('${cleanedContactId}', '${mainTaskKey}')"
+      value="${cleanedContactId}"
+    >
+      ${cleanedContact} <input type="checkbox" />
+    </option>
+  `;
 }
 
 function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
@@ -434,7 +444,10 @@ function insertSubtaskContainer(mainTaskKey) {
         <div class="add-task-subtasks-icons-wrapper">
           <div id="addIconEdit">
             <div class="add-task-subtasks-icon">
-              <div class="add-task-subtasks-add" onclick="selectInput()">
+              <div
+                class="add-task-subtasks-add"
+                onclick="selectInputEdit('subtaskEditInput')"
+              >
                 <img
                   src="../assets/icons/add_task/add-icon.svg"
                   alt="Add subtask"

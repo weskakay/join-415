@@ -194,11 +194,16 @@ function editAssignee() {
 }
 
 function editAssigneeList() {
+  let mainTaskKey = tasks[taskKey].id;
   for (let indexAssList = 0; indexAssList < contacts.length; indexAssList++) {
     let cleanedContact = contacts[indexAssList].name;
     let cleanedContactId = contacts[indexAssList].id;
     document.getElementById("editAssigneeList").innerHTML +=
-      insertAssigneeSelectionList(cleanedContact, cleanedContactId);
+      insertEditAssigneeSelectionList(
+        cleanedContact,
+        cleanedContactId,
+        mainTaskKey
+      );
   }
 }
 
@@ -269,6 +274,13 @@ function showButtonEdit() {
   addIcon.style.display = "none";
 }
 
+function selectInputEdit(inputId) {
+  showButtonEdit();
+  let input = document.getElementById(inputId);
+  input.focus();
+  input.select();
+}
+
 function clearSubtaskInput(inputId) {
   document.getElementById(inputId).value = "";
 }
@@ -285,4 +297,15 @@ async function addEditSubtask(inputId, mainTaskId) {
   clearSubtaskInput(inputId);
   await loadDataBoard();
   editSubtasks();
+}
+
+async function addEditContact(cleanedContactId, mainTaskKey) {
+  await update_data(
+    (path = `tasks/${mainTaskKey}/contact`),
+    (data = {
+      "contactId": cleanedContactId,
+    })
+  );
+  await loadDataBoard();
+  editAssignee();
 }

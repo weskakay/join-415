@@ -6,6 +6,8 @@ let contacts = [];
 
 let assigneeEditKey = [];
 
+let selectedContactsIDs = [];
+
 let urgencySymbols = [
   "../assets/icons/add_task/prio-low-icon.svg",
   "../assets/icons/add_task/prio-medium-icon.svg",
@@ -55,6 +57,11 @@ async function loadDataSummary() {
   await getContacts();
   await getTasks();
   showTaskNumbers();
+}
+
+async function loadDataAddTask() {
+  await getContacts();
+  renderContacts();
 }
 
 async function getContacts(path = `contacts/`) {

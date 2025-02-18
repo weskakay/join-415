@@ -11,12 +11,12 @@ function generateContactsHTML(contacts) {
     .join("");
 }
 
-function renderContacts(filteredContacts = contacts) {
-  let sortedContacts = sortContacts(filteredContacts);
+async function renderContacts(filteredContacts = contacts) {
+  let sortedContacts = await sortContacts(filteredContacts);
   let list = document.getElementById("contacts-checkbox");
 
   list.innerHTML = generateContactsHTML(sortedContacts);
-  list.style.display = "block";
+  list.style.display = "none";
 }
 
 function filterContacts() {
@@ -317,4 +317,8 @@ function validateCategory() {
 
 function validateData() {
   return validateRequiredFields() && validateContacts() && validateCategory();
+}
+
+function openContactsList(listId) {
+  document.getElementById(listId).style.display = "block";
 }

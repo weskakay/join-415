@@ -11,9 +11,10 @@
     <script src="../js/script.js"></script>
     <script src="../js/template.js"></script>
     <script src="../js/addtask.js"></script>
+    <script src="../js/db.js"></script>
   </head>
 
-  <body onload="pageLoadHandler('addtask')">
+  <body onload="pageLoadHandler('addtask'), loadDataAddTask()">
     <header>
       <div class="header_content">
         <img
@@ -129,10 +130,15 @@
                   <input
                     type="text"
                     id="contact-search"
+                    onclick="openContactsList('contacts-checkbox')"
                     oninput="filterContacts()"
                     placeholder="Select contacts to assign"
                   />
-                  <ul class="add-task-items" id="contacts-checkbox"></ul>
+                  <ul
+                    class="add-task-items"
+                    id="contacts-checkbox"
+                    style="display: none"
+                  ></ul>
                 </div>
               </div>
               <div
