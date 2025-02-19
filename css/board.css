@@ -334,7 +334,7 @@
   cursor: pointer;
 }
 
-@media(max-width: 1450px){
+@media(max-width: 1350px){
   .board-tasks-wrapper{
     flex-wrap: wrap;
     gap: 64px;
