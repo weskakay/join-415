@@ -158,6 +158,7 @@ function editTaskDetails() {
   editPriority();
   editAssignee();
   editSubtasks();
+  createOkSaveButton();
 }
 
 function editTag() {
@@ -306,3 +307,11 @@ async function addEditContact(cleanedContactId, mainTaskKey) {
   await loadDataBoard();
   editAssignee();
 }
+
+function createOkSaveButton() {
+  let mainTaskKey = tasks[taskKey].id;
+  document.getElementById("taskDetailsButtons").innerHTML =
+    insertOkSaveButton(mainTaskKey);
+}
+
+async function saveEditedTaskDetails(path) {}

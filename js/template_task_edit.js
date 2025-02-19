@@ -273,3 +273,16 @@ function insertSubtasksList(subtaskText, subtaskId, mainTaskKey) {
     </div>
   `;
 }
+
+function insertOkSaveButton(mainTaskKey) {
+  return `
+    <div class="add-task-bottom-buttons-overlay">
+      <button
+        class="add-task-button-create-overlay"
+        onclick="saveEditedTaskDetails('tasks/${mainTaskKey}')"
+      >
+        Ok<img src="../assets/icons/task_details/check.svg" alt="Check Mark" />
+      </button>
+    </div>
+  `;
+}
