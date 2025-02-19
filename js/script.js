@@ -56,6 +56,15 @@ function openPrivacyPolicy() {
   window.location.href = "../html/privacy_policy.html";
 }
 
+function openAddTask() {
+  if (window.innerWidth < 960) {
+    window.location.href = "../html/addtask.html";
+  }
+  else {
+    openAddTaskOverlay();
+  }
+}
+
 async function update_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
@@ -237,34 +246,36 @@ function sortContacts(contacts) {
 
 async function checkLoggedIn() {
   await getCurrentUser();
-  if(currentUser.name.length > 0){
+  if (currentUser.name.length > 0) {
     return true;
   }
-  else if(currentUser.name.length == 0){
+  else if (currentUser.name.length == 0) {
     return false;
   }
 }
 
 async function changeNavbar(styleID) {
-  let styleDiv= document.getElementsByClassName("loggedOutButtons");
-  let desktopID= document.getElementById('desktop-nav');
-  let footerID= document.getElementById('mobile-footer');
+  let styleDiv = document.getElementsByClassName("loggedOutButtons");
+  let desktopID = document.getElementById('desktop-nav');
+  let footerID = document.getElementById('mobile-footer');
   let profile = document.getElementsByClassName('profileSection');
   let help = document.getElementsByClassName('help');
-  
-    footerID.innerHTML = '';
-    desktopID.innerHTML='';
-  if(await checkLoggedIn()){
+
+  footerID.innerHTML = '';
+  desktopID.innerHTML = '';
+  if (await checkLoggedIn()) {
     footerID.innerHTML = mobileFooterLoggedIn();
-    desktopID.innerHTML= desktopNavbarLoggedIn();
+    desktopID.innerHTML = desktopNavbarLoggedIn();
     for (let index = 0; index < profile.length; index++) {
       profile[index].classList.remove('d_none');
-      help[index].classList.add('d_none');}
-  } else{
+      help[index].classList.add('d_none');
+    }
+  } else {
     desktopID.innerHTML = desktopNavbarLoggedOut();
     footerID.innerHTML = mobileFooterLoggedOut();
     styleDiv[styleID].style.backgroundColor = "rgba(9, 25, 49, 1)";
     for (let index = 0; index < profile.length; index++) {
-      profile[index].classList.add('d_none');}
+      profile[index].classList.add('d_none');
+    }
   };
 }
