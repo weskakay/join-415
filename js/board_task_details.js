@@ -251,7 +251,8 @@ async function subtaskStatusChange(subtaskId, taskKey, subtaskEditId) {
       checked: statusChange,
     })
   );
-  getTasks();
+  await getTasks();
+  renderTasks();
 }
 
 async function deleteTask(path) {
@@ -314,4 +315,17 @@ function createOkSaveButton() {
     insertOkSaveButton(mainTaskKey);
 }
 
-async function saveEditedTaskDetails(path) {}
+async function saveEditedTaskDetails(updatePath) {
+  let updateTitle = document.getElementById("inputTitleEdit").value;
+  let updateDesc = document.getElementById("inputDescriptionEdit").value;
+  let updateDate = document.getElementById("inputDueDateEdit").value;
+
+  await patch_data(
+    (path = updatePath),
+    (data = {
+      "title": updateTitle,
+      "description": updateDesc,
+      "date": updateDate,
+    })
+  );
+}
