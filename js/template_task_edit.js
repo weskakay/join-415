@@ -279,7 +279,7 @@ function insertOkSaveButton(mainTaskKey) {
     <div class="add-task-bottom-buttons-overlay">
       <button
         class="add-task-button-create-overlay"
-        onclick="saveEditedTaskDetails('tasks/${mainTaskKey}')"
+        onclick="saveEditedTaskDetails('tasks/${mainTaskKey}','${mainTaskKey}')"
       >
         Ok<img src="../assets/icons/task_details/check.svg" alt="Check Mark" />
       </button>

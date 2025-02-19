@@ -315,7 +315,7 @@ function createOkSaveButton() {
     insertOkSaveButton(mainTaskKey);
 }
 
-async function saveEditedTaskDetails(updatePath) {
+async function saveEditedTaskDetails(updatePath, mainTaskKey) {
   let updateTitle = document.getElementById("inputTitleEdit").value;
   let updateDesc = document.getElementById("inputDescriptionEdit").value;
   let updateDate = document.getElementById("inputDueDateEdit").value;
@@ -328,4 +328,7 @@ async function saveEditedTaskDetails(updatePath) {
       "date": updateDate,
     })
   );
+  await getTasks();
+  await renderTasks();
+  getTaskDetails(mainTaskKey);
 }
