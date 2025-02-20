@@ -94,7 +94,7 @@ async function getTasks(path = `tasks/`) {
           id: subtaskId,
           checked: subtaskContent.checked,
           text: subtaskContent.text,
-        })
+        }),
       );
     }
     tasks.push({
