@@ -10,7 +10,7 @@
     <script src="../js/registration.js"></script>
   </head>
 
-  <body>
+  <body onload="mediaQuery()">
     <header>
       <img
         src="../assets/join_logo/join-logo-capa2.svg"
@@ -60,7 +60,7 @@
         </form>
       </div>
     </main>
-
+    <div id="no-user-container-mobile" class="d_none">Not a Join user? <button onclick="openSignUpHTML()">Sign up</button></div>
     <footer>
       <a href="./privacy_policy.html">Privacy Policy</a>
       <a href="./legal_notice.html">Legal notice</a>

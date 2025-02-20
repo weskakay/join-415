@@ -29,7 +29,7 @@ function openHelp() {
 }
 
 function openLoginHTML() {
-  window.location.href = "../html/login.html";
+  window.location.href = "./html/login.html";
 }
 
 async function logOut() {
@@ -120,6 +120,7 @@ function mediaQuery() {
   let kanban = document.getElementsByClassName("kanban");
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
+  loginMedia()
   summaryMedia();
   contactsMedia();
   boardMedia();
@@ -194,6 +195,20 @@ function contactsMedia() {
     if (details) details.classList.add("d_none");
     if (editWindow) editWindow.classList.add("d_none");
     if (contactWindow) contactWindow.classList.add("d_none");
+  }
+}
+
+function loginMedia(){
+  let noUser = document.getElementById('no-user-container');
+  let noUserMobile = document.getElementById('no-user-container-mobile');
+
+  if(media.matches){
+    if(noUser) noUser.classList.add('d_none');
+    if(noUserMobile) noUserMobile.classList.remove('d_none');
+  }
+  else{
+    if(noUser) noUser.classList.remove('d_none');
+    if(noUserMobile) noUserMobile.classList.add('d_none');
   }
 }
 

@@ -4,7 +4,7 @@
 }
 
 .d_none {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -96,6 +96,17 @@ h1 {
   justify-content: flex-end;
   align-items: center;
   margin: 80px;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+#no-user-container-mobile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  margin-bottom: 40px;
   font-size: 20px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
@@ -388,4 +399,74 @@ input::placeholder {
   cursor: pointer;
   box-shadow: none;
   transform: scale(1.1);
+}
+
+@media(max-width: 960px){
+  main{
+    min-height: initial;
+  }
+  #login-container{
+    width: 396px;
+    height: auto;
+  }
+  h1{
+    font-size: 47px;
+    width: 100%;
+    padding: 16px;
+  }
+  #login-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    padding: 21px;
+  }
+}
+
+@media(max-width: 560px){
+  #login-container{
+    width: 296px;
+    height: auto;
+  }
+  input{
+    width: 320px;
+  }
+
+  #login-inputfields {
+    > #email-login{
+      background-position: 291px;
+    }
+  }
+
+  #password-login{
+    padding-right: 0;
+  }
+}
+
+@media(max-width: 420px){
+  #login-container{
+    width: 200px;
+    height: auto;
+  }
+  input{
+    width: 90%;
+  }
+  #toggle-password{
+    right: 0px;
+  }
+  #login-inputfields {
+    > #email-login{
+      background-position: 235px;
+    }
+  }
+  #login-buttons{
+    >button{
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+
+  #login, #guest-login{
+    width: 180px;
+    height: auto;
+  }
 }
