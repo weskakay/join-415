@@ -232,7 +232,12 @@ function editSubtasksList(mainTaskKey) {
 
 //update & delete task
 
-async function subtaskStatusChange(subtaskId, taskKey, subtaskEditId) {
+async function subtaskStatusChange(
+  subtaskId,
+  taskKey,
+  subtaskEditId,
+  statusText,
+) {
   let checkStatus = document.getElementById(subtaskEditId);
   let statusChange = 0;
   if (checkStatus.checked == true) {
@@ -240,9 +245,10 @@ async function subtaskStatusChange(subtaskId, taskKey, subtaskEditId) {
   } else {
     statusChange = 0;
   }
-  await patch_data(
+  await edit_data(
     (path = `tasks/${taskKey}/subtask/${subtaskId}`),
     (data = {
+      text: statusText,
       checked: statusChange,
     }),
   );
