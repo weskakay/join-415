@@ -441,6 +441,9 @@ select {
   .add-task-input-right {
     width: 360px;
   }
+  .add-task-assigned-contacts{
+    padding-bottom: 20px;
+  }
 
   .add-task-seperator {
     display: flex;
