@@ -66,7 +66,7 @@ function detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId) {
   return `
     <div class="subtask">
       <input
-        onclick="subtaskStatusChange('${subtaskId}', '${taskId}', this.id)"
+        onclick="subtaskStatusChange('${subtaskId}', '${taskId}', this.id, '${subtaskList}')"
         id="subtaskCheck${indexSubtask}"
         type="checkbox"
       />
