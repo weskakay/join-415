@@ -65,6 +65,17 @@ function openAddTask() {
   }
 }
 
+function greetingAnimation(){
+  if(window.innerWidth < 960){
+    setTimeout(() => {
+      changeNavbarItems('summary');
+    },2900)
+  }
+  else{
+    changeNavbarItems('summary');
+  }
+}
+
 async function update_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
@@ -203,8 +214,12 @@ function getTimeGreeting() {
   }
 
   let content = document.getElementById("greeting");
-  if (content) {
-    content.textContent = greeting;
+  let contentMobile= document.getElementById("greeting-mobile");
+  
+  if (window.innerWidth < 960){
+    if(contentMobile) contentMobile.textContent = greeting;
+  } else{
+    if (content) content.textContent = greeting; 
   }
 }
 
@@ -228,8 +243,12 @@ async function loadCurrentUser(id) {
 
 function renderCurrentUser(currentUser) {
   let content = document.getElementById("user-name");
-  if (content) {
-    content.innerHTML = currentUser.name;
+  let contentMobile = document.getElementById("user-name-mobile");
+ 
+  if(window.innerWidth < 960){
+   if(contentMobile)  contentMobile.innerHTML = currentUser.name;
+  }else {
+    if (content) content.innerHTML = currentUser.name;
   }
 }
 
