@@ -37,7 +37,7 @@ async function logOut() {
     name: ""
   }
   await edit_data("/current-user", user);
-  openLoginHTML();
+  changeNavbarItems('login')
 }
 
 function openSignUpHTML() {

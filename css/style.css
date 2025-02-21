@@ -169,6 +169,10 @@ footer {
 }
 
 @media (max-width: 960px) {
+  body::-webkit-scrollbar{
+    width: 0px;
+  }
+
   header {
     padding-left: 0px;
     height: 80px;

@@ -409,6 +409,10 @@ select {
     width: 360px;
   }
 
+  .add-task-wrapper{
+    padding: 110px 66px 0;
+  }
+
   .add-task-prio > button {
     font-size: 20px;
     width: 112px;
