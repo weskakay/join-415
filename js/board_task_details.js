@@ -2,6 +2,7 @@ function getTaskDetails(taskId) {
   let targetId = taskId;
   taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   let setPrio = tasks[taskKey].prio;
+  console.log(taskKey);
   clearTaskDetails();
   getTag(taskKey);
   getHeader(taskKey);
@@ -13,7 +14,7 @@ function getTaskDetails(taskId) {
   getSubtaskContainer(taskKey, taskId);
 }
 
-function getTaskDetailsDom(targetId, taskKey) {
+function getTaskDetailsDom(targetId) {
   document.getElementById("taskDetailsButtons").innerHTML =
     detailsEditDeleteButtons(targetId);
 }
@@ -63,15 +64,14 @@ function getPrioImage(setPrio) {
   }
 }
 
-function getAssigneeContainer(taskKey) {
+function getAssigneeContainer() {
   document.getElementById("assigneeDetails").innerHTML =
     assigneeContainerInsert();
-  getAssigneeData(taskKey);
+  getAssigneeData();
 }
 
-function getAssigneeData(taskKey) {
+function getAssigneeData() {
   assigneeEditKey = [];
-  console.log(tasks[taskKey].assigned);
   for (
     let indexAssignee = 0;
     indexAssignee < tasks[taskKey].assigned.length;
@@ -202,6 +202,7 @@ function editAssigneeList() {
 }
 
 function editAssigneeImage() {
+  document.getElementById("editAssigneeImage").innerHTML = "";
   for (let indexFind = 0; indexFind < assigneeEditKey.length; indexFind++) {
     let assigneeImageColor = contacts[assigneeEditKey[indexFind]].colorId;
     let assigneeImageInitials = contacts[assigneeEditKey[indexFind]].initials;
@@ -300,17 +301,6 @@ async function addEditSubtask(inputId, mainTaskId) {
   editSubtasks();
 }
 
-async function addEditContact(cleanedContactId, mainTaskKey) {
-  await update_data(
-    (path = `tasks/${mainTaskKey}/contact`),
-    (data = {
-      "contactId": cleanedContactId,
-    })
-  );
-  await loadDataBoard();
-  editAssignee();
-}
-
 function createOkSaveButton() {
   let mainTaskKey = tasks[taskKey].id;
   document.getElementById("taskDetailsButtons").innerHTML =
@@ -366,4 +356,26 @@ async function assignEditContact(contactId, mainTaskKey) {
       id: contactId,
     })
   );
+  await loadDataBoard();
+  editAssigneeData();
+}
+
+function editAssigneeData() {
+  assigneeEditKey = [];
+  for (
+    let indexAssignee = 0;
+    indexAssignee < tasks[taskKey].assigned.length;
+    indexAssignee++
+  ) {
+    let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
+    let assigneeKey = Object.keys(contacts).find(
+      (key) => contacts[key].id == assigneeId
+    );
+    if (contacts[assigneeKey] == undefined) {
+      continue;
+    } else {
+      assigneeEditKey.push(assigneeKey);
+      editAssigneeImage();
+    }
+  }
 }

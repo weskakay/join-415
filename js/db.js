@@ -6,6 +6,8 @@ let subtaskInputs = [];
 
 let contacts = [];
 
+let taskKey = 0;
+
 let assigneeEditKey = [];
 
 let selectedContactsIDs = [];
