@@ -3,7 +3,7 @@
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
  */
 
-function renderTasks() {
+async function renderTasks() {
   let todo = document.getElementById("board_todo");
   let progress = document.getElementById("board_progress");
   let feedback = document.getElementById("board_feedback");
@@ -16,7 +16,7 @@ function renderTasks() {
     taskElement.innerHTML = listTasks(
       task,
       i,
-      formatCategoryText(task.category),
+      formatCategoryText(task.category)
     );
     taskElement = taskElement.firstElementChild;
 
@@ -46,7 +46,7 @@ function getAssignedContacts(contactIDs, index) {
   content.innerHTML = "";
 
   let assignedContacts = contacts.filter((contact) =>
-    contactIDs.includes(contact.id),
+    contactIDs.includes(contact.id)
   );
   for (let i = 0; i < assignedContacts.length; i++) {
     content.innerHTML += listCardContacts(assignedContacts[i]);
@@ -146,13 +146,13 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
 
     if (!response.ok) {
       throw new Error(
-        `Fehler beim Aktualisieren der Task: ${response.statusText}`,
+        `Fehler beim Aktualisieren der Task: ${response.statusText}`
       );
     }
   } catch (error) {
     console.error(
       "Fehler beim Aktualisieren des Task-Status in Firebase:",
-      error,
+      error
     );
     throw error;
   }
@@ -257,7 +257,7 @@ function renderProgressbarSubtask(cardSubtasks, index) {
 function calcProgressSubtask(cardSubtasks) {
   let totalQuantity = cardSubtasks.length;
   let checkedQuantity = cardSubtasks.filter(
-    (task) => task.checked === 1,
+    (task) => task.checked === 1
   ).length;
 
   return {
