@@ -35,14 +35,13 @@ function filterContacts(contactsCheck) {
 }
 
 function toggleCheckbox(id) {
-  if (selectedContactsIDs.includes(id)) {
-    selectedContactsIDs = selectedContactsIDs.filter(
-      (contactId) => contactId !== id
-    );
+  if (selectedContactsIDs.some((obj) => obj.id === id)) {
+    selectedContactsIDs = selectedContactsIDs.filter((obj) => obj.id !== id);
   } else {
     selectedContactsIDs.push({ "id": id });
   }
   renderAssignedContacts(id);
+  console.log(selectedContactsIDs);
   return;
 }
 
