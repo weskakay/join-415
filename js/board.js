@@ -44,12 +44,14 @@ async function renderTasks() {
 function getAssignedContacts(contactIDs, index) {
   let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
-
-  let assignedContacts = contacts.filter((contact) =>
-    contactIDs.includes(contact.id)
-  );
-  for (let i = 0; i < assignedContacts.length; i++) {
-    content.innerHTML += listCardContacts(assignedContacts[i]);
+  for (let indexMy = 0; indexMy < contactIDs.length; indexMy++) {
+    let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
+    let assignedContacts = contacts.findIndex(
+      (contact) => contact.id === contactIdentifier
+    );
+    let assignedCode = contacts[assignedContacts].colorId;
+    let assignedName = contacts[assignedContacts].name;
+    content.innerHTML += listCardContacts(assignedName, assignedCode);
   }
 
   let witdhContainer =

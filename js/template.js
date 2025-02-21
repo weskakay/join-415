@@ -221,11 +221,11 @@ function listTasks(task, i, category) {
   `;
 }
 
-function listCardContacts(contact) {
+function listCardContacts(assignedName, assignedCode) {
   return /*html*/ `
           <div class="background-contacts card-contact-bg" style="background-color:${
-            bgcolors[contact.colorId].rgba
-          };">${getInitials(contact.name)}</div>
+            bgcolors[assignedCode].rgba
+          };">${getInitials(assignedName)}</div>
           `;
 }
 

@@ -71,14 +71,15 @@ function getAssigneeContainer(taskKey) {
 
 function getAssigneeData(taskKey) {
   assigneeEditKey = [];
+  console.log(tasks[taskKey].assigned);
   for (
     let indexAssignee = 0;
     indexAssignee < tasks[taskKey].assigned.length;
     indexAssignee++
   ) {
-    let assigneeId = tasks[taskKey].assigned[indexAssignee];
+    let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
     let assigneeKey = Object.keys(contacts).find(
-      (key) => contacts[key].id == assigneeId,
+      (key) => contacts[key].id == assigneeId
     );
     if (contacts[assigneeKey] == undefined) {
       continue;
@@ -236,7 +237,7 @@ async function subtaskStatusChange(
   subtaskId,
   taskKey,
   subtaskEditId,
-  statusText,
+  statusText
 ) {
   let checkStatus = document.getElementById(subtaskEditId);
   let statusChange = 0;
@@ -250,7 +251,7 @@ async function subtaskStatusChange(
     (data = {
       text: statusText,
       checked: statusChange,
-    }),
+    })
   );
   await getTasks();
   renderTasks();
@@ -292,7 +293,7 @@ async function addEditSubtask(inputId, mainTaskId) {
     (data = {
       "text": inputText,
       "checked": 0,
-    }),
+    })
   );
   clearSubtaskInput(inputId);
   await loadDataBoard();
@@ -304,7 +305,7 @@ async function addEditContact(cleanedContactId, mainTaskKey) {
     (path = `tasks/${mainTaskKey}/contact`),
     (data = {
       "contactId": cleanedContactId,
-    }),
+    })
   );
   await loadDataBoard();
   editAssignee();
@@ -327,7 +328,7 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
       "title": updateTitle,
       "description": updateDesc,
       "date": updateDate,
-    }),
+    })
   );
   await getTasks();
   await renderTasks();
@@ -342,18 +343,18 @@ async function renderContactsBoard(filteredContacts, divId) {
   list.style.display = "none";
 }
 
-function generateContactsBoardEdit(contacts) {
+function generateContactsBoardEdit(sortedContacts) {
   let mainTaskKey = tasks[taskKey].id;
 
-  return contacts
+  return sortedContacts
     .map((contact) =>
       editAddContacts(
         contact.id,
         contact.name,
         contact.colorId,
         currentUser,
-        mainTaskKey,
-      ),
+        mainTaskKey
+      )
     )
     .join("");
 }
@@ -363,6 +364,6 @@ async function assignEditContact(contactId, mainTaskKey) {
     (path = `tasks/${mainTaskKey}/contact/`),
     (data = {
       id: contactId,
-    }),
+    })
   );
 }

@@ -89,13 +89,22 @@ async function getTasks(path = `tasks/`) {
   Object.entries(tasksData).forEach(([id, content]) => {
     let subtasksArray = [];
     if (content.subtask) {
-      subtasksArray = Object.entries(content.subtask).map(
-        ([subtaskId, subtaskContent]) => ({
+      subtasksArray = Object.entries(content.subtask)
+        .filter(([key, value]) => value !== null && value !== undefined)
+        .map(([subtaskId, subtaskContent]) => ({
           id: subtaskId,
           checked: subtaskContent.checked,
           text: subtaskContent.text,
-        }),
-      );
+        }));
+    }
+    let contactArray = [];
+    if (content.contact) {
+      contactArray = Object.entries(content.contact)
+        .filter(([key, value]) => value !== null && value !== undefined)
+        .map(([assigneeId, assigneeContent]) => ({
+          "assigneeId": assigneeId,
+          "mainContactId": assigneeContent.id,
+        }));
     }
     tasks.push({
       id: id,
@@ -104,7 +113,7 @@ async function getTasks(path = `tasks/`) {
       title: content.title,
       description: content.description,
       subtasks: subtasksArray,
-      assigned: content.contact,
+      assigned: contactArray,
       prio: content.prio,
       date: content.date,
     });

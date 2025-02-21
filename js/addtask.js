@@ -40,7 +40,7 @@ function toggleCheckbox(id) {
       (contactId) => contactId !== id
     );
   } else {
-    selectedContactsIDs.push(id);
+    selectedContactsIDs.push({ "id": id });
   }
   renderAssignedContacts(id);
   return;
@@ -53,15 +53,6 @@ function setCheckbox(id) {
   }
   toggleCheckbox(id);
 }
-
-document.addEventListener("click", function (event) {
-  let list = document.getElementById("contacts-checkbox");
-  let searchBox = document.getElementById("contact-search");
-
-  if (!list.contains(event.target) && event.target !== searchBox) {
-    list.style.display = "none";
-  }
-});
 
 function renderAssignedContacts() {
   let contactInfo = contacts.filter((contact) =>
@@ -136,7 +127,6 @@ function clearInput() {
 
 function confirmInput() {
   let input = document.getElementById("subtaskInput");
-
   if (input.value.trim() !== "") {
     subtaskInputs.push({
       "text": input.value.trim(),
@@ -195,27 +185,6 @@ function deleteListItem(index) {
   subtaskInputs.splice(index, 1);
   renderSubtasks();
 }
-
-document
-  .getElementById("subtaskInput")
-  .addEventListener("blur", function (event) {
-    setTimeout(() => {
-      let checkIcon = document.getElementById("checkCross");
-
-      if (document.activeElement !== checkIcon) {
-        hideButtons();
-      }
-    }, 100);
-  });
-
-document
-  .getElementById("subtaskInput")
-  .addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      confirmInput();
-    }
-  });
 
 /**
  * Clears all input fields in the Add Task form.
