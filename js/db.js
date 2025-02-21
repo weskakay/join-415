@@ -12,6 +12,8 @@ let assigneeEditKey = [];
 
 let selectedContactsIDs = [];
 
+let selectedAssignee = [];
+
 let urgencySymbols = [
   "../assets/icons/add_task/prio-low-icon.svg",
   "../assets/icons/add_task/prio-medium-icon.svg",

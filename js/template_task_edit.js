@@ -289,7 +289,6 @@ function insertOkSaveButton(mainTaskKey) {
 
 function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
   let checked = selectedContactsIDs.includes(id) ? "checked" : "";
-
   return /*html*/ `
     <li>
       <input type="checkbox" 

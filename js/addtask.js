@@ -41,7 +41,6 @@ function toggleCheckbox(id) {
     selectedContactsIDs.push({ "id": id });
   }
   renderAssignedContacts(id);
-  console.log(selectedContactsIDs);
   return;
 }
 

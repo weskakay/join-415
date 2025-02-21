@@ -2,7 +2,6 @@ function getTaskDetails(taskId) {
   let targetId = taskId;
   taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   let setPrio = tasks[taskKey].prio;
-  console.log(taskKey);
   clearTaskDetails();
   getTag(taskKey);
   getHeader(taskKey);
@@ -189,11 +188,12 @@ function editPriority() {
   document.getElementById("priorityDetailsTR").innerHTML = insertEditPriority();
 }
 
-function editAssignee() {
+async function editAssignee() {
   document.getElementById("assigneeDetails").innerHTML = insertEditAssignee();
   editAssigneeList();
   editAssigneeImage();
-  renderContactsBoard(contacts, "editAssigneesCheckbox");
+  await renderContactsBoard(contacts, "editAssigneesCheckbox");
+  editInsertCheckmark();
 }
 
 function editAssigneeList() {
@@ -203,9 +203,11 @@ function editAssigneeList() {
 
 function editAssigneeImage() {
   document.getElementById("editAssigneeImage").innerHTML = "";
+  selectedAssignee = [];
   for (let indexFind = 0; indexFind < assigneeEditKey.length; indexFind++) {
     let assigneeImageColor = contacts[assigneeEditKey[indexFind]].colorId;
     let assigneeImageInitials = contacts[assigneeEditKey[indexFind]].initials;
+    selectedAssignee.push(contacts[assigneeEditKey[indexFind]].id);
     document.getElementById("editAssigneeImage").innerHTML +=
       insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials);
   }
@@ -329,7 +331,7 @@ async function renderContactsBoard(filteredContacts, divId) {
   let sortedContacts = await sortContacts(filteredContacts);
   let list = document.getElementById(divId);
 
-  list.innerHTML = generateContactsBoardEdit(sortedContacts);
+  list.innerHTML = await generateContactsBoardEdit(sortedContacts);
   list.style.display = "none";
 }
 
@@ -377,5 +379,16 @@ function editAssigneeData() {
       assigneeEditKey.push(assigneeKey);
       editAssigneeImage();
     }
+  }
+}
+
+function editInsertCheckmark() {
+  for (
+    let indexSelect = 0;
+    indexSelect < selectedAssignee.length;
+    indexSelect++
+  ) {
+    let id = selectedAssignee[indexSelect];
+    document.getElementById(`checkbox-${id}`).checked = true;
   }
 }
