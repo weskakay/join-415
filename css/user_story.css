@@ -75,11 +75,20 @@
   flex-direction: column;
 }
 
+.assigneeList{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+
+}
+
 .assignee {
   display: flex;
   align-items: center;
-  padding: 7px 16px;
   gap: 16px;
+  width: 45%;
 }
 
 .subtaskContainer {
@@ -89,13 +98,14 @@
 }
 .subtaskList {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .subtask {
   display: flex;
   align-items: center;
+  width: 45%;
   padding: 4px 16px;
   gap: 16px;
 }

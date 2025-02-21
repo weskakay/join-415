@@ -1,6 +1,6 @@
 .summaryContent {
   background-color: #f5f7f9;
-  padding: 110px 96px 0;
+  padding: 110px 96px;
   min-height: calc(100vh - 96px);
   width: 100%;
 }
