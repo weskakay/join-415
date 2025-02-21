@@ -78,7 +78,7 @@ function getAssigneeData(taskKey) {
   ) {
     let assigneeId = tasks[taskKey].assigned[indexAssignee];
     let assigneeKey = Object.keys(contacts).find(
-      (key) => contacts[key].id == assigneeId
+      (key) => contacts[key].id == assigneeId,
     );
     if (contacts[assigneeKey] == undefined) {
       continue;
@@ -192,17 +192,12 @@ function editAssignee() {
   document.getElementById("assigneeDetails").innerHTML = insertEditAssignee();
   editAssigneeList();
   editAssigneeImage();
-  renderContacts(contacts, "editAssigneesCheckbox");
+  renderContactsBoard(contacts, "editAssigneesCheckbox");
 }
 
 function editAssigneeList() {
-  let mainTaskKey = tasks[taskKey].id;
-  for (let indexAssList = 0; indexAssList < contacts.length; indexAssList++) {
-    let cleanedContact = contacts[indexAssList].name;
-    let cleanedContactId = contacts[indexAssList].id;
-    document.getElementById("editAssigneeList").innerHTML +=
-      insertEditAssigneeSelectionList();
-  }
+  document.getElementById("editAssigneeList").innerHTML +=
+    insertEditAssigneeSelectionList();
 }
 
 function editAssigneeImage() {
@@ -237,7 +232,12 @@ function editSubtasksList(mainTaskKey) {
 
 //update & delete task
 
-async function subtaskStatusChange(subtaskId, taskKey, subtaskEditId) {
+async function subtaskStatusChange(
+  subtaskId,
+  taskKey,
+  subtaskEditId,
+  statusText,
+) {
   let checkStatus = document.getElementById(subtaskEditId);
   let statusChange = 0;
   if (checkStatus.checked == true) {
@@ -245,11 +245,12 @@ async function subtaskStatusChange(subtaskId, taskKey, subtaskEditId) {
   } else {
     statusChange = 0;
   }
-  await patch_data(
+  await edit_data(
     (path = `tasks/${taskKey}/subtask/${subtaskId}`),
     (data = {
+      text: statusText,
       checked: statusChange,
-    })
+    }),
   );
   await getTasks();
   renderTasks();
@@ -291,7 +292,7 @@ async function addEditSubtask(inputId, mainTaskId) {
     (data = {
       "text": inputText,
       "checked": 0,
-    })
+    }),
   );
   clearSubtaskInput(inputId);
   await loadDataBoard();
@@ -303,7 +304,7 @@ async function addEditContact(cleanedContactId, mainTaskKey) {
     (path = `tasks/${mainTaskKey}/contact`),
     (data = {
       "contactId": cleanedContactId,
-    })
+    }),
   );
   await loadDataBoard();
   editAssignee();
@@ -326,9 +327,42 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
       "title": updateTitle,
       "description": updateDesc,
       "date": updateDate,
-    })
+    }),
   );
   await getTasks();
   await renderTasks();
   getTaskDetails(mainTaskKey);
+}
+
+async function renderContactsBoard(filteredContacts, divId) {
+  let sortedContacts = await sortContacts(filteredContacts);
+  let list = document.getElementById(divId);
+
+  list.innerHTML = generateContactsBoardEdit(sortedContacts);
+  list.style.display = "none";
+}
+
+function generateContactsBoardEdit(contacts) {
+  let mainTaskKey = tasks[taskKey].id;
+
+  return contacts
+    .map((contact) =>
+      editAddContacts(
+        contact.id,
+        contact.name,
+        contact.colorId,
+        currentUser,
+        mainTaskKey,
+      ),
+    )
+    .join("");
+}
+
+async function assignEditContact(contactId, mainTaskKey) {
+  await update_data(
+    (path = `tasks/${mainTaskKey}/contact/`),
+    (data = {
+      id: contactId,
+    }),
+  );
 }

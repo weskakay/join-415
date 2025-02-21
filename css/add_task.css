@@ -387,6 +387,9 @@ select {
 .required-mobile {
   display: none;
 }
+#taskDescription{
+  max-width: 100%;
+}
 
 @media (max-width: 1360px) {
   .add-task-input-left,
@@ -428,20 +431,8 @@ select {
 }
 
 @media (max-width: 1060px) {
-  .add-task-input-left,
-  .add-task-input-right {
-    width: 320px;
-  }
-
   .add-task-seperator {
     display: none;
-  }
-}
-
-@media (max-width: 1000px) {
-  .add-task-input-left,
-  .add-task-input-right {
-    width: 300px;
   }
 }
 
@@ -449,6 +440,9 @@ select {
   .add-task-input-left,
   .add-task-input-right {
     width: 360px;
+  }
+  .add-task-assigned-contacts{
+    padding-bottom: 20px;
   }
 
   .add-task-seperator {

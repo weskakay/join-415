@@ -27,7 +27,7 @@ async function proofLoginData(userId, findUser) {
         findUser = loginData[id];
         userId = Object.keys(login)[id];
         await edit_data("/current-user", findUser);
-        openSummary();
+        changeNavbarItems(window.innerWidth < 960 ? 'mobile_greeting' : 'summary');
         return;
       }
     }
@@ -102,7 +102,7 @@ async function openGuestLogin() {
     name: "Guest",
   };
   await edit_data("/current-user", guest);
-  openSummary();
+  changeNavbarItems(window.innerWidth < 960 ? 'mobile_greeting' : 'summary');
 }
 
 document.addEventListener("DOMContentLoaded", function () {

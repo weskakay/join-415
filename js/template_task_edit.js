@@ -66,7 +66,7 @@ function detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId) {
   return `
     <div class="subtask">
       <input
-        onclick="subtaskStatusChange('${subtaskId}', '${taskId}', this.id)"
+        onclick="subtaskStatusChange('${subtaskId}', '${taskId}', this.id, '${subtaskList}')"
         id="subtaskCheck${indexSubtask}"
         type="checkbox"
       />
@@ -285,4 +285,27 @@ function insertOkSaveButton(mainTaskKey) {
       </button>
     </div>
   `;
+}
+
+function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
+  let checked = selectedContactsIDs.includes(id) ? "checked" : "";
+
+  return /*html*/ `
+    <li>
+      <input type="checkbox" 
+        id="checkbox-${id}" 
+        class="add-task-checkmark" 
+        value="${id}" 
+        ${checked} 
+        onclick="assignEditContact('${id}', '${mainTaskKey}')"
+      />
+      <div class="background-contacts bg-contact-chechbox" style="background-color: ${
+        bgcolors[colorId].rgba
+      };">
+        ${getInitials(name)}
+      </div>
+      <p class="checkbox-name size20">${name}${
+    currentUser.name === name ? " (You)" : ""
+  }</p>
+    </li>`;
 }

@@ -29,7 +29,7 @@ function openHelp() {
 }
 
 function openLoginHTML() {
-  window.location.href = "../html/login.html";
+  window.location.href = "./html/login.html";
 }
 
 async function logOut() {
@@ -54,6 +54,26 @@ function openLegalNotice() {
 
 function openPrivacyPolicy() {
   window.location.href = "../html/privacy_policy.html";
+}
+
+function openAddTask() {
+  if (window.innerWidth < 960) {
+    window.location.href = "../html/addtask.html";
+  }
+  else {
+    openAddTaskOverlay();
+  }
+}
+
+function greetingAnimation(){
+  if(window.innerWidth < 960){
+    setTimeout(() => {
+      changeNavbarItems('summary');
+    },2900)
+  }
+  else{
+    changeNavbarItems('summary');
+  }
 }
 
 async function update_data(path = "", data = {}) {
@@ -100,6 +120,7 @@ function mediaQuery() {
   let kanban = document.getElementsByClassName("kanban");
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
+  loginMedia()
   summaryMedia();
   contactsMedia();
   boardMedia();
@@ -177,6 +198,20 @@ function contactsMedia() {
   }
 }
 
+function loginMedia(){
+  let noUser = document.getElementById('no-user-container');
+  let noUserMobile = document.getElementById('no-user-container-mobile');
+
+  if(media.matches){
+    if(noUser) noUser.classList.add('d_none');
+    if(noUserMobile) noUserMobile.classList.remove('d_none');
+  }
+  else{
+    if(noUser) noUser.classList.remove('d_none');
+    if(noUserMobile) noUserMobile.classList.add('d_none');
+  }
+}
+
 mediaQuery();
 media.addEventListener("change", mediaQuery);
 
@@ -194,8 +229,12 @@ function getTimeGreeting() {
   }
 
   let content = document.getElementById("greeting");
-  if (content) {
-    content.textContent = greeting;
+  let contentMobile= document.getElementById("greeting-mobile");
+  
+  if (window.innerWidth < 960){
+    if(contentMobile) contentMobile.textContent = greeting;
+  } else{
+    if (content) content.textContent = greeting; 
   }
 }
 
@@ -219,8 +258,12 @@ async function loadCurrentUser(id) {
 
 function renderCurrentUser(currentUser) {
   let content = document.getElementById("user-name");
-  if (content) {
-    content.innerHTML = currentUser.name;
+  let contentMobile = document.getElementById("user-name-mobile");
+ 
+  if(window.innerWidth < 960){
+   if(contentMobile)  contentMobile.innerHTML = currentUser.name;
+  }else {
+    if (content) content.innerHTML = currentUser.name;
   }
 }
 
@@ -237,34 +280,36 @@ function sortContacts(contacts) {
 
 async function checkLoggedIn() {
   await getCurrentUser();
-  if(currentUser.name.length > 0){
+  if (currentUser.name.length > 0) {
     return true;
   }
-  else if(currentUser.name.length == 0){
+  else if (currentUser.name.length == 0) {
     return false;
   }
 }
 
 async function changeNavbar(styleID) {
-  let styleDiv= document.getElementsByClassName("loggedOutButtons");
-  let desktopID= document.getElementById('desktop-nav');
-  let footerID= document.getElementById('mobile-footer');
+  let styleDiv = document.getElementsByClassName("loggedOutButtons");
+  let desktopID = document.getElementById('desktop-nav');
+  let footerID = document.getElementById('mobile-footer');
   let profile = document.getElementsByClassName('profileSection');
   let help = document.getElementsByClassName('help');
-  
-    footerID.innerHTML = '';
-    desktopID.innerHTML='';
-  if(await checkLoggedIn()){
+
+  footerID.innerHTML = '';
+  desktopID.innerHTML = '';
+  if (await checkLoggedIn()) {
     footerID.innerHTML = mobileFooterLoggedIn();
-    desktopID.innerHTML= desktopNavbarLoggedIn();
+    desktopID.innerHTML = desktopNavbarLoggedIn();
     for (let index = 0; index < profile.length; index++) {
       profile[index].classList.remove('d_none');
-      help[index].classList.add('d_none');}
-  } else{
+      help[index].classList.add('d_none');
+    }
+  } else {
     desktopID.innerHTML = desktopNavbarLoggedOut();
     footerID.innerHTML = mobileFooterLoggedOut();
     styleDiv[styleID].style.backgroundColor = "rgba(9, 25, 49, 1)";
     for (let index = 0; index < profile.length; index++) {
-      profile[index].classList.add('d_none');}
+      profile[index].classList.add('d_none');
+    }
   };
 }
