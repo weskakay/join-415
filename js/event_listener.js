@@ -1,3 +1,5 @@
+let subtaskRef= document.getElementById('subtaskInput');
+
 document.addEventListener("click", function (event) {
   let list = document.getElementById("contacts-checkbox");
   let searchBox = document.getElementById("contact-search");
@@ -7,9 +9,8 @@ document.addEventListener("click", function (event) {
   }
 });
 
-document
-  .getElementById("subtaskInput")
-  .addEventListener("blur", function (event) {
+
+ if(subtaskRef) {subtaskRef.addEventListener("blur", function (event) {
     setTimeout(() => {
       let checkIcon = document.getElementById("checkCross");
 
@@ -17,13 +18,11 @@ document
         hideButtons();
       }
     }, 100);
-  });
+  })};
 
-document
-  .getElementById("subtaskInput")
-  .addEventListener("keydown", function (event) {
+if(subtaskRef) {subtaskRef.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
       confirmInput();
     }
-  });
+  })};
