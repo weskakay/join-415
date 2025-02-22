@@ -185,7 +185,19 @@ function editDueDate() {
 }
 
 function editPriority() {
+  let setPrioEdit = tasks[taskKey].prio;
   document.getElementById("priorityDetailsTR").innerHTML = insertEditPriority();
+  switch (setPrioEdit) {
+    case "low":
+      setButtonColor("LowEdit", "#7AE229");
+      break;
+    case "medium":
+      setButtonColor("MediumEdit", "#FFA800");
+      break;
+    case "urgent":
+      setButtonColor("UrgentEdit", "#FF3D00");
+  }
+  updatePrio(setPrioEdit);
 }
 
 async function editAssignee() {
@@ -313,6 +325,7 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
   let updateTitle = document.getElementById("inputTitleEdit").value;
   let updateDesc = document.getElementById("inputDescriptionEdit").value;
   let updateDate = document.getElementById("inputDueDateEdit").value;
+  let updatePrio = newPrio;
 
   await patch_data(
     (path = updatePath),
@@ -320,6 +333,7 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
       "title": updateTitle,
       "description": updateDesc,
       "date": updateDate,
+      "prio": updatePrio,
     }),
   );
   await getTasks();
@@ -407,4 +421,10 @@ function editInsertCheckmark() {
     let id = selectedAssignee[indexSelect];
     document.getElementById(`checkbox-${id}`).checked = true;
   }
+}
+
+function updatePrio(chosenPrio) {
+  newPrio = "";
+  newPrio = chosenPrio;
+  console.log(newPrio);
 }

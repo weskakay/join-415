@@ -129,7 +129,7 @@ function insertEditPriority() {
         <button
           class="button-prio-urgent"
           id="buttonUrgentEdit"
-          onclick="setButtonColor('UrgentEdit', '#FF3D00')"
+          onclick="setButtonColor('UrgentEdit', '#FF3D00'), updatePrio('urgent')"
         >
           Urgent<img
             src="../assets/icons/add_task/prio-urgent-icon.svg"
@@ -139,7 +139,7 @@ function insertEditPriority() {
         <button
           class="button-prio-medium"
           id="buttonMediumEdit"
-          onclick="setButtonColor('MediumEdit', '#FFA800')"
+          onclick="setButtonColor('MediumEdit', '#FFA800'), updatePrio('medium')"
         >
           Medium<img
             src="../assets/icons/add_task/prio-medium-icon.svg"
@@ -149,7 +149,7 @@ function insertEditPriority() {
         <button
           class="button-prio-low"
           id="buttonLowEdit"
-          onclick="setButtonColor('LowEdit', '#7AE229')"
+          onclick="setButtonColor('LowEdit', '#7AE229'), updatePrio('low')"
         >
           Low<img
             src="../assets/icons/add_task/prio-low-icon.svg"
