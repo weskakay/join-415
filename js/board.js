@@ -16,7 +16,7 @@ async function renderTasks() {
     taskElement.innerHTML = listTasks(
       task,
       i,
-      formatCategoryText(task.category)
+      formatCategoryText(task.category),
     );
     taskElement = taskElement.firstElementChild;
 
@@ -47,7 +47,7 @@ function getAssignedContacts(contactIDs, index) {
   for (let indexMy = 0; indexMy < contactIDs.length; indexMy++) {
     let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
     let assignedContacts = contacts.findIndex(
-      (contact) => contact.id === contactIdentifier
+      (contact) => contact.id === contactIdentifier,
     );
     let assignedCode = contacts[assignedContacts].colorId;
     let assignedName = contacts[assignedContacts].name;
@@ -148,13 +148,13 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
 
     if (!response.ok) {
       throw new Error(
-        `Fehler beim Aktualisieren der Task: ${response.statusText}`
+        `Fehler beim Aktualisieren der Task: ${response.statusText}`,
       );
     }
   } catch (error) {
     console.error(
       "Fehler beim Aktualisieren des Task-Status in Firebase:",
-      error
+      error,
     );
     throw error;
   }
@@ -259,7 +259,7 @@ function renderProgressbarSubtask(cardSubtasks, index) {
 function calcProgressSubtask(cardSubtasks) {
   let totalQuantity = cardSubtasks.length;
   let checkedQuantity = cardSubtasks.filter(
-    (task) => task.checked === 1
+    (task) => task.checked === 1,
   ).length;
 
   return {
