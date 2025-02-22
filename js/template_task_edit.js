@@ -288,14 +288,12 @@ function insertOkSaveButton(mainTaskKey) {
 }
 
 function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
-  let checked = selectedContactsIDs.includes(id) ? "checked" : "";
   return /*html*/ `
     <li>
       <input type="checkbox" 
         id="checkbox-${id}" 
         class="add-task-checkmark" 
         value="${id}" 
-        ${checked} 
         onclick="assignEditContact('${id}', '${mainTaskKey}')"
       />
       <div class="background-contacts bg-contact-chechbox" style="background-color: ${

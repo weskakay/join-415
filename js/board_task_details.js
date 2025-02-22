@@ -78,7 +78,7 @@ function getAssigneeData() {
   ) {
     let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
     let assigneeKey = Object.keys(contacts).find(
-      (key) => contacts[key].id == assigneeId
+      (key) => contacts[key].id == assigneeId,
     );
     if (contacts[assigneeKey] == undefined) {
       continue;
@@ -240,7 +240,7 @@ async function subtaskStatusChange(
   subtaskId,
   taskKey,
   subtaskEditId,
-  statusText
+  statusText,
 ) {
   let checkStatus = document.getElementById(subtaskEditId);
   let statusChange = 0;
@@ -254,7 +254,7 @@ async function subtaskStatusChange(
     (data = {
       text: statusText,
       checked: statusChange,
-    })
+    }),
   );
   await getTasks();
   renderTasks();
@@ -296,7 +296,7 @@ async function addEditSubtask(inputId, mainTaskId) {
     (data = {
       "text": inputText,
       "checked": 0,
-    })
+    }),
   );
   clearSubtaskInput(inputId);
   await loadDataBoard();
@@ -320,7 +320,7 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
       "title": updateTitle,
       "description": updateDesc,
       "date": updateDate,
-    })
+    }),
   );
   await getTasks();
   await renderTasks();
@@ -337,7 +337,6 @@ async function renderContactsBoard(filteredContacts, divId) {
 
 function generateContactsBoardEdit(sortedContacts) {
   let mainTaskKey = tasks[taskKey].id;
-
   return sortedContacts
     .map((contact) =>
       editAddContacts(
@@ -345,19 +344,36 @@ function generateContactsBoardEdit(sortedContacts) {
         contact.name,
         contact.colorId,
         currentUser,
-        mainTaskKey
-      )
+        mainTaskKey,
+      ),
     )
     .join("");
 }
 
 async function assignEditContact(contactId, mainTaskKey) {
-  await update_data(
-    (path = `tasks/${mainTaskKey}/contact/`),
-    (data = {
-      id: contactId,
-    })
-  );
+  let myCheckbox = document.getElementById(`checkbox-${contactId}`);
+  if (myCheckbox.checked == true) {
+    await update_data(
+      (path = `tasks/${mainTaskKey}/contact/`),
+      (data = {
+        id: contactId,
+      }),
+    );
+  } else {
+    let assigneeArray = [];
+    for (let index = 0; index < tasks[taskKey].assigned.length; index++) {
+      assigneeArray.push(tasks[taskKey].assigned[index]);
+    }
+    let assigneeIdentifier = assigneeArray.findIndex(
+      (item) => item.mainContactId == myCheckbox.value,
+    );
+    let assigneeDeleter =
+      tasks[taskKey].assigned[assigneeIdentifier].assigneeId;
+
+    await delete_data(
+      (path = `tasks/${mainTaskKey}/contact/${assigneeDeleter}`),
+    );
+  }
   await loadDataBoard();
   editAssigneeData();
 }
@@ -371,7 +387,7 @@ function editAssigneeData() {
   ) {
     let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
     let assigneeKey = Object.keys(contacts).find(
-      (key) => contacts[key].id == assigneeId
+      (key) => contacts[key].id == assigneeId,
     );
     if (contacts[assigneeKey] == undefined) {
       continue;
