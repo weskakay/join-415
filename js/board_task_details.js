@@ -394,21 +394,28 @@ async function assignEditContact(contactId, mainTaskKey) {
 
 function editAssigneeData() {
   assigneeEditKey = [];
-  for (
-    let indexAssignee = 0;
-    indexAssignee < tasks[taskKey].assigned.length;
-    indexAssignee++
+  if (
+    typeof tasks[taskKey].assigned !== "undefined" &&
+    tasks[taskKey].assigned.length > 0
   ) {
-    let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
-    let assigneeKey = Object.keys(contacts).find(
-      (key) => contacts[key].id == assigneeId,
-    );
-    if (contacts[assigneeKey] == undefined) {
-      continue;
-    } else {
-      assigneeEditKey.push(assigneeKey);
-      editAssigneeImage();
+    for (
+      let indexAssignee = 0;
+      indexAssignee < tasks[taskKey].assigned.length;
+      indexAssignee++
+    ) {
+      let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
+      let assigneeKey = Object.keys(contacts).find(
+        (key) => contacts[key].id == assigneeId,
+      );
+      if (contacts[assigneeKey] == undefined) {
+        continue;
+      } else {
+        assigneeEditKey.push(assigneeKey);
+        editAssigneeImage();
+      }
     }
+  } else {
+    document.getElementById("editAssigneeImage").innerHTML = "";
   }
 }
 
@@ -426,5 +433,4 @@ function editInsertCheckmark() {
 function updatePrio(chosenPrio) {
   newPrio = "";
   newPrio = chosenPrio;
-  console.log(newPrio);
 }
