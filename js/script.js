@@ -5,8 +5,8 @@ let currentUser = null;
 async function pageLoadHandler(id) {
   mediaQuery();
   getTimeGreeting();
+  await loadCurrentUser(id);
   if (id === 'contacts'){ 
-    await loadCurrentUser(id);
     loadDataContacts();}
 }
 
