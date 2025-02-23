@@ -63,7 +63,7 @@
 .addContactWindow {
   position: absolute;
   top: 96px;
-  left: 40%;
+  left: 15%;
   transform: translate(0, 0);
   transition-timing-function: ease-in;
   transition: 0.2s;
@@ -210,9 +210,20 @@ input#telInput {
   display: none;
 }
 
+@media(max-width: 1800px){
+  .addContactsLogo{
+    width: 350px;
+  }
+  .addContactsInput{
+    width: 650px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
 @media (max-width: 1211px) {
   .addContactWindow {
-    left: 30%;
+    left: 20%;
   }
   
   .contactWindowFull {
@@ -287,6 +298,9 @@ input#telInput {
 }
 
 @media (max-width: 960px) {
+  .addContactWindow {
+    position: fixed;
+  }
   .openContactMenu {
     display: block;
     position: absolute;
@@ -362,5 +376,11 @@ input#telInput {
     background-color: transparent;
     border-style: none;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 550px){
+  .addContactWindow {
+    left: 5%;
   }
 }

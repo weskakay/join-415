@@ -261,6 +261,13 @@
 }
 
 @media (max-width: 960px) {
+  .mobile-add-contact-button{
+    background-color: transparent !important;
+    >button{ margin-top: 90px !important;
+    }
+   
+  }
+
   .contactsList {
     max-width: initial;
     max-height: initial;
@@ -326,8 +333,8 @@
   }
 
   .contactsDetailsOpen {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 80px;
     right: 0;
     padding: 48px 16px;
     height: 100%;
