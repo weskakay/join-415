@@ -283,20 +283,6 @@ async function deleteSubtask(path) {
   editSubtasks();
 }
 
-function showButtonEdit() {
-  let checkCross = document.getElementById("checkCrossEdit");
-  let addIcon = document.getElementById("addIconEdit");
-  checkCross.style.display = "flex";
-  addIcon.style.display = "none";
-}
-
-function selectInputEdit(inputId) {
-  showButtonEdit();
-  let input = document.getElementById(inputId);
-  input.focus();
-  input.select();
-}
-
 function clearSubtaskInput(inputId) {
   document.getElementById(inputId).value = "";
 }

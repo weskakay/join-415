@@ -95,16 +95,16 @@ function resetButtonColors() {
   });
 }
 
-function selectInput() {
-  showButtons();
-  let input = document.getElementById("subtaskInput");
+function selectInput(inputId, add, check) {
+  showButtons(add, check);
+  let input = document.getElementById(inputId);
   input.focus();
   input.select();
 }
 
-function showButtons() {
-  let checkCross = document.getElementById("checkCross");
-  let addIcon = document.getElementById("addIcon");
+function showButtons(add, check) {
+  let checkCross = document.getElementById(check);
+  let addIcon = document.getElementById(add);
   checkCross.style.display = "flex";
   addIcon.style.display = "none";
 }

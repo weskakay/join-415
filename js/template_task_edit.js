@@ -210,14 +210,14 @@ function insertSubtaskContainer(mainTaskKey) {
           type="text"
           id="subtaskEditInput"
           placeholder="Add new subtask"
-          onclick="showButtonEdit('addIconEdit','checkCrossEdit')"
+          onclick="showButtons('addIconEdit','checkCrossEdit')"
         />
         <div class="add-task-subtasks-icons-wrapper">
           <div id="addIconEdit">
             <div class="add-task-subtasks-icon">
               <div
                 class="add-task-subtasks-add"
-                onclick="selectInputEdit('subtaskEditInput')"
+                onclick="selectInput('subtaskEditInput','addIconEdit','checkCrossEdit')"
               >
                 <img
                   src="../assets/icons/add_task/add-icon.svg"
