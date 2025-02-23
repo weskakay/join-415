@@ -109,11 +109,13 @@ function showButtons(add, check) {
   addIcon.style.display = "none";
 }
 
-function hideButtons() {
+function hideButtons(inputId) {
+  let input = document.getElementById(inputId);
   let checkCross = document.getElementById("checkCross");
   let addIcon = document.getElementById("addIcon");
   checkCross.style.display = "none";
   addIcon.style.display = "flex";
+  input.blur();
 }
 
 function clearInput() {
