@@ -1,4 +1,5 @@
 let subtaskRef = document.getElementById("subtaskInput");
+let subtaskRefEdit = document.getElementById("subtaskEditInput");
 
 document.addEventListener("click", function (event) {
   let list = document.getElementById("contacts-checkbox");
@@ -9,15 +10,23 @@ document.addEventListener("click", function (event) {
   }
 });
 
-/* if(subtaskRef) {subtaskRef.addEventListener("blur", function (event) {
-    setTimeout(() => {
-      let checkIcon = document.getElementById("checkCross");
+subtaskRef.addEventListener("blur", (event) => {
+  setTimeout(() => {
+    let checkCross = document.getElementById("checkCross");
+    let addIcon = document.getElementById("addIcon");
+    checkCross.style.display = "none";
+    addIcon.style.display = "block";
+  }, 150);
+});
 
-      if (document.activeElement !== checkIcon) {
-        hideButtons();
-      }
-    }, 100);
-  })};*/
+subtaskRefEdit.addEventListener("blur", (event) => {
+  setTimeout(() => {
+    let checkCross = document.getElementById("checkCrossEdit");
+    let addIcon = document.getElementById("addIconEdit");
+    checkCross.style.display = "none";
+    addIcon.style.display = "block";
+  }, 150);
+});
 
 if (subtaskRef) {
   subtaskRef.addEventListener("keydown", function (event) {
