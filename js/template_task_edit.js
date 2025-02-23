@@ -211,6 +211,7 @@ function insertSubtaskContainer(mainTaskKey) {
           id="subtaskEditInput"
           placeholder="Add new subtask"
           onclick="showButtons('addIconEdit','checkCrossEdit')"
+          onfocusout="hideButtons('subtaskEditInput','checkCrossEdit','addIconEdit')"
         />
         <div class="add-task-subtasks-icons-wrapper">
           <div id="addIconEdit">

@@ -205,6 +205,7 @@
                     id="subtaskInput"
                     placeholder="Add new subtask"
                     onclick="showButtons('addIcon','checkCross')"
+                    onfocusout="hideButtons('subtaskInput','checkCross','addIcon')"
                   />
                   <div class="add-task-subtasks-icons-wrapper">
                     <div id="addIcon">
@@ -233,7 +234,7 @@
                       <div class="add-task-subtasks-seperator"></div>
                       <div
                         class="add-task-subtasks-icon"
-                        onclick="confirmInput(), hideButtons('subtaskInput')"
+                        onclick="confirmInput(), hideButtons('subtaskInput','checkCross','addIcon')"
                       >
                         <img
                           class="add-task-subtasks-check"

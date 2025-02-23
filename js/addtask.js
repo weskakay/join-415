@@ -109,13 +109,16 @@ function showButtons(add, check) {
   addIcon.style.display = "none";
 }
 
-function hideButtons(inputId) {
+function hideButtons(inputId, cross, add) {
   let input = document.getElementById(inputId);
-  let checkCross = document.getElementById("checkCross");
-  let addIcon = document.getElementById("addIcon");
-  checkCross.style.display = "none";
-  addIcon.style.display = "flex";
-  input.blur();
+  let checkCross = document.getElementById(cross);
+  let addIcon = document.getElementById(add);
+  setTimeout(() => {
+    checkCross.style.display = "none";
+    addIcon.style.display = "flex";
+    input.blur();
+    input.value = "";
+  }, 150);
 }
 
 function clearInput() {
