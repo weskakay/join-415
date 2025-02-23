@@ -22,19 +22,21 @@ async function groupContacts() {
 }
 
 function renderContacts(sortedGroups, grouped) {
-  document.getElementById("contactsList").innerHTML = "";
-  let globalIndex = 0;
+  let contactsListRef= document.getElementById("contactsList");
+  let globalIndex = 0;  
+  contactsListRef.innerHTML = "";
+  
   for (let i = 0; i < sortedGroups.length; i++) {
     let letter = sortedGroups[i];
-    document.getElementById("contactsList").innerHTML +=
-      listContactHeader(letter);
+    contactsListRef.innerHTML += listContactHeader(letter);
+
     for (let j = 0; j < grouped[letter].length; j++) {
       let contact = grouped[letter][j];
-      document.getElementById("contactsList").innerHTML += listContactData(
+      contactsListRef.innerHTML += listContactData(
         contact,
         globalIndex,
         currentUser,
-      );
+      ); 
       globalIndex++;
     }
   }

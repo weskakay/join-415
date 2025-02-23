@@ -2,10 +2,12 @@ const BASE_URL = "https://join-415-default-rtdb.europe-west1.firebasedatabase.ap
 let media = window.matchMedia("(max-width: 960px)");
 let currentUser = null;
 
-function pageLoadHandler(id) {
+async function pageLoadHandler(id) {
   mediaQuery();
   getTimeGreeting();
-  loadCurrentUser(id);
+  if (id === 'contacts'){ 
+    await loadCurrentUser(id);
+    loadDataContacts();}
 }
 
 function d_none(enterid) {
