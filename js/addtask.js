@@ -5,8 +5,8 @@ function generateContactsHTML(contacts) {
         contact.id,
         contact.name,
         contact.colorId,
-        currentUser,
-      ),
+        currentUser
+      )
     )
     .join("");
 }
@@ -28,7 +28,7 @@ function filterContacts(contactsCheck) {
   }
 
   let filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().startsWith(searchTerm),
+    contact.name.toLowerCase().startsWith(searchTerm)
   );
 
   renderContacts(filteredContacts);
@@ -54,9 +54,8 @@ function setCheckbox(id) {
 
 function renderAssignedContacts() {
   let contactInfo = contacts.filter((contact) =>
-    selectedContactsIDs.includes(contact.id),
+    selectedContactsIDs.some((selected) => selected.id === contact.id)
   );
-
   let content = document.getElementById("assignedContacts");
   content.innerHTML = contactInfo
     .map((contact) => listAssingedContacts(contact.name, contact.colorId))
@@ -249,7 +248,7 @@ function validateRequiredFields() {
   for (let field of requiredFields) {
     if (!field.value.trim()) {
       alert(
-        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`,
+        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`
       );
       field.focus();
       return false;
