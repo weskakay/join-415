@@ -198,6 +198,9 @@ function resetAllInputs() {
   document.getElementById("date").value = "";
   document.getElementById("inputCategory").selectedIndex = 0;
   document.getElementById("subtaskInput").value = "";
+  resetButtonColors();
+
+  selectedPrio = "";
   subtaskInputs = [];
   selectedContactsIDs = [];
   renderAssignedContacts();

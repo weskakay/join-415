@@ -252,8 +252,12 @@
       </div>
 
       <!-- Add Task Overlay -->
-      <div id="addTaskOverlay" class="overlay d_none">
-        <div class="overlay-content">
+      <div
+        id="addTaskOverlay"
+        class="overlay d_none"
+        onclick=" closeAddTaskOverlay()"
+      >
+        <div class="overlay-content" onclick="noBubble(event)">
           <div class="add-task-overlay-wrapper">
             <div class="add-task-overlay-header">
               <div class="add-task-headline-overlay">Add Task</div>
