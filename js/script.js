@@ -6,8 +6,18 @@ async function pageLoadHandler(id) {
   mediaQuery();
   getTimeGreeting();
   await loadCurrentUser(id);
-  if (id === 'contacts'){ 
-    loadDataContacts();}
+  if (id === 'contacts') {
+    loadDataContacts();
+  }
+  if (id === 'addtask') {
+    loadDataAddTask();
+  }
+  if (id === 'board') {
+    loadDataBoard();
+  }
+  if (id === 'summary') {
+    loadDataSummary();
+  }
 }
 
 function d_none(enterid) {
@@ -67,13 +77,13 @@ function openAddTask() {
   }
 }
 
-function greetingAnimation(){
-  if(window.innerWidth < 960){
+function greetingAnimation() {
+  if (window.innerWidth < 960) {
     setTimeout(() => {
       changeNavbarItems('summary');
-    },2900)
+    }, 2900)
   }
-  else{
+  else {
     changeNavbarItems('summary');
   }
 }
@@ -200,17 +210,17 @@ function contactsMedia() {
   }
 }
 
-function loginMedia(){
+function loginMedia() {
   let noUser = document.getElementById('no-user-container');
   let noUserMobile = document.getElementById('no-user-container-mobile');
 
-  if(media.matches){
-    if(noUser) noUser.classList.add('d_none');
-    if(noUserMobile) noUserMobile.classList.remove('d_none');
+  if (media.matches) {
+    if (noUser) noUser.classList.add('d_none');
+    if (noUserMobile) noUserMobile.classList.remove('d_none');
   }
-  else{
-    if(noUser) noUser.classList.remove('d_none');
-    if(noUserMobile) noUserMobile.classList.add('d_none');
+  else {
+    if (noUser) noUser.classList.remove('d_none');
+    if (noUserMobile) noUserMobile.classList.add('d_none');
   }
 }
 
@@ -231,12 +241,12 @@ function getTimeGreeting() {
   }
 
   let content = document.getElementById("greeting");
-  let contentMobile= document.getElementById("greeting-mobile");
-  
-  if (window.innerWidth < 960){
-    if(contentMobile) contentMobile.textContent = greeting;
-  } else{
-    if (content) content.textContent = greeting; 
+  let contentMobile = document.getElementById("greeting-mobile");
+
+  if (window.innerWidth < 960) {
+    if (contentMobile) contentMobile.textContent = greeting;
+  } else {
+    if (content) content.textContent = greeting;
   }
 }
 
@@ -261,10 +271,10 @@ async function loadCurrentUser(id) {
 function renderCurrentUser(currentUser) {
   let content = document.getElementById("user-name");
   let contentMobile = document.getElementById("user-name-mobile");
- 
-  if(window.innerWidth < 960){
-   if(contentMobile)  contentMobile.innerHTML = currentUser.name;
-  }else {
+
+  if (window.innerWidth < 960) {
+    if (contentMobile) contentMobile.innerHTML = currentUser.name;
+  } else {
     if (content) content.innerHTML = currentUser.name;
   }
 }
