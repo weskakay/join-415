@@ -44,7 +44,7 @@ async function registrationData() {
   let password = document.getElementById("password-input");
   let name = document.getElementById("name-input");
   let confPassword = document.getElementById("confirm-password-input");
-  
+
   if (confirmPassword()) {
     update_data("/login-data", {
       email: `${email.value.trim()}`,
@@ -56,7 +56,8 @@ async function registrationData() {
     document.getElementById("error-pw").classList.remove("d_none");
 
     console.log("wrong password");
-  }}
+  }
+}
 
 function confirmPassword() {
   let passwordInput = document.getElementById("password-input");
@@ -104,15 +105,6 @@ async function openGuestLogin() {
   await edit_data("/current-user", guest);
   changeNavbarItems(window.innerWidth < 960 ? 'mobile_greeting' : 'summary');
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  let passwordField = document.getElementById("password-login");
-  let toggleButton = document.getElementById("toggle-password");
-
-  toggleButton.addEventListener("click", togglePasswordVisibility);
-  passwordField.addEventListener("focus", handleFocus);
-  passwordField.addEventListener("blur", handleBlur);
-});
 
 function togglePasswordVisibility() {
   let { passwordField, eyeIcon } = getContent();

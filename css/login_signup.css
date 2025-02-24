@@ -199,7 +199,7 @@ h1 {
 
   > #email-login {
     background-image: url(../assets/icons/login_signup/mail.svg);
-    background-position: 390px;
+    background-position: 382px;
     background-repeat: no-repeat;
   }
 
@@ -416,6 +416,10 @@ input::placeholder {
   transform: scale(1.1);
 }
 
+.toogle-visibility:focus{
+  outline: none;
+}
+
 @media(max-width: 960px){
   #signup-container{
     width: 396px;
@@ -461,8 +465,12 @@ input::placeholder {
       background-position: 291px;
     }
   }
-  #email-input, #name-input, #password-input, #confirm-password-input{
+  #email-input, #password-input, #confirm-password-input{
     background-position: 307px;
+  }
+
+  #name-input{
+    background-position: 310px;
   }
 
   #password-login{
@@ -488,7 +496,7 @@ input::placeholder {
   }
 
   #email-input, #name-input, #password-input, #confirm-password-input{
-    background-position: 207px;
+    background-image: none;
   }
 
   #login-buttons{

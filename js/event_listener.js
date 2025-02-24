@@ -19,3 +19,14 @@ if (subtaskRef) {
     }
   });
 }
+
+if (window.location.pathname.includes("login.html")) {
+  document.addEventListener("DOMContentLoaded", function () {
+    let passwordField = document.getElementById("password-login");
+    let toggleButton = document.getElementById("toggle-password");
+
+    toggleButton.addEventListener("click", togglePasswordVisibility);
+    passwordField.addEventListener("focus", handleFocus);
+    passwordField.addEventListener("blur", handleBlur);
+  });
+}
