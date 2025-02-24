@@ -54,6 +54,7 @@ async function loadDataBoard() {
   await getContacts();
   await getTasks();
   renderTasks();
+  renderContacts(contacts, "contacts-checkbox");
 }
 
 async function loadDataContacts() {

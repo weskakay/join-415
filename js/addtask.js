@@ -292,3 +292,7 @@ function validateData() {
 function openContactsList(listId) {
   document.getElementById(listId).style.display = "block";
 }
+
+function closeContactsList(listId) {
+  document.getElementById(listId).style.display = "none";
+}

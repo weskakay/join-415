@@ -102,7 +102,10 @@
         </div>
       </nav>
       <div class="main-container">
-        <div class="add-task-wrapper">
+        <div
+          class="add-task-wrapper"
+          onclick="closeContactsList('contacts-checkbox')"
+        >
           <div class="add-task-headline">Add Task</div>
           <div class="add-task-input">
             <div class="add-task-input-left">
@@ -129,7 +132,7 @@
                   <input
                     type="text"
                     id="contact-search"
-                    onclick="openContactsList('contacts-checkbox')"
+                    onclick="openContactsList('contacts-checkbox'), noBubble(event)"
                     oninput="filterContacts('contacts-checkbox')"
                     placeholder="Select contacts to assign"
                   />
@@ -137,6 +140,7 @@
                     class="add-task-items"
                     id="contacts-checkbox"
                     style="display: none"
+                    onclick="noBubble(event)"
                   ></ul>
                 </div>
               </div>

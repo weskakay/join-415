@@ -1,5 +1,6 @@
 let subtaskRef = document.getElementById("subtaskInput");
-let subtaskRefEdit = document.getElementById("subtaskEditInput");
+let contactsInputRef = document.getElementById("contact-search");
+let contactsCheckRef = document.getElementById("contacts-checkbox");
 
 document.addEventListener("click", function (event) {
   let list = document.getElementById("contacts-checkbox");
@@ -9,15 +10,6 @@ document.addEventListener("click", function (event) {
     list.style.display = "none";
   }
 });
-
-/*subtaskRef.addEventListener("blur", (event) => {
-  setTimeout(() => {
-    let checkCross = document.getElementById("checkCross");
-    let addIcon = document.getElementById("addIcon");
-    checkCross.style.display = "none";
-    addIcon.style.display = "block";
-  }, 150);
-});*/
 
 if (subtaskRef) {
   subtaskRef.addEventListener("keydown", function (event) {

@@ -258,7 +258,10 @@
         onclick=" closeAddTaskOverlay()"
       >
         <div class="overlay-content" onclick="noBubble(event)">
-          <div class="add-task-overlay-wrapper">
+          <div
+            class="add-task-overlay-wrapper"
+            onclick="closeContactsList('contacts-checkbox')"
+          >
             <div class="add-task-overlay-header">
               <div class="add-task-headline-overlay">Add Task</div>
               <div class="close-add-task" onclick="closeAddTaskOverlay()">
@@ -290,7 +293,8 @@
                     <input
                       type="text"
                       id="contact-search"
-                      onclick="openContactsList('contacts-checkbox')"
+                      onclick="openContactsList('contacts-checkbox'),
+                    noBubble(event)"
                       oninput="filterContacts('contacts-checkbox')"
                       placeholder="Select contacts to assign"
                     />
@@ -298,6 +302,7 @@
                       class="add-task-items"
                       id="contacts-checkbox"
                       style="display: none"
+                      onclick="noBubble(event)"
                     ></ul>
                   </div>
                 </div>
