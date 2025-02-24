@@ -199,13 +199,11 @@ function resetAllInputs() {
   document.getElementById("inputCategory").selectedIndex = 0;
   document.getElementById("subtaskInput").value = "";
   resetButtonColors();
-
   selectedPrio = "";
   subtaskInputs = [];
   selectedContactsIDs = [];
   renderAssignedContacts();
   renderSubtasks();
-  hideButtons();
 }
 
 async function getTaskData() {

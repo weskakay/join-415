@@ -364,14 +364,15 @@
                       type="text"
                       id="subtaskInput"
                       placeholder="Add new subtask"
-                      onclick="showButtons()"
+                      onclick="showButtons('addIcon','checkCross')"
+                      onfocusout="hideButtons('subtaskInput','checkCross','addIcon')"
                     />
                     <div class="add-task-subtasks-icons-wrapper">
                       <div id="addIcon">
                         <div class="add-task-subtasks-icon">
                           <div
                             class="add-task-subtasks-add"
-                            onclick="selectInput()"
+                            onclick="selectInput('subtaskInput','addIcon','checkCross')"
                           >
                             <img
                               src="../assets/icons/add_task/add-icon.svg"
@@ -396,7 +397,7 @@
                         <div class="add-task-subtasks-seperator"></div>
                         <div
                           class="add-task-subtasks-icon"
-                          onclick="confirmInput()"
+                          onclick="confirmInput(), hideButtons('subtaskInput','checkCross','addIcon')"
                         >
                           <img
                             class="add-task-subtasks-check"
@@ -526,4 +527,5 @@
     </footer>
   </body>
   <script src="../js/db.js"></script>
+  <script src="../js/event_listener.js"></script>
 </html>

@@ -209,8 +209,8 @@ function openAddTaskOverlay() {
  * Closes the "Add Task" overlay and makes the left navbar visible again.
  */
 function closeAddTaskOverlay() {
-  document.getElementById("addTaskOverlay").classList.add("d_none");
   resetAllInputs();
+  document.getElementById("addTaskOverlay").classList.add("d_none");
 }
 
 /**
