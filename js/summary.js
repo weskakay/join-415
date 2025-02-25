@@ -43,8 +43,26 @@ function countStatusTasks() {
     acc[curr] = (acc[curr] || 0) + 1;
     return acc;
   }, {});
-  document.getElementById("tasks_to_do").innerHTML = count.todo;
-  document.getElementById("tasks_done").innerHTML = count.done;
-  document.getElementById("tasks_progress").innerHTML = count.progress;
-  document.getElementById("tasks_awaiting").innerHTML = count.feedback;
+  insertStatusTasks(count);
+  console.log(count);
+}
+
+function insertStatusTasks(count) {
+  let count_to_do = document.getElementById("tasks_to_do");
+  let count_done = document.getElementById("tasks_done");
+  let count_progress = document.getElementById("tasks_progress");
+  let count_feedback = document.getElementById("tasks_awaiting");
+
+  if (count.todo != undefined) {
+    count_to_do.innerHTML = count.todo;
+  }
+  if (count.done != undefined) {
+    count_done.innerHTML = count.done;
+  }
+  if (count.progress != undefined) {
+    count_progress.innerHTML = count.progress;
+  }
+  if (count.feedback != undefined) {
+    count_feedback.innerHTML = count.feedback;
+  }
 }
