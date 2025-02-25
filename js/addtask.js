@@ -8,8 +8,8 @@ function generateContactsHTML(contacts) {
         contact.id,
         contact.name,
         contact.colorId,
-        currentUser
-      )
+        currentUser,
+      ),
     )
     .join("");
 }
@@ -31,7 +31,7 @@ function filterContacts(contactsCheck) {
   }
 
   let filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().startsWith(searchTerm)
+    contact.name.toLowerCase().startsWith(searchTerm),
   );
 
   renderContacts(filteredContacts);
@@ -57,7 +57,7 @@ function setCheckbox(id) {
 
 function renderAssignedContacts() {
   let contactInfo = contacts.filter((contact) =>
-    selectedContactsIDs.some((selected) => selected.id === contact.id)
+    selectedContactsIDs.some((selected) => selected.id === contact.id),
   );
   let content = document.getElementById("assignedContacts");
   content.innerHTML = contactInfo
@@ -258,7 +258,7 @@ function validateRequiredFields() {
   for (let field of requiredFields) {
     if (!field.value.trim()) {
       alert(
-        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`
+        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`,
       );
       field.focus();
       return false;
@@ -316,4 +316,14 @@ function openContactsList(listId) {
 
 function closeContactsList(listId) {
   document.getElementById(listId).style.display = "none";
+}
+
+function selectCheckBox(checkboxId, contactId) {
+  let checkStatus = document.getElementById(checkboxId);
+  if (checkStatus.checked == true) {
+    checkStatus.checked = false;
+  } else {
+    checkStatus.checked = true;
+  }
+  toggleCheckbox(contactId);
 }

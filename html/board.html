@@ -230,11 +230,11 @@
         class="overlay d_none"
         onclick=" closeAddTaskOverlay()"
       >
-        <div class="overlay-content" onclick="noBubble(event)">
-          <div
-            class="add-task-overlay-wrapper"
-            onclick="closeContactsList('contacts-checkbox')"
-          >
+        <div
+          class="overlay-content"
+          onclick="noBubble(event), closeContactsList('contacts-checkbox')"
+        >
+          <div class="add-task-overlay-wrapper">
             <div class="add-task-overlay-header">
               <div class="add-task-headline-overlay">Add Task</div>
               <div class="close-add-task" onclick="closeAddTaskOverlay()">

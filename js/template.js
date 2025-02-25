@@ -98,10 +98,10 @@ function listContactsAddtask(id, name, colorId, currentUser) {
       />
       <div class="background-contacts bg-contact-chechbox" style="background-color: ${
         bgcolors[colorId].rgba
-      };">
+      };" onclick="selectCheckBox('checkbox-${id}', '${id}')">
         ${getInitials(name)}
       </div>
-      <p class="checkbox-name size20">${name}${
+      <p class="checkbox-name size20" onclick="selectCheckBox('checkbox-${id}', '${id}')">${name}${
     currentUser.name === name ? " (You)" : ""
   }</p>
     </li>`;
