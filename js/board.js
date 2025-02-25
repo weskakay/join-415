@@ -85,7 +85,8 @@ function truncateText(text) {
 function searchTasks() {
   let searchInput = document
     .querySelector("#board-search-container input")
-    .value.toLowerCase();
+    .value.trim()
+    .toLowerCase();
   let taskContainers = document.querySelectorAll(".board-card");
   let noResultsMessage = document.getElementById("no-results-message");
   let foundTasks = false;
@@ -93,12 +94,18 @@ function searchTasks() {
   taskContainers.forEach((task) => {
     let title = task
       .querySelector(".card-title-discription p.weight700")
-      .innerText.toLowerCase();
+      ?.innerText.trim()
+      .toLowerCase();
     let description = task
       .querySelector(".card-title-discription p.weight400")
-      .innerText.toLowerCase();
+      ?.innerText.trim()
+      .toLowerCase();
 
-    if (title.includes(searchInput) || description.includes(searchInput)) {
+    if (
+      searchInput === "" ||
+      (title && title.startsWith(searchInput)) ||
+      (description && description.startsWith(searchInput))
+    ) {
       task.style.display = "flex";
       foundTasks = true;
     } else {
@@ -106,11 +113,7 @@ function searchTasks() {
     }
   });
 
-  if (!foundTasks) {
-    noResultsMessage.style.display = "block";
-  } else {
-    noResultsMessage.style.display = "none";
-  }
+  noResultsMessage.style.display = foundTasks ? "none" : "block";
 }
 
 async function drop(ev, targetColumn) {
@@ -234,12 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let noResultsMessage = document.createElement("div");
     noResultsMessage.id = "no-results-message";
     noResultsMessage.innerText = "No results found.";
-    noResultsMessage.style.display = "none";
-    noResultsMessage.style.textAlign = "center";
-    noResultsMessage.style.marginTop = "20px";
-    noResultsMessage.style.fontSize = "18px";
-    noResultsMessage.style.color = "#8B0000";
-
     boardWrapper.appendChild(noResultsMessage);
   }
 });

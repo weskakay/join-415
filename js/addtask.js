@@ -241,8 +241,15 @@ function prepareTaskData() {
     prio,
     category,
     subtask,
-    status: taskStatus,
+    status: stautsEmpty(taskStatus),
   };
+}
+
+function stautsEmpty(stauts) {
+  if (!stauts) {
+    return (taskStatus = "todo");
+  }
+  return taskStatus;
 }
 
 function validateRequiredFields() {
