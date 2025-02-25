@@ -203,7 +203,7 @@ function listTasks(task, i, category) {
         <p class="size16 weight700">${task.title}</p>
         <p class="size16 weight400 colorGrey">
           ${truncateText(
-            task.description === undefined ? "" : task.description
+            task.description === undefined ? "" : task.description,
           )}
         </p>
       </div>
@@ -342,4 +342,13 @@ function desktopNavbarLoggedOut() {
             </button>
           </div>
 `;
+}
+
+function summaryDueDateInsert(closestDate, splitDay, splitYear) {
+  return `
+    <p class="weight700 size21">
+      ${months[closestDate.getMonth()] + " " + splitDay + ", " + splitYear}
+    </p>
+    <p class="weight400 size16">Upcoming Deadline</p>
+  `;
 }

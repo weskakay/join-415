@@ -77,52 +77,56 @@ async function getContacts(path = `contacts/`) {
   contacts = [];
   let response = await fetch(BASE_URL + path + ".json");
   let contactData = await response.json();
-  Object.entries(contactData).forEach(([id, details]) => {
-    contacts.push({
-      id: id,
-      name: details.name,
-      email: details.email,
-      phone: details.phone,
-      colorId: details.colorId,
-      initials: getInitials(details.name),
+  if (contactData != 0) {
+    Object.entries(contactData).forEach(([id, details]) => {
+      contacts.push({
+        id: id,
+        name: details.name,
+        email: details.email,
+        phone: details.phone,
+        colorId: details.colorId,
+        initials: getInitials(details.name),
+      });
     });
-  });
+  }
 }
 
 async function getTasks(path = `tasks/`) {
   tasks = [];
   let response = await fetch(BASE_URL + path + ".json");
   let tasksData = await response.json();
-  Object.entries(tasksData).forEach(([id, content]) => {
-    let subtasksArray = [];
-    if (content.subtask) {
-      subtasksArray = Object.entries(content.subtask)
-        .filter(([key, value]) => value !== null && value !== undefined)
-        .map(([subtaskId, subtaskContent]) => ({
-          id: subtaskId,
-          checked: subtaskContent.checked,
-          text: subtaskContent.text,
-        }));
-    }
-    let contactArray = [];
-    if (content.contact) {
-      contactArray = Object.entries(content.contact)
-        .filter(([key, value]) => value !== null && value !== undefined)
-        .map(([assigneeId, assigneeContent]) => ({
-          "assigneeId": assigneeId,
-          "mainContactId": assigneeContent.id,
-        }));
-    }
-    tasks.push({
-      id: id,
-      status: content.status,
-      category: content.category,
-      title: content.title,
-      description: content.description,
-      subtasks: subtasksArray,
-      assigned: contactArray,
-      prio: content.prio,
-      date: content.date,
+  if (tasksData != null) {
+    Object.entries(tasksData).forEach(([id, content]) => {
+      let subtasksArray = [];
+      if (content.subtask) {
+        subtasksArray = Object.entries(content.subtask)
+          .filter(([key, value]) => value !== null && value !== undefined)
+          .map(([subtaskId, subtaskContent]) => ({
+            id: subtaskId,
+            checked: subtaskContent.checked,
+            text: subtaskContent.text,
+          }));
+      }
+      let contactArray = [];
+      if (content.contact) {
+        contactArray = Object.entries(content.contact)
+          .filter(([key, value]) => value !== null && value !== undefined)
+          .map(([assigneeId, assigneeContent]) => ({
+            "assigneeId": assigneeId,
+            "mainContactId": assigneeContent.id,
+          }));
+      }
+      tasks.push({
+        id: id,
+        status: content.status,
+        category: content.category,
+        title: content.title,
+        description: content.description,
+        subtasks: subtasksArray,
+        assigned: contactArray,
+        prio: content.prio,
+        date: content.date,
+      });
     });
-  });
+  }
 }

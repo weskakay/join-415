@@ -1,14 +1,16 @@
 function showTaskNumbers() {
   let priorities = [];
   let dates = [];
-  document.getElementById("tasks_board").innerHTML = tasks.length;
-  for (let indexTasks = 0; indexTasks < tasks.length; indexTasks++) {
-    priorities.push(tasks[indexTasks].prio.trim());
-    dates.push(tasks[indexTasks].date);
+  if (tasks.length > 0) {
+    document.getElementById("tasks_board").innerHTML = tasks.length;
+    for (let indexTasks = 0; indexTasks < tasks.length; indexTasks++) {
+      priorities.push(tasks[indexTasks].prio.trim());
+      dates.push(tasks[indexTasks].date);
+    }
+    showurgentNumber(priorities);
+    showClosestDate(dates);
+    countStatusTasks();
   }
-  showurgentNumber(priorities);
-  showClosestDate(dates);
-  countStatusTasks();
 }
 
 function showurgentNumber(priorities) {
@@ -30,8 +32,11 @@ function showClosestDate(dates) {
   let splitDate = sortedDates[0].split("-");
   let splitDay = splitDate[2];
   let splitYear = splitDate[0];
-  document.getElementById("deadline").innerHTML =
-    months[closestDate.getMonth()] + " " + splitDay + ", " + splitYear;
+  document.getElementById("deadline").innerHTML = summaryDueDateInsert(
+    closestDate,
+    splitDay,
+    splitYear,
+  );
 }
 
 function countStatusTasks() {
