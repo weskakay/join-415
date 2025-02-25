@@ -44,20 +44,27 @@ async function renderTasks() {
 function getAssignedContacts(contactIDs, index) {
   let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
+
+  let assignedContacts = [];
+
   for (let indexMy = 0; indexMy < contactIDs.length; indexMy++) {
     let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
-    let assignedContacts = contacts.findIndex(
+    let contactIndex = contacts.findIndex(
       (contact) => contact.id === contactIdentifier
     );
-    let assignedCode = contacts[assignedContacts].colorId;
-    let assignedName = contacts[assignedContacts].name;
-    content.innerHTML += listCardContacts(assignedName, assignedCode);
+
+    if (contactIndex !== -1) {
+      let assignedCode = contacts[contactIndex].colorId;
+      let assignedName = contacts[contactIndex].name;
+      content.innerHTML += listCardContacts(assignedName, assignedCode);
+      assignedContacts.push(contacts[contactIndex]);
+    }
   }
 
-  let witdhContainer =
+  let widthContainer =
     assignedContacts.length === 1 ? 32 : (assignedContacts.length - 1) * 32;
 
-  content.style.width = witdhContainer + "px";
+  content.style.width = widthContainer + "px";
 }
 
 function formatCategoryText(category) {
@@ -242,7 +249,7 @@ function renderProgressbarSubtask(cardSubtasks, index) {
   let progress = document.getElementById("subtaskProgress-" + index);
   let tasksDone = document.getElementById("subtaskDone-" + index);
 
-  if (cardSubtasks === undefined) {
+  if (!cardSubtasks || cardSubtasks.length === 0) {
     statusContainer.style.display = "none";
     return;
   }

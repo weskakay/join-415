@@ -123,7 +123,6 @@
   transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
-
 .board-no-task {
   display: none;
   align-items: center;
@@ -208,7 +207,6 @@
 }
 
 .card-assignedto {
-  width: 96px; /* witdh = (anzahl der kontakte) - 1 x 32px, wenn nur 1 dann 32px*/
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16px, max-content));
 }
@@ -241,7 +239,7 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.add-task-overlay-header{
+.add-task-overlay-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -254,9 +252,7 @@
   font-weight: bold;
 }
 
-
-
-.add-task-overlay-wrapper{
+.add-task-overlay-wrapper {
   width: 100%;
   max-width: 1144px;
   display: flex;
@@ -264,7 +260,7 @@
   justify-content: space-between;
 }
 
-.add-task-overlay-input{
+.add-task-overlay-input {
   display: flex;
   flex-direction: row;
   gap: 64px;
@@ -326,64 +322,63 @@
   border-color: rgba(41, 171, 226, 1);
 }
 
-.close-add-task{
+.close-add-task {
   align-self: flex-start;
 }
 
-.close-add-task:hover{
+.close-add-task:hover {
   cursor: pointer;
 }
 
-@media(max-width: 1350px){
-  .board-tasks-wrapper{
+@media (max-width: 1350px) {
+  .board-tasks-wrapper {
     flex-wrap: wrap;
     gap: 64px;
   }
-  .board-tasks-container{
+  .board-tasks-container {
     width: 100%;
   }
 
-  .board-card-container{
+  .board-card-container {
     flex-direction: row;
     flex-wrap: wrap;
     height: auto;
     min-height: 110px;
   }
 
-  .board-card{
+  .board-card {
     width: 252px;
     height: auto;
-
   }
 }
 
-@media (max-width: 1250px){
-  .add-task-bottom-overlay{
+@media (max-width: 1250px) {
+  .add-task-bottom-overlay {
     padding: 40px 32px;
   }
 
-  .overlay-content{
+  .overlay-content {
     padding: 0 32px;
   }
 
-  .add-task-overlay-input{
+  .add-task-overlay-input {
     gap: 32px;
   }
-
 }
 
-@media (max-width: 1100px){
+@media (max-width: 1100px) {
   .search-input {
     > input {
-        width: 212px;}}
-  .size21{
+      width: 212px;
+    }
+  }
+  .size21 {
     font-size: 18px;
   }
 }
 
 @media (max-width: 960px) {
-
-  .size21{
+  .size21 {
     font-size: 21px;
   }
   .board-header {

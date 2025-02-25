@@ -1,4 +1,5 @@
 let taskStatus = "todo";
+let selectedPrio = undefined;
 
 function generateContactsHTML(contacts) {
   return contacts
@@ -270,7 +271,6 @@ function validateContacts() {
     document.getElementById("contact-search").focus();
     return false;
   }
-
   return true;
 }
 
@@ -286,8 +286,21 @@ function validateCategory() {
   return true;
 }
 
+function validatePriority() {
+  if (!selectedPrio) {
+    alert("Bitte wähle eine Priorität aus.");
+    return false;
+  }
+  return true;
+}
+
 function validateData() {
-  return validateRequiredFields() && validateContacts() && validateCategory();
+  return (
+    validateRequiredFields() &&
+    validateContacts() &&
+    validateCategory() &&
+    validatePriority()
+  );
 }
 
 function openContactsList(listId) {

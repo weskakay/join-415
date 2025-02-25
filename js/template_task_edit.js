@@ -122,7 +122,7 @@ function insertEditDueDate(dueDateText) {
 }
 
 function insertEditPriority() {
-  return `
+  return /*html*/ `
     <p class="weight400 size16 colorLightGrey">Priority</p>
     <div class="add-task-input-fields">
       <div class="add-task-prio">
