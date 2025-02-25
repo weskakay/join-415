@@ -1,3 +1,5 @@
+let taskStatus = "todo";
+
 function generateContactsHTML(contacts) {
   return contacts
     .map((contact) =>
@@ -38,7 +40,7 @@ function toggleCheckbox(id) {
   if (selectedContactsIDs.some((obj) => obj.id === id)) {
     selectedContactsIDs = selectedContactsIDs.filter((obj) => obj.id !== id);
   } else {
-    selectedContactsIDs.push({ "id": id });
+    selectedContactsIDs.push({ id: id });
   }
   renderAssignedContacts(id);
   return;
@@ -131,8 +133,8 @@ function confirmInput() {
   let input = document.getElementById("subtaskInput");
   if (input.value.trim() !== "") {
     subtaskInputs.push({
-      "text": input.value.trim(),
-      "checked": 0,
+      text: input.value.trim(),
+      checked: 0,
     });
     renderSubtasks();
     clearInput();
@@ -229,7 +231,6 @@ function prepareTaskData() {
   let prio = selectedPrio;
   let category = document.getElementById("inputCategory").value;
   let subtask = subtaskInputs;
-  let status = "todo";
 
   return {
     title,
@@ -239,7 +240,7 @@ function prepareTaskData() {
     prio,
     category,
     subtask,
-    status,
+    status: taskStatus,
   };
 }
 

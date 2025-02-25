@@ -223,7 +223,7 @@ select {
   display: none; /*display flex, when the input field is selected*/
   justify-content: space-between;
   align-items: center;
-  width: 48px;
+  width: 56px;
 }
 
 .add-task-subtasks-check {
@@ -387,7 +387,7 @@ select {
 .required-mobile {
   display: none;
 }
-#taskDescription{
+#taskDescription {
   max-width: 100%;
 }
 
@@ -409,7 +409,7 @@ select {
     width: 360px;
   }
 
-  .add-task-wrapper{
+  .add-task-wrapper {
     padding: 110px 66px 0;
   }
 
@@ -445,7 +445,7 @@ select {
   .add-task-input-right {
     width: 360px;
   }
-  .add-task-assigned-contacts{
+  .add-task-assigned-contacts {
     padding-bottom: 20px;
   }
 
@@ -504,7 +504,7 @@ select {
     bottom: 80px;
     width: 100%;
     height: 80px;
-    background-color: #F6F7F8;
+    background-color: #f6f7f8;
     gap: 32px;
   }
 
@@ -520,7 +520,7 @@ select {
     display: none;
   }
 
-  .add-task-wrapper{
+  .add-task-wrapper {
     padding: 0 16px 0 16px;
   }
 }
@@ -528,17 +528,18 @@ select {
 @media (max-width: 428px) {
   .add-task-bottom-buttons > button {
     font-size: 21px;
-}
+  }
 }
 
 @media (max-width: 380px) {
   .add-task-bottom-buttons > button {
     font-size: 18px;
     padding: 8px;
-}
+  }
 }
 
 @media (max-width: 350px) {
-  .add-task-bottom-buttons{
+  .add-task-bottom-buttons {
     padding-right: 16px;
-  }}
+  }
+}

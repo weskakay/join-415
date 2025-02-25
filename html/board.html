@@ -137,7 +137,7 @@
               <p>To do</p>
               <img
                 src="../assets/icons/board/plus button.svg"
-                onclick="openAddTaskOverlay()"
+                onclick="openAddTaskOverlay('todo')"
               />
             </div>
             <div
@@ -153,38 +153,6 @@
               <div class="board-no-task size16 weight400" id="no-task-todo">
                 <p>No tasks To Do</p>
               </div>
-              <!--Hier mit get ID einfügen und "No Task Div ausblenden"-->
-              <div
-                class="board-card"
-                id="-OIb1ahbSTdCoQXBeHDU"
-                draggable="true"
-                ondragstart="drag(event)"
-                onclick="getTaskData(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
-              >
-                <div class="crad-category size16">User Story</div>
-                <div class="card-title-discription">
-                  <p class="size16 weight700">Bitte Heflen Sie mir!</p>
-                  <p class="size16 weight400 colorGrey">
-                    Hier könnte etwas Produktives stehen.
-                  </p>
-                </div>
-                <!--ausblenden, wenn keine subtask hinzugefügt-->
-                <div class="crad-subtask-wrapper" id="subtask">
-                  <div class="subtask-progessbar">
-                    <div class="subtask-progess"></div>
-                  </div>
-                  <p class="size12">1/2 Subtasks</p>
-                </div>
-                <div class="crad-footer">
-                  <div class="card-assignedto" id="card_contact">
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                    <div class="background-contacts card-contact-bg">AM</div>
-                  </div>
-                  <img src="../assets/icons/add_task/prio-low-icon.svg" />
-                </div>
-              </div>
             </div>
           </div>
           <div class="board-tasks-container">
@@ -192,7 +160,7 @@
               <p>In progress</p>
               <img
                 src="../assets/icons/board/plus button.svg"
-                onclick="openAddTaskOverlay()"
+                onclick="openAddTaskOverlay('progress')"
               />
             </div>
             <div
@@ -214,7 +182,7 @@
               <p>Await feedback</p>
               <img
                 src="../assets/icons/board/plus button.svg"
-                onclick="openAddTaskOverlay()"
+                onclick="openAddTaskOverlay('feedback')"
               />
             </div>
             <div
@@ -236,7 +204,7 @@
               <p>Done</p>
               <img
                 src="../assets/icons/board/plus button.svg"
-                onclick="openAddTaskOverlay()"
+                onclick="openAddTaskOverlay('done')"
               />
             </div>
             <div
