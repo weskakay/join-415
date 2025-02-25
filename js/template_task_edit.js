@@ -289,21 +289,26 @@ function insertOkSaveButton(mainTaskKey) {
 }
 
 function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
-  return /*html*/ `
-    <li>
-      <input type="checkbox" 
-        id="checkbox-${id}" 
-        class="add-task-checkmark" 
-        value="${id}" 
-        onclick="assignEditContact('${id}', '${mainTaskKey}')"
-      />
-      <div class="background-contacts bg-contact-chechbox" style="background-color: ${
-        bgcolors[colorId].rgba
-      };">
-        ${getInitials(name)}
-      </div>
-      <p class="checkbox-name size20">${name}${
-    currentUser.name === name ? " (You)" : ""
-  }</p>
-    </li>`;
+  return ` <li>
+    <input
+      type="checkbox"
+      id="checkboxEdit-${id}"
+      class="add-task-checkmark"
+      value="${id}"
+      onclick="assignEditContact('${id}', '${mainTaskKey}')"
+    />
+    <div
+      class="background-contacts bg-contact-chechbox"
+      style="background-color: ${bgcolors[colorId].rgba};"
+      onclick="selectCheckBoxEdit('checkboxEdit-${id}', '${id}', '${mainTaskKey}')"
+    >
+      ${getInitials(name)}
+    </div>
+    <p
+      class="checkbox-name size20"
+      onclick="selectCheckBoxEdit('checkboxEdit-${id}', '${id}', '${mainTaskKey}')"
+    >
+      ${name}${currentUser.name === name ? " (You)" : ""}
+    </p>
+  </li>`;
 }

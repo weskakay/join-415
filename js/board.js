@@ -12,7 +12,6 @@ async function renderTasks() {
 
   for (let i = 0; i < tasks.length; i++) {
     let task = tasks[i];
-    console.log(task.category);
     let taskElement = document.createElement("div");
     taskElement.innerHTML = listTasks(
       task,

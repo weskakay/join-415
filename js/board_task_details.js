@@ -351,7 +351,7 @@ function generateContactsBoardEdit(sortedContacts) {
 }
 
 async function assignEditContact(contactId, mainTaskKey) {
-  let myCheckbox = document.getElementById(`checkbox-${contactId}`);
+  let myCheckbox = document.getElementById(`checkboxEdit-${contactId}`);
   if (myCheckbox.checked == true) {
     await update_data(
       (path = `tasks/${mainTaskKey}/contact/`),
@@ -376,6 +376,16 @@ async function assignEditContact(contactId, mainTaskKey) {
   }
   await loadDataBoard();
   editAssigneeData();
+}
+
+function selectCheckBoxEdit(checkboxId, contactId, mainTaskKey) {
+  let checkStatus = document.getElementById(checkboxId);
+  if (checkStatus.checked == true) {
+    checkStatus.checked = false;
+  } else {
+    checkStatus.checked = true;
+  }
+  assignEditContact(contactId, mainTaskKey);
 }
 
 function editAssigneeData() {
@@ -412,7 +422,7 @@ function editInsertCheckmark() {
     indexSelect++
   ) {
     let id = selectedAssignee[indexSelect];
-    document.getElementById(`checkbox-${id}`).checked = true;
+    document.getElementById(`checkboxEdit-${id}`).checked = true;
   }
 }
 
