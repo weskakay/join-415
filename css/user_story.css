@@ -9,6 +9,7 @@
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
   height: 100%;
   width: 100%;
+  min-width: 525px;
   padding: 54px 46px;
   gap: 24px;
   display: flex;
@@ -75,13 +76,12 @@
   flex-direction: column;
 }
 
-.assigneeList{
+.assigneeList {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   width: 100%;
   align-items: center;
-
 }
 
 .assignee {
