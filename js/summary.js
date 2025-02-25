@@ -8,6 +8,7 @@ function showTaskNumbers() {
   }
   showurgentNumber(priorities);
   showClosestDate(dates);
+  countStatusTasks();
 }
 
 function showurgentNumber(priorities) {
@@ -31,4 +32,19 @@ function showClosestDate(dates) {
   let splitYear = splitDate[0];
   document.getElementById("deadline").innerHTML =
     months[closestDate.getMonth()] + " " + splitDay + ", " + splitYear;
+}
+
+function countStatusTasks() {
+  let statusAmount = [];
+  for (let indexStatus = 0; indexStatus < tasks.length; indexStatus++) {
+    statusAmount.push(tasks[indexStatus].status);
+  }
+  let count = statusAmount.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {});
+  document.getElementById("tasks_to_do").innerHTML = count.todo;
+  document.getElementById("tasks_done").innerHTML = count.done;
+  document.getElementById("tasks_progress").innerHTML = count.progress;
+  document.getElementById("tasks_awaiting").innerHTML = count.feedback;
 }
