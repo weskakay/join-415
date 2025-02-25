@@ -49,7 +49,6 @@ function countStatusTasks() {
     return acc;
   }, {});
   insertStatusTasks(count);
-  console.log(count);
 }
 
 function insertStatusTasks(count) {
