@@ -10,7 +10,9 @@
   height: 100%;
   width: 100%;
   min-width: 525px;
-  padding: 54px 46px;
+  max-height: 870px;
+  padding: 54px 32px;
+  gap: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -19,6 +21,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.editTaskContainer {
+  padding: 16px;
+  overflow: auto;
 }
 
 .tag {
@@ -142,4 +149,8 @@
   cursor: pointer;
   height: 24px;
   width: 24px;
+}
+
+#inputDescriptionEdit {
+  max-width: 433px;
 }
