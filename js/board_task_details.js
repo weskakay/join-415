@@ -288,17 +288,25 @@ function clearSubtaskInput(inputId) {
 }
 
 async function addEditSubtask(inputId, mainTaskId) {
-  let inputText = document.getElementById(inputId).value.trim();
-  await update_data(
-    (path = `tasks/${mainTaskId}/subtask`),
-    (data = {
-      "text": inputText,
-      "checked": 0,
-    }),
-  );
-  clearSubtaskInput(inputId);
-  await loadDataBoard();
-  editSubtasks();
+  let inputValidate = document.getElementById(inputId);
+  let inputText = inputValidate.value.trim();
+
+  if (inputText == "") {
+    inputValidate.setCustomValidity("Please insert a subtask description");
+    inputValidate.reportValidity();
+    return true;
+  } else {
+    await update_data(
+      (path = `tasks/${mainTaskId}/subtask`),
+      (data = {
+        "text": inputText,
+        "checked": 0,
+      }),
+    );
+    clearSubtaskInput(inputId);
+    await loadDataBoard();
+    editSubtasks();
+  }
 }
 
 function createOkSaveButton() {
