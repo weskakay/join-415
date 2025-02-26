@@ -8,31 +8,34 @@ function generateContactsHTML(contacts) {
         contact.id,
         contact.name,
         contact.colorId,
-        currentUser,
-      ),
+        currentUser
+      )
     )
     .join("");
 }
 
-async function renderContacts(filteredContacts, divId) {
+async function renderContacts(filteredContacts = contacts) {
   let sortedContacts = await sortContacts(filteredContacts);
-  let list = document.getElementById(divId);
+  let list = document.getElementById("contacts-checkbox");
 
   list.innerHTML = generateContactsHTML(sortedContacts);
-  list.style.display = "none";
+
+  selectedContactsIDs.forEach((selected) => {
+    let checkbox = document.getElementById(`checkbox-${selected.id}`);
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
 }
 
 function filterContacts(contactsCheck) {
-  let searchTerm = document.getElementById(contactsCheck);
-  searchTerm = searchTerm.value.toLowerCase();
-  if (searchTerm === "") {
-    renderContacts();
-    return;
-  }
+  let searchTerm = document.getElementById(contactsCheck).value.toLowerCase();
 
-  let filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().startsWith(searchTerm),
-  );
+  let filteredContacts = searchTerm
+    ? contacts.filter((contact) =>
+        contact.name.toLowerCase().startsWith(searchTerm)
+      )
+    : contacts;
 
   renderContacts(filteredContacts);
 }
@@ -57,7 +60,7 @@ function setCheckbox(id) {
 
 function renderAssignedContacts() {
   let contactInfo = contacts.filter((contact) =>
-    selectedContactsIDs.some((selected) => selected.id === contact.id),
+    selectedContactsIDs.some((selected) => selected.id === contact.id)
   );
   let content = document.getElementById("assignedContacts");
   content.innerHTML = contactInfo
@@ -197,7 +200,7 @@ function deleteListItem(index) {
 function resetAllInputs() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
-  document.getElementById("contact-search").value = "";
+  document.getElementById("contacts-search").value = "";
   document.getElementById("date").value = "";
   document.getElementById("inputCategory").selectedIndex = 0;
   document.getElementById("subtaskInput").value = "";
@@ -258,7 +261,7 @@ function validateRequiredFields() {
   for (let field of requiredFields) {
     if (!field.value.trim()) {
       alert(
-        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`,
+        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`
       );
       field.focus();
       return false;
