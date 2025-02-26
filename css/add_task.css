@@ -387,8 +387,22 @@ select {
 .required-mobile {
   display: none;
 }
+
 #taskDescription {
   max-width: 100%;
+}
+
+.editHeadline {
+  margin-bottom: 8px;
+  color: rgba(66, 82, 110, 1);
+}
+
+.editAssigned {
+  margin-bottom: 0;
+}
+
+.editAssignedInput {
+  margin-bottom: 8px;
 }
 
 @media (max-width: 1360px) {

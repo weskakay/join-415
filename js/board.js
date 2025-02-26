@@ -61,6 +61,7 @@ function getAssignedContacts(contactIDs, index) {
     if (contactIndex !== -1) {
       let assignedCode = contacts[contactIndex].colorId;
       let assignedName = contacts[contactIndex].name;
+
       content.innerHTML += listCardContacts(assignedName, assignedCode);
       assignedContacts.push(contacts[contactIndex]);
     }
@@ -68,7 +69,6 @@ function getAssignedContacts(contactIDs, index) {
 
   let widthContainer =
     assignedContacts.length === 1 ? 32 : (assignedContacts.length - 1) * 32;
-
   content.style.width = widthContainer + "px";
 }
 

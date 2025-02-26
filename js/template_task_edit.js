@@ -93,7 +93,7 @@ function detailsEditDeleteButtons(targetId) {
 //from here task edit window
 function insertEditHeader(headerText) {
   return `
-    <p class="weight400 size16">Title</p>
+    <p class="weight400 size16 editHeadline">Title</p>
     <div class="add-task-input-fields">
       <input id="inputTitleEdit" value="${headerText}" type="text" />
     </div>
@@ -102,7 +102,7 @@ function insertEditHeader(headerText) {
 
 function insertEditDescription(descriptionText) {
   return `
-    <p class="weight400 size16">Description</p>
+    <p class="weight400 size16 editHeadline">Description</p>
     <div class="add-task-input-fields">
       <textarea
         id="inputDescriptionEdit"
@@ -114,7 +114,7 @@ function insertEditDescription(descriptionText) {
 
 function insertEditDueDate(dueDateText) {
   return `
-    <p class="weight400 size16">Due Date</p>
+    <p class="weight400 size16 editHeadline">Due Date</p>
     <div class="add-task-input-fields">
       <input value="${dueDateText}"  type="date" id="inputDueDateEdit" />
     </div>
@@ -123,7 +123,7 @@ function insertEditDueDate(dueDateText) {
 
 function insertEditPriority() {
   return /*html*/ `
-    <p class="weight400 size16 colorLightGrey">Priority</p>
+    <p class="weight700 size16 colorLightGrey editHeadline">Priority</p>
     <div class="add-task-input-fields">
       <div class="add-task-prio">
         <button
@@ -162,11 +162,11 @@ function insertEditPriority() {
 }
 
 function insertEditAssignee() {
-  return `
-    <div class="add-task-input-fields">
-      <div>Assigned to<span class="add-task-required">*</span></div>
+  return /*html*/ `
+    <div class="add-task-input-fields editAssigned">
+      <div class="editHeadline">Assigned to<span class="add-task-required">*</span></div>
     </div>
-    <div class="add-task-contacts">
+    <div class="add-task-contacts editAssignedInput">
       <input
         type="text"
         id="editAssigneesSearch"
@@ -202,9 +202,9 @@ function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
 }
 
 function insertSubtaskContainer(mainTaskKey) {
-  return `
-    <div class="add-task-input-fields">
-      <p class="weight400 size16 colorLightGrey">Subtasks</p>
+  return /*html*/ `
+    <div class="add-task-input-fields editAssigned">
+      <p class="weight400 size16 editHeadline">Subtasks</p>
       <div class="add-task-input-subtasks">
         <input
           type="text"
@@ -250,26 +250,30 @@ function insertSubtaskContainer(mainTaskKey) {
       </div>
     </div>
     <div class="subtaskList">
-      <ul id="substaskListDetails"></ul>
+      <ul id="substaskListDetails" class="subtask-list-container"></ul>
     </div>
   `;
 }
 
 function insertSubtasksList(subtaskText, subtaskId, mainTaskKey) {
-  return `
-    <div class="subtaskDetailsEdit">
-      <li>${subtaskText}</li>
-      <div class="subtaskEditButton">
-        <button class="subtaskEdit">
-          <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
-        </button>
-        <div class="separator24"></div>
-        <button
-          class="subtaskDelete"
-          onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${subtaskId}')"
-        >
-          <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
-        </button>
+  return /*html*/ `
+    <div class="list-item-container">
+      <li class="subtask-list-items" id="listItem-${subtaskId}" contenteditable="false" 
+          onblur="updateListItem(${subtaskId})" onkeydown="handleEnter(event, ${subtaskId})">
+        ${subtaskText}
+      </li>
+      <div class="list-icons-wrapper">
+        <div class="list-icons">
+          <img src="../assets/icons/add_task/edit.svg" alt="Edit" class="edit-icon" 
+               onclick="editListItem(${subtaskId})" id="editIcon-${subtaskId}">
+          <img src="../assets/icons/add_task/check-icon.svg" alt="Check" class="check-icon" 
+               onclick="updateListItem(${subtaskId})" id="checkIcon-${subtaskId}" style="display: none;">
+        </div>
+        <div class="list-icon-seperator"></div>
+        <div class="list-icons">
+          <img src="../assets/icons/add_task/delete.svg" alt="Delete" 
+               onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${subtaskId}')">
+        </div>
       </div>
     </div>
   `;

@@ -1,4 +1,5 @@
-const BASE_URL = "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL =
+  "https://join-415-default-rtdb.europe-west1.firebasedatabase.app/";
 let media = window.matchMedia("(max-width: 960px)");
 let currentUser = null;
 
@@ -6,16 +7,16 @@ async function pageLoadHandler(id) {
   mediaQuery();
   getTimeGreeting();
   await loadCurrentUser(id);
-  if (id === 'contacts') {
+  if (id === "contacts") {
     loadDataContacts();
   }
-  if (id === 'addtask') {
+  if (id === "addtask") {
     loadDataAddTask();
   }
-  if (id === 'board') {
+  if (id === "board") {
     loadDataBoard();
   }
-  if (id === 'summary') {
+  if (id === "summary") {
     loadDataSummary();
   }
 }
@@ -46,10 +47,10 @@ function openLoginHTML() {
 
 async function logOut() {
   let user = {
-    name: ""
-  }
+    name: "",
+  };
   await edit_data("/current-user", user);
-  changeNavbarItems('login')
+  changeNavbarItems("login");
 }
 
 function openSignUpHTML() {
@@ -71,8 +72,7 @@ function openPrivacyPolicy() {
 function openAddTask() {
   if (window.innerWidth < 960) {
     window.location.href = "../html/addtask.html";
-  }
-  else {
+  } else {
     openAddTaskOverlay();
   }
 }
@@ -80,11 +80,10 @@ function openAddTask() {
 function greetingAnimation() {
   if (window.innerWidth < 960) {
     setTimeout(() => {
-      changeNavbarItems('summary');
-    }, 2900)
-  }
-  else {
-    changeNavbarItems('summary');
+      changeNavbarItems("summary");
+    }, 2900);
+  } else {
+    changeNavbarItems("summary");
   }
 }
 
@@ -132,7 +131,7 @@ function mediaQuery() {
   let kanban = document.getElementsByClassName("kanban");
   let help = document.getElementsByClassName("help");
   let logo = document.getElementsByClassName("join-mobile-logo");
-  loginMedia()
+  loginMedia();
   summaryMedia();
   contactsMedia();
   boardMedia();
@@ -211,16 +210,15 @@ function contactsMedia() {
 }
 
 function loginMedia() {
-  let noUser = document.getElementById('no-user-container');
-  let noUserMobile = document.getElementById('no-user-container-mobile');
+  let noUser = document.getElementById("no-user-container");
+  let noUserMobile = document.getElementById("no-user-container-mobile");
 
   if (media.matches) {
-    if (noUser) noUser.classList.add('d_none');
-    if (noUserMobile) noUserMobile.classList.remove('d_none');
-  }
-  else {
-    if (noUser) noUser.classList.remove('d_none');
-    if (noUserMobile) noUserMobile.classList.add('d_none');
+    if (noUser) noUser.classList.add("d_none");
+    if (noUserMobile) noUserMobile.classList.remove("d_none");
+  } else {
+    if (noUser) noUser.classList.remove("d_none");
+    if (noUserMobile) noUserMobile.classList.add("d_none");
   }
 }
 
@@ -294,34 +292,33 @@ async function checkLoggedIn() {
   await getCurrentUser();
   if (currentUser.name.length > 0) {
     return true;
-  }
-  else if (currentUser.name.length == 0) {
+  } else if (currentUser.name.length == 0) {
     return false;
   }
 }
 
 async function changeNavbar(styleID) {
   let styleDiv = document.getElementsByClassName("loggedOutButtons");
-  let desktopID = document.getElementById('desktop-nav');
-  let footerID = document.getElementById('mobile-footer');
-  let profile = document.getElementsByClassName('profileSection');
-  let help = document.getElementsByClassName('help');
+  let desktopID = document.getElementById("desktop-nav");
+  let footerID = document.getElementById("mobile-footer");
+  let profile = document.getElementsByClassName("profileSection");
+  let help = document.getElementsByClassName("help");
 
-  footerID.innerHTML = '';
-  desktopID.innerHTML = '';
+  footerID.innerHTML = "";
+  desktopID.innerHTML = "";
   if (await checkLoggedIn()) {
     footerID.innerHTML = mobileFooterLoggedIn();
     desktopID.innerHTML = desktopNavbarLoggedIn();
     for (let index = 0; index < profile.length; index++) {
-      profile[index].classList.remove('d_none');
-      help[index].classList.add('d_none');
+      profile[index].classList.remove("d_none");
+      help[index].classList.add("d_none");
     }
   } else {
     desktopID.innerHTML = desktopNavbarLoggedOut();
     footerID.innerHTML = mobileFooterLoggedOut();
     styleDiv[styleID].style.backgroundColor = "rgba(9, 25, 49, 1)";
     for (let index = 0; index < profile.length; index++) {
-      profile[index].classList.add('d_none');
+      profile[index].classList.add("d_none");
     }
-  };
+  }
 }
