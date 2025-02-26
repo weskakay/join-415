@@ -203,7 +203,7 @@ function listTasks(task, i, category) {
         <p class="size16 weight700">${task.title}</p>
         <p class="size16 weight400 colorGrey">
           ${truncateText(
-            task.description === undefined ? "" : task.description,
+            task.description === undefined ? "" : task.description
           )}
         </p>
       </div>
@@ -351,4 +351,11 @@ function summaryDueDateInsert(closestDate, splitDay, splitYear) {
     </p>
     <p class="weight400 size16">Upcoming Deadline</p>
   `;
+}
+
+function noTaskMessage(status, id) {
+  return /*html*/ `
+  <div class="board-no-task size16" id="no-task-message-${id}">
+  <p>No tasks in ${status}</p>
+</div>`;
 }

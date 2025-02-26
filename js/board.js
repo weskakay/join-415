@@ -39,6 +39,11 @@ async function renderTasks() {
     getAssignedContacts(task.assigned, i);
     renderProgressbarSubtask(task.subtasks, i);
   }
+
+  checkColumnEmpty("todo");
+  checkColumnEmpty("progress");
+  checkColumnEmpty("feedback");
+  checkColumnEmpty("done");
 }
 
 function getAssignedContacts(contactIDs, index) {
@@ -130,6 +135,7 @@ async function drop(ev, targetColumn) {
     let dropTargetId = dropTarget.id;
     let task = tasks.find((t) => t.id === taskId);
     if (task) {
+      let previousStatus = task.status;
       task.status = dropTargetId.replace("board_", "");
 
       try {
@@ -137,6 +143,8 @@ async function drop(ev, targetColumn) {
       } catch (error) {
         console.error("Error updating task status in Firebase:", error);
       }
+      checkColumnEmpty(previousStatus);
+      checkColumnEmpty(task.status);
     }
   }
 }
@@ -279,4 +287,23 @@ function clearTasksContent() {
   document.getElementById("board_progress").innerHTML = "";
   document.getElementById("board_feedback").innerHTML = "";
   document.getElementById("board_done").innerHTML = "";
+}
+
+function checkColumnEmpty(columnId) {
+  let container = document.getElementById(`board_${columnId}`);
+  let noTaskElement = container.querySelector(`#no-task-message-${columnId}`);
+  let columnNames = {
+    todo: "To Do",
+    progress: "Progress",
+    feedback: "Await Feedback",
+    done: "Done",
+  };
+
+  if (container.children.length === 0) {
+    container.innerHTML = noTaskMessage(columnNames[columnId], columnId);
+  } else {
+    if (noTaskElement) {
+      noTaskElement.remove();
+    }
+  }
 }
