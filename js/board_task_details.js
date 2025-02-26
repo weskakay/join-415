@@ -11,6 +11,9 @@ function getTaskDetails(taskId) {
   getPriority(setPrio);
   getAssigneeContainer(taskKey);
   getSubtaskContainer(taskKey, taskId);
+  window.scrollTo({
+    top: 0,
+  });
   document.body.style.overflow = "hidden";
 }
 

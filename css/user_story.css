@@ -1,6 +1,9 @@
 .userStoryContainer {
   max-width: 525px;
-  height: fit-content;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(50%, -7%);
 }
 
 .userStory {
