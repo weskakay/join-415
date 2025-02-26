@@ -330,6 +330,14 @@
   cursor: pointer;
 }
 
+#no-results-message {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  color: rgba(255, 61, 0, 1);
+}
+
 @media (max-width: 1350px) {
   .board-tasks-wrapper {
     flex-wrap: wrap;
@@ -431,5 +439,16 @@
     width: auto;
     max-width: 950px;
     width: 90%;
+  }
+
+  #no-results-message {
+    left: 40%;
+    top: 30%;
+  }
+}
+
+@media (max-width: 450px) {
+  #no-results-message {
+    left: 30%;
   }
 }
