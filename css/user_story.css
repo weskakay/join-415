@@ -123,6 +123,29 @@
   gap: 16px;
 }
 
+.subtask input[type="checkbox"] {
+  display: none;
+}
+
+.subtask label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-image: url(../assets/icons/task_details/uncheck_button.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.subtask input[type="checkbox"]:checked + label {
+  background-image: url(../assets/icons/task_details/Check_button.svg);
+}
+
+.subtask:hover {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+}
+
 .buttonPrioContainer {
   display: flex;
   justify-content: center;

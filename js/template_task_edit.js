@@ -70,6 +70,8 @@ function detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId) {
         id="subtaskCheck${indexSubtask}"
         type="checkbox"
       />
+      <label for="subtaskCheck${indexSubtask}"></label>
+
       <p class="weight400 size16">${subtaskList}</p>
     </div>
   `;
