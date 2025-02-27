@@ -415,45 +415,6 @@
       </div>
     </main>
 
-    <!--Overlay containing Task Details window-->
-    <div
-      id="overlayTasksDetail"
-      class="overlay d_none"
-      onclick="d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
-      onmousedown="prevent(event)"
-    ></div>
-    <!--Task Details window-->
-    <div
-      id="taskDetailsWindow"
-      class="addContactWindowClosed"
-      onclick="noBubble(event)"
-    >
-      <div class="userStoryContainer">
-        <div class="userStory">
-          <div class="storyHeader">
-            <div id="tagContainer" class="tagContainer"></div>
-            <div
-              class="closeButton"
-              onclick="contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction'), d_none('overlayTasksDetail')"
-            ></div>
-          </div>
-          <div class="editTaskContainer">
-            <div id="taskDetailsHeader" class="taskDetailsHeader"></div>
-            <div id="taskDetailDescription"></div>
-            <div class="userStoryTable">
-              <table>
-                <tr id="dueDateTR"></tr>
-                <tr id="priorityDetailsTR"></tr>
-              </table>
-            </div>
-            <div id="assigneeDetails" class="assigneeContainer"></div>
-            <div id="subtaskContainer" class="subtaskContainer"></div>
-          </div>
-          <div id="taskDetailsButtons" class="taskDetailsButtons"></div>
-        </div>
-      </div>
-    </div>
-    <!--END: Task Details -->
     <footer class="d_none footer_nav">
       <nav class="nav-footer" onmousedown="prevent(event)">
         <div
@@ -495,6 +456,45 @@
         </div>
       </nav>
     </footer>
+    <!--Overlay containing Task Details window-->
+    <div
+      id="overlayTasksDetail"
+      class="overlay d_none"
+      onclick="d_none(this.id), contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction')"
+      onmousedown="prevent(event)"
+    ></div>
+    <!--Task Details window-->
+    <div
+      id="taskDetailsWindow"
+      class="addContactWindowClosed"
+      onclick="noBubble(event)"
+    >
+      <div class="userStoryContainer">
+        <div class="userStory">
+          <div class="storyHeader">
+            <div id="tagContainer" class="tagContainer"></div>
+            <div
+              class="closeButton"
+              onclick="contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow','addContactWindowNoAction'), d_none('overlayTasksDetail')"
+            ></div>
+          </div>
+          <div class="editTaskContainer">
+            <div id="taskDetailsHeader" class="taskDetailsHeader"></div>
+            <div id="taskDetailDescription"></div>
+            <div class="userStoryTable">
+              <table>
+                <tr id="dueDateTR"></tr>
+                <tr id="priorityDetailsTR"></tr>
+              </table>
+            </div>
+            <div id="assigneeDetails" class="assigneeContainer"></div>
+            <div id="subtaskContainer" class="subtaskContainer"></div>
+          </div>
+          <div id="taskDetailsButtons" class="taskDetailsButtons"></div>
+        </div>
+      </div>
+    </div>
+    <!--END: Task Details -->
   </body>
   <script src="../js/db.js"></script>
   <script src="../js/event_listener.js"></script>
