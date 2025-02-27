@@ -35,7 +35,7 @@ function renderContacts(sortedGroups, grouped) {
       contactsListRef.innerHTML += listContactData(
         contact,
         globalIndex,
-        currentUser
+        currentUser,
       );
       globalIndex++;
     }
@@ -51,7 +51,7 @@ function openContactDetails(indexContacts) {
   detailsMobile.classList.remove("d_none");
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
-    indexContacts
+    indexContacts,
   );
   document.getElementById("detailsContact").innerHTML =
     detailsContactInsert(contact);
@@ -60,14 +60,14 @@ function openContactDetails(indexContacts) {
 async function getContactData(inputName, inputEmail, inputPhone, overId) {
   if (
     [inputName, inputEmail, inputPhone].some((input, i) =>
-      [checkName, checkEmail, checkPhone][i](input)
+      [checkName, checkEmail, checkPhone][i](input),
     )
   ) {
     return;
   }
 
   await userCreateSuccess(inputName, inputEmail, inputPhone);
-  await getContacts();
+  await loadDataContacts();
   cleanWindow(inputName, inputEmail, inputPhone, overId);
   closeAddContact();
 }
@@ -83,7 +83,7 @@ async function userCreateSuccess(inputName, inputEmail, inputPhone) {
       email: email,
       phone: phone,
       colorId: getRandomNumber(),
-    })
+    }),
   );
 }
 
@@ -97,12 +97,12 @@ function cleanWindow(inputName, inputEmail, inputPhone, overId) {
   showCreationHint(
     "createdInfo",
     "createdContactInfoIn",
-    "createdContactInfoOut"
+    "createdContactInfoOut",
   );
   toggleStyleChange(
     "contactWindow",
     "addContactWindowClosed",
-    "addContactWindow"
+    "addContactWindow",
   );
   showContactDetails("contactsDisplay", "detailsWindowClosed", "detailsWindow");
   findLastContactIndex();
@@ -142,7 +142,7 @@ function checkEmail(inputId) {
     mailInput.setCustomValidity("Please insert an email");
   } else if (!emailPattern.test(email)) {
     mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com"
+      "Please insert a valid email format, e.g.: name@email.com",
     );
   } else {
     mailInput.setCustomValidity("");
@@ -162,7 +162,7 @@ function checkPhone(insertedPhone) {
     return true;
   } else if (!telPattern.test(phone)) {
     telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789"
+      "Please insert a valid phone number, e.g.: +49123456789",
     );
     telInput.reportValidity();
     return true;
@@ -198,7 +198,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
       email: changeEmail,
       phone: changeTel,
       colorId: contacts[indexContacts].colorId,
-    })
+    }),
   );
   await getContacts();
   d_none("overlayEdit");
@@ -241,7 +241,7 @@ function openEditOverlay(indexContacts) {
     editInitialsInsert(contact);
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
-    indexContacts
+    indexContacts,
   );
 }
 
