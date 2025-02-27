@@ -29,7 +29,6 @@
 .editTaskContainer {
   padding: 16px;
   overflow: auto;
-  gap: 24px;
   display: flex;
   flex-direction: column;
 }
@@ -46,6 +45,10 @@
 .taskDetailsButtons {
   display: flex;
   justify-content: flex-end;
+}
+
+.taskDetailsHeader {
+  padding-bottom: 24px;
 }
 
 .closeButton {
@@ -69,14 +72,7 @@
 
 .userStoryTable table {
   width: 100%;
-  border-spacing: 0;
-}
-.userStoryTable tr {
-  gap: 12px;
-}
-
-.userStoryTable td {
-  padding: 12px 0;
+  border-spacing: 0 24px;
 }
 
 .userStoryTable td:nth-child(2) {
@@ -86,15 +82,16 @@
 .assigneeContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  gap: 8px;
 }
 
 .assigneeList {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 14px;
   flex-wrap: wrap;
   width: 100%;
-  align-items: center;
 }
 
 .assignee {
