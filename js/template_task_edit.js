@@ -1,8 +1,8 @@
 //from here task details window
 
-function detailsTagInsert(taskTag) {
+function detailsTagInsert(taskTag, backGroundColor) {
   return `
-    <div class="tag">
+    <div class="tag" style="background-color:${backGroundColor}">
       <p class="size23">${taskTag}</p>
     </div>
   `;

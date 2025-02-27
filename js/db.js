@@ -50,6 +50,8 @@ let bgcolors = [
   { id: 9, rgba: "rgba(255, 165, 0, 1)" },
 ];
 
+let tagColors = ["rgba(0, 56, 255, 1)", "rgba(31, 215, 193, 1)"];
+
 async function loadDataBoard() {
   await getContacts();
   await getTasks();
