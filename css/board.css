@@ -414,7 +414,7 @@
   .board-card-container {
     height: auto;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     max-width: 960px;
     overflow-x: scroll;
     overflow-y: hidden;
