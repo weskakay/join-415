@@ -113,6 +113,7 @@ footer {
   justify-content: center;
   top: 0;
   left: 0;
+  width: 100%;
   padding-top: 32px;
 }
 
@@ -169,7 +170,7 @@ footer {
 }
 
 @media (max-width: 960px) {
-  body::-webkit-scrollbar{
+  body::-webkit-scrollbar {
     width: 0px;
   }
 
@@ -181,30 +182,30 @@ footer {
     top: 0;
   }
 
-  .logIn button{
-     padding: 8px 53px;
-     height: auto;
-     
-   >img{margin-bottom: 0 !important;
-    height: 24px;
-    width: 24px;
-    aspect-ratio: 1/1;
-  } 
+  .logIn button {
+    padding: 8px 53px;
+    height: auto;
+
+    > img {
+      margin-bottom: 0 !important;
+      height: 24px;
+      width: 24px;
+      aspect-ratio: 1/1;
+    }
   }
 
-  .loggedOutFooter{
+  .loggedOutFooter {
     display: flex;
     align-items: center;
     justify-content: space-around;
-  
   }
 
-  #loggedOutLinks{
+  #loggedOutLinks {
     display: flex;
-   gap: 12px;
+    gap: 12px;
   }
 
-  .loggedOutButtons{
+  .loggedOutButtons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,8 +267,8 @@ footer {
 
   .transition-active {
     top: 68px !important;
-    left: 58px !important; 
-    width: 64px !important; 
+    left: 58px !important;
+    width: 64px !important;
     height: 78px !important;
   }
 
