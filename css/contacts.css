@@ -31,12 +31,14 @@
 }
 
 .contactsList::-webkit-scrollbar-button:single-button:vertical:decrement {
-  background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center bottom;
+  background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
+    bottom;
   height: 20px;
 }
 
 .contactsList::-webkit-scrollbar-button:single-button:vertical:increment {
-  background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center top;
+  background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
+    top;
   height: 20px;
 }
 
@@ -159,13 +161,14 @@
 .detailsEdit button:hover {
   cursor: pointer;
 
-  >p {
+  > p {
     color: #29abe2;
     font-weight: 600;
   }
 
-  >img {
-    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%) hue-rotate(164deg) brightness(96%) contrast(84%);
+  > img {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(80%) saturate(1983%)
+      hue-rotate(164deg) brightness(96%) contrast(84%);
   }
 }
 
@@ -203,12 +206,12 @@
   align-items: center;
   height: 58px;
 
-  >p {
+  > p {
     margin-left: 32px;
   }
 }
 
-@media(max-width: 1250px) {
+@media (max-width: 1250px) {
   .contactsDetailsHeader headline {
     font-size: 48px;
   }
@@ -226,12 +229,12 @@
   .detailsName listedName {
     font-size: 26px;
   }
-  .contactsDisplay{
+  .contactsDisplay {
     gap: 30px;
   }
 }
 
-@media(max-width: 1150px) {
+@media (max-width: 1150px) {
   .contactsDetailsHeader {
     display: flex;
     align-items: flex-start;
@@ -261,11 +264,11 @@
 }
 
 @media (max-width: 960px) {
-  .mobile-add-contact-button{
+  .mobile-add-contact-button {
     background-color: transparent !important;
-    >button{ margin-top: 90px !important;
+    > button {
+      margin-top: 90px !important;
     }
-   
   }
 
   .contactsList {
@@ -274,7 +277,7 @@
     padding: 24px 12px 0px 24px;
   }
 
-  .detailsProfile{
+  .detailsProfile {
     flex-direction: row;
     align-items: center;
   }
@@ -416,7 +419,7 @@
     font-size: 14px !important;
   }
 
-  .detailsName >listedName {
+  .detailsName > listedName {
     font-size: 28px;
   }
 
