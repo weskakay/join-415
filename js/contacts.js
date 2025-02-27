@@ -96,7 +96,7 @@ function cleanWindow(inputName, inputEmail, inputPhone, overId) {
   d_none(overId);
   showCreationHint(
     "createdInfo",
-    "createdContactInfoIn",
+    "createdContactInfo",
     "createdContactInfoOut",
   );
   toggleStyleChange(
@@ -200,7 +200,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
       colorId: contacts[indexContacts].colorId,
     }),
   );
-  await getContacts();
+  await loadDataContacts();
   d_none("overlayEdit");
   if (editWindow) editWindow.classList.add("d_none");
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");

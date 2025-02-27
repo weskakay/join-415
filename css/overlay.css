@@ -16,13 +16,8 @@
   transition: 0.2s;
   transform: translate(110%);
   position: fixed;
-    top: 70%;
-    left: 100%;
-}
-
-.createdContactInfoIn {
-  transition-timing-function: ease-out;
-  transition: 0.2s;
+  top: 70%;
+  left: 100%;
 }
 
 .createdContactInfo {
@@ -39,6 +34,7 @@
   top: 70%;
   left: 50%;
   transition: 0.2s ease-in-out;
+  z-index: 5;
 }
 
 /*Opening Contact Details*/
@@ -180,7 +176,8 @@ input#telInput {
   background-color: transparent;
   border-style: none;
   cursor: pointer;
-  background: url(../assets/icons/add_task/cross-icon.svg) no-repeat center center;
+  background: url(../assets/icons/add_task/cross-icon.svg) no-repeat center
+    center;
   height: 32px;
   width: 32px;
 }
@@ -210,11 +207,11 @@ input#telInput {
   display: none;
 }
 
-@media(max-width: 1800px){
-  .addContactsLogo{
+@media (max-width: 1800px) {
+  .addContactsLogo {
     width: 350px;
   }
-  .addContactsInput{
+  .addContactsInput {
     width: 650px;
     padding-left: 40px;
     padding-right: 40px;
@@ -225,7 +222,7 @@ input#telInput {
   .addContactWindow {
     left: 20%;
   }
-  
+
   .contactWindowFull {
     flex-direction: column;
     height: 760px;
@@ -313,7 +310,7 @@ input#telInput {
     height: 41px;
   }
 
-  .dataInput form{
+  .dataInput form {
     margin-top: -50px;
   }
 
@@ -379,7 +376,7 @@ input#telInput {
   }
 }
 
-@media (max-width: 550px){
+@media (max-width: 550px) {
   .addContactWindow {
     left: 5%;
   }
