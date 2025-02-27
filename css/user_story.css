@@ -133,12 +133,16 @@
   height: 24px;
   cursor: pointer;
   background-image: url(../assets/icons/task_details/uncheck_button.svg);
-  background-size: contain;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
 .subtask input[type="checkbox"]:checked + label {
   background-image: url(../assets/icons/task_details/Check_button.svg);
+}
+
+.subtask p {
+  width: 100%;
 }
 
 .subtask:hover {
