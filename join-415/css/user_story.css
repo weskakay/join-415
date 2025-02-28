@@ -196,23 +196,7 @@
   }
 }
 
-@media (max-width: 900px) {
-  .userStoryContainer {
-    transform: translate(-10%, -7%);
-  }
-}
-
-@media (max-width: 640px) {
-  .userStoryContainer {
-    transform: translate(-20%, -7%);
-  }
-}
-
 @media (max-width: 550px) {
-  .userStoryContainer {
-    transform: translate(-3%, -10%);
-  }
-
   .userStory {
     min-width: 395px;
   }
@@ -259,10 +243,6 @@
     padding: 16px 16px;
     min-width: 360px;
     height: calc(100vh - 32px);
-  }
-
-  .userStoryContainer {
-    transform: translate(-3%, -13%);
   }
 
   .taskDetailsButtons {
