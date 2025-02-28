@@ -206,30 +206,51 @@
             <!--Form to insert new Contact data-->
             <div class="dataInput">
               <form>
-                <input
-                  id="nameInput"
-                  class="weight400 size20"
-                  type="text"
-                  required
-                  placeholder="Name"
-                  pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
-                />
-                <input
-                  id="mailInput"
-                  class="weight400 size20"
-                  type="email"
-                  required
-                  placeholder="Email"
-                  pattern="[^@\s]+@[^@\s]"
-                />
-                <input
-                  id="telInput"
-                  class="weight400 size20"
-                  type="tel"
-                  required
-                  placeholder="Phone"
-                  pattern="[0-9]{4,20}"
-                />
+                <div id="inputContactErrorName" class="">
+                  <input
+                    id="nameInput"
+                    class="weight400 size20 errorInputBorder"
+                    type="text"
+                    required
+                    placeholder="Name"
+                    pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+                  />
+                  <div class="contactError">
+                    <p id="contactErrorName" class="size12 d_none">
+                      Please insert a name and a surname - e.g.: John Doe
+                    </p>
+                  </div>
+                </div>
+                <div id="inputContactErrorEmail" class="">
+                  <input
+                    id="mailInput"
+                    class="weight400 size20"
+                    type="email"
+                    required
+                    placeholder="Email"
+                    pattern="[^@\s]+@[^@\s]"
+                  />
+                  <div class="contactError">
+                    <p id="contactErrorEmail" class="size12 d_none">
+                      Please insert a valid email - e.g.: name@email.com
+                    </p>
+                  </div>
+                </div>
+                <div id="inputContactErrorTel" class="">
+                  <input
+                    id="telInput"
+                    class="weight400 size20"
+                    type="tel"
+                    required
+                    placeholder="Phone"
+                    pattern="[0-9]{4,20}"
+                  />
+                  <div class="contactError">
+                    <p id="contactErrorTel" class="size12 d_none">
+                      Please insert a valid number - at least 4 characters
+                    </p>
+                  </div>
+                </div>
               </form>
             </div>
             <div class="add-task-bottom-buttons mobile-add-contact-button">

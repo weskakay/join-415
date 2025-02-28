@@ -129,36 +129,27 @@ function checkName(insertedName) {
   let name = document.getElementById(insertedName).value.trim();
   let namePattern = new RegExp(nameInput.pattern);
   if (!name) {
-    nameInput.setCustomValidity("Please insert a name");
-    nameInput.reportValidity();
+    inputClassListError("contactErrorName", "inputContactErrorName");
     return true;
   } else if (!namePattern.test(name)) {
-    nameInput.setCustomValidity("Please insert first and last name");
-    nameInput.reportValidity();
+    inputClassListError("contactErrorName", "inputContactErrorName");
     return true;
   }
+  inputClassListClear("contactErrorName", "inputContactErrorName");
 }
 
 function checkEmail(inputId) {
   let mailInput = document.getElementById(inputId);
-  if (!mailInput) {
-    console.error("Element not found:", inputId);
-    return false;
-  }
   let email = mailInput.value.trim();
   let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email) {
-    mailInput.setCustomValidity("Please insert an email");
+    inputClassListError("contactErrorEmail", "inputContactErrorEmail");
+    return true;
   } else if (!emailPattern.test(email)) {
-    mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com"
-    );
-  } else {
-    mailInput.setCustomValidity("");
-    return false;
+    inputClassListError("contactErrorEmail", "inputContactErrorEmail");
+    return true;
   }
-  mailInput.reportValidity();
-  return true;
+  inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
 }
 
 function checkPhone(insertedPhone) {
@@ -166,16 +157,15 @@ function checkPhone(insertedPhone) {
   let phone = document.getElementById(insertedPhone).value.trim();
   let telPattern = new RegExp(telInput.pattern);
   if (!phone) {
-    telInput.setCustomValidity("Please insert a number");
-    telInput.reportValidity();
+    inputClassListError("contactErrorTel", "inputContactErrorTel");
+
     return true;
   } else if (!telPattern.test(phone)) {
-    telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789"
-    );
-    telInput.reportValidity();
+    inputClassListError("contactErrorTel", "inputContactErrorTel");
+
     return true;
   }
+  inputClassListClear("contactErrorTel", "inputContactErrorTel");
 }
 
 async function deleteContact(path) {
@@ -220,9 +210,33 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
 }
 
 function clearInput(name, email, tel) {
+  clearInputName(name);
+  clearInputEmail(email);
+  clearInputPhone(tel);
+}
+
+function clearInputName(name) {
   document.getElementById(name).value = "";
+  inputClassListClear("contactErrorName", "inputContactErrorName");
+}
+function clearInputEmail(email) {
   document.getElementById(email).value = "";
+  inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
+}
+
+function clearInputPhone(tel) {
   document.getElementById(tel).value = "";
+  inputClassListClear("contactErrorTel", "inputContactErrorTel");
+}
+
+function inputClassListError(remove, add) {
+  document.getElementById(remove).classList.remove("d_none");
+  document.getElementById(add).classList.add("inputContactDisplay");
+}
+
+function inputClassListClear(add, remove) {
+  document.getElementById(add).classList.add("d_none");
+  document.getElementById(remove).classList.remove("inputContactDisplay");
 }
 
 function openAddContact() {
