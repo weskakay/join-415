@@ -2,7 +2,7 @@ let login;
 
 async function getLoggedIn() {
   try {
-    await getLoginData(path = "/login-data")
+    await getLoginData((path = "/login-data"));
     proofLoginData(login);
   } catch (error) {
     console.log("Error fetching login data", error);
@@ -27,7 +27,9 @@ async function proofLoginData(userId, findUser) {
         findUser = loginData[id];
         userId = Object.keys(login)[id];
         await edit_data("/current-user", findUser);
-        changeNavbarItems(window.innerWidth < 960 ? 'mobile_greeting' : 'summary');
+        changeNavbarItems(
+          window.innerWidth < 960 ? "mobile_greeting" : "summary"
+        );
         return;
       }
     }
@@ -103,7 +105,8 @@ async function openGuestLogin() {
     name: "Guest",
   };
   await edit_data("/current-user", guest);
-  changeNavbarItems(window.innerWidth < 960 ? 'mobile_greeting' : 'summary');
+  getLoggedIn();
+  changeNavbarItems(window.innerWidth < 960 ? "mobile_greeting" : "summary");
 }
 
 function togglePasswordVisibility() {

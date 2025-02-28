@@ -82,6 +82,8 @@
   display: flex;
   padding: 64px 64px 0;
   justify-content: space-between;
+  overflow-y: scroll;
+  height: calc(100vh - 246px);
 }
 
 .board-tasks-container {
@@ -406,7 +408,7 @@
     right: 30px;
   }
   .board-tasks-wrapper {
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 16px 16px 0;
     gap: 24px;
     margin-bottom: 80px;

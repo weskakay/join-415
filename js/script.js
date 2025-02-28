@@ -198,7 +198,7 @@ function boardMedia() {
 }
 
 function contactsMedia() {
-  let details = document.getElementById("contactsDetailsMobile");
+  /*let details = document.getElementById("contactsDetailsMobile");
   let editWindow = document.getElementById("editWindow");
   let contactWindow = document.getElementById("contactWindow");
 
@@ -206,7 +206,7 @@ function contactsMedia() {
     if (details) details.classList.add("d_none");
     if (editWindow) editWindow.classList.add("d_none");
     if (contactWindow) contactWindow.classList.add("d_none");
-  }
+  }*/
 }
 
 function loginMedia() {

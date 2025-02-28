@@ -37,7 +37,7 @@ function renderContacts(sortedGroups, grouped) {
       contactsListRef.innerHTML += listContactData(
         contact,
         globalIndex,
-        currentUser,
+        currentUser
       );
       globalIndex++;
     }
@@ -53,7 +53,7 @@ function openContactDetails(indexContacts) {
   detailsMobile.classList.remove("d_none");
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
-    indexContacts,
+    indexContacts
   );
   document.getElementById("detailsContact").innerHTML =
     detailsContactInsert(contact);
@@ -62,12 +62,11 @@ function openContactDetails(indexContacts) {
 async function getContactData(inputName, inputEmail, inputPhone, overId) {
   if (
     [inputName, inputEmail, inputPhone].some((input, i) =>
-      [checkName, checkEmail, checkPhone][i](input),
+      [checkName, checkEmail, checkPhone][i](input)
     )
   ) {
     return;
   }
-
   await userCreateSuccess(inputName, inputEmail, inputPhone);
   await loadDataContacts();
   cleanWindow(inputName, inputEmail, inputPhone, overId);
@@ -85,7 +84,7 @@ async function userCreateSuccess(inputName, inputEmail, inputPhone) {
       email: email,
       phone: phone,
       colorId: getRandomNumber(),
-    }),
+    })
   );
 }
 
@@ -99,12 +98,12 @@ function cleanWindow(inputName, inputEmail, inputPhone, overId) {
   showCreationHint(
     "createdInfo",
     "createdContactInfo",
-    "createdContactInfoOut",
+    "createdContactInfoOut"
   );
   toggleStyleChange(
     "contactWindow",
     "addContactWindowClosed",
-    "addContactWindow",
+    "addContactWindow"
   );
   showContactDetails("contactsDisplay", "detailsWindowClosed", "detailsWindow");
   findLastContactIndex();
@@ -129,36 +128,67 @@ function checkName(insertedName) {
   let name = document.getElementById(insertedName).value.trim();
   let namePattern = new RegExp(nameInput.pattern);
   if (!name) {
-    nameInput.setCustomValidity("Please insert a name");
-    nameInput.reportValidity();
+    inputCheck(
+      "nameInput",
+      insertedName,
+      "contactErrorName",
+      "inputContactErrorName",
+      "editErrorName",
+      "inputEditErrorName"
+    );
     return true;
   } else if (!namePattern.test(name)) {
-    nameInput.setCustomValidity("Please insert first and last name");
-    nameInput.reportValidity();
+    inputCheck(
+      "nameInput",
+      insertedName,
+      "contactErrorName",
+      "inputContactErrorName",
+      "editErrorName",
+      "inputEditErrorName"
+    );
+    return true;
+  }
+  inputClassListClear("contactErrorName", "inputContactErrorName");
+  inputClassListClear("editErrorName", "inputEditErrorName");
+}
+
+function inputCheck(crossCheckId, insertedId, addP, addDiv, editP, editDiv) {
+  if (insertedId == crossCheckId) {
+    inputClassListError(addP, addDiv);
+    return true;
+  } else {
+    inputClassListError(editP, editDiv);
     return true;
   }
 }
 
 function checkEmail(inputId) {
   let mailInput = document.getElementById(inputId);
-  if (!mailInput) {
-    console.error("Element not found:", inputId);
-    return false;
-  }
   let email = mailInput.value.trim();
   let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email) {
-    mailInput.setCustomValidity("Please insert an email");
-  } else if (!emailPattern.test(email)) {
-    mailInput.setCustomValidity(
-      "Please insert a valid email format, e.g.: name@email.com",
+    inputCheck(
+      "mailInput",
+      inputId,
+      "contactErrorEmail",
+      "inputContactErrorEmail",
+      "editErrorEmail",
+      "inputEditErrorEmail"
     );
-  } else {
-    mailInput.setCustomValidity("");
-    return false;
+    return true;
+  } else if (!emailPattern.test(email)) {
+    inputCheck(
+      "mailInput",
+      inputId,
+      "contactErrorEmail",
+      "inputContactErrorEmail",
+      "editErrorEmail",
+      "inputEditErrorEmail"
+    );
+    return true;
   }
-  mailInput.reportValidity();
-  return true;
+  inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
+  inputClassListClear("editErrorEmail", "inputEditErrorEmail");
 }
 
 function checkPhone(insertedPhone) {
@@ -166,16 +196,28 @@ function checkPhone(insertedPhone) {
   let phone = document.getElementById(insertedPhone).value.trim();
   let telPattern = new RegExp(telInput.pattern);
   if (!phone) {
-    telInput.setCustomValidity("Please insert a number");
-    telInput.reportValidity();
+    inputCheck(
+      "telInput",
+      insertedPhone,
+      "contactErrorTel",
+      "inputContactErrorTel",
+      "editErrorTel",
+      "inputEditErrorTel"
+    );
     return true;
   } else if (!telPattern.test(phone)) {
-    telInput.setCustomValidity(
-      "Please insert a valid phone number, e.g.: +49123456789",
+    inputCheck(
+      "telInput",
+      insertedPhone,
+      "contactErrorTel",
+      "inputContactErrorTel",
+      "editErrorTel",
+      "inputEditErrorTel"
     );
-    telInput.reportValidity();
     return true;
   }
+  inputClassListClear("contactErrorTel", "inputContactErrorTel");
+  inputClassListClear("editErrorTel", "inputEditErrorTel");
 }
 
 async function deleteContact(path) {
@@ -208,7 +250,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
       email: changeEmail,
       phone: changeTel,
       colorId: contacts[indexContacts].colorId,
-    }),
+    })
   );
   editedContact = id;
   await loadDataContacts();
@@ -217,12 +259,37 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
   findEditedContactIndex(editedContact);
   clearInput(name, email, tel);
+  d_none("editWindow");
 }
 
 function clearInput(name, email, tel) {
+  clearInputName(name);
+  clearInputEmail(email);
+  clearInputPhone(tel);
+}
+
+function clearInputName(name) {
   document.getElementById(name).value = "";
+  inputClassListClear("contactErrorName", "inputContactErrorName");
+}
+function clearInputEmail(email) {
   document.getElementById(email).value = "";
+  inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
+}
+
+function clearInputPhone(tel) {
   document.getElementById(tel).value = "";
+  inputClassListClear("contactErrorTel", "inputContactErrorTel");
+}
+
+function inputClassListError(remove, add) {
+  document.getElementById(remove).classList.remove("d_none");
+  document.getElementById(add).classList.add("inputContactDisplay");
+}
+
+function inputClassListClear(add, remove) {
+  document.getElementById(add).classList.add("d_none");
+  document.getElementById(remove).classList.remove("inputContactDisplay");
 }
 
 function openAddContact() {
@@ -252,7 +319,7 @@ function openEditOverlay(indexContacts) {
     editInitialsInsert(contact);
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
-    indexContacts,
+    indexContacts
   );
 }
 

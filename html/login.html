@@ -18,13 +18,17 @@
 
   <body onload="mediaQuery()">
     <header>
-      <img
-        src="../assets/join_logo/join-logo-capa2.svg"
-        alt="join-logo"
-        id="join-logo"
-      />
-      <div id="no-user-container">
-        Not a Join user? <button onclick="openSignUpHTML()">Sign up</button>
+      <div class="displayFlex">
+        <div>
+          <img
+            src="../assets/join_logo/join-logo-capa2.svg"
+            alt="join-logo"
+            id="join-logo"
+          />
+        </div>
+        <div id="no-user-container">
+          Not a Join user? <button onclick="openSignUpHTML()">Sign up</button>
+        </div>
       </div>
     </header>
 
@@ -32,7 +36,7 @@
       <div id="login-container">
         <h1>Log in</h1>
         <hr />
-        <form onsubmit="event.preventDefault(); getLoggedIn()">
+        <form onsubmit="event.preventDefault()">
           <div id="login-inputfields">
             <input type="email" placeholder="Email" id="email-login" />
             <div class="password-container">
@@ -58,7 +62,7 @@
             </div>
           </div>
           <div id="login-buttons">
-            <button id="login">Log in</button>
+            <button id="login" onclick="getLoggedIn()">Log in</button>
             <button id="guest-login" onclick="openGuestLogin()">
               Guest Log in
             </button>
