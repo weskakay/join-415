@@ -129,13 +129,38 @@ function checkName(insertedName) {
   let name = document.getElementById(insertedName).value.trim();
   let namePattern = new RegExp(nameInput.pattern);
   if (!name) {
-    inputClassListError("contactErrorName", "inputContactErrorName");
+    inputCheck(
+      "nameInput",
+      insertedName,
+      "contactErrorName",
+      "inputContactErrorName",
+      "editErrorName",
+      "inputEditErrorName"
+    );
     return true;
   } else if (!namePattern.test(name)) {
-    inputClassListError("contactErrorName", "inputContactErrorName");
+    inputCheck(
+      "nameInput",
+      insertedName,
+      "contactErrorName",
+      "inputContactErrorName",
+      "editErrorName",
+      "inputEditErrorName"
+    );
     return true;
   }
   inputClassListClear("contactErrorName", "inputContactErrorName");
+  inputClassListClear("editErrorName", "inputEditErrorName");
+}
+
+function inputCheck(crossCheckId, insertedId, addP, addDiv, editP, editDiv) {
+  if (insertedId == crossCheckId) {
+    inputClassListError(addP, addDiv);
+    return true;
+  } else {
+    inputClassListError(editP, editDiv);
+    return true;
+  }
 }
 
 function checkEmail(inputId) {
@@ -143,13 +168,28 @@ function checkEmail(inputId) {
   let email = mailInput.value.trim();
   let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email) {
-    inputClassListError("contactErrorEmail", "inputContactErrorEmail");
+    inputCheck(
+      "mailInput",
+      inputId,
+      "contactErrorEmail",
+      "inputContactErrorEmail",
+      "editErrorEmail",
+      "inputEditErrorEmail"
+    );
     return true;
   } else if (!emailPattern.test(email)) {
-    inputClassListError("contactErrorEmail", "inputContactErrorEmail");
+    inputCheck(
+      "mailInput",
+      inputId,
+      "contactErrorEmail",
+      "inputContactErrorEmail",
+      "editErrorEmail",
+      "inputEditErrorEmail"
+    );
     return true;
   }
   inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
+  inputClassListClear("editErrorEmail", "inputEditErrorEmail");
 }
 
 function checkPhone(insertedPhone) {
@@ -157,15 +197,28 @@ function checkPhone(insertedPhone) {
   let phone = document.getElementById(insertedPhone).value.trim();
   let telPattern = new RegExp(telInput.pattern);
   if (!phone) {
-    inputClassListError("contactErrorTel", "inputContactErrorTel");
-
+    inputCheck(
+      "telInput",
+      insertedPhone,
+      "contactErrorTel",
+      "inputContactErrorTel",
+      "editErrorTel",
+      "inputEditErrorTel"
+    );
     return true;
   } else if (!telPattern.test(phone)) {
-    inputClassListError("contactErrorTel", "inputContactErrorTel");
-
+    inputCheck(
+      "telInput",
+      insertedPhone,
+      "contactErrorTel",
+      "inputContactErrorTel",
+      "editErrorTel",
+      "inputEditErrorTel"
+    );
     return true;
   }
   inputClassListClear("contactErrorTel", "inputContactErrorTel");
+  inputClassListClear("editErrorTel", "inputEditErrorTel");
 }
 
 async function deleteContact(path) {
@@ -207,6 +260,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
   findEditedContactIndex(editedContact);
   clearInput(name, email, tel);
+  d_none("editWindow");
 }
 
 function clearInput(name, email, tel) {

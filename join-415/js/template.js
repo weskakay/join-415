@@ -115,32 +115,56 @@ function listAssingedContacts(name, colorId) {
 
 function editFormInsert(contact) {
   return `
-    <input
-      id="nameInputEdit"
-      class="weight400 size20"
-      type="text"
-      required
-      placeholder="Name"
-      pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
-      value="${contact.name}"
-    />
-    <input
-      id="mailInputEdit"
-      class="weight400 size20"
-      type="email"
-      placeholder="Email"
-      pattern="[^@s]+@[^@s]"
-      value="${contact.email}"
-    />
-    <input
-      id="telInputEdit"
-      class="weight400 size20"
-      type="tel"
-      required
-      placeholder="Phone"
-      pattern="[0-9]{4,20}"
-      value="${contact.phone}"
-    />
+    <div id="inputEditErrorName" class="">
+      <input
+        id="nameInputEdit"
+        class="weight400 size20"
+        type="text"
+        required
+        placeholder="Name"
+        pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+        value="${contact.name}"
+      />
+      <div class="contactError">
+        <p id="editErrorName" class="size12 d_none">
+          Please insert a name and a surname - e.g.: John Doe
+        </p>
+      </div>
+    </div>
+
+    <div id="inputEditErrorEmail" class="">
+      <input
+        id="mailInputEdit"
+        class="weight400 size20"
+        type="email"
+        placeholder="Email"
+        pattern="[^@s]+@[^@s]"
+        value="${contact.email}"
+      />
+
+      <div class="contactError">
+        <p id="editErrorEmail" class="size12 d_none">
+          Please insert a name and a surname - e.g.: John Doe
+        </p>
+      </div>
+    </div>
+
+    <div id="inputEditErrorTel" class="">
+      <input
+        id="telInputEdit"
+        class="weight400 size20"
+        type="tel"
+        required
+        placeholder="Phone"
+        pattern="[0-9]{4,20}"
+        value="${contact.phone}"
+      />
+      <div class="contactError">
+        <p id="editErrorTel" class="size12 d_none">
+          Please insert a name and a surname - e.g.: John Doe
+        </p>
+      </div>
+    </div>
   `;
 }
 
@@ -154,7 +178,7 @@ function editButtonsInsert(contact, index) {
     </button>
     <button
       class="add-task-button-create"
-      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}'), d_none('editWindow')"
+      onclick="editUser('nameInputEdit', 'mailInputEdit', 'telInputEdit', '${contact.id}', '${index}')"
     >
       Save<img src="../assets/icons/add_task/check-icon.svg" />
     </button>
