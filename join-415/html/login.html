@@ -32,7 +32,7 @@
       <div id="login-container">
         <h1>Log in</h1>
         <hr />
-        <form onsubmit="event.preventDefault(); getLoggedIn()">
+        <form onsubmit="event.preventDefault()">
           <div id="login-inputfields">
             <input type="email" placeholder="Email" id="email-login" />
             <div class="password-container">
@@ -58,7 +58,7 @@
             </div>
           </div>
           <div id="login-buttons">
-            <button id="login">Log in</button>
+            <button id="login" onclick="getLoggedIn()">Log in</button>
             <button id="guest-login" onclick="openGuestLogin()">
               Guest Log in
             </button>
