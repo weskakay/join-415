@@ -1,5 +1,7 @@
 let lastContact = [];
 
+let editedContact = [];
+
 function orderContactsBoard() {
   lastContact = [];
   lastContact = contacts[contacts.length - 1];
@@ -115,6 +117,13 @@ function findLastContactIndex() {
   openContactDetails(foundId);
 }
 
+function findEditedContactIndex(editedContact) {
+  let editedId = editedContact;
+  let myId = (item) => item.id == editedId;
+  let foundId = contacts.findIndex(myId);
+  openContactDetails(foundId);
+}
+
 function checkName(insertedName) {
   let nameInput = document.getElementById(insertedName);
   let name = document.getElementById(insertedName).value.trim();
@@ -187,6 +196,7 @@ async function editUser(name, email, tel, id, indexContacts) {
 }
 
 async function editUserSuccess(name, email, tel, id, indexContacts) {
+  editedContact = [];
   let changeName = document.getElementById(name).value;
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
@@ -200,11 +210,12 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
       colorId: contacts[indexContacts].colorId,
     }),
   );
+  editedContact = id;
   await loadDataContacts();
   d_none("overlayEdit");
   if (editWindow) editWindow.classList.add("d_none");
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
-  openContactDetails(indexContacts);
+  findEditedContactIndex(editedContact);
   clearInput(name, email, tel);
 }
 
