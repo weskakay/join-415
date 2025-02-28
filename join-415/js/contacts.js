@@ -67,7 +67,6 @@ async function getContactData(inputName, inputEmail, inputPhone, overId) {
   ) {
     return;
   }
-
   await userCreateSuccess(inputName, inputEmail, inputPhone);
   await loadDataContacts();
   cleanWindow(inputName, inputEmail, inputPhone, overId);

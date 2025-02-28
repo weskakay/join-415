@@ -196,7 +196,7 @@
         <div class="addContactsInput">
           <div class="closeAddContact">
             <button
-              onclick="closeAddContact(), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
             ></button>
           </div>
           <div class="emptyProfile">
@@ -326,7 +326,7 @@
 
     <div
       class="person-add"
-      onclick="d_none(`overlay`), d_none('contactWindow'), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
+      onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')"
     ></div>
 
     <footer class="footer_nav">
