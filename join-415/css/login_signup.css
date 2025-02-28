@@ -23,15 +23,14 @@ main {
   justify-content: center;
   align-items: center;
   flex: 1;
-  min-height: 80vh;
+  min-height: calc(100vh - 250px);
 }
 
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 163px;
-  margin-bottom: 32px;
+  height: 50px;
 }
 
 footer a {
@@ -100,7 +99,7 @@ h1 {
   font-family: "Inter", sans-serif;
 }
 
-#no-user-container-mobile{
+#no-user-container-mobile {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,16 +128,13 @@ h1 {
 }
 
 #login-container {
-  height: 450px;
-  width: 650px;
-  padding: 50px;
+  padding: 48px 115px;
   background-color: white;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  margin-top: 100px;
   box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.43);
 
   > hr {
@@ -178,14 +174,14 @@ h1 {
   }
 }
 
-#back-button{
-  >img{
+#back-button {
+  > img {
     height: 32px;
     width: 32px;
   }
 }
 
-#back-button:hover{
+#back-button:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: all 0.2s;
@@ -416,34 +412,33 @@ input::placeholder {
   transform: scale(1.1);
 }
 
-.toogle-visibility:focus{
+.toogle-visibility:focus {
   outline: none;
 }
 
-@media(max-width: 960px){
-  #signup-container{
+@media (max-width: 960px) {
+  #signup-container {
     width: 396px;
-
   }
 
-  #back-button{
+  #back-button {
     margin-right: -20px;
     padding-left: 20px;
   }
-  
-  main{
+
+  main {
     min-height: initial;
   }
-  #login-container{
+  #login-container {
     width: 396px;
     height: auto;
   }
-  h1{
+  h1 {
     font-size: 47px;
     width: 100%;
     padding: 16px;
   }
-  #login-buttons{
+  #login-buttons {
     display: flex;
     flex-direction: column;
     gap: 21px;
@@ -451,62 +446,68 @@ input::placeholder {
   }
 }
 
-@media(max-width: 560px){
-  #login-container{
+@media (max-width: 560px) {
+  #login-container {
     width: 296px;
     height: auto;
   }
-  input{
+  input {
     width: 320px;
   }
 
   #login-inputfields {
-    > #email-login{
+    > #email-login {
       background-position: 291px;
     }
   }
-  #email-input, #password-input, #confirm-password-input{
+  #email-input,
+  #password-input,
+  #confirm-password-input {
     background-position: 307px;
   }
 
-  #name-input{
+  #name-input {
     background-position: 310px;
   }
 
-  #password-login{
+  #password-login {
     padding-right: 0;
   }
 }
 
-@media(max-width: 420px){
-  #login-container{
+@media (max-width: 420px) {
+  #login-container {
     width: 200px;
     height: auto;
   }
-  input{
+  input {
     width: 90%;
   }
-  #toggle-password{
+  #toggle-password {
     right: 0px;
   }
   #login-inputfields {
-    > #email-login{
+    > #email-login {
       background-position: 225px;
     }
   }
 
-  #email-input, #name-input, #password-input, #confirm-password-input{
+  #email-input,
+  #name-input,
+  #password-input,
+  #confirm-password-input {
     background-image: none;
   }
 
-  #login-buttons{
-    >button{
+  #login-buttons {
+    > button {
       padding: 10px;
       font-size: 14px;
     }
   }
 
-  #login, #guest-login{
+  #login,
+  #guest-login {
     width: 180px;
     height: auto;
   }
