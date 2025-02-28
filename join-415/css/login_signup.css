@@ -7,6 +7,16 @@
   display: none !important;
 }
 
+.displayFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 50px;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -23,7 +33,6 @@ main {
   justify-content: center;
   align-items: center;
   flex: 1;
-  min-height: calc(100vh - 250px);
 }
 
 footer {
@@ -84,7 +93,6 @@ h1 {
 #join-logo {
   height: 120px;
   width: 100px;
-  position: absolute;
   top: 80px;
   left: 77px;
 }
@@ -93,7 +101,6 @@ h1 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin: 80px;
   font-size: 20px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
