@@ -37,7 +37,7 @@ function renderContacts(sortedGroups, grouped) {
       contactsListRef.innerHTML += listContactData(
         contact,
         globalIndex,
-        currentUser
+        currentUser,
       );
       globalIndex++;
     }
@@ -53,7 +53,7 @@ function openContactDetails(indexContacts) {
   detailsMobile.classList.remove("d_none");
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
-    indexContacts
+    indexContacts,
   );
   document.getElementById("detailsContact").innerHTML =
     detailsContactInsert(contact);
@@ -62,7 +62,7 @@ function openContactDetails(indexContacts) {
 async function getContactData(inputName, inputEmail, inputPhone, overId) {
   if (
     [inputName, inputEmail, inputPhone].some((input, i) =>
-      [checkName, checkEmail, checkPhone][i](input)
+      [checkName, checkEmail, checkPhone][i](input),
     )
   ) {
     return;
@@ -84,7 +84,7 @@ async function userCreateSuccess(inputName, inputEmail, inputPhone) {
       email: email,
       phone: phone,
       colorId: getRandomNumber(),
-    })
+    }),
   );
 }
 
@@ -98,12 +98,12 @@ function cleanWindow(inputName, inputEmail, inputPhone, overId) {
   showCreationHint(
     "createdInfo",
     "createdContactInfo",
-    "createdContactInfoOut"
+    "createdContactInfoOut",
   );
   toggleStyleChange(
     "contactWindow",
     "addContactWindowClosed",
-    "addContactWindow"
+    "addContactWindow",
   );
   showContactDetails("contactsDisplay", "detailsWindowClosed", "detailsWindow");
   findLastContactIndex();
@@ -134,7 +134,7 @@ function checkName(insertedName) {
       "contactErrorName",
       "inputContactErrorName",
       "editErrorName",
-      "inputEditErrorName"
+      "inputEditErrorName",
     );
     return true;
   } else if (!namePattern.test(name)) {
@@ -144,12 +144,15 @@ function checkName(insertedName) {
       "contactErrorName",
       "inputContactErrorName",
       "editErrorName",
-      "inputEditErrorName"
+      "inputEditErrorName",
     );
     return true;
   }
-  inputClassListClear("contactErrorName", "inputContactErrorName");
-  inputClassListClear("editErrorName", "inputEditErrorName");
+  if (insertedName == "nameInput") {
+    inputClassListClear("contactErrorName", "inputContactErrorName");
+  } else {
+    inputClassListClear("editErrorName", "inputEditErrorName");
+  }
 }
 
 function inputCheck(crossCheckId, insertedId, addP, addDiv, editP, editDiv) {
@@ -173,7 +176,7 @@ function checkEmail(inputId) {
       "contactErrorEmail",
       "inputContactErrorEmail",
       "editErrorEmail",
-      "inputEditErrorEmail"
+      "inputEditErrorEmail",
     );
     return true;
   } else if (!emailPattern.test(email)) {
@@ -183,12 +186,15 @@ function checkEmail(inputId) {
       "contactErrorEmail",
       "inputContactErrorEmail",
       "editErrorEmail",
-      "inputEditErrorEmail"
+      "inputEditErrorEmail",
     );
     return true;
   }
-  inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
-  inputClassListClear("editErrorEmail", "inputEditErrorEmail");
+  if (inputId == "mailInput") {
+    inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
+  } else {
+    inputClassListClear("editErrorEmail", "inputEditErrorEmail");
+  }
 }
 
 function checkPhone(insertedPhone) {
@@ -202,7 +208,7 @@ function checkPhone(insertedPhone) {
       "contactErrorTel",
       "inputContactErrorTel",
       "editErrorTel",
-      "inputEditErrorTel"
+      "inputEditErrorTel",
     );
     return true;
   } else if (!telPattern.test(phone)) {
@@ -212,12 +218,15 @@ function checkPhone(insertedPhone) {
       "contactErrorTel",
       "inputContactErrorTel",
       "editErrorTel",
-      "inputEditErrorTel"
+      "inputEditErrorTel",
     );
     return true;
   }
-  inputClassListClear("contactErrorTel", "inputContactErrorTel");
-  inputClassListClear("editErrorTel", "inputEditErrorTel");
+  if (insertedPhone == "telInput") {
+    inputClassListClear("contactErrorTel", "inputContactErrorTel");
+  } else {
+    inputClassListClear("editErrorTel", "inputEditErrorTel");
+  }
 }
 
 async function deleteContact(path) {
@@ -250,7 +259,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
       email: changeEmail,
       phone: changeTel,
       colorId: contacts[indexContacts].colorId,
-    })
+    }),
   );
   editedContact = id;
   await loadDataContacts();
@@ -319,7 +328,7 @@ function openEditOverlay(indexContacts) {
     editInitialsInsert(contact);
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
-    indexContacts
+    indexContacts,
   );
 }
 
