@@ -138,7 +138,7 @@ function editFormInsert(contact) {
         class="weight400 size20"
         type="email"
         placeholder="Email"
-        pattern="[^@s]+@[^@s]"
+        pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
         value="${contact.email}"
       />
 
@@ -227,7 +227,7 @@ function listTasks(task, i, category) {
         <p class="size16 weight700">${task.title}</p>
         <p class="size16 weight400 colorGrey">
           ${truncateText(
-            task.description === undefined ? "" : task.description
+            task.description === undefined ? "" : task.description,
           )}
         </p>
       </div>

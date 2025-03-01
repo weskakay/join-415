@@ -127,17 +127,8 @@ function checkName(insertedName) {
   let nameInput = document.getElementById(insertedName);
   let name = document.getElementById(insertedName).value.trim();
   let namePattern = new RegExp(nameInput.pattern);
-  if (!name) {
-    inputCheck(
-      "nameInput",
-      insertedName,
-      "contactErrorName",
-      "inputContactErrorName",
-      "editErrorName",
-      "inputEditErrorName",
-    );
-    return true;
-  } else if (!namePattern.test(name)) {
+
+  if (!namePattern.test(name)) {
     inputCheck(
       "nameInput",
       insertedName,
@@ -165,24 +156,15 @@ function inputCheck(crossCheckId, insertedId, addP, addDiv, editP, editDiv) {
   }
 }
 
-function checkEmail(inputId) {
-  let mailInput = document.getElementById(inputId);
+function checkEmail(insertedEmail) {
+  let mailInput = document.getElementById(insertedEmail);
   let email = mailInput.value.trim();
-  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!email) {
+  let emailPattern = new RegExp(mailInput.pattern);
+
+  if (!emailPattern.test(email)) {
     inputCheck(
       "mailInput",
-      inputId,
-      "contactErrorEmail",
-      "inputContactErrorEmail",
-      "editErrorEmail",
-      "inputEditErrorEmail",
-    );
-    return true;
-  } else if (!emailPattern.test(email)) {
-    inputCheck(
-      "mailInput",
-      inputId,
+      insertedEmail,
       "contactErrorEmail",
       "inputContactErrorEmail",
       "editErrorEmail",
@@ -190,7 +172,7 @@ function checkEmail(inputId) {
     );
     return true;
   }
-  if (inputId == "mailInput") {
+  if (insertedEmail == "mailInput") {
     inputClassListClear("contactErrorEmail", "inputContactErrorEmail");
   } else {
     inputClassListClear("editErrorEmail", "inputEditErrorEmail");
@@ -201,17 +183,8 @@ function checkPhone(insertedPhone) {
   let telInput = document.getElementById(insertedPhone);
   let phone = document.getElementById(insertedPhone).value.trim();
   let telPattern = new RegExp(telInput.pattern);
-  if (!phone) {
-    inputCheck(
-      "telInput",
-      insertedPhone,
-      "contactErrorTel",
-      "inputContactErrorTel",
-      "editErrorTel",
-      "inputEditErrorTel",
-    );
-    return true;
-  } else if (!telPattern.test(phone)) {
+
+  if (!telPattern.test(phone)) {
     inputCheck(
       "telInput",
       insertedPhone,

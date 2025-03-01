@@ -45,9 +45,17 @@ async function registrationData() {
   let email = document.getElementById("email-input");
   let password = document.getElementById("password-input");
   let name = document.getElementById("name-input");
-  let confPassword = document.getElementById("confirm-password-input");
+  let nameValid = checkRegistrationData(name, "regErrorName", "regInpName");
+  let emailValid = checkRegistrationData(email, "regErrorEmail", "regInpEmail");
+  let passValid = checkRegistrationData(password, "regErrorPw", "regInpPw");
 
-  if (confirmPassword() == true) {
+  if (
+    confirmPassword() == true &&
+    emailValid == true &&
+    passValid == true &&
+    nameValid == true
+  ) {
+    regAlright("regErrorPwCheck", "regInpPwCheck");
     await update_data("/login-data", {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
@@ -55,8 +63,7 @@ async function registrationData() {
     });
     changeNavbarItems("login");
   } else {
-    confPassword.classList.add("wrong-password");
-    document.getElementById("error-pw").classList.remove("d_none");
+    regError("regErrorPwCheck", "regInpPwCheck");
   }
 }
 
@@ -69,6 +76,28 @@ function confirmPassword() {
   } else {
     return false;
   }
+}
+
+function checkRegistrationData(insertedData, remove, add) {
+  let insertedDataValue = insertedData.value.trim();
+  let insertedDataPattern = new RegExp(insertedData.pattern);
+  if (!insertedDataPattern.test(insertedDataValue)) {
+    regError(remove, add);
+    return false;
+  } else {
+    regAlright(remove, add);
+    return true;
+  }
+}
+
+function regError(remove, add) {
+  document.getElementById(remove).classList.remove("d_none");
+  document.getElementById(add).classList.add("regDisplay");
+}
+
+function regAlright(remove, add) {
+  document.getElementById(remove).classList.add("d_none");
+  document.getElementById(add).classList.remove("regDisplay");
 }
 
 function changePWImage() {
