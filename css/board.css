@@ -13,8 +13,16 @@
 .board-search-add-container {
   display: flex;
   align-items: center;
-  padding: 8px 0 8px 0;
+  padding: 8px 0;
   gap: 32px;
+}
+
+#board-search-container {
+  order: 1;
+}
+
+.board-add-task-button {
+  order: 2;
 }
 
 .search-input {
@@ -394,6 +402,7 @@
   .board-header {
     padding: 120px 16px 0;
   }
+
   #mobile-board-search {
     width: 100%;
   }

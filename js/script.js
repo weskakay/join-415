@@ -187,12 +187,8 @@ function boardMedia() {
   let addTaskSpan = document.getElementById("addtask-span");
 
   if (media.matches) {
-    if (boardSearch) boardSearch.classList.add("d_none");
-    if (mobileSearch) mobileSearch.classList.remove("d_none");
     if (addTaskSpan) addTaskSpan.classList.add("d_none");
   } else {
-    if (boardSearch) boardSearch.classList.remove("d_none");
-    if (mobileSearch) mobileSearch.classList.add("d_none");
     if (addTaskSpan) addTaskSpan.classList.remove("d_none");
   }
 }
