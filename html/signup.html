@@ -98,11 +98,17 @@
                 </p>
               </div>
             </div>
-
-            <label id="checkbox"
-              ><input type="checkbox" id="checkbox-input" required /> I accept
-              the <a href="privacy_policy.html">Privacy Policy</a>
-            </label>
+            <div class="privacy_policy">
+              <input type="checkbox" id="privacyPolicy" />
+              <label for="privacyPolicy"> </label>
+              <p>I accept the</p>
+              <a href="privacy_policy.html">Privacy Policy</a>
+            </div>
+            <div class="regError">
+              <p id="regErrorCheckBox" class="size12 d_none">
+                Please accept the Privacy Policy
+              </p>
+            </div>
           </div>
           <button id="signup" onclick="registrationData()">Sign Up</button>
         </form>

@@ -45,17 +45,19 @@ async function registrationData() {
   let email = document.getElementById("email-input");
   let password = document.getElementById("password-input");
   let name = document.getElementById("name-input");
+  let checkBox = document.getElementById("privacyPolicy");
   let nameValid = checkRegistrationData(name, "regErrorName", "regInpName");
   let emailValid = checkRegistrationData(email, "regErrorEmail", "regInpEmail");
   let passValid = checkRegistrationData(password, "regErrorPw", "regInpPw");
+  let checkBoxValid = checkBoxValidity(checkBox, "regErrorCheckBox");
 
   if (
     confirmPassword() == true &&
     emailValid == true &&
     passValid == true &&
-    nameValid == true
+    nameValid == true &&
+    checkBoxValid == true
   ) {
-    regAlright("regErrorPwCheck", "regInpPwCheck");
     await update_data("/login-data", {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
@@ -63,7 +65,7 @@ async function registrationData() {
     });
     changeNavbarItems("login");
   } else {
-    regError("regErrorPwCheck", "regInpPwCheck");
+    return;
   }
 }
 
@@ -72,8 +74,12 @@ function confirmPassword() {
   let confPasswordInput = document.getElementById("confirm-password-input");
 
   if (passwordInput.value.trim() === confPasswordInput.value.trim()) {
+    regAlright("regErrorPwCheck", "regInpPwCheck");
+
     return true;
   } else {
+    regError("regErrorPwCheck", "regInpPwCheck");
+
     return false;
   }
 }
@@ -87,6 +93,16 @@ function checkRegistrationData(insertedData, remove, add) {
   } else {
     regAlright(remove, add);
     return true;
+  }
+}
+
+function checkBoxValidity(checkBox, remove) {
+  if (checkBox.checked == true) {
+    document.getElementById(remove).classList.add("d_none");
+
+    return true;
+  } else {
+    document.getElementById(remove).classList.remove("d_none");
   }
 }
 
