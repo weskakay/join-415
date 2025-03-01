@@ -78,12 +78,13 @@ function detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId) {
 }
 
 function detailsEditDeleteButtons(targetId) {
-  return `
+  return /*html*/ `
     <div class="detailsEdit">
       <button onclick="deleteTask('tasks/${targetId}')">
         <img src="../assets/icons/contacts/delete.svg" alt="Delete Symbol" />
         <p class="weight400 size16 colorDarkBlue">Delete</p>
       </button>
+       <div class="edit-board-seperator" style="display:none"></div>
       <button onclick="editTaskDetails()">
         <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
         <p class="weight400 size16 colorDarkBlue">Edit</p>

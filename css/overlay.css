@@ -389,6 +389,6 @@ input#telInput {
 
 @media (max-width: 550px) {
   .addContactWindow {
-    left: 5%;
+    left: -7%;
   }
 }

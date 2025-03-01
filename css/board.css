@@ -6,6 +6,7 @@
 
 .board-header {
   display: flex;
+  align-items: center;
   padding: 80px 64px 0;
   justify-content: space-between;
 }
@@ -60,6 +61,15 @@
 }
 
 .search-seperator {
+  height: 30px;
+  width: 1px;
+  border-color: rgba(209, 209, 209, 1);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.edit-board-seperator {
+  display: block !important;
   height: 30px;
   width: 1px;
   border-color: rgba(209, 209, 209, 1);
@@ -144,7 +154,7 @@
   align-items: center;
   justify-content: center;
   height: 48px;
-  width: 100%;
+  width: 252px;
   background-color: rgba(231, 231, 231, 1);
   border-style: dashed;
   border-radius: 10px;
@@ -354,7 +364,7 @@
   color: rgba(255, 61, 0, 1);
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1400px) {
   .board-tasks-wrapper {
     flex-wrap: wrap;
     gap: 64px;
@@ -445,35 +455,43 @@
   }
   .board-header {
     padding: 40px 16px 0;
+    > div {
+      font-size: 47px;
+    }
+  }
+
+  .board-add-task-button {
+    width: 40px;
+    height: 40px;
   }
 
   #mobile-board-search {
     width: 100%;
   }
   .search-input {
-    padding: 48px 16px 8px 16px;
+    padding: 16px 8px;
     > input {
       width: 100%;
     }
   }
   .search-icon-seperator {
-    top: 70%;
+    top: 50%;
     right: 30px;
   }
   .board-tasks-wrapper {
     flex-wrap: wrap;
-    padding: 16px 16px 0;
+    padding: 16px 0 16px 16px;
     gap: 24px;
   }
   .board-card-container {
-    height: auto;
-    flex-direction: row;
+    height: 300px;
     flex-wrap: wrap;
     max-width: 960px;
     overflow-x: scroll;
     overflow-y: hidden;
     padding-bottom: 20px;
   }
+
   .board-card-container::-webkit-scrollbar {
     height: 10px;
   }
@@ -490,20 +508,46 @@
     margin-bottom: 16px;
   }
   .board-tasks-container {
-    width: auto;
     max-width: 950px;
-    width: 90%;
   }
 
   #no-results-message {
     left: 40%;
     top: 30%;
   }
+
+  .detailsEdit {
+    flex-direction: row !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: none !important;
+    box-shadow: none !important;
+  }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 570px) {
   #no-results-message {
     left: 30%;
+  }
+
+  .board-tasks-container {
+    gap: 16px;
+  }
+
+  .board-tasks-wrapper {
+    height: auto;
+  }
+
+  .board-wrapper {
+    margin-top: 80px;
+  }
+
+  header {
+    position: fixed;
+  }
+
+  .board-card-container {
+    flex-direction: column;
   }
 }
 
