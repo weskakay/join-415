@@ -493,3 +493,12 @@
     left: 30%;
   }
 }
+
+@media (max-width: 360px) {
+  .board-headline{
+    width: 225px;
+  }
+  .board-card{
+    width: 225px;
+  }
+}
