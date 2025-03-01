@@ -484,6 +484,7 @@
     gap: 24px;
   }
   .board-card-container {
+    flex-direction: column;
     height: 300px;
     flex-wrap: wrap;
     max-width: 960px;
@@ -504,7 +505,7 @@
   }
 
   .board-headline {
-    width: 252px;
+    width: auto;
     margin-bottom: 16px;
   }
   .board-tasks-container {
@@ -544,10 +545,6 @@
 
   header {
     position: fixed;
-  }
-
-  .board-card-container {
-    flex-direction: column;
   }
 }
 
