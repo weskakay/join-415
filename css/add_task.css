@@ -486,7 +486,7 @@ select {
   .add-task-input {
     flex-direction: column;
     padding-top: 120px;
-    padding-bottom: 60px;
+    padding-bottom: 200px;
   }
 
   .add-task-seperator {

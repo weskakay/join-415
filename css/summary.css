@@ -9,7 +9,6 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  width: 625px;
   height: 73px;
 }
 
@@ -232,6 +231,9 @@
     overflow: hidden;
   }
   .summaryContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 40px 16px 40px 16px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -267,7 +269,6 @@
   .dashboardContent {
     padding: 0px;
     height: 384px;
-    width: 396px;
   }
   .large {
     width: 396px;
@@ -334,6 +335,6 @@
     padding: 30px 8px 30px 8px;
   }
   .dashboard {
-    margin-left: -90px;
+    margin-left: 0px;
   }
 }

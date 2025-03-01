@@ -82,13 +82,13 @@
   display: flex;
   padding: 64px 64px 0;
   justify-content: space-between;
-  overflow-y: scroll;
   height: calc(100vh - 246px);
 }
 
 .board-tasks-container {
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
   width: 252px;
   gap: 24px;
 }
@@ -115,8 +115,14 @@
 .board-card-container {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
   gap: 24px;
   height: 100vh;
+}
+
+.board-card-container::-webkit-scrollbar{
+  width: 0;
 }
 
 .board-card-container-highlight {
@@ -344,7 +350,37 @@
   .board-tasks-wrapper {
     flex-wrap: wrap;
     gap: 64px;
+    overflow: hidden;
+    overflow-y: scroll;
   }
+
+  .board-tasks-wrapper::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 45px;
+    border: 8px solid transparent;
+    background-clip: content-box;
+  }
+  
+  .board-tasks-wrapper::-webkit-scrollbar {
+    width: 24px;
+  }
+  
+  .board-tasks-wrapper::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
+      bottom;
+    height: 20px;
+  }
+  
+  .board-tasks-wrapper::-webkit-scrollbar-button:single-button:vertical:increment {
+    background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
+      top;
+    height: 20px;
+  }
+  
+  .contacts {
+    width: 100%;
+  }
+
   .board-tasks-container {
     width: 100%;
   }
@@ -353,7 +389,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     height: auto;
-    min-height: 110px;
+    min-height: 110px;    
+  }
+
+  #board_done{
+    margin-bottom: 64px;
   }
 
   .board-card {
@@ -392,7 +432,7 @@
     font-size: 21px;
   }
   .board-header {
-    padding: 120px 16px 0;
+    padding: 40px 16px 0;
   }
   #mobile-board-search {
     width: 100%;
@@ -411,7 +451,6 @@
     flex-wrap: wrap;
     padding: 16px 16px 0;
     gap: 24px;
-    margin-bottom: 80px;
   }
   .board-card-container {
     height: auto;
@@ -452,5 +491,14 @@
 @media (max-width: 450px) {
   #no-results-message {
     left: 30%;
+  }
+}
+
+@media (max-width: 360px) {
+  .board-headline{
+    width: 225px;
+  }
+  .board-card{
+    width: 225px;
   }
 }
