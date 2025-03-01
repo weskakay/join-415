@@ -28,7 +28,7 @@ async function proofLoginData(userId, findUser) {
         userId = Object.keys(login)[id];
         await edit_data("/current-user", findUser);
         changeNavbarItems(
-          window.innerWidth < 960 ? "mobile_greeting" : "summary"
+          window.innerWidth < 960 ? "mobile_greeting" : "summary",
         );
         return;
       }
@@ -47,17 +47,16 @@ async function registrationData() {
   let name = document.getElementById("name-input");
   let confPassword = document.getElementById("confirm-password-input");
 
-  if (confirmPassword()) {
-    update_data("/login-data", {
+  if (confirmPassword() == true) {
+    await update_data("/login-data", {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
       name: `${name.value.trim()}`,
     });
+    changeNavbarItems("login");
   } else {
     confPassword.classList.add("wrong-password");
     document.getElementById("error-pw").classList.remove("d_none");
-
-    console.log("wrong password");
   }
 }
 
