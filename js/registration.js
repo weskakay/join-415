@@ -95,9 +95,9 @@ function changeLogoSize() {
   let joinHome = document.getElementById("join-home");
 
   joinHome.classList.add("logo-animation");
-  setTimeout(() => {
-    openLoginHTML();
-  }, 1000);
+  // setTimeout(() => {
+  //   // openLoginHTML();
+  // }, 1000);
 }
 
 async function openGuestLogin() {
