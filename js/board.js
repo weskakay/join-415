@@ -308,9 +308,6 @@ function checkColumnEmpty(columnId) {
   }
 }
 
-window.addEventListener("resize", adjustSearchContainerPosition);
-window.addEventListener("load", adjustSearchContainerPosition);
-
 function adjustSearchContainerPosition() {
   let searchContainer = document.getElementById("board-search-container");
   let boardHeader = document.querySelector(".board-header");

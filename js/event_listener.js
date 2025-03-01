@@ -32,3 +32,6 @@ if (window.location.pathname.includes("login.html")) {
     passwordField.addEventListener("blur", handleBlur);
   });
 }
+
+window.addEventListener("resize", adjustSearchContainerPosition);
+window.addEventListener("load", adjustSearchContainerPosition);
