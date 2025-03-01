@@ -40,38 +40,63 @@
         <hr />
         <form onsubmit="event.preventDefault()" novalidate>
           <div id="signup-inputfields">
-            <input
-              type="text"
-              placeholder="Name"
-              id="name-input"
-              required
-              pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              id="email-input"
-              required
-              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            />
-            <input
-              type="password"
-              pattern="[A-Za-z0-9]{8,}"
-              placeholder="Password"
-              id="password-input"
-              required
-              oninput="changePWImage()"
-            />
-            <input
-              type="password"
-              pattern="[A-Za-z0-9]{8,}"
-              placeholder="Confirm Password"
-              id="confirm-password-input"
-              required
-              oninput="changeConfPWImage()"
-            />
-            <div id="error-pw" class="d_none">
-              Your passwords don't match. Please try again.
+            <div id="regInpName" class="">
+              <input
+                type="text"
+                placeholder="Name"
+                id="name-input"
+                required
+                pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+              />
+              <div class="regError">
+                <p id="regErrorName" class="size12 d_none">
+                  Please insert a name and a surname - e.g.: John Doe
+                </p>
+              </div>
+            </div>
+            <div id="regInpEmail" class="">
+              <input
+                type="email"
+                placeholder="Email"
+                id="email-input"
+                required
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              />
+              <div class="regError">
+                <p id="regErrorEmail" class="size12 d_none">
+                  Please insert a valid email - e.g.: name@email.com
+                </p>
+              </div>
+            </div>
+            <div id="regInpPw" class="">
+              <input
+                type="password"
+                pattern="[A-Za-z0-9]{8,}"
+                placeholder="Password"
+                id="password-input"
+                required
+                oninput="changePWImage()"
+              />
+              <div class="regError">
+                <p id="regErrorPw" class="size12 d_none">
+                  Please insert a password of at least 8 characters
+                </p>
+              </div>
+            </div>
+            <div id="regInpPwCheck" class="">
+              <input
+                type="password"
+                pattern="[A-Za-z0-9]{8,}"
+                placeholder="Confirm Password"
+                id="confirm-password-input"
+                required
+                oninput="changeConfPWImage()"
+              />
+              <div class="regError">
+                <p id="regErrorPwCheck" class="size12 d_none">
+                  Your passwords don't match. Please try again.
+                </p>
+              </div>
             </div>
 
             <label id="checkbox"
