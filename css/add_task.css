@@ -403,6 +403,13 @@ select {
   margin-bottom: 8px;
 }
 
+.error-text {
+  color: rgba(255, 129, 144, 1);
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
 @media (max-width: 1360px) {
   .add-task-input-left,
   .add-task-input-right {
