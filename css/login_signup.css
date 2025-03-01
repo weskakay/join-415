@@ -69,6 +69,7 @@ button {
   color: white;
   padding: 15px 24px;
   border-radius: 8px;
+  border-style: none;
   font-size: 21px;
   font-weight: 700;
   font-family: "Inter", sans-serif;
@@ -492,7 +493,7 @@ input::placeholder {
   }
   #login-inputfields {
     > #email-login {
-      background-position: 225px;
+      background-position: 182px;
     }
   }
 

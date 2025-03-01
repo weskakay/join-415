@@ -345,11 +345,12 @@ select {
   border-radius: 10px;
   position: relative;
   display: flex;
+  justify-content: space-between;
 }
 
 .list-icons-wrapper {
   display: none;
-
+  margin-right: 8px;
   align-items: center;
   gap: 4px;
 }

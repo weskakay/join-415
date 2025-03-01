@@ -121,8 +121,8 @@
 
 .penSymbol {
   background-image: url(../assets/icons/summary/pen_dark.svg);
-  height: 69px;
-  width: 69px;
+  height: 70px;
+  width: 70px;
 }
 .contentContainer:hover .penSymbol {
   background-image: url(../assets/icons/summary/pen_white.svg);
@@ -134,8 +134,8 @@
 
 .doneSymbol {
   background-image: url(../assets/icons/summary/done_dark.svg);
-  height: 69px;
-  width: 69px;
+  height: 70px;
+  width: 70px;
 }
 
 .contentContainer:hover .doneSymbol {
