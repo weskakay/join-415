@@ -178,7 +178,7 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
   }
 }
 
-function allowDrop(ev, targetColumn) {
+function allowDrop(ev) {
   ev.preventDefault();
 }
 
@@ -304,6 +304,29 @@ function checkColumnEmpty(columnId) {
   } else {
     if (noTaskElement) {
       noTaskElement.remove();
+    }
+  }
+}
+
+window.addEventListener("resize", adjustSearchContainerPosition);
+window.addEventListener("load", adjustSearchContainerPosition);
+
+function adjustSearchContainerPosition() {
+  let searchContainer = document.getElementById("board-search-container");
+  let boardHeader = document.querySelector(".board-header");
+  let searchContainerParent = document.querySelector(
+    ".board-search-add-container"
+  );
+
+  if (window.innerWidth <= 960) {
+    if (!searchContainer.classList.contains("search-container-moved")) {
+      searchContainer.classList.add("search-container-moved");
+      boardHeader.insertAdjacentElement("afterend", searchContainer);
+    }
+  } else {
+    if (searchContainer.classList.contains("search-container-moved")) {
+      searchContainer.classList.remove("search-container-moved");
+      searchContainerParent.appendChild(searchContainer);
     }
   }
 }
