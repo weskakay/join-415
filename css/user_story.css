@@ -1,0 +1,253 @@
+.userStoryContainer {
+  max-width: 525px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(50%, -7%);
+}
+
+.userStory {
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
+  height: calc(100vh - 120px);
+  width: 100%;
+  min-width: 525px;
+  max-height: 870px;
+  padding: 54px 32px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.storyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editTaskContainer {
+  padding: 16px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.tag {
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 4px 24px;
+  color: white;
+}
+
+.taskDetailsButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.taskDetailsHeader {
+  padding-bottom: 24px;
+}
+
+.closeButton {
+  height: 24px;
+  width: 24px;
+  background: url(../assets/icons/task_details/cross_default.svg) no-repeat
+    center center;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.closeButton:hover {
+  background-color: #eeeeee;
+}
+
+.closeButton:active {
+  background: url(../assets/icons/task_details/cross_active.svg) no-repeat
+    center center;
+  background-color: #29abe2;
+}
+
+.userStoryTable table {
+  width: 100%;
+  border-spacing: 0 24px;
+}
+
+.userStoryTable td:nth-child(2) {
+  padding-left: 24px;
+}
+
+.assigneeContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.assigneeList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.assignee {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 45%;
+}
+
+.subtaskContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.editSubtaskList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  border-radius: 10px;
+}
+
+.subtask {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 16px;
+}
+
+.subtask input[type="checkbox"] {
+  display: none;
+}
+
+.subtask label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-image: url(../assets/icons/task_details/uncheck_button.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.subtask input[type="checkbox"]:checked + label {
+  background-image: url(../assets/icons/task_details/Check_button.svg);
+}
+
+.subtask p {
+  width: 100%;
+}
+
+.subtask:hover {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+}
+
+.buttonPrioContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.subtaskDetailsEdit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtaskEditButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtaskEditButton button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
+#inputDescriptionEdit {
+  max-width: 433px;
+}
+
+@media (max-width: 1220px) {
+  .userStoryContainer {
+    transform: translate(30%, -7%);
+  }
+}
+
+@media (max-width: 1100px) {
+  .userStoryContainer {
+    transform: translate(10%, -7%);
+  }
+}
+
+@media (max-width: 550px) {
+  .userStory {
+    min-width: 395px;
+  }
+
+  .assignee {
+    width: auto;
+  }
+
+  .tag {
+    font-size: 16px;
+  }
+
+  #detailsHeader {
+    font-size: 36px;
+  }
+
+  #detailsDescription {
+    font-size: 16px;
+  }
+
+  #dueDateTR > td {
+    font-size: 16px;
+  }
+
+  #priorityDetailsTR > td {
+    font-size: 16px;
+  }
+
+  .displayFlex > p {
+    font-size: 16px;
+  }
+
+  .assigneeContainer > p {
+    font-size: 16px;
+  }
+
+  .subtaskContainer > p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .userStory {
+    padding: 16px 16px;
+    min-width: 360px;
+    height: calc(100vh - 32px);
+  }
+
+  .taskDetailsButtons {
+    display: flex;
+    justify-content: end;
+    margin-right: 16px;
+  }
+}
