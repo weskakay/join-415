@@ -46,8 +46,17 @@ async function registrationData() {
   let password = document.getElementById("password-input");
   let name = document.getElementById("name-input");
   let confPassword = document.getElementById("confirm-password-input");
+  let nameValid = checkRegistrationData(name);
+  let emailValid = checkRegistrationData(email);
+  let passValid = checkRegistrationData(password);
 
-  if (confirmPassword() == true) {
+  if (
+    confirmPassword() == true &&
+    emailValid == true &&
+    passValid == true &&
+    nameValid == true
+  ) {
+    document.getElementById("error-pw").classList.add("d_none");
     await update_data("/login-data", {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
@@ -68,6 +77,16 @@ function confirmPassword() {
     return true;
   } else {
     return false;
+  }
+}
+
+function checkRegistrationData(insertedData) {
+  let insertedDataValue = insertedData.value.trim();
+  let insertedDataPattern = new RegExp(insertedData.pattern);
+  if (!insertedDataPattern.test(insertedDataValue)) {
+    return false;
+  } else {
+    return true;
   }
 }
 

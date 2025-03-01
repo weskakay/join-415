@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/login_signup.css" />
     <script src="../js/script.js"></script>
     <script src="../js/registration.js"></script>
+    <script src="../js/db.js"></script>
   </head>
 
   <body>
@@ -37,13 +38,25 @@
         </div>
 
         <hr />
-        <form onsubmit="event.preventDefault()">
+        <form onsubmit="event.preventDefault()" novalidate>
           <div id="signup-inputfields">
-            <input type="text" placeholder="Name" id="name-input" required />
-            <input type="email" placeholder="Email" id="email-input" required />
+            <input
+              type="text"
+              placeholder="Name"
+              id="name-input"
+              required
+              pattern="[A-Za-zÀ-ÖØ-öø-ÿ]{1,30} [A-Za-zÀ-ÖØ-öø-ÿ]{1,30}"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              id="email-input"
+              required
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+            />
             <input
               type="password"
-              minlength="8"
+              pattern="[A-Za-z0-9]{8,}"
               placeholder="Password"
               id="password-input"
               required
@@ -51,7 +64,7 @@
             />
             <input
               type="password"
-              minlength="8"
+              pattern="[A-Za-z0-9]{8,}"
               placeholder="Confirm Password"
               id="confirm-password-input"
               required

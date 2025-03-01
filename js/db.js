@@ -16,6 +16,8 @@ let selectedAssignee = [];
 
 let newPrio = "";
 
+//let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 let urgencySymbols = [
   "../assets/icons/add_task/prio-low-icon.svg",
   "../assets/icons/add_task/prio-medium-icon.svg",
