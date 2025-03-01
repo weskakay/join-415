@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/icons/favicon_join.svg"
+    />
+    <link rel="stylesheet" href="../css/font_styles.css" />
+    <link rel="stylesheet" href="../css/login_signup.css" />
+    <script src="../js/script.js"></script>
+    <script src="../js/registration.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="displayFlex">
+        <img
+          src="../assets/join_logo/join-logo-capa2.svg"
+          alt="join-logo"
+          id="join-logo"
+        />
+      </div>
+    </header>
+
+    <main>
+      <div id="signup-container">
+        <div id="signup-header">
+          <div id="back-button" onclick="changeNavbarItems('login')">
+            <img src="../assets/icons/login_signup/Vector.svg" />
+          </div>
+          <h1>Sign Up</h1>
+          <div style="width: 10px"></div>
+        </div>
+
+        <hr />
+        <form onsubmit="event.preventDefault()">
+          <div id="signup-inputfields">
+            <input type="text" placeholder="Name" id="name-input" required />
+            <input type="email" placeholder="Email" id="email-input" required />
+            <input
+              type="password"
+              minlength="8"
+              placeholder="Password"
+              id="password-input"
+              required
+              oninput="changePWImage()"
+            />
+            <input
+              type="password"
+              minlength="8"
+              placeholder="Confirm Password"
+              id="confirm-password-input"
+              required
+              oninput="changeConfPWImage()"
+            />
+            <div id="error-pw" class="d_none">
+              Your passwords don't match. Please try again.
+            </div>
+
+            <label id="checkbox"
+              ><input type="checkbox" id="checkbox-input" required /> I accept
+              the <a href="privacy_policy.html">Privacy Policy</a>
+            </label>
+          </div>
+          <button id="signup" onclick="registrationData()">Sign Up</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <a>Privacy Policy</a>
+      <a>Legal notice</a>
+    </footer>
+  </body>
+</html>
