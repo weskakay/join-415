@@ -472,7 +472,7 @@ select {
     display: flex;
   }
   .add-task-headline {
-    position: fixed;
+    position: sticky;
     display: flex;
     align-items: end;
     top: 80px;
@@ -485,7 +485,7 @@ select {
   }
   .add-task-input {
     flex-direction: column;
-    padding-top: 120px;
+    padding-top: 24px;
     padding-bottom: 200px;
   }
 
