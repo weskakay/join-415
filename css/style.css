@@ -173,7 +173,7 @@ footer {
 
 @media (max-width: 960px) {
   body::-webkit-scrollbar {
-    width: 0px;
+    width: 0;
   }
 
   header {
