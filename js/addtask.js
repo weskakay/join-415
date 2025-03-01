@@ -255,52 +255,83 @@ function stautsEmpty(stauts) {
   return taskStatus;
 }
 
-function validateRequiredFields() {
-  let requiredFields = document.querySelectorAll("[required]");
+function showError(element, message) {
+  let parent =
+    element.closest(".add-task-input-fields") ||
+    element.closest(".add-task-prio");
+  let errorSpan = parent.querySelector(".error-text");
 
-  for (let field of requiredFields) {
-    if (!field.value.trim()) {
-      alert(
-        `Das Feld ${field.previousElementSibling.textContent.trim()} ist erforderlich.`
-      );
-      field.focus();
-      return false;
-    }
+  if (errorSpan) {
+    errorSpan.remove();
   }
 
+  if (message) {
+    let errorMessage = document.createElement("span");
+    errorMessage.textContent = message;
+    errorMessage.classList.add("error-text");
+    parent.appendChild(errorMessage);
+    element.focus();
+    return false;
+  }
   return true;
 }
 
+function validateRequiredFields() {
+  let requiredFields = document.querySelectorAll("[required]");
+  let isValid = true;
+
+  requiredFields.forEach((field) => {
+    field.addEventListener("input", () => showError(field, ""));
+
+    if (!field.value.trim()) {
+      if (isValid) {
+        isValid = showError(field, "This field is required");
+      }
+    } else {
+      showError(field, "");
+    }
+  });
+
+  return isValid;
+}
+
 function validateContacts() {
+  let contactSearch = document.getElementById("contacts-search");
+  contactSearch.addEventListener("input", () => showError(contactSearch, ""));
+
   if (
     !selectedContactsIDs ||
     !Array.isArray(selectedContactsIDs) ||
     selectedContactsIDs.length === 0
   ) {
-    alert("Bitte wähle mindestens einen Kontakt aus.");
-    document.getElementById("contact-search").focus();
-    return false;
+    return showError(contactSearch, "Please select at least one contact");
   }
-  return true;
+
+  return showError(contactSearch, "");
 }
 
 function validateCategory() {
-  let category = document.getElementById("inputCategory").value;
+  let category = document.getElementById("inputCategory");
+  category.addEventListener("change", () => showError(category, ""));
 
-  if (!category) {
-    alert("Das Feld Kategorie ist erforderlich.");
-    document.getElementById("inputCategory").focus();
-    return false;
+  if (!category.value) {
+    return showError(category, "Please select a category");
   }
 
-  return true;
+  return showError(category, "");
 }
 
 function validatePriority() {
+  let priorityButtons = document.querySelectorAll(".add-task-prio button");
+  priorityButtons.forEach((button) => {
+    button.addEventListener("click", () => showError(button, ""));
+  });
+
   if (!selectedPrio) {
-    alert("Bitte wähle eine Priorität aus.");
-    return false;
+    let priorityContainer = document.querySelector(".add-task-prio");
+    return showError(priorityContainer, "Please select a priority");
   }
+
   return true;
 }
 
