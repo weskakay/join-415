@@ -69,11 +69,11 @@ function openPrivacyPolicy() {
   window.location.href = "../html/privacy_policy.html";
 }
 
-function openAddTask() {
+function openAddTask(status) {
   if (window.innerWidth < 960) {
     window.location.href = "../html/addtask.html";
   } else {
-    openAddTaskOverlay();
+    openAddTaskOverlay(status);
   }
 }
 
