@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 200px;
+  height: 100%;
   max-width: 1440px;
   margin: auto;
   padding: 0 50px;
@@ -104,6 +104,7 @@ h1 {
   font-size: 20px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
+  gap: 35px;
 }
 
 #no-user-container-mobile {
@@ -115,6 +116,7 @@ h1 {
   font-size: 20px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
+  gap: 35px;
 }
 
 #signup-header {
@@ -141,6 +143,8 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 600px;
+  width: 100%;
   gap: 16px;
   box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.43);
 
@@ -155,11 +159,14 @@ h1 {
 
 #signup-container {
   padding: 48px 115px;
+  margin: auto;
   background-color: white;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 600px;
+  width: 100%;
   gap: 16px;
   box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.43);
 
@@ -423,20 +430,22 @@ input::placeholder {
 
 @media (max-width: 960px) {
   #signup-container {
-    width: 396px;
+    padding: 48px;
   }
-
   #back-button {
     margin-right: -20px;
     padding-left: 20px;
+  }
+  #join-logo {
+    height: 80px;
+    width: 64px;
   }
 
   main {
     min-height: initial;
   }
   #login-container {
-    width: 396px;
-    height: auto;
+    padding: 16px;
   }
   h1 {
     font-size: 47px;
@@ -449,13 +458,15 @@ input::placeholder {
     gap: 21px;
     padding: 21px;
   }
+  #signup-container {
+    padding: 16px;
+  }
+  header {
+    height: 100px;
+  }
 }
 
 @media (max-width: 560px) {
-  #login-container {
-    width: 296px;
-    height: auto;
-  }
   input {
     width: 320px;
   }
@@ -481,10 +492,6 @@ input::placeholder {
 }
 
 @media (max-width: 420px) {
-  #login-container {
-    width: 200px;
-    height: auto;
-  }
   input {
     width: 90%;
   }
