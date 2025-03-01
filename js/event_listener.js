@@ -3,6 +3,8 @@ let contactsInputRef = document.getElementById("contact-search");
 let contactsCheckRef = document.getElementById("contacts-checkbox");
 
 if (window.location.pathname.includes("board.html")) {
+  window.addEventListener("resize", adjustSearchContainerPosition);
+  window.addEventListener("load", adjustSearchContainerPosition);
   document.addEventListener("click", function (event) {
     let list = document.getElementById("contacts-checkbox");
     let searchBox = document.getElementById("contact-search");
@@ -32,6 +34,3 @@ if (window.location.pathname.includes("login.html")) {
     passwordField.addEventListener("blur", handleBlur);
   });
 }
-
-window.addEventListener("resize", adjustSearchContainerPosition);
-window.addEventListener("load", adjustSearchContainerPosition);
