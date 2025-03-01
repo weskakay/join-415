@@ -127,6 +127,10 @@
   height: 100vh;
 }
 
+.board-card-container::-webkit-scrollbar {
+  width: 0;
+}
+
 .board-card-container-highlight {
   background-color: rgba(39, 39, 39, 0.1);
   border: 3px dashed #00162e;
@@ -155,7 +159,7 @@
   padding: 16px;
   border-radius: 24px;
   gap: 24px;
-  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -353,6 +357,34 @@
     flex-wrap: wrap;
     gap: 64px;
   }
+
+  .board-tasks-wrapper::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 45px;
+    border: 8px solid transparent;
+    background-clip: content-box;
+  }
+
+  .board-tasks-wrapper::-webkit-scrollbar {
+    width: 24px;
+  }
+
+  .board-tasks-wrapper::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
+      bottom;
+    height: 20px;
+  }
+
+  .board-tasks-wrapper::-webkit-scrollbar-button:single-button:vertical:increment {
+    background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat
+      center top;
+    height: 20px;
+  }
+
+  .contacts {
+    width: 100%;
+  }
+
   .board-tasks-container {
     width: 100%;
   }
@@ -362,6 +394,10 @@
     flex-wrap: wrap;
     height: auto;
     min-height: 110px;
+  }
+
+  #board_done {
+    margin-bottom: 64px;
   }
 
   .board-card {
@@ -461,5 +497,14 @@
 @media (max-width: 450px) {
   #no-results-message {
     left: 30%;
+  }
+}
+
+@media (max-width: 360px) {
+  .board-headline {
+    width: 225px;
+  }
+  .board-card {
+    width: 225px;
   }
 }
