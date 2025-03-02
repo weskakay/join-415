@@ -209,6 +209,11 @@
   .userStoryContainer {
     transform: translate(30%, -7%);
   }
+
+  #detailsHeader {
+    font-size: 51px;
+  }
+  
 }
 
 @media (max-width: 1100px) {
@@ -222,7 +227,7 @@
     transform: translate(0%, -2%);
   }
   #detailsHeader {
-    font-size: 30px;
+    font-size: 36px;
   }
   .size23{
     font-size: 20px;
@@ -244,23 +249,12 @@
 }
 
 @media (max-width: 550px) {
-  .userStoryContainer {
-    transform: translate(30%, -2%);
-  }
-}
-
-@media (max-width: 480px) {
-  .userStoryContainer {
-    transform: translate(20%, -2%);
-    width: 300px;
-  }
-}
-
-@media (max-width: 550px) {
   .assignee {
     width: auto;
   }
-
+  .userStoryContainer {
+    transform: translate(30%, -2%);
+  }
   .tag {
     font-size: 16px;
   }
@@ -290,10 +284,20 @@
   }
 }
 
+@media (max-width: 480px) {
+  .userStoryContainer {
+    transform: translate(20%, -2%);
+    width: 300px;
+  }
+}
+
 @media (max-width: 450px) {
   .userStory {
     padding: 16px 16px;
     min-width: 350px;
+  }
+  #detailsHeader {
+    font-size: 30px;
   }
 }
 
