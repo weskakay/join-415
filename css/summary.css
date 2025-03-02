@@ -25,11 +25,14 @@
   flex-wrap: wrap;
   gap: 24px;
   justify-content: space-between;
+  align-items: center;
 }
 
 #medium-container,
 #small-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 24px;
 }
 
