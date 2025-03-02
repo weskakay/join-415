@@ -267,7 +267,6 @@ input#telInput {
   .emptyProfile {
     position: absolute;
     top: -60px;
-    right: 138px;
   }
 
   .emptyProfile img {
@@ -308,6 +307,7 @@ input#telInput {
 @media (max-width: 960px) {
   .addContactWindow {
     position: fixed;
+    top: 80px;
   }
   .openContactMenu {
     display: block;
@@ -387,8 +387,38 @@ input#telInput {
   }
 }
 
-@media (max-width: 550px) {
-  .addContactWindow {
-    left: -7%;
+@media (max-width: 550px) { 
+ .addContactsLogo{
+    width: 310px;
+  }
+  .addContactsInput{
+    width: 310px;
+  }
+  .dataInput input{
+    width: 258px;
+  }
+  .emptyProfileAdd{
+    right: 89px;
+  }
+  .mobile-add-contact-button{
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 410px){
+  .addContactWindow{
+    left: 10%;
+  }
+}
+
+@media (max-width: 350px){
+  .addContactWindow{
+    left: 5%;
+  }
+}
+
+@media (max-width: 330px){
+  .addContactWindow{
+    left: 0%;
   }
 }
