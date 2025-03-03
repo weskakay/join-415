@@ -276,9 +276,6 @@ input::placeholder {
 }
 
 @media (max-width: 960px) {
-  #signup-container {
-    padding: 48px;
-  }
   #back-button {
     margin-right: -20px;
     padding-left: 20px;
@@ -305,9 +302,7 @@ input::placeholder {
     gap: 21px;
     padding: 21px;
   }
-  #signup-container {
-    padding: 16px;
-  }
+
   header {
     height: 100px;
   }

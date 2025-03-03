@@ -176,7 +176,7 @@
 }
 .creationSuccessContainerClosed {
   position: absolute;
-  top: 90%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%);
   transition-timing-function: ease-in;
@@ -191,4 +191,13 @@
   padding: 25px;
   height: fit-content;
   width: fit-content;
+}
+
+@media (max-width: 960px) {
+  #signup-container {
+    padding: 16px;
+  }
+  #signup {
+    margin-top: 0;
+  }
 }
