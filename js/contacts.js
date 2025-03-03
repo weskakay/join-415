@@ -224,7 +224,6 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   let changeName = document.getElementById(name).value;
   let changeEmail = document.getElementById(email).value;
   let changeTel = document.getElementById(tel).value;
-  let editWindow = document.getElementById("editWindow");
   await edit_data(
     (path = `contacts/` + id),
     (data = {
@@ -236,12 +235,9 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
   );
   editedContact = id;
   await loadDataContacts();
-  d_none("overlayEdit");
-  if (editWindow) editWindow.classList.add("d_none");
-  toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
   findEditedContactIndex(editedContact);
   clearInput(name, email, tel);
-  d_none("editWindow");
+  closeEditContactSave();
 }
 
 function clearInput(name, email, tel) {
@@ -286,11 +282,47 @@ function openAddContact() {
   toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')}, 100)
 }
 
+function openEditContact() {
+  let contactWindow = document.getElementById("editWindow");
+  let contactOverlay = document.getElementById("overlay-edit");
+
+  
+  if (contactWindow) contactWindow.classList.remove("d_none");
+  if (contactOverlay) contactOverlay.classList.remove("d_none");
+
+  setTimeout(() => { 
+  toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')}, 100)
+}
+
 function closeAddContact() {
   let contactWindow = document.getElementById("contactWindow");
   let contactOverlay = document.getElementById("overlay");
 
   contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction');
+
+  setTimeout(() => {  
+    if (contactWindow) contactWindow.classList.add("d_none");
+    if (contactOverlay) contactOverlay.classList.add("d_none");
+   }, 100)
+}
+
+function closeEditContact() {
+  let contactWindow = document.getElementById("editWindow");
+  let contactOverlay = document.getElementById("overlay-edit");
+
+  contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction');
+
+  setTimeout(() => {  
+    if (contactWindow) contactWindow.classList.add("d_none");
+    if (contactOverlay) contactOverlay.classList.add("d_none");
+   }, 100)
+}
+
+function closeEditContactSave() {
+  let contactWindow = document.getElementById("editWindow");
+  let contactOverlay = document.getElementById("overlay-edit");
+
+  toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
 
   setTimeout(() => {  
     if (contactWindow) contactWindow.classList.add("d_none");

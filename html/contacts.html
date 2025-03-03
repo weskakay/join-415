@@ -170,7 +170,7 @@
     <div
       id="overlay"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+      onclick="d_none(this.id), clearInput('nameInput', 'mailInput', 'telInput'), closeAddContact()"
       onmousedown="prevent(event)"
     ></div>
 
@@ -279,7 +279,7 @@
     <div
       id="overlayEdit"
       class="overlay d_none"
-      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+      onclick="d_none(this.id), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), closeEditContact()"
       onmousedown="prevent(event)"
     ></div>
     <!--Edit Contact window-->
@@ -303,7 +303,7 @@
         <div class="addContactsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+              onclick="d_none('overlayEdit'), clearInput('nameInputEdit', 'mailInputEdit', 'telInputEdit'), closeEditContact()"
             ></button>
           </div>
           <div class="emptyProfile">
