@@ -220,7 +220,7 @@ function listTasks(task, i, category) {
       id="${task.id}"
       draggable="true"
       ondragstart="drag(event)"
-      onclick="getTaskDetails(this.id), toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow'), d_none('overlayTasksDetail')"
+      onclick="getTaskDetails(this.id), openUserStory()"
     >
       <div class="crad-category size16 ${category}">${task.category}</div>
       <div class="card-title-discription">

@@ -327,3 +327,27 @@ function adjustSearchContainerPosition() {
     }
   }
 }
+
+function openUserStory() {
+  let window = document.getElementById("taskDetailsWindow");
+  let overlay = document.getElementById("overlayTasksDetail");
+
+  
+  if (window) window.classList.remove("d_none");
+  if (overlay) overlay.classList.remove("d_none");
+
+  setTimeout(() => { 
+    toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow')}, 100)
+}
+
+function closeUserStory() {
+  let window = document.getElementById("taskDetailsWindow");
+  let overlay = document.getElementById("overlayTasksDetail");
+
+  contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction');
+
+  setTimeout(() => {  
+    if (window) window.classList.add("d_none");
+    if (overlay) overlay.classList.add("d_none");
+   }, 100)
+}
