@@ -292,12 +292,12 @@ input::placeholder {
     min-height: initial;
   }
   #login-container {
-    padding: 16px;
+    padding: 0;
   }
   h1 {
+    padding: 16px 0;
     font-size: 47px;
     width: 100%;
-    padding: 16px;
   }
   #login-buttons {
     display: flex;
