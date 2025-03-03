@@ -30,12 +30,15 @@ async function proofLoginData(userId, findUser) {
         changeNavbarItems(
           window.innerWidth < 960 ? "mobile_greeting" : "summary",
         );
+        regAlright("logErrorName", "logInpName");
+        regAlright("logErrorPw", "logInpPw");
+
         return;
+      } else {
+        regError("logErrorName", "logInpName");
+        regError("logErrorPw", "logInpPw");
       }
     }
-    emailLogin.classList.add("wrong-password");
-    passwordLogin.classList.add("wrong-password");
-    document.getElementById("error-login").classList.remove("d_none");
   } catch (error) {
     console.error("Error fetching login data:", error);
   }

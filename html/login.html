@@ -37,16 +37,24 @@
     <main>
       <div id="login-container">
         <h1>Log in</h1>
-        <hr />
         <form onsubmit="event.preventDefault()">
           <div id="login-inputfields">
-            <input type="email" placeholder="Email" id="email-login" />
-            <div class="password-container">
+            <div id="logInpName" class="">
+              <input type="email" placeholder="Email" id="email-login" />
+              <div class="regError">
+                <p id="logErrorName" class="size12 d_none">
+                  Please insert a correct email address - e.g.: name@email.com
+                </p>
+              </div>
+            </div>
+
+            <div id="logInpPw" class="password-container">
               <input
                 type="password"
                 id="password-login"
                 placeholder="Password"
               />
+
               <button
                 type="button"
                 id="toggle-password"
@@ -59,10 +67,13 @@
                 />
               </button>
             </div>
-            <div id="error-login" class="d_none">
-              Check your email and password. Please try again.
+            <div class="regError">
+              <p id="logErrorPw" class="size12 d_none">
+                Please insert the correct password
+              </p>
             </div>
           </div>
+
           <div id="login-buttons">
             <button id="login" onclick="getLoggedIn()">Log in</button>
             <button id="guest-login" onclick="openGuestLogin()">
