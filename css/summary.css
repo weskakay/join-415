@@ -1,7 +1,7 @@
 .summaryContent {
   background-color: #f5f7f9;
   padding: 110px 96px;
-  height: calc(100vh - 96px);
+  max-height: calc(100vh - 96px);
   width: 100%;
 }
 
@@ -339,5 +339,13 @@
   }
   .dashboard {
     margin-left: 0px;
+  }
+}
+
+
+@media(max-height: 900px){
+  .summaryContent{
+    padding: 40px 96px;
+    overflow-y: scroll;
   }
 }

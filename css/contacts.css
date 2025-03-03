@@ -2,11 +2,13 @@
   display: flex;
   position: relative;
   width: 100%;
-  max-height: calc(1024px - 96px);
+  max-height: calc(100vh - 96px);
+  overflow-x: hidden;
 }
 
 .contactsList {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   background-color: white;
@@ -70,12 +72,15 @@
 
 .contactsDetails {
   display: flex;
+  position: relative;
   flex-grow: 1;
   flex-direction: column;
   padding-top: 110px;
   padding-left: 56px;
   background-color: #f5f7f9;
   max-height: calc(100vh - 96px);
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .contactsDetailsHeader {

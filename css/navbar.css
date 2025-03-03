@@ -1,11 +1,13 @@
 .navbar {
   display: flex;
+  position: relative;
+  overflow: hidden;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 232px;
   max-height: 100vh;
   background-color: rgba(42, 54, 71, 1);
-  position: relative;
   margin-top: -96px;
   z-index: 5;
   > img {
@@ -16,7 +18,7 @@
 .navbar-menu {
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  margin-bottom: 250px;
   width: 100%;
 }
 
@@ -57,7 +59,6 @@
 .navbar-terms-links {
   display: flex;
   flex-direction: column;
-  margin-top: 259px;
 }
 
 .navbar-terms-links > a {
@@ -94,11 +95,6 @@
 
 /* style for footer navbar*/
 
-@media (max-width: 1060px) {
-  .navbar {
-    width: 200px;
-  }
-}
 
 @media (max-width: 960px) {
   .footer_nav {
@@ -146,5 +142,11 @@
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 10px;
+  }
+}
+
+@media(max-height: 800px){
+  .navbar-menu{
+    margin-bottom: 0;
   }
 }
