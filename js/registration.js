@@ -72,14 +72,14 @@ async function registrationData() {
 function confirmPassword() {
   let passwordInput = document.getElementById("password-input");
   let confPasswordInput = document.getElementById("confirm-password-input");
-
-  if (passwordInput.value.trim() === confPasswordInput.value.trim()) {
+  if (
+    passwordInput.value.trim() === confPasswordInput.value.trim() &&
+    (passwordInput.value.trim() && confPasswordInput.value.trim()) != ""
+  ) {
     regAlright("regErrorPwCheck", "regInpPwCheck");
-
     return true;
   } else {
     regError("regErrorPwCheck", "regInpPwCheck");
-
     return false;
   }
 }
