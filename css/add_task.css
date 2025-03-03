@@ -563,3 +563,9 @@ select {
     padding-right: 16px;
   }
 }
+
+@media (max-height: 850px){
+  .add-task-wrapper{
+    padding: 36px 96px 0;
+  }
+} 
