@@ -107,10 +107,10 @@
       <div class="contactsMain">
         <!--List on the left side to create and show contacts-->
         <div class="contactsList" onclick="hideDetails('contactsDisplay',
-        'detailsWindowClosed', 'detailsWindow')"" >
+        'detailsWindowClosed', 'detailsWindow')">
         <div class="sticky" onmousedown="prevent(event)">
           <button
-            onclick="d_none(`overlay`), toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow'), openAddContact()"
+            onclick="d_none(`overlay`), openAddContact()"
           >
             <p class="weight700 size21">Add new contact</p>
             <img
@@ -177,7 +177,7 @@
     <!--Window to Create Contact -->
     <div
       id="contactWindow"
-      class="addContactWindowClosed"
+      class="addContactWindowClosed d_none"
       onclick="noBubble(event) "
     >
       <div class="contactWindowFull">
@@ -196,7 +196,7 @@
         <div class="addContactsInput">
           <div class="closeAddContact">
             <button
-              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+              onclick="d_none('overlay'), clearInput('nameInput', 'mailInput', 'telInput'), closeAddContact()"
             ></button>
           </div>
           <div class="emptyProfile emptyProfileAdd">
@@ -256,7 +256,7 @@
             <div class="add-task-bottom-buttons mobile-add-contact-button">
               <button
                 class="add-task-button-clear"
-                onclick="closeAddContact(), clearInput('nameInput', 'mailInput', 'telInput'), contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction')"
+                onclick="closeAddContact(), clearInput('nameInput', 'mailInput', 'telInput')"
               >
                 Cancel<img src="../assets/icons/add_task/cross-icon.svg" />
               </button>
@@ -285,7 +285,7 @@
     <!--Edit Contact window-->
     <div
       id="editWindow"
-      class="addContactWindowClosed"
+      class="addContactWindowClosed d_none"
       onclick="noBubble(event) "
     >
       <div class="contactWindowFull">
