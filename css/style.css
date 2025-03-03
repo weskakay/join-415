@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "Inter", sans-serif;
-  src: url(../assets/fonts/Inter/Inter-Italic-VariableFont_opszwght.ttf);
-  src: url(../assets/fonts/Inter/Inter-VariableFont_opszwght.ttf);
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -21,7 +15,7 @@ body {
   background-color: #f6f7f8;
 }
 
-#intro-body{
+#intro-body {
   height: 100vh;
   width: 100%;
 }

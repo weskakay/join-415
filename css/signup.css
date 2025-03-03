@@ -156,11 +156,39 @@
 }
 
 .registraitonOverlay {
-  display: none;
   position: fixed;
   top: 0;
   right: 0;
-  height: 100%;
-  width: 100%;
+  bottom: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+}
+
+.creationSuccessContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+}
+.creationSuccessContainerClosed {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%);
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  visibility: hidden;
+}
+
+.creationSuccessNotice {
+  color: white;
+  background-color: #2a3647;
+  border-radius: 20px;
+  padding: 25px;
+  height: fit-content;
+  width: fit-content;
 }

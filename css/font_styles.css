@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Inter", sans-serif;
+  src: url(../assets/fonts/Inter/Inter-Italic-VariableFont_opszwght.ttf);
+  src: url(../assets/fonts/Inter/Inter-VariableFont_opszwght.ttf);
+}
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
 .weight700 {
   font-weight: 700;
 }

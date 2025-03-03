@@ -58,11 +58,13 @@ async function registrationData() {
     nameValid == true &&
     checkBoxValid == true
   ) {
+    successNotice();
     await update_data("/login-data", {
       email: `${email.value.trim()}`,
       password: `${password.value.trim()}`,
       name: `${name.value.trim()}`,
     });
+    await wait(2000);
     changeNavbarItems("login");
   } else {
     return;
@@ -194,4 +196,15 @@ function getContent() {
     eyeIcon: document.getElementById("eye-icon"),
     passwordField: document.getElementById("password-login"),
   };
+}
+
+function successNotice() {
+  document.getElementById("registrationOverlay").classList.toggle("d_none");
+  let successContainer = document.getElementById("creationSuccessContainer");
+  successContainer.classList.toggle("creationSuccessContainerClosed");
+  successContainer.classList.toggle("creationSuccessContainer");
+}
+
+async function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
