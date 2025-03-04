@@ -355,12 +355,13 @@ select {
   margin-bottom: 4px;
   padding: 4px;
   padding-left: 24px;
+  outline: none;
 }
 
 .list-item-container:hover {
   transition-duration: 100ms;
   transform: scale(1.01);
-  cursor: pointer;
+  cursor: text;
   background-color: rgb(238, 238, 238);
 
   > .list-icons-wrapper {
