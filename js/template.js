@@ -202,7 +202,7 @@ function editInitialsInsert(contact) {
 
 function listSubtasks(i, content) {
   return /*html*/ `
-      <div class="list-item-container">
+      <div class="list-item-container" id="list-item-container-${i}">
         <li class="subtask-list-items" id="listItem-${i}" contenteditable="false" onblur="updateListItem(${i})"  onkeydown="handleEnter(event, ${i})">${content}</li>
         <div class="list-icons-wrapper">
           <div class="list-icons">

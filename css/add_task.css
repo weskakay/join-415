@@ -376,6 +376,13 @@ select {
   justify-content: space-between;
 }
 
+.edit-subtask{
+  background-color: white;
+  border: 1px solid #D1D1D1;
+  border-bottom: 1px solid #29ABE2;
+  border-radius: 2px;
+}
+
 .list-icons-wrapper {
   display: none;
   margin-right: 8px;
