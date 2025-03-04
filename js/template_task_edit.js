@@ -85,7 +85,7 @@ function detailsEditDeleteButtons(targetId) {
         <p class="weight400 size16 colorDarkBlue">Delete</p>
       </button>
        <div class="edit-board-seperator" style="display:none"></div>
-      <button onclick="editTaskDetails()">
+      <button onclick="editTaskDetails('${targetId}')">
         <img src="../assets/icons/contacts/edit.svg" alt="Edit Symbol" />
         <p class="weight400 size16 colorDarkBlue">Edit</p>
       </button>
@@ -296,27 +296,28 @@ function insertOkSaveButton(mainTaskKey) {
 }
 
 function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
-  return ` <li
-    onclick=" selectCheckBoxEdit('checkboxEdit-${id}', '${id}', '${mainTaskKey}')"
-  >
-    <input
-      type="checkbox"
-      id="checkboxEdit-${id}"
-      class="add-task-checkmark"
-      value="${id}"
-      onclick="assignEditContact('${id}', '${mainTaskKey}'), noBubble(event)"
-    />
-    <div
-      class="background-contacts bg-contact-chechbox"
-      style="background-color: ${bgcolors[colorId].rgba};"
+  return ` <div id="focusEdit-${id}-${mainTaskKey}">
+    <li
+      onclick="selectCheckBoxEdit('checkboxEdit-${id}-${mainTaskKey}', '${id}', '${mainTaskKey}')"
     >
-      ${getInitials(name)}
-    </div>
-    <p
-      class="checkbox-name size20"
-      onclick="selectCheckBoxEdit('checkboxEdit-${id}', '${id}', '${mainTaskKey}')"
-    >
-      ${name}${currentUser.name === name ? " (You)" : ""}
-    </p>
-  </li>`;
+      <input
+        type="checkbox"
+        id="checkboxEdit-${id}-${mainTaskKey}"
+        class="add-task-checkmark"
+        value="${id}"
+        onclick="assignEditContact('${id}', '${mainTaskKey}'), noBubble(event), focusDiv('focusEdit-${id}-${mainTaskKey}')"
+      />
+      <div
+        class="background-contacts bg-contact-chechbox"
+        style="background-color: ${bgcolors[colorId].rgba};"
+      >
+        ${getInitials(name)}
+      </div>
+      <p
+        class="checkbox-name size20"
+      >
+        ${name}${currentUser.name === name ? " (You)" : ""}
+      </p>
+    </li>
+  </div>`;
 }
