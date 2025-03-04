@@ -383,6 +383,10 @@ select {
   border-radius: 2px;
 }
 
+.edit-subtask .list-icons-wrapper{
+  display: flex;
+}
+
 .edit-subtask:hover{
   background-color: white;
 }
