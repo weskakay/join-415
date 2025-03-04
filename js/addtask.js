@@ -362,7 +362,7 @@ function closeContactsList(listId) {
   document.getElementById(listId).style.display = "none";
 }
 
-function selectCheckBox(checkboxId, contactId) {
+function selectCheckBox(checkboxId, contactId, selectId) {
   let checkStatus = document.getElementById(checkboxId);
   if (checkStatus.checked == true) {
     checkStatus.checked = false;
