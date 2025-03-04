@@ -296,18 +296,19 @@ function insertOkSaveButton(mainTaskKey) {
 }
 
 function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
-  return ` <li>
+  return ` <li
+    onclick=" selectCheckBoxEdit('checkboxEdit-${id}', '${id}', '${mainTaskKey}')"
+  >
     <input
       type="checkbox"
       id="checkboxEdit-${id}"
       class="add-task-checkmark"
       value="${id}"
-      onclick="assignEditContact('${id}', '${mainTaskKey}')"
+      onclick="assignEditContact('${id}', '${mainTaskKey}'), noBubble(event)"
     />
     <div
       class="background-contacts bg-contact-chechbox"
       style="background-color: ${bgcolors[colorId].rgba};"
-      onclick="selectCheckBoxEdit('checkboxEdit-${id}', '${id}', '${mainTaskKey}')"
     >
       ${getInitials(name)}
     </div>

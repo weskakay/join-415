@@ -87,24 +87,25 @@ function detailsContactInsert(contact) {
 function listContactsAddtask(id, name, colorId, currentUser) {
   let checked = selectedContactsIDs.includes(id) ? "checked" : "";
 
-  return /*html*/ `
-    <li>
-      <input type="checkbox" 
-        id="checkbox-${id}" 
-        class="add-task-checkmark" 
-        value="${id}" 
-        ${checked} 
-        onclick="toggleCheckbox('${id}')"
-      />
-      <div class="background-contacts bg-contact-chechbox" style="background-color: ${
-        bgcolors[colorId].rgba
-      };" onclick="selectCheckBox('checkbox-${id}', '${id}')">
-        ${getInitials(name)}
-      </div>
-      <p class="checkbox-name size20" onclick="selectCheckBox('checkbox-${id}', '${id}')">${name}${
-    currentUser.name === name ? " (You)" : ""
-  }</p>
-    </li>`;
+  return ` <li onclick="selectCheckBox('checkbox-${id}', '${id}')">
+    <input
+      type="checkbox"
+      id="checkbox-${id}"
+      class="add-task-checkmark"
+      value="${id}"
+      ${checked}
+      onclick="toggleCheckbox('${id}'), noBubble(event)"
+    />
+    <div
+      class="background-contacts bg-contact-chechbox"
+      style="background-color: ${bgcolors[colorId].rgba};"
+    >
+      ${getInitials(name)}
+    </div>
+    <p class="checkbox-name size20">
+      ${name}${currentUser.name === name ? " (You)" : ""}
+    </p>
+  </li>`;
 }
 
 function listAssingedContacts(name, colorId) {
