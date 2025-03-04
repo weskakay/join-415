@@ -35,22 +35,22 @@
 }
 
 .editTaskContainer::-webkit-scrollbar{
-  width: 24px;
+  width: 10px;
 }
 .editTaskContainer::-webkit-scrollbar-thumb {
   background: #a8a8a8;
   border-radius: 45px;
-  border: 8px solid transparent;
+  border: 2px solid transparent;
   background-clip: content-box;
 }
 
 .editTaskContainer::-webkit-scrollbar-button:single-button:vertical:decrement{
-  width: 20px;
+  width: 6px;
   background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
   bottom;
 }
 .editTaskContainer::-webkit-scrollbar-button:single-button:vertical:increment{
-  width: 20px;
+  width: 6px;
   background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
   top;
 }
@@ -246,6 +246,10 @@
   .assignee .background-contacts{
     min-width: 42px;
   }
+  .userStory {
+    padding: 16px 16px;
+    min-width: 350px;
+  }
 }
 
 @media (max-width: 550px) {
@@ -253,7 +257,7 @@
     width: auto;
   }
   .userStoryContainer {
-    transform: translate(30%, -2%);
+    transform: translate(-20%, -2%);
   }
   .tag {
     font-size: 16px;
@@ -286,7 +290,6 @@
 
 @media (max-width: 480px) {
   .userStoryContainer {
-    transform: translate(20%, -2%);
     width: 300px;
   }
 }
@@ -301,9 +304,13 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 410px) {
   .userStory {
     min-width: 300px;
+  }
+
+  .userStoryContainer{
+    transform: translate(5%, -2%);
   }
 
   .taskDetailsButtons {
@@ -313,14 +320,14 @@
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 360px) {
   .userStoryContainer {
-    transform: translate(15%, -2%);
+    transform: translate(0%, -2%);
   }
 }
 
 @media (max-width: 330px) {
   .userStoryContainer {
-    transform: translate(10%, -2%);
+    transform: translate(2%, -2%);
   }
 }
