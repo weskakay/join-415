@@ -280,7 +280,7 @@ function renderInitials(id, currentUser) {
 
 function sortContacts(contacts) {
   return contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
   );
 }
 

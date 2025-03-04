@@ -100,6 +100,10 @@
   background-color: #f0f0f0;
 }
 
+.add-task-items li:focus {
+  background-color: #f0f0f0;
+}
+
 .checkbox-name {
   margin-left: 16px;
 }
@@ -564,8 +568,8 @@ select {
   }
 }
 
-@media (max-height: 850px){
-  .add-task-wrapper{
+@media (max-height: 850px) {
+  .add-task-wrapper {
     padding: 36px 96px 0;
   }
-} 
+}

@@ -1,6 +1,7 @@
 let taskStatus = "todo";
 let selectedPrio = undefined;
 let todayDate = new Date().toJSON().slice(0, 10);
+let focusedDivs = [];
 
 function generateContactsHTML(contacts) {
   return contacts

@@ -89,7 +89,9 @@ function listContactsAddtask(id, name, colorId, currentUser) {
 
   return `
     <div id="focus-${id}">
-      <li onclick="selectCheckBox('checkbox-${id}', '${id}')">
+      <li
+        onclick="selectCheckBox('checkbox-${id}', '${id}')"
+      >
         <input
           type="checkbox"
           id="checkbox-${id}"
