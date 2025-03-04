@@ -164,9 +164,8 @@ function editListItem(index) {
   let listItemContainer= document.getElementById(`list-item-container-${index}`);
 
   listItem.setAttribute("contenteditable", "true");
-  listItem.focus();
+  listItemContainer.focus();
   listItemContainer.classList.toggle('edit-subtask');
-
 
   editIcon.style.display = "none";
   checkIcon.style.display = "block";
