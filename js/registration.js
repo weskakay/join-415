@@ -152,6 +152,7 @@ function changeLogoSize() {
 async function openGuestLogin() {
   let guest = {
     name: "Guest",
+    password: 12345678,
   };
   await edit_data("/current-user", guest);
   getLoggedIn();
