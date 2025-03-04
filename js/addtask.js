@@ -179,6 +179,9 @@ function updateListItem(index) {
 
   listItem.setAttribute("contenteditable", "false");
 
+  if(listItem.innerText.length === 0){
+    deleteListItem(index);
+  }
   editIcon.style.display = "block";
   checkIcon.style.display = "none";
 
