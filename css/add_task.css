@@ -100,8 +100,8 @@
   background-color: #f0f0f0;
 }
 
-.add-task-items li:focus {
-  background-color: #f0f0f0;
+.divFocus {
+  background-color: #f0f0f0 !important;
 }
 
 .checkbox-name {

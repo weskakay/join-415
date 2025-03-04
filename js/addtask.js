@@ -208,6 +208,7 @@ async function resetAllInputs() {
   document.getElementById("subtaskInput").value = "";
   resetButtonColors();
   await resetCheckboxAssignee();
+  await resetCheckboxFocus();
   selectedPrio = "";
   subtaskInputs = [];
   selectedContactsIDs = [];
@@ -220,6 +221,14 @@ async function resetCheckboxAssignee() {
     let id = selectedContactsIDs[index].id;
     let chekboxCheck = document.getElementById("checkbox-" + id);
     chekboxCheck.checked = false;
+  }
+}
+
+async function resetCheckboxFocus() {
+  for (let index = 0; index < selectedContactsIDs.length; index++) {
+    let id = selectedContactsIDs[index].id;
+    let focusedDivs = document.getElementById("focus-" + id);
+    focusedDivs.classList.remove("divFocus");
   }
 }
 
@@ -370,10 +379,15 @@ function selectCheckBox(checkboxId, contactId, selectId) {
   } else {
     checkStatus.checked = true;
   }
+  focusDiv(selectId);
   toggleCheckbox(contactId);
 }
 
 function minDate(dateId) {
   let inputDate = document.getElementById(dateId);
   inputDate.min = todayDate;
+}
+
+function focusDiv(divId) {
+  document.getElementById(divId).classList.toggle("divFocus");
 }
