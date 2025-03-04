@@ -88,6 +88,29 @@
   overflow-x: hidden;
 }
 
+.add-task-items::-webkit-scrollbar-thumb {
+  background: #a8a8a8;
+  border-radius: 45px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.add-task-items::-webkit-scrollbar {
+  width: 10px;
+}
+
+.add-task-items::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
+    bottom;
+  height: 10px;
+}
+
+.add-task-items::-webkit-scrollbar-button:single-button:vertical:increment {
+  background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
+    top;
+  height: 10px;
+}
+
 .add-task-items li {
   display: flex;
   align-items: center;
@@ -332,12 +355,13 @@ select {
   margin-bottom: 4px;
   padding: 4px;
   padding-left: 24px;
+  outline: none;
 }
 
 .list-item-container:hover {
   transition-duration: 100ms;
   transform: scale(1.01);
-  cursor: pointer;
+  cursor: text;
   background-color: rgb(238, 238, 238);
 
   > .list-icons-wrapper {
@@ -350,6 +374,13 @@ select {
   position: relative;
   display: flex;
   justify-content: space-between;
+}
+
+.edit-subtask{
+  background-color: white;
+  border: 1px solid #D1D1D1;
+  border-bottom: 1px solid #29ABE2;
+  border-radius: 2px;
 }
 
 .list-icons-wrapper {

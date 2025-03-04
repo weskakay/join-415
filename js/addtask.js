@@ -160,9 +160,12 @@ function editListItem(index) {
   let listItem = document.getElementById(`listItem-${index}`);
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
+  let listItemContainer= document.getElementById(`list-item-container-${index}`);
 
   listItem.setAttribute("contenteditable", "true");
   listItem.focus();
+  listItemContainer.classList.toggle('edit-subtask');
+
 
   editIcon.style.display = "none";
   checkIcon.style.display = "block";
