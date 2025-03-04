@@ -178,7 +178,7 @@ function insertEditAssignee() {
         placeholder="Select contacts to assign"
       />
     </div>
-    <div class="displayFlex" id="editAssigneeList"></div>
+    <div id="editAssigneeList"></div>
     <div class="displayFlex" id="editAssigneeImage"></div>
   `;
 }
@@ -300,24 +300,22 @@ function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
     <li
       onclick="selectCheckBoxEdit('checkboxEdit-${id}-${mainTaskKey}', '${id}', '${mainTaskKey}')"
     >
-      <input
-        type="checkbox"
-        id="checkboxEdit-${id}-${mainTaskKey}"
-        class="add-task-checkmark"
-        value="${id}"
-        onclick="assignEditContact('${id}', '${mainTaskKey}'), noBubble(event), focusDiv('focusEdit-${id}-${mainTaskKey}')"
-      />
       <div
         class="background-contacts bg-contact-chechbox"
         style="background-color: ${bgcolors[colorId].rgba};"
       >
         ${getInitials(name)}
       </div>
-      <p
-        class="checkbox-name size20"
-      >
+      <p class="checkbox-name size20">
         ${name}${currentUser.name === name ? " (You)" : ""}
       </p>
+      <input
+        type="checkbox"
+        id="checkboxEdit-${id}-${mainTaskKey}"
+        class="add-task-checkmark"
+        value="${id}"
+        onclick="selectContact('${id}', '${mainTaskKey}'),noBubble(event)"
+      />
     </li>
   </div>`;
 }

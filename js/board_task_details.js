@@ -415,6 +415,11 @@ function selectCheckBoxEdit(checkboxId, contactId, mainTaskKey) {
   assignEditContact(contactId, mainTaskKey);
 }
 
+function selectContact(contactId, mainTaskKey) {
+  focusDiv("focusEdit-" + contactId + "-" + mainTaskKey);
+  assignEditContact(contactId, mainTaskKey);
+}
+
 function editAssigneeData() {
   assigneeEditKey = [];
   if (
