@@ -96,7 +96,7 @@ function listContactsAddtask(id, name, colorId, currentUser) {
           class="add-task-checkmark"
           value="${id}"
           ${checked}
-          onclick="toggleCheckbox('${id}'), noBubble(event), focusDiv('focus-${id}')"
+          onclick="toggleCheckbox('${id}'), noBubble(event))"
         />
         <div
           class="background-contacts bg-contact-chechbox"

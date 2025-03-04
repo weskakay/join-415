@@ -165,13 +165,13 @@ function clearTaskDetails() {
 
 //edit task window from here on
 
-function editTaskDetails() {
+function editTaskDetails(targetId) {
   editTag();
   editHeader();
   editDescription();
   editDueDate();
   editPriority();
-  editAssignee();
+  editAssignee(targetId);
   editSubtasks();
   createOkSaveButton();
 }
@@ -216,12 +216,12 @@ function editPriority() {
   updatePrio(setPrioEdit);
 }
 
-async function editAssignee() {
+async function editAssignee(targetId) {
   document.getElementById("assigneeDetails").innerHTML = insertEditAssignee();
   editAssigneeList();
   editAssigneeImage();
   await renderContactsBoard(contacts, "editAssigneesCheckbox");
-  editInsertCheckmark();
+  editInsertCheckmark(targetId);
 }
 
 function editAssigneeList() {
@@ -375,7 +375,9 @@ function generateContactsBoardEdit(sortedContacts) {
 }
 
 async function assignEditContact(contactId, mainTaskKey) {
-  let myCheckbox = document.getElementById(`checkboxEdit-${contactId}`);
+  let myCheckbox = document.getElementById(
+    `checkboxEdit-${contactId}-${mainTaskKey}`,
+  );
   if (myCheckbox.checked == true) {
     await update_data(
       (path = `tasks/${mainTaskKey}/contact/`),
@@ -409,6 +411,7 @@ function selectCheckBoxEdit(checkboxId, contactId, mainTaskKey) {
   } else {
     checkStatus.checked = true;
   }
+  focusDiv("focusEdit-" + contactId + "-" + mainTaskKey);
   assignEditContact(contactId, mainTaskKey);
 }
 
@@ -439,14 +442,17 @@ function editAssigneeData() {
   }
 }
 
-function editInsertCheckmark() {
+function editInsertCheckmark(targetId) {
   for (
     let indexSelect = 0;
     indexSelect < selectedAssignee.length;
     indexSelect++
   ) {
     let id = selectedAssignee[indexSelect];
-    document.getElementById(`checkboxEdit-${id}`).checked = true;
+    document.getElementById(`checkboxEdit-${id}-${targetId}`).checked = true;
+    document
+      .getElementById(`focusEdit-${id}-${targetId}`)
+      .classList.add("divFocus");
   }
 }
 
