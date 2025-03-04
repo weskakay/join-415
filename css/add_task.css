@@ -88,6 +88,29 @@
   overflow-x: hidden;
 }
 
+.add-task-items::-webkit-scrollbar-thumb {
+  background: #a8a8a8;
+  border-radius: 45px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.add-task-items::-webkit-scrollbar {
+  width: 10px;
+}
+
+.add-task-items::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
+    bottom;
+  height: 10px;
+}
+
+.add-task-items::-webkit-scrollbar-button:single-button:vertical:increment {
+  background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
+    top;
+  height: 10px;
+}
+
 .add-task-items li {
   display: flex;
   align-items: center;
