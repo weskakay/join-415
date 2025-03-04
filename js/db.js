@@ -75,6 +75,7 @@ async function loadDataSummary() {
 async function loadDataAddTask() {
   await getContacts();
   renderContacts(contacts, "contacts-checkbox");
+  setButtonColor("Medium", "#FFA800");
 }
 
 async function getContacts(path = `contacts/`) {
