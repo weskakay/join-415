@@ -1,5 +1,6 @@
 let taskStatus = "todo";
 let selectedPrio = undefined;
+let todayDate = new Date().toJSON().slice(0, 10);
 
 function generateContactsHTML(contacts) {
   return contacts
@@ -369,4 +370,9 @@ function selectCheckBox(checkboxId, contactId) {
     checkStatus.checked = true;
   }
   toggleCheckbox(contactId);
+}
+
+function minDate(dateId) {
+  let inputDate = document.getElementById(dateId);
+  inputDate.min = todayDate;
 }

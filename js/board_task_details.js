@@ -197,6 +197,7 @@ function editDueDate() {
   let fixedDateFormat = dueDateText.split("/").reverse().join("-");
   document.getElementById("dueDateTR").innerHTML =
     insertEditDueDate(fixedDateFormat);
+  minDate("inputDueDateEdit");
 }
 
 function editPriority() {

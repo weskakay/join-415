@@ -59,6 +59,7 @@ async function loadDataBoard() {
   await getTasks();
   renderTasks();
   renderContacts(contacts, "contacts-checkbox");
+  minDate("date");
 }
 
 async function loadDataContacts() {
@@ -76,6 +77,7 @@ async function loadDataAddTask() {
   await getContacts();
   renderContacts(contacts, "contacts-checkbox");
   setButtonColor("Medium", "#FFA800");
+  minDate("date");
 }
 
 async function getContacts(path = `contacts/`) {
