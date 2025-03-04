@@ -314,7 +314,7 @@ function editAddContacts(id, name, colorId, currentUser, mainTaskKey) {
         id="checkboxEdit-${id}-${mainTaskKey}"
         class="add-task-checkmark"
         value="${id}"
-        onclick="selectContact('${id}', '${mainTaskKey}'),noBubble(event)"
+        onclick="selectContact('${id}', '${mainTaskKey}'), noBubble(event)"
       />
     </li>
   </div>`;

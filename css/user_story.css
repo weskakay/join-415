@@ -34,7 +34,7 @@
   flex-direction: column;
 }
 
-.editTaskContainer::-webkit-scrollbar{
+.editTaskContainer::-webkit-scrollbar {
   width: 10px;
 }
 .editTaskContainer::-webkit-scrollbar-thumb {
@@ -44,15 +44,15 @@
   background-clip: content-box;
 }
 
-.editTaskContainer::-webkit-scrollbar-button:single-button:vertical:decrement{
+.editTaskContainer::-webkit-scrollbar-button:single-button:vertical:decrement {
   width: 6px;
   background: url(../assets/icons/contacts/scrollbar_up.svg) no-repeat center
-  bottom;
+    bottom;
 }
-.editTaskContainer::-webkit-scrollbar-button:single-button:vertical:increment{
+.editTaskContainer::-webkit-scrollbar-button:single-button:vertical:increment {
   width: 6px;
   background: url(../assets/icons/contacts/scrollbar_down.svg) no-repeat center
-  top;
+    top;
 }
 
 .tag {
@@ -213,7 +213,6 @@
   #detailsHeader {
     font-size: 51px;
   }
-  
 }
 
 @media (max-width: 1100px) {
@@ -229,21 +228,21 @@
   #detailsHeader {
     font-size: 36px;
   }
-  .size23{
+  .size23 {
     font-size: 20px;
   }
-  .size20{
+  .size20 {
     font-size: 16px;
   }
-  .size16{
+  .size16 {
     font-size: 14px;
   }
-  .userStory{
+  .userStory {
     min-width: min-content;
     width: 300px;
     height: 80vh;
   }
-  .assignee .background-contacts{
+  .assignee .background-contacts {
     min-width: 42px;
   }
   .userStory {
@@ -309,7 +308,7 @@
     min-width: 300px;
   }
 
-  .userStoryContainer{
+  .userStoryContainer {
     transform: translate(5%, -2%);
   }
 
@@ -330,4 +329,22 @@
   .userStoryContainer {
     transform: translate(2%, -2%);
   }
+}
+
+.contactsList input[type="checkbox"] {
+  display: none;
+}
+
+.contactsList label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-image: url(../assets/icons/task_details/uncheck_button.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.contactsList input[type="checkbox"]:checked + label {
+  background-image: url(../assets/icons/task_details/Check_button.svg) !important;
 }
