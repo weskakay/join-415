@@ -259,23 +259,42 @@ function insertSubtaskContainer(mainTaskKey) {
 }
 
 function insertSubtasksList(subtaskText, subtaskId, mainTaskKey) {
-  return /*html*/ `
-    <div class="list-item-container">
-      <li class="subtask-list-items" id="listItem-${subtaskId}" contenteditable="false" 
-          onblur="updateListItem(${subtaskId})" onkeydown="handleEnter(event, ${subtaskId})">
+  return `
+    <div class="list-item-container" id="list-item-container-${subtaskId}">
+      <li
+        class="subtask-list-items"
+        id="listItem-${subtaskId}"
+        contenteditable="false"
+        onblur="updateListItem('${subtaskId}')"
+        onkeydown="handleEnter(event, ${subtaskId})"
+      >
         ${subtaskText}
       </li>
       <div class="list-icons-wrapper">
         <div class="list-icons">
-          <img src="../assets/icons/add_task/edit.svg" alt="Edit" class="edit-icon" 
-               onclick="editListItem(${subtaskId})" id="editIcon-${subtaskId}">
-          <img src="../assets/icons/add_task/check-icon.svg" alt="Check" class="check-icon" 
-               onclick="updateListItem(${subtaskId})" id="checkIcon-${subtaskId}" style="display: none;">
+          <img
+            src="../assets/icons/add_task/edit.svg"
+            alt="Edit"
+            class="edit-icon"
+            onclick="editListItem('${subtaskId}')"
+            id="editIcon-${subtaskId}"
+          />
+          <img
+            src="../assets/icons/add_task/check-icon.svg"
+            alt="Check"
+            class="check-icon"
+            onclick="updateListItem('${subtaskId}')"
+            id="checkIcon-${subtaskId}"
+            style="display: none;"
+          />
         </div>
         <div class="list-icon-seperator"></div>
         <div class="list-icons">
-          <img src="../assets/icons/add_task/delete.svg" alt="Delete" 
-               onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${subtaskId}')">
+          <img
+            src="../assets/icons/add_task/delete.svg"
+            alt="Delete"
+            onclick="deleteSubtask('tasks/${mainTaskKey}/subtask/${subtaskId}')"
+          />
         </div>
       </div>
     </div>
