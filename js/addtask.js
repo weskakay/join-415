@@ -8,8 +8,8 @@ function generateContactsHTML(contacts) {
         contact.id,
         contact.name,
         contact.colorId,
-        currentUser
-      )
+        currentUser,
+      ),
     )
     .join("");
 }
@@ -33,7 +33,7 @@ function filterContacts(contactsCheck) {
 
   let filteredContacts = searchTerm
     ? contacts.filter((contact) =>
-        contact.name.toLowerCase().startsWith(searchTerm)
+        contact.name.toLowerCase().startsWith(searchTerm),
       )
     : contacts;
 
@@ -60,7 +60,7 @@ function setCheckbox(id) {
 
 function renderAssignedContacts() {
   let contactInfo = contacts.filter((contact) =>
-    selectedContactsIDs.some((selected) => selected.id === contact.id)
+    selectedContactsIDs.some((selected) => selected.id === contact.id),
   );
   let content = document.getElementById("assignedContacts");
   content.innerHTML = contactInfo
@@ -197,7 +197,7 @@ function deleteListItem(index) {
 /**
  * Clears all input fields in the Add Task form.
  */
-function resetAllInputs() {
+async function resetAllInputs() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
   document.getElementById("contacts-search").value = "";
@@ -205,11 +205,20 @@ function resetAllInputs() {
   document.getElementById("inputCategory").selectedIndex = 0;
   document.getElementById("subtaskInput").value = "";
   resetButtonColors();
+  await resetCheckboxAssignee();
   selectedPrio = "";
   subtaskInputs = [];
   selectedContactsIDs = [];
   renderAssignedContacts();
   renderSubtasks();
+}
+
+async function resetCheckboxAssignee() {
+  for (let index = 0; index < selectedContactsIDs.length; index++) {
+    let id = selectedContactsIDs[index].id;
+    let chekboxCheck = document.getElementById("checkbox-" + id);
+    chekboxCheck.checked = false;
+  }
 }
 
 async function getTaskData() {
