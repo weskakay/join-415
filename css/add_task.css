@@ -500,6 +500,9 @@ select {
 }
 
 @media (max-width: 960px) {
+  .subtask-list-container {
+    padding-bottom: 20px;
+  }
   .add-task-input-left,
   .add-task-input-right {
     width: 360px;
