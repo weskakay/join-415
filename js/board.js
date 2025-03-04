@@ -16,7 +16,7 @@ async function renderTasks() {
     taskElement.innerHTML = listTasks(
       task,
       i,
-      formatCategoryText(task.category)
+      formatCategoryText(task.category),
     );
     taskElement = taskElement.firstElementChild;
 
@@ -55,7 +55,7 @@ function getAssignedContacts(contactIDs, index) {
   for (let indexMy = 0; indexMy < contactIDs.length; indexMy++) {
     let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
     let contactIndex = contacts.findIndex(
-      (contact) => contact.id === contactIdentifier
+      (contact) => contact.id === contactIdentifier,
     );
 
     if (contactIndex !== -1) {
@@ -166,13 +166,13 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
 
     if (!response.ok) {
       throw new Error(
-        `Fehler beim Aktualisieren der Task: ${response.statusText}`
+        `Fehler beim Aktualisieren der Task: ${response.statusText}`,
       );
     }
   } catch (error) {
     console.error(
       "Fehler beim Aktualisieren des Task-Status in Firebase:",
-      error
+      error,
     );
     throw error;
   }
@@ -222,6 +222,8 @@ function showNoTask(id) {
  */
 function openAddTaskOverlay(status) {
   document.getElementById("addTaskOverlay").classList.remove("d_none");
+  setButtonColor("Medium", "#FFA800");
+
   taskStatus = status;
 }
 /**
@@ -273,7 +275,7 @@ function renderProgressbarSubtask(cardSubtasks, index) {
 function calcProgressSubtask(cardSubtasks) {
   let totalQuantity = cardSubtasks.length;
   let checkedQuantity = cardSubtasks.filter(
-    (task) => task.checked === 1
+    (task) => task.checked === 1,
   ).length;
 
   return {
@@ -312,7 +314,7 @@ function adjustSearchContainerPosition() {
   let searchContainer = document.getElementById("board-search-container");
   let boardHeader = document.querySelector(".board-header");
   let searchContainerParent = document.querySelector(
-    ".board-search-add-container"
+    ".board-search-add-container",
   );
 
   if (window.innerWidth <= 960) {
@@ -332,22 +334,31 @@ function openUserStory() {
   let window = document.getElementById("taskDetailsWindow");
   let overlay = document.getElementById("overlayTasksDetail");
 
-  
   if (window) window.classList.remove("d_none");
   if (overlay) overlay.classList.remove("d_none");
 
-  setTimeout(() => { 
-    toggleStyleChange('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow')}, 100)
+  setTimeout(() => {
+    toggleStyleChange(
+      "taskDetailsWindow",
+      "addContactWindowClosed",
+      "addContactWindow",
+    );
+  }, 100);
 }
 
 function closeUserStory() {
   let window = document.getElementById("taskDetailsWindow");
   let overlay = document.getElementById("overlayTasksDetail");
 
-  contactNoAction('taskDetailsWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction');
+  contactNoAction(
+    "taskDetailsWindow",
+    "addContactWindowClosed",
+    "addContactWindow",
+    "addContactWindowNoAction",
+  );
 
-  setTimeout(() => {  
+  setTimeout(() => {
     if (window) window.classList.add("d_none");
     if (overlay) overlay.classList.add("d_none");
-   }, 100)
+  }, 100);
 }
