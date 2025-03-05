@@ -587,7 +587,7 @@ select {
   }
 
   .add-task-wrapper {
-    padding: 0 16px 0 16px;
+    padding: 0 16px 0 16px !important;
   }
 }
 
@@ -612,6 +612,6 @@ select {
 
 @media (max-height: 850px) {
   .add-task-wrapper {
-    padding: 36px 96px 0;
+    padding: 36px 96px 0px 36px;
   }
 }
