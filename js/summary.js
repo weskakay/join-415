@@ -27,18 +27,22 @@ function showurgentNumber(priorities) {
 }
 
 function showClosestDate(dates) {
-  let sortedDates = dates.sort((a, b) => {
-    return new Date(a) - new Date(b);
-  });
-  let closestDate = new Date(sortedDates[0]);
-  let splitDate = sortedDates[0].split("-");
-  let splitDay = splitDate[2];
-  let splitYear = splitDate[0];
-  document.getElementById("deadline").innerHTML = summaryDueDateInsert(
-    closestDate,
-    splitDay,
-    splitYear,
-  );
+  if (dates.length == 0) {
+    return;
+  } else {
+    let sortedDates = dates.sort((a, b) => {
+      return new Date(a) - new Date(b);
+    });
+    let closestDate = new Date(sortedDates[0]);
+    let splitDate = sortedDates[0].split("-");
+    let splitDay = splitDate[2];
+    let splitYear = splitDate[0];
+    document.getElementById("deadline").innerHTML = summaryDueDateInsert(
+      closestDate,
+      splitDay,
+      splitYear,
+    );
+  }
 }
 
 function countStatusTasks() {
