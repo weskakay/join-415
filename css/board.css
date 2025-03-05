@@ -373,6 +373,16 @@
   margin-left: 5px;
 }
 
+#editAssigneeImage{
+  flex-wrap: wrap;
+}
+
+.assignee p{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 @media (max-width: 1400px) {
   .board-tasks-wrapper {
     flex-wrap: wrap;
