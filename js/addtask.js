@@ -213,6 +213,8 @@ async function resetAllInputs() {
   document.getElementById("inputCategory").selectedIndex = 0;
   document.getElementById("subtaskInput").value = "";
   resetButtonColors();
+  setButtonColor("Medium", "#FFA800");
+
   await resetCheckboxAssignee();
   await resetCheckboxFocus();
   selectedPrio = "";
