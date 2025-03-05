@@ -331,6 +331,38 @@ function createOkSaveButton() {
     insertOkSaveButton(mainTaskKey);
 }
 
+async function updateListEdit(index, mainTaskKey) {
+  let listItem = document.getElementById(`listItem-${index}`);
+  let textChange = listItem.innerText;
+  let editIcon = document.getElementById(`editIcon-${index}`);
+  let checkIcon = document.getElementById(`checkIcon-${index}`);
+
+  if (textChange.length === 0) {
+    deleteSubtask(index);
+  } else {
+    await patch_data(
+      (path = `tasks/${mainTaskKey}/subtask/${index}`),
+      (data = {
+        text: textChange,
+      }),
+    );
+
+    listItem.setAttribute("contenteditable", "false");
+
+    editIcon.style.display = "block";
+    checkIcon.style.display = "none";
+  }
+  await getTasks();
+  getTaskDetails(mainTaskKey);
+}
+
+function handleEnterEdit(event, index, mainTaskKey) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    updateListEdit(index, mainTaskKey);
+  }
+}
+
 async function saveEditedTaskDetails(updatePath, mainTaskKey) {
   let updateTitle = document.getElementById("inputTitleEdit").value;
   let updateDesc = document.getElementById("inputDescriptionEdit").value;

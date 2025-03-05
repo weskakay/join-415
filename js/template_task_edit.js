@@ -265,8 +265,8 @@ function insertSubtasksList(subtaskText, subtaskId, mainTaskKey) {
         class="subtask-list-items"
         id="listItem-${subtaskId}"
         contenteditable="false"
-        onblur="updateListItem('${subtaskId}')"
-        onkeydown="handleEnter(event, ${subtaskId})"
+        onblur="updateListEdit('${subtaskId}', '${mainTaskKey}')"
+        onkeydown="handleEnterEdit(event, '${subtaskId}','${mainTaskKey}')"
       >
         ${subtaskText}
       </li>
@@ -283,7 +283,7 @@ function insertSubtasksList(subtaskText, subtaskId, mainTaskKey) {
             src="../assets/icons/add_task/check-icon.svg"
             alt="Check"
             class="check-icon"
-            onclick="updateListItem('${subtaskId}')"
+            onclick="updateListEdit('${subtaskId}', '${mainTaskKey}')"
             id="checkIcon-${subtaskId}"
             style="display: none;"
           />

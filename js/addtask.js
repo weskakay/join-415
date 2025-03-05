@@ -160,11 +160,13 @@ function editListItem(index) {
   let listItem = document.getElementById(`listItem-${index}`);
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
-  let listItemContainer= document.getElementById(`list-item-container-${index}`);
+  let listItemContainer = document.getElementById(
+    `list-item-container-${index}`,
+  );
 
   listItem.setAttribute("contenteditable", "true");
   listItemContainer.focus();
-  listItemContainer.classList.toggle('edit-subtask');
+  listItemContainer.classList.toggle("edit-subtask");
 
   editIcon.style.display = "none";
   checkIcon.style.display = "block";
@@ -179,7 +181,7 @@ function updateListItem(index) {
 
   listItem.setAttribute("contenteditable", "false");
 
-  if(listItem.innerText.length === 0){
+  if (listItem.innerText.length === 0) {
     deleteListItem(index);
   }
   editIcon.style.display = "block";
