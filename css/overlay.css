@@ -422,3 +422,25 @@ input#telInput {
     left: 0%;
   }
 }
+
+@media(max-height: 850px){
+  .dataInput form{
+    gap: 0px;
+    margin-top: -30px;
+  }
+  .mobile-add-contact-button{
+    bottom: 230px;
+  }
+  .addContactsInput{
+    height: 320px;
+    border-radius: 0 0 30px 30px;
+  }
+  .addContactsLogo{
+    height: 260px;
+  }
+  .emptyProfile img{
+    height: 80px;
+    width: 80px;
+    transform: translate(-15px, 0px);
+  }
+}
