@@ -356,6 +356,7 @@ select {
   padding: 4px;
   padding-left: 24px;
   outline: none;
+  width: 100%;
 }
 
 .list-item-container:hover {
@@ -373,21 +374,20 @@ select {
   border-radius: 10px;
   position: relative;
   display: flex;
-  justify-content: space-between;
 }
 
-.edit-subtask{
+.edit-subtask {
   background-color: white;
-  border: 1px solid #D1D1D1;
-  border-bottom: 1px solid #29ABE2;
+  border: 1px solid #d1d1d1;
+  border-bottom: 1px solid #29abe2;
   border-radius: 2px;
 }
 
-.edit-subtask .list-icons-wrapper{
+.edit-subtask .list-icons-wrapper {
   display: flex;
 }
 
-.edit-subtask:hover{
+.edit-subtask:hover {
   background-color: white;
 }
 

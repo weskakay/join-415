@@ -158,6 +158,7 @@ function renderSubtasks() {
 
 function editListItem(index) {
   let listItem = document.getElementById(`listItem-${index}`);
+  let lengthThis = listItem.value.length;
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
   let listItemContainer = document.getElementById(
@@ -165,9 +166,8 @@ function editListItem(index) {
   );
 
   listItem.setAttribute("contenteditable", "true");
-  listItemContainer.focus();
   listItemContainer.classList.toggle("edit-subtask");
-
+  listItem.focus();
   editIcon.style.display = "none";
   checkIcon.style.display = "block";
 }
