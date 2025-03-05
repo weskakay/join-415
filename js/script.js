@@ -166,7 +166,7 @@ function mobileIntro() {
   setTimeout(() => {
     if (introBody) introBody.style.backgroundColor = "white";
     if (joinMobile) joinMobile.classList.add("transition-active");
-  }, 500);
+  }, 0);
 }
 
 function summaryMedia() {

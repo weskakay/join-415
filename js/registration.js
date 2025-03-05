@@ -147,7 +147,7 @@ function changeLogoSize() {
   joinHome.classList.add("logo-animation");
   setTimeout(() => {
     openLoginHTML();
-  }, 1000);
+  }, 1200);
 }
 
 async function openGuestLogin() {
