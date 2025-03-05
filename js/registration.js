@@ -143,6 +143,7 @@ function changeImageLogin() {
 function changeLogoSize() {
   let joinHome = document.getElementById("join-home");
 
+  joinHome.classList.remove("join-home");
   joinHome.classList.add("logo-animation");
   setTimeout(() => {
     openLoginHTML();

@@ -1,0 +1,28 @@
+.animationContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  padding: 40px 50px;
+}
+
+.join-home {
+  width: 274px;
+  height: 334px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all ease-in-out 1s;
+}
+
+.logo-animation {
+  height: 120px !important;
+  width: 100px !important;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  transform: translate(0, 0) !important;
+  transition: ease-in-out 1s;
+}
