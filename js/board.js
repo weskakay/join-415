@@ -55,10 +55,13 @@ function getAssignedContacts(contactIDs, index) {
   let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
   let assignedContacts = [];
-  for (let indexMy = 0; indexMy < contactIDs.length; indexMy++) {
+  let maxContactsToShow = 5;
+  let totalContacts = contactIDs.length;
+  
+  for (let indexMy = 0; indexMy < Math.min(totalContacts, maxContactsToShow); indexMy++) {
     let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
     let contactIndex = contacts.findIndex(
-      (contact) => contact.id === contactIdentifier,
+      (contact) => contact.id === contactIdentifier
     );
 
     if (contactIndex !== -1) {
@@ -69,6 +72,13 @@ function getAssignedContacts(contactIDs, index) {
       assignedContacts.push(contacts[contactIndex]);
     }
   }
+
+  if (totalContacts > maxContactsToShow) {
+    let remainingContacts = totalContacts - maxContactsToShow;
+    let moreContactsDiv = `<div class="more-contacts">+${remainingContacts}</div>`;
+    content.innerHTML += moreContactsDiv;
+  }
+
   let widthContainer =
     assignedContacts.length === 1 ? 32 : (assignedContacts.length - 1) * 32;
   content.style.width = widthContainer + "px";

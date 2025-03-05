@@ -364,6 +364,15 @@
   color: rgba(255, 61, 0, 1);
 }
 
+.more-contacts {
+  color: white;
+  font-weight: 800;
+  font-size: 20px;
+  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-color: black;
+  margin-left: 5px;
+}
+
 @media (max-width: 1400px) {
   .board-tasks-wrapper {
     flex-wrap: wrap;
