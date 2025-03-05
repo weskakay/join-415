@@ -354,6 +354,7 @@ async function updateListEdit(index, mainTaskKey) {
   }
   await getTasks();
   getTaskDetails(mainTaskKey);
+  editTaskDetails(mainTaskKey);
 }
 
 function handleEnterEdit(event, index, mainTaskKey) {
