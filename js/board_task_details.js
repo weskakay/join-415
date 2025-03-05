@@ -337,8 +337,8 @@ async function updateListEdit(index, mainTaskKey) {
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
 
-  if (textChange.length === 0) {
-    deleteSubtask(index);
+  if (textChange == "\n") {
+    deleteSubtask(`tasks/${mainTaskKey}/subtask/${index}`);
   } else {
     await patch_data(
       (path = `tasks/${mainTaskKey}/subtask/${index}`),
