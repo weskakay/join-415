@@ -5,7 +5,9 @@ function showTaskNumbers() {
     document.getElementById("tasks_board").innerHTML = tasks.length;
     for (let indexTasks = 0; indexTasks < tasks.length; indexTasks++) {
       priorities.push(tasks[indexTasks].prio.trim());
-      dates.push(tasks[indexTasks].date);
+      if (tasks[indexTasks].prio == "urgent") {
+        dates.push(tasks[indexTasks].date);
+      }
     }
     showurgentNumber(priorities);
     showClosestDate(dates);
