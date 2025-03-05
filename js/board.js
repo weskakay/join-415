@@ -9,7 +9,6 @@ async function renderTasks() {
   let feedback = document.getElementById("board_feedback");
   let done = document.getElementById("board_done");
   clearTasksContent();
-
   for (let i = 0; i < tasks.length; i++) {
     let task = tasks[i];
     let taskElement = document.createElement("div");
@@ -19,39 +18,43 @@ async function renderTasks() {
       formatCategoryText(task.category),
     );
     taskElement = taskElement.firstElementChild;
-
-    switch (task.status) {
-      case "todo":
-        todo.appendChild(taskElement);
-        break;
-      case "progress":
-        progress.appendChild(taskElement);
-        break;
-      case "feedback":
-        feedback.appendChild(taskElement);
-        break;
-      case "done":
-        done.appendChild(taskElement);
-        break;
-      default:
-        console.warn("Unbekannter Status:", task.status);
-    }
+    renderTasksStatus(todo, progress, feedback, done, task, taskElement);
     getAssignedContacts(task.assigned, i);
     renderProgressbarSubtask(task.subtasks, i);
   }
+  collectiveColumnEmpty();
+}
 
+function collectiveColumnEmpty() {
   checkColumnEmpty("todo");
   checkColumnEmpty("progress");
   checkColumnEmpty("feedback");
   checkColumnEmpty("done");
 }
 
+function renderTasksStatus(todo, progress, feedback, done, task, taskElement) {
+  switch (task.status) {
+    case "todo":
+      todo.appendChild(taskElement);
+      break;
+    case "progress":
+      progress.appendChild(taskElement);
+      break;
+    case "feedback":
+      feedback.appendChild(taskElement);
+      break;
+    case "done":
+      done.appendChild(taskElement);
+      break;
+    default:
+      console.warn("Unbekannter Status:", task.status);
+  }
+}
+
 function getAssignedContacts(contactIDs, index) {
   let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
-
   let assignedContacts = [];
-
   for (let indexMy = 0; indexMy < contactIDs.length; indexMy++) {
     let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
     let contactIndex = contacts.findIndex(
@@ -66,7 +69,6 @@ function getAssignedContacts(contactIDs, index) {
       assignedContacts.push(contacts[contactIndex]);
     }
   }
-
   let widthContainer =
     assignedContacts.length === 1 ? 32 : (assignedContacts.length - 1) * 32;
   content.style.width = widthContainer + "px";
@@ -95,7 +97,11 @@ function searchTasks() {
   let taskContainers = document.querySelectorAll(".board-card");
   let noResultsMessage = document.getElementById("no-results-message");
   let foundTasks = false;
+  createTaskContainers(searchInput, taskContainers);
+  noResultsMessage.style.display = foundTasks ? "none" : "block";
+}
 
+function createTaskContainers(searchInput, taskContainers) {
   taskContainers.forEach((task) => {
     let title = task
       .querySelector(".card-title-discription p.weight700")
@@ -105,7 +111,6 @@ function searchTasks() {
       .querySelector(".card-title-discription p.weight400")
       ?.innerText.trim()
       .toLowerCase();
-
     if (
       searchInput === "" ||
       (title && title.startsWith(searchInput)) ||
@@ -117,8 +122,6 @@ function searchTasks() {
       task.style.display = "none";
     }
   });
-
-  noResultsMessage.style.display = foundTasks ? "none" : "block";
 }
 
 async function drop(ev, targetColumn) {
