@@ -261,6 +261,12 @@ input::placeholder {
   outline: none;
 }
 
+#mail-icon{
+  position: absolute;
+  margin-left: -58px;
+  margin-top: 10px;
+}
+
 @media (max-width: 960px) {
   #back-button {
     margin-right: -20px;
@@ -332,6 +338,10 @@ input::placeholder {
   #login-inputfields {
     > #email-login {
       background-position: 182px;
+    }
+
+    #mail-icon{
+      margin-left: -40px;
     }
   }
 
