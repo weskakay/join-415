@@ -142,12 +142,12 @@ function searchTasks() {
     .toLowerCase();
   let taskContainers = document.querySelectorAll(".board-card");
   let noResultsMessage = document.getElementById("no-results-message");
-  let foundTasks = false;
-  createTaskContainers(searchInput, taskContainers);
+  let foundTasks= createTaskContainers(searchInput, taskContainers);
   noResultsMessage.style.display = foundTasks ? "none" : "block";
 }
 
 function createTaskContainers(searchInput, taskContainers) {
+  let foundTasks = false;
   taskContainers.forEach((task) => {
     let title = task
       .querySelector(".card-title-discription p.weight700")
@@ -168,6 +168,7 @@ function createTaskContainers(searchInput, taskContainers) {
       task.style.display = "none";
     }
   });
+  return foundTasks;
 }
 
 async function drop(ev, targetColumn) {
