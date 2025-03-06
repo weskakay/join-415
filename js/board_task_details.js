@@ -2,6 +2,14 @@ function getTaskDetails(taskId) {
   let targetId = taskId;
   taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
   let setPrio = tasks[taskKey].prio;
+  prepareTaskDetails(taskKey, targetId, setPrio, taskId);
+  window.scrollTo({
+    top: 0,
+  });
+  document.body.style.overflow = "hidden";
+}
+
+function prepareTaskDetails(taskKey, targetId, setPrio, taskId) {
   clearTaskDetails();
   getTag(taskKey);
   getHeader(taskKey);
@@ -11,10 +19,6 @@ function getTaskDetails(taskId) {
   getPriority(setPrio);
   getAssigneeContainer(taskKey);
   getSubtaskContainer(taskKey, taskId);
-  window.scrollTo({
-    top: 0,
-  });
-  document.body.style.overflow = "hidden";
 }
 
 function getTaskDetailsDom(targetId) {
@@ -98,14 +102,21 @@ function getAssigneeData() {
     if (contacts[assigneeKey] == undefined) {
       continue;
     } else {
-      assigneeEditKey.push(assigneeKey);
-      let assignee = contacts[assigneeKey].name;
-      let assigneeInitials = contacts[assigneeKey].initials;
-      let assigneeColor = contacts[assigneeKey].colorId;
-      document.getElementById("assigneeList").innerHTML +=
-        detailsAssigneesInsert(assignee, assigneeInitials, assigneeColor);
+      assigneeDataSuccess(assigneeEditKey, assigneeKey);
     }
   }
+}
+
+function assigneeDataSuccess(assigneeEditKey, assigneeKey) {
+  assigneeEditKey.push(assigneeKey);
+  let assignee = contacts[assigneeKey].name;
+  let assigneeInitials = contacts[assigneeKey].initials;
+  let assigneeColor = contacts[assigneeKey].colorId;
+  document.getElementById("assigneeList").innerHTML += detailsAssigneesInsert(
+    assignee,
+    assigneeInitials,
+    assigneeColor,
+  );
 }
 
 function getSubtaskContainer(taskKey, taskId) {
@@ -125,7 +136,6 @@ function getSubtaskData(taskKey, taskId) {
     ) {
       let subtaskList = tasks[taskKey].subtasks[indexSubtask].text;
       let subtaskId = tasks[taskKey].subtasks[indexSubtask].id;
-
       document.getElementById("substaskListDetails").innerHTML +=
         detailsSubtaskInsert(indexSubtask, subtaskList, subtaskId, taskId);
     }
@@ -262,8 +272,6 @@ function editSubtasksList(mainTaskKey) {
   }
 }
 
-//update & delete task
-
 async function subtaskStatusChange(
   subtaskId,
   taskKey,
@@ -306,7 +314,6 @@ function clearSubtaskInput(inputId) {
 async function addEditSubtask(inputId, mainTaskId) {
   let inputValidate = document.getElementById(inputId);
   let inputText = inputValidate.value.trim();
-
   if (inputText == "") {
     inputValidate.setCustomValidity("Please insert a subtask description");
     inputValidate.reportValidity();
@@ -336,7 +343,6 @@ async function updateListEdit(index, mainTaskKey) {
   let textChange = listItem.innerText;
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
-
   if (textChange == "\n") {
     deleteSubtask(`tasks/${mainTaskKey}/subtask/${index}`);
   } else {
@@ -346,9 +352,7 @@ async function updateListEdit(index, mainTaskKey) {
         text: textChange,
       }),
     );
-
     listItem.setAttribute("contenteditable", "false");
-
     editIcon.style.display = "block";
     checkIcon.style.display = "none";
   }
@@ -369,7 +373,6 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
   let updateDesc = document.getElementById("inputDescriptionEdit").value;
   let updateDate = document.getElementById("inputDueDateEdit").value;
   let updatePrio = newPrio;
-
   await patch_data(
     (path = updatePath),
     (data = {
@@ -387,7 +390,6 @@ async function saveEditedTaskDetails(updatePath, mainTaskKey) {
 async function renderContactsBoard(filteredContacts, divId) {
   let sortedContacts = await sortContacts(filteredContacts);
   let list = document.getElementById(divId);
-
   list.innerHTML = await generateContactsBoardEdit(sortedContacts);
   list.style.display = "none";
 }
@@ -419,22 +421,21 @@ async function assignEditContact(contactId, mainTaskKey) {
       }),
     );
   } else {
-    let assigneeArray = [];
-    for (let index = 0; index < tasks[taskKey].assigned.length; index++) {
-      assigneeArray.push(tasks[taskKey].assigned[index]);
-    }
-    let assigneeIdentifier = assigneeArray.findIndex(
-      (item) => item.mainContactId == myCheckbox.value,
-    );
-    let assigneeDeleter =
-      tasks[taskKey].assigned[assigneeIdentifier].assigneeId;
-
-    await delete_data(
-      (path = `tasks/${mainTaskKey}/contact/${assigneeDeleter}`),
-    );
+    await findDeleteContact(myCheckbox, mainTaskKey);
   }
   await loadDataBoard();
   editAssigneeData();
+}
+async function findDeleteContact(myCheckbox, mainTaskKey) {
+  let assigneeArray = [];
+  for (let index = 0; index < tasks[taskKey].assigned.length; index++) {
+    assigneeArray.push(tasks[taskKey].assigned[index]);
+  }
+  let assigneeIdentifier = assigneeArray.findIndex(
+    (item) => item.mainContactId == myCheckbox.value,
+  );
+  let assigneeDeleter = tasks[taskKey].assigned[assigneeIdentifier].assigneeId;
+  await delete_data((path = `tasks/${mainTaskKey}/contact/${assigneeDeleter}`));
 }
 
 function selectCheckBoxEdit(checkboxId, contactId, mainTaskKey) {
@@ -459,24 +460,28 @@ function editAssigneeData() {
     typeof tasks[taskKey].assigned !== "undefined" &&
     tasks[taskKey].assigned.length > 0
   ) {
-    for (
-      let indexAssignee = 0;
-      indexAssignee < tasks[taskKey].assigned.length;
-      indexAssignee++
-    ) {
-      let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
-      let assigneeKey = Object.keys(contacts).find(
-        (key) => contacts[key].id == assigneeId,
-      );
-      if (contacts[assigneeKey] == undefined) {
-        continue;
-      } else {
-        assigneeEditKey.push(assigneeKey);
-        editAssigneeImage();
-      }
-    }
+    assigneeEditSuccess();
   } else {
     document.getElementById("editAssigneeImage").innerHTML = "";
+  }
+}
+
+function assigneeEditSuccess() {
+  for (
+    let indexAssignee = 0;
+    indexAssignee < tasks[taskKey].assigned.length;
+    indexAssignee++
+  ) {
+    let assigneeId = tasks[taskKey].assigned[indexAssignee].mainContactId;
+    let assigneeKey = Object.keys(contacts).find(
+      (key) => contacts[key].id == assigneeId,
+    );
+    if (contacts[assigneeKey] == undefined) {
+      continue;
+    } else {
+      assigneeEditKey.push(assigneeKey);
+      editAssigneeImage();
+    }
   }
 }
 

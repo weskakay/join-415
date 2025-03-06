@@ -18,9 +18,7 @@ function generateContactsHTML(contacts) {
 async function renderContacts(filteredContacts = contacts) {
   let sortedContacts = await sortContacts(filteredContacts);
   let list = document.getElementById("contacts-checkbox");
-
   list.innerHTML = generateContactsHTML(sortedContacts);
-
   selectedContactsIDs.forEach((selected) => {
     let checkbox = document.getElementById(`checkbox-${selected.id}`);
     if (checkbox) {
@@ -31,13 +29,11 @@ async function renderContacts(filteredContacts = contacts) {
 
 function filterContacts(contactsCheck) {
   let searchTerm = document.getElementById(contactsCheck).value.toLowerCase();
-
   let filteredContacts = searchTerm
     ? contacts.filter((contact) =>
         contact.name.toLowerCase().startsWith(searchTerm),
       )
     : contacts;
-
   renderContacts(filteredContacts);
 }
 
@@ -73,28 +69,21 @@ function setButtonColor(selectedButton, colorCode) {
   resetButtonColors();
   let activeButton = document.getElementById(`button${selectedButton}`);
   if (!activeButton) return;
-
   let img = activeButton.querySelector("img");
   if (!img) return;
-
   activeButton.style.backgroundColor = colorCode;
   activeButton.style.color = "#FFFFFF";
-
   img.style.filter =
     "brightness(0) saturate(100%) invert(93%) sepia(100%) saturate(0%) hue-rotate(141deg) brightness(104%) contrast(101%)";
-
   selectedPrio = selectedButton.toLowerCase();
 }
 
 function resetButtonColors() {
   let buttons = document.querySelectorAll("[id^='button']");
-
   buttons.forEach((button) => {
     button.style.backgroundColor = "rgba(255, 255, 255, 1)";
     button.style.color = "rgba(0, 0, 0, 1)";
-
     let img = button.querySelector("img");
-
     if (img) {
       img.style.filter = "none";
     }
@@ -149,7 +138,6 @@ function confirmInput() {
 function renderSubtasks() {
   let list = document.getElementById("subtaskList");
   list.innerHTML = "";
-
   for (let i = 0; i < subtaskInputs.length; i++) {
     let content = subtaskInputs[i].text;
     list.innerHTML += listSubtasks(i, content);
@@ -164,7 +152,6 @@ function editListItem(index) {
   let listItemContainer = document.getElementById(
     `list-item-container-${index}`,
   );
-
   listItem.setAttribute("contenteditable", "true");
   listItemContainer.classList.toggle("edit-subtask");
   listItem.focus();
@@ -176,17 +163,13 @@ function updateListItem(index) {
   let listItem = document.getElementById(`listItem-${index}`);
   let editIcon = document.getElementById(`editIcon-${index}`);
   let checkIcon = document.getElementById(`checkIcon-${index}`);
-
   subtaskInputs[index].text = listItem.innerText.trim();
-
   listItem.setAttribute("contenteditable", "false");
-
   if (listItem.innerText.length === 0) {
     deleteListItem(index);
   }
   editIcon.style.display = "block";
   checkIcon.style.display = "none";
-
   renderSubtasks();
 }
 
@@ -214,7 +197,6 @@ async function resetAllInputs() {
   document.getElementById("subtaskInput").value = "";
   resetButtonColors();
   setButtonColor("Medium", "#FFA800");
-
   await resetCheckboxAssignee();
   await resetCheckboxFocus();
   selectedPrio = "";
@@ -263,7 +245,6 @@ function prepareTaskData() {
   let prio = selectedPrio;
   let category = document.getElementById("inputCategory").value;
   let subtask = subtaskInputs;
-
   return {
     title,
     description,
@@ -288,11 +269,9 @@ function showError(element, message) {
     element.closest(".add-task-input-fields") ||
     element.closest(".add-task-prio");
   let errorSpan = parent.querySelector(".error-text");
-
   if (errorSpan) {
     errorSpan.remove();
   }
-
   if (message) {
     let errorMessage = document.createElement("span");
     errorMessage.textContent = message;
@@ -307,7 +286,6 @@ function showError(element, message) {
 function validateRequiredFields() {
   let requiredFields = document.querySelectorAll("[required]");
   let isValid = true;
-
   requiredFields.forEach((field) => {
     field.addEventListener("input", () => showError(field, ""));
 
@@ -319,14 +297,12 @@ function validateRequiredFields() {
       showError(field, "");
     }
   });
-
   return isValid;
 }
 
 function validateContacts() {
   let contactSearch = document.getElementById("contacts-search");
   contactSearch.addEventListener("input", () => showError(contactSearch, ""));
-
   if (
     !selectedContactsIDs ||
     !Array.isArray(selectedContactsIDs) ||
@@ -334,18 +310,15 @@ function validateContacts() {
   ) {
     return showError(contactSearch, "Please select at least one contact");
   }
-
   return showError(contactSearch, "");
 }
 
 function validateCategory() {
   let category = document.getElementById("inputCategory");
   category.addEventListener("change", () => showError(category, ""));
-
   if (!category.value) {
     return showError(category, "Please select a category");
   }
-
   return showError(category, "");
 }
 
@@ -354,12 +327,10 @@ function validatePriority() {
   priorityButtons.forEach((button) => {
     button.addEventListener("click", () => showError(button, ""));
   });
-
   if (!selectedPrio) {
     let priorityContainer = document.querySelector(".add-task-prio");
     return showError(priorityContainer, "Please select a priority");
   }
-
   return true;
 }
 
