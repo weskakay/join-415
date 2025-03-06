@@ -93,7 +93,6 @@ async function update_data(path = "", data = {}) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
@@ -155,7 +154,6 @@ function mobileIntro() {
   let joinDesktop = document.getElementById("join-home");
   let joinMobile = document.getElementById("join-mobile-intro");
   let introBody = document.getElementById("intro-body");
-
   if (media.matches) {
     if (joinDesktop) joinDesktop.classList.add("d_none");
     if (joinMobile) joinMobile.classList.remove("d_none");
@@ -185,7 +183,6 @@ function boardMedia() {
   let boardSearch = document.getElementById("board-search-container");
   let mobileSearch = document.getElementById("mobile-board-search");
   let addTaskSpan = document.getElementById("addtask-span");
-
   if (media.matches) {
     if (addTaskSpan) addTaskSpan.classList.add("d_none");
   } else {
@@ -280,7 +277,7 @@ function renderInitials(id, currentUser) {
 
 function sortContacts(contacts) {
   return contacts.sort((a, b) =>
-    a.name.localeCompare(b.name, "de", { sensitivity: "base" }),
+    a.name.localeCompare(b.name, "de", { sensitivity: "base" })
   );
 }
 
@@ -299,9 +296,19 @@ async function changeNavbar(styleID) {
   let footerID = document.getElementById("mobile-footer");
   let profile = document.getElementsByClassName("profileSection");
   let help = document.getElementsByClassName("help");
-
   footerID.innerHTML = "";
   desktopID.innerHTML = "";
+  changeNavbarExecute(styleDiv, desktopID, footerID, profile, help, styleID);
+}
+
+async function changeNavbarExecute(
+  styleDiv,
+  desktopID,
+  footerID,
+  profile,
+  help,
+  styleID
+) {
   if (await checkLoggedIn()) {
     footerID.innerHTML = mobileFooterLoggedIn();
     desktopID.innerHTML = desktopNavbarLoggedIn();
