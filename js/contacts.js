@@ -27,11 +27,9 @@ function renderContacts(sortedGroups, grouped) {
   let contactsListRef = document.getElementById("contactsList");
   let globalIndex = 0;
   contactsListRef.innerHTML = "";
-
   for (let i = 0; i < sortedGroups.length; i++) {
     let letter = sortedGroups[i];
     contactsListRef.innerHTML += listContactHeader(letter);
-
     for (let j = 0; j < grouped[letter].length; j++) {
       let contact = grouped[letter][j];
       contactsListRef.innerHTML += listContactData(
@@ -49,7 +47,6 @@ function openContactDetails(indexContacts) {
   document.getElementById("detailsContact").innerHTML = "";
   let detailsMobile = document.getElementById("contactsDetailsMobile");
   let contact = contacts[indexContacts];
-
   detailsMobile.classList.remove("d_none");
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
@@ -70,7 +67,7 @@ async function getContactData(inputName, inputEmail, inputPhone, overId) {
   await userCreateSuccess(inputName, inputEmail, inputPhone);
   await loadDataContacts();
   cleanWindow(inputName, inputEmail, inputPhone, overId);
-  closeAddContactSuccess()
+  closeAddContactSuccess();
 }
 
 async function userCreateSuccess(inputName, inputEmail, inputPhone) {
@@ -127,7 +124,6 @@ function checkName(insertedName) {
   let nameInput = document.getElementById(insertedName);
   let name = document.getElementById(insertedName).value.trim();
   let namePattern = new RegExp(nameInput.pattern);
-
   if (!namePattern.test(name)) {
     inputCheck(
       "nameInput",
@@ -160,7 +156,6 @@ function checkEmail(insertedEmail) {
   let mailInput = document.getElementById(insertedEmail);
   let email = mailInput.value.trim();
   let emailPattern = new RegExp(mailInput.pattern);
-
   if (!emailPattern.test(email)) {
     inputCheck(
       "mailInput",
@@ -183,7 +178,6 @@ function checkPhone(insertedPhone) {
   let telInput = document.getElementById(insertedPhone);
   let phone = document.getElementById(insertedPhone).value.trim();
   let telPattern = new RegExp(telInput.pattern);
-
   if (!telPattern.test(phone)) {
     inputCheck(
       "telInput",
@@ -274,48 +268,66 @@ function openAddContact() {
   let contactWindow = document.getElementById("contactWindow");
   let contactOverlay = document.getElementById("overlay");
 
-  
   if (contactWindow) contactWindow.classList.remove("d_none");
   if (contactOverlay) contactOverlay.classList.remove("d_none");
 
-  setTimeout(() => { 
-  toggleStyleChange('contactWindow', 'addContactWindowClosed', 'addContactWindow')}, 100)
+  setTimeout(() => {
+    toggleStyleChange(
+      "contactWindow",
+      "addContactWindowClosed",
+      "addContactWindow",
+    );
+  }, 100);
 }
 
 function openEditContact() {
   let contactWindow = document.getElementById("editWindow");
   let contactOverlay = document.getElementById("overlay-edit");
 
-  
   if (contactWindow) contactWindow.classList.remove("d_none");
   if (contactOverlay) contactOverlay.classList.remove("d_none");
 
-  setTimeout(() => { 
-  toggleStyleChange('editWindow', 'addContactWindowClosed', 'addContactWindow')}, 100)
+  setTimeout(() => {
+    toggleStyleChange(
+      "editWindow",
+      "addContactWindowClosed",
+      "addContactWindow",
+    );
+  }, 100);
 }
 
 function closeAddContact() {
   let contactWindow = document.getElementById("contactWindow");
   let contactOverlay = document.getElementById("overlay");
 
-  contactNoAction('contactWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction');
+  contactNoAction(
+    "contactWindow",
+    "addContactWindowClosed",
+    "addContactWindow",
+    "addContactWindowNoAction",
+  );
 
-  setTimeout(() => {  
+  setTimeout(() => {
     if (contactWindow) contactWindow.classList.add("d_none");
     if (contactOverlay) contactOverlay.classList.add("d_none");
-   }, 100)
+  }, 100);
 }
 
 function closeEditContact() {
   let contactWindow = document.getElementById("editWindow");
   let contactOverlay = document.getElementById("overlay-edit");
 
-  contactNoAction('editWindow', 'addContactWindowClosed', 'addContactWindow', 'addContactWindowNoAction');
+  contactNoAction(
+    "editWindow",
+    "addContactWindowClosed",
+    "addContactWindow",
+    "addContactWindowNoAction",
+  );
 
-  setTimeout(() => {  
+  setTimeout(() => {
     if (contactWindow) contactWindow.classList.add("d_none");
     if (contactOverlay) contactOverlay.classList.add("d_none");
-   }, 100)
+  }, 100);
 }
 
 function closeEditContactSave() {
@@ -324,20 +336,20 @@ function closeEditContactSave() {
 
   toggleStyleChange("editWindow", "addContactWindowClosed", "addContactWindow");
 
-  setTimeout(() => {  
+  setTimeout(() => {
     if (contactWindow) contactWindow.classList.add("d_none");
     if (contactOverlay) contactOverlay.classList.add("d_none");
-   }, 100)
+  }, 100);
 }
 
 function closeAddContactSuccess() {
   let contactWindow = document.getElementById("contactWindow");
   let contactOverlay = document.getElementById("overlay");
 
-  setTimeout(() => {  
+  setTimeout(() => {
     if (contactWindow) contactWindow.classList.add("d_none");
     if (contactOverlay) contactOverlay.classList.add("d_none");
-   }, 100)
+  }, 100);
 }
 
 function openEditOverlay(indexContacts) {

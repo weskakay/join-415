@@ -3,6 +3,8 @@
  * @param {string} [path='tasks/'] - The API path to fetch tasks.
  */
 
+let assignedContacts = [];
+
 async function renderTasks() {
   let todo = document.getElementById("board_todo");
   let progress = document.getElementById("board_progress");
@@ -52,18 +54,32 @@ function renderTasksStatus(todo, progress, feedback, done, task, taskElement) {
 }
 
 function getAssignedContacts(contactIDs, index) {
+  assignedContacts = [];
+
   let content = document.getElementById("cardContact-" + index);
   content.innerHTML = "";
-  let assignedContacts = [];
   let maxContactsToShow = 5;
   let totalContacts = contactIDs.length;
-  
-  for (let indexMy = 0; indexMy < Math.min(totalContacts, maxContactsToShow); indexMy++) {
+  assignAvailableContacts(totalContacts, maxContactsToShow, index, content);
+  insertMaximumContacts(totalContacts, maxContactsToShow, content);
+  setContainerWidth(assignedContacts, content);
+}
+
+function assignAvailableContacts(
+  totalContacts,
+  maxContactsToShow,
+  index,
+  content,
+) {
+  for (
+    let indexMy = 0;
+    indexMy < Math.min(totalContacts, maxContactsToShow);
+    indexMy++
+  ) {
     let contactIdentifier = tasks[index].assigned[indexMy].mainContactId;
     let contactIndex = contacts.findIndex(
-      (contact) => contact.id === contactIdentifier
+      (contact) => contact.id === contactIdentifier,
     );
-
     if (contactIndex !== -1) {
       let assignedCode = contacts[contactIndex].colorId;
       let assignedName = contacts[contactIndex].name;
@@ -72,13 +88,17 @@ function getAssignedContacts(contactIDs, index) {
       assignedContacts.push(contacts[contactIndex]);
     }
   }
+}
 
+function insertMaximumContacts(totalContacts, maxContactsToShow, content) {
   if (totalContacts > maxContactsToShow) {
     let remainingContacts = totalContacts - maxContactsToShow;
     let moreContactsDiv = `<div class="more-contacts">+${remainingContacts}</div>`;
     content.innerHTML += moreContactsDiv;
   }
+}
 
+function setContainerWidth(assignedContacts, content) {
   let widthContainer =
     assignedContacts.length === 1 ? 32 : (assignedContacts.length - 1) * 32;
   content.style.width = widthContainer + "px";
@@ -137,20 +157,16 @@ function createTaskContainers(searchInput, taskContainers) {
 async function drop(ev, targetColumn) {
   ev.preventDefault();
   removeHighlight(targetColumn);
-
   let taskId = ev.dataTransfer.getData("text");
   let draggedElement = document.getElementById(taskId);
   let dropTarget = document.getElementById("board_" + targetColumn);
-
   if (dropTarget && draggedElement) {
     dropTarget.appendChild(draggedElement);
-
     let dropTargetId = dropTarget.id;
     let task = tasks.find((t) => t.id === taskId);
     if (task) {
       let previousStatus = task.status;
       task.status = dropTargetId.replace("board_", "");
-
       try {
         await updateTaskStatusInFirebase(taskId, task.status);
       } catch (error) {
@@ -164,30 +180,31 @@ async function drop(ev, targetColumn) {
 
 async function updateTaskStatusInFirebase(taskId, newStatus) {
   try {
-    const getResponse = await fetch(`${BASE_URL}tasks/${taskId}.json`);
-    const existingData = await getResponse.json();
-
-    existingData.status = newStatus;
-
-    const response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(existingData),
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Fehler beim Aktualisieren der Task: ${response.statusText}`,
-      );
-    }
+    taskStatusTry(taskId, newStatus);
   } catch (error) {
     console.error(
       "Fehler beim Aktualisieren des Task-Status in Firebase:",
       error,
     );
     throw error;
+  }
+}
+
+async function taskStatusTry(taskId, newStatus) {
+  const getResponse = await fetch(`${BASE_URL}tasks/${taskId}.json`);
+  const existingData = await getResponse.json();
+  existingData.status = newStatus;
+  const response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(existingData),
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Fehler beim Aktualisieren der Task: ${response.statusText}`,
+    );
   }
 }
 
@@ -268,7 +285,6 @@ function renderProgressbarSubtask(cardSubtasks, index) {
   let statusContainer = document.getElementById("subtaskStatus-" + index);
   let progress = document.getElementById("subtaskProgress-" + index);
   let tasksDone = document.getElementById("subtaskDone-" + index);
-
   if (!cardSubtasks || cardSubtasks.length === 0) {
     statusContainer.style.display = "none";
     return;
@@ -276,7 +292,6 @@ function renderProgressbarSubtask(cardSubtasks, index) {
   let progressData = calcProgressSubtask(cardSubtasks);
   let percentage =
     (progressData.checkedQuantity / progressData.totalQuantity) * 100;
-
   progress.style.width = percentage + "%";
   tasksDone.innerHTML =
     progressData.checkedQuantity +
@@ -313,7 +328,6 @@ function checkColumnEmpty(columnId) {
     feedback: "Await Feedback",
     done: "Done",
   };
-
   if (container.children.length === 0) {
     container.innerHTML = noTaskMessage(columnNames[columnId], columnId);
   } else {
@@ -329,7 +343,6 @@ function adjustSearchContainerPosition() {
   let searchContainerParent = document.querySelector(
     ".board-search-add-container",
   );
-
   if (window.innerWidth <= 960) {
     if (!searchContainer.classList.contains("search-container-moved")) {
       searchContainer.classList.add("search-container-moved");
@@ -346,7 +359,6 @@ function adjustSearchContainerPosition() {
 function openUserStory() {
   let window = document.getElementById("taskDetailsWindow");
   let overlay = document.getElementById("overlayTasksDetail");
-
   if (window) window.classList.remove("d_none");
   if (overlay) overlay.classList.remove("d_none");
 
@@ -362,14 +374,12 @@ function openUserStory() {
 function closeUserStory() {
   let window = document.getElementById("taskDetailsWindow");
   let overlay = document.getElementById("overlayTasksDetail");
-
   contactNoAction(
     "taskDetailsWindow",
     "addContactWindowClosed",
     "addContactWindow",
     "addContactWindowNoAction",
   );
-
   setTimeout(() => {
     if (window) window.classList.add("d_none");
     if (overlay) overlay.classList.add("d_none");
