@@ -1,10 +1,9 @@
-/**
- * Fetches tasks from the database and stores them in the tasks array.
- * @param {string} [path='tasks/'] - The API path to fetch tasks.
- */
-
 let assignedContacts = [];
 
+/**
+ * Renders tasks on the board and updates their statuses.
+ * Clears the board and iterates through all tasks, placing them in the correct column.
+ */
 async function renderTasks() {
   let todo = document.getElementById("board_todo");
   let progress = document.getElementById("board_progress");
@@ -27,6 +26,9 @@ async function renderTasks() {
   collectiveColumnEmpty();
 }
 
+/**
+ * Checks if columns are empty and updates their visibility accordingly.
+ */
 function collectiveColumnEmpty() {
   checkColumnEmpty("todo");
   checkColumnEmpty("progress");
@@ -34,6 +36,15 @@ function collectiveColumnEmpty() {
   checkColumnEmpty("done");
 }
 
+/**
+ * Appends tasks to the respective columns based on their status.
+ * @param {HTMLElement} todo - The "To Do" column element.
+ * @param {HTMLElement} progress - The "In Progress" column element.
+ * @param {HTMLElement} feedback - The "Await Feedback" column element.
+ * @param {HTMLElement} done - The "Done" column element.
+ * @param {Object} task - The task object.
+ * @param {HTMLElement} taskElement - The generated task element.
+ */
 function renderTasksStatus(todo, progress, feedback, done, task, taskElement) {
   switch (task.status) {
     case "todo":
@@ -53,6 +64,11 @@ function renderTasksStatus(todo, progress, feedback, done, task, taskElement) {
   }
 }
 
+/**
+ * Retrieves assigned contacts for a task and updates the container.
+ * @param {Array} contactIDs - Array of contact IDs assigned to the task.
+ * @param {number} index - Index of the task.
+ */
 function getAssignedContacts(contactIDs, index) {
   assignedContacts = [];
 
@@ -312,6 +328,9 @@ function calcProgressSubtask(cardSubtasks) {
   };
 }
 
+/**
+ * Clears the content of all board columns.
+ */
 function clearTasksContent() {
   document.getElementById("board_todo").innerHTML = "";
   document.getElementById("board_progress").innerHTML = "";

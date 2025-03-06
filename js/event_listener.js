@@ -1,13 +1,15 @@
 let subtaskRef = document.getElementById("subtaskInput");
 let contactsInputRef = document.getElementById("contact-search");
 let contactsCheckRef = document.getElementById("contacts-checkbox");
+let passwordField = document.getElementById("password-login");
+let toggleButton = document.getElementById("toggle-password");
+let list = document.getElementById("contacts-checkbox");
+let searchBox = document.getElementById("contact-search");
 
 if (window.location.pathname.includes("board.html")) {
   window.addEventListener("resize", adjustSearchContainerPosition);
   window.addEventListener("load", adjustSearchContainerPosition);
   document.addEventListener("click", function (event) {
-    let list = document.getElementById("contacts-checkbox");
-    let searchBox = document.getElementById("contact-search");
 
     if (!list.contains(event.target) && event.target !== searchBox) {
       list.style.display = "none";
@@ -26,9 +28,6 @@ if (subtaskRef) {
 
 if (window.location.pathname.includes("login.html")) {
   document.addEventListener("DOMContentLoaded", function () {
-    let passwordField = document.getElementById("password-login");
-    let toggleButton = document.getElementById("toggle-password");
-
     toggleButton.addEventListener("click", togglePasswordVisibility);
     passwordField.addEventListener("focus", handleFocus);
     passwordField.addEventListener("blur", handleBlur);

@@ -13,6 +13,10 @@ function generateContactsBoardEdit(sortedContacts) {
     .join("");
 }
 
+/**
+ * Fetches tasks from the database and stores them in the tasks array.
+ * @param {string} [path='tasks/'] - The API path to fetch tasks.
+ */
 async function assignEditContact(contactId, mainTaskKey) {
   let myCheckbox = document.getElementById(
     `checkboxEdit-${contactId}-${mainTaskKey}`

@@ -174,7 +174,6 @@ function clearTaskDetails() {
 }
 
 //edit task window from here on
-
 function editTaskDetails(targetId) {
   editTag();
   editHeader();
