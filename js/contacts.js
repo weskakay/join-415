@@ -35,7 +35,7 @@ function renderContacts(sortedGroups, grouped) {
       contactsListRef.innerHTML += listContactData(
         contact,
         globalIndex,
-        currentUser,
+        currentUser
       );
       globalIndex++;
     }
@@ -50,7 +50,7 @@ function openContactDetails(indexContacts) {
   detailsMobile.classList.remove("d_none");
   document.getElementById("detailsProfile").innerHTML = detailsProfileInsert(
     contact,
-    indexContacts,
+    indexContacts
   );
   document.getElementById("detailsContact").innerHTML =
     detailsContactInsert(contact);
@@ -59,7 +59,7 @@ function openContactDetails(indexContacts) {
 async function getContactData(inputName, inputEmail, inputPhone, overId) {
   if (
     [inputName, inputEmail, inputPhone].some((input, i) =>
-      [checkName, checkEmail, checkPhone][i](input),
+      [checkName, checkEmail, checkPhone][i](input)
     )
   ) {
     return;
@@ -81,7 +81,7 @@ async function userCreateSuccess(inputName, inputEmail, inputPhone) {
       email: email,
       phone: phone,
       colorId: getRandomNumber(),
-    }),
+    })
   );
 }
 
@@ -95,12 +95,12 @@ function cleanWindow(inputName, inputEmail, inputPhone, overId) {
   showCreationHint(
     "createdInfo",
     "createdContactInfo",
-    "createdContactInfoOut",
+    "createdContactInfoOut"
   );
   toggleStyleChange(
     "contactWindow",
     "addContactWindowClosed",
-    "addContactWindow",
+    "addContactWindow"
   );
   showContactDetails("contactsDisplay", "detailsWindowClosed", "detailsWindow");
   findLastContactIndex();
@@ -131,7 +131,7 @@ function checkName(insertedName) {
       "contactErrorName",
       "inputContactErrorName",
       "editErrorName",
-      "inputEditErrorName",
+      "inputEditErrorName"
     );
     return true;
   }
@@ -163,7 +163,7 @@ function checkEmail(insertedEmail) {
       "contactErrorEmail",
       "inputContactErrorEmail",
       "editErrorEmail",
-      "inputEditErrorEmail",
+      "inputEditErrorEmail"
     );
     return true;
   }
@@ -185,7 +185,7 @@ function checkPhone(insertedPhone) {
       "contactErrorTel",
       "inputContactErrorTel",
       "editErrorTel",
-      "inputEditErrorTel",
+      "inputEditErrorTel"
     );
     return true;
   }
@@ -225,7 +225,7 @@ async function editUserSuccess(name, email, tel, id, indexContacts) {
       email: changeEmail,
       phone: changeTel,
       colorId: contacts[indexContacts].colorId,
-    }),
+    })
   );
   editedContact = id;
   await loadDataContacts();
@@ -275,7 +275,7 @@ function openAddContact() {
     toggleStyleChange(
       "contactWindow",
       "addContactWindowClosed",
-      "addContactWindow",
+      "addContactWindow"
     );
   }, 100);
 }
@@ -291,7 +291,7 @@ function openEditContact() {
     toggleStyleChange(
       "editWindow",
       "addContactWindowClosed",
-      "addContactWindow",
+      "addContactWindow"
     );
   }, 100);
 }
@@ -304,7 +304,7 @@ function closeAddContact() {
     "contactWindow",
     "addContactWindowClosed",
     "addContactWindow",
-    "addContactWindowNoAction",
+    "addContactWindowNoAction"
   );
 
   setTimeout(() => {
@@ -321,7 +321,7 @@ function closeEditContact() {
     "editWindow",
     "addContactWindowClosed",
     "addContactWindow",
-    "addContactWindowNoAction",
+    "addContactWindowNoAction"
   );
 
   setTimeout(() => {
@@ -363,7 +363,7 @@ function openEditOverlay(indexContacts) {
     editInitialsInsert(contact);
   document.getElementById("editButtons").innerHTML = editButtonsInsert(
     contact,
-    indexContacts,
+    indexContacts
   );
 }
 
@@ -391,46 +391,6 @@ function closeDetailsMenu(windowId, styleA, styleB) {
     document.getElementById("editButtonsPosition").classList ==
       "editButtonsPositionOpen"
   ) {
-    toggleStyleChange(windowId, styleA, styleB);
-  }
-}
-
-function hideDetails(windowId, styleA, styleB) {
-  if (
-    document.getElementById(windowId).classList ==
-    "contactsDisplay detailsWindow"
-  ) {
-    toggleStyleChange(windowId, styleA, styleB);
-  }
-}
-
-async function contactNoAction(windowId, styleA, styleB, styleC) {
-  toggleStyleChange(windowId, styleA, styleC);
-  await delay(0.1);
-  toggleStyleChange(windowId, styleC, styleB);
-  document.body.style.overflow = "";
-}
-
-async function delay(seconds) {
-  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
-}
-
-async function showCreationHint(windowId, styleA, styleB) {
-  toggleStyleChange(windowId, styleA, styleB);
-  await delay(3);
-  toggleStyleChange(windowId, styleA, styleB);
-}
-
-function mobileContactDetails(windowId, styleA, styleB) {
-  if (window.innerWidth < 960) {
-    toggleStyleChange(windowId, styleA, styleB);
-  }
-}
-
-function changeMobileDesktop(windowId, styleA, styleB) {
-  let windowWidth = window.innerWidth;
-  let detailsClass = document.getElementById(windowId).classList;
-  if (windowWidth >= 961 && detailsClass == styleA) {
     toggleStyleChange(windowId, styleA, styleB);
   }
 }
