@@ -40,7 +40,7 @@ function showClosestDate(dates) {
     document.getElementById("deadline").innerHTML = summaryDueDateInsert(
       closestDate,
       splitDay,
-      splitYear,
+      splitYear
     );
   }
 }
@@ -62,7 +62,6 @@ function insertStatusTasks(count) {
   let count_done = document.getElementById("tasks_done");
   let count_progress = document.getElementById("tasks_progress");
   let count_feedback = document.getElementById("tasks_awaiting");
-
   if (count.todo != undefined) {
     count_to_do.innerHTML = count.todo;
   }
