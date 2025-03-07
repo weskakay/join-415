@@ -14,6 +14,15 @@ async function getLoginData(path = "") {
   login = await response.json();
 }
 
+/**
+ * Compares the login inputs (email, password) against existing user credentials in Firebase.
+ * If there's a match, the current user is set in Firebase and the user is redirected.
+ *
+ * @async
+ * @param {string} [userId] - Optional user ID
+ * @param {object} [findUser] - Optional user object if found
+ * @returns {Promise<void>}
+ */
 async function proofLoginData(userId, findUser) {
   let emailLogin = document.getElementById("email-login");
   let passwordLogin = document.getElementById("password-login");
@@ -54,6 +63,13 @@ async function proofLoginTry(
   }
 }
 
+/**
+ * Collects user registration data, validates input (name/email/password),
+ * and writes the new user entry to Firebase 'login-data'.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function registrationData() {
   let email = document.getElementById("email-input");
   let password = document.getElementById("password-input");

@@ -1,5 +1,4 @@
 //from here task details window
-
 function detailsTagInsert(taskTag, backGroundColor) {
   return `
     <div class="tag" style="background-color:${backGroundColor}">
@@ -192,6 +191,7 @@ function insertEditAssigneeSelectionList() {
     ></ul>
   `;
 }
+
 //inserts image of assigned user
 function insertEditAssigneeImage(assigneeImageColor, assigneeImageInitials) {
   return `

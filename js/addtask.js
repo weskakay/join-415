@@ -222,6 +222,13 @@ async function resetCheckboxFocus() {
   }
 }
 
+/**
+ * Retrieves all form data from the Add Task form, validates them, 
+ * and saves the new task in Firebase. If successful, it redirects to the board page.
+ *
+ * @async
+ * @returns {Promise<void>} - No direct return; navigates to the board upon success.
+ */
 async function getTaskData() {
   if (validateData()) {
     let data = prepareTaskData();
@@ -237,6 +244,11 @@ async function getTaskData() {
   }
 }
 
+/**
+ * Gathers input values from the Add Task form and constructs a task object.
+ *
+ * @returns {object} - A task object with properties (title, description, contacts, date, etc.)
+ */
 function prepareTaskData() {
   let title = document.getElementById("taskTitle").value;
   let description = document.getElementById("taskDescription").value;
@@ -334,6 +346,12 @@ function validatePriority() {
   return true;
 }
 
+/**
+ * Validates required form fields, at least one contact, category selection, 
+ * and priority. If any check fails, it shows an error message.
+ *
+ * @returns {boolean} - True if all validations pass, otherwise false.
+ */
 function validateData() {
   return (
     validateRequiredFields() &&

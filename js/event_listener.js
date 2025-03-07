@@ -17,6 +17,7 @@ if (window.location.pathname.includes("board.html")) {
   });
 }
 
+// On Enter key press in the subtask input, confirm the input
 if (subtaskRef) {
   subtaskRef.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {

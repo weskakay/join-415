@@ -1,8 +1,11 @@
 let assignedContacts = [];
 
 /**
- * Renders tasks on the board and updates their statuses.
- * Clears the board and iterates through all tasks, placing them in the correct column.
+ * Renders all tasks on the board. Clears each column, then loops through 
+ * the tasks array, placing each task into its appropriate status column.
+ *
+ * @async
+ * @returns {Promise<void>}
  */
 async function renderTasks() {
   let todo = document.getElementById("board_todo");
@@ -171,6 +174,15 @@ function createTaskContainers(searchInput, taskContainers) {
   return foundTasks;
 }
 
+/**
+ * Handles the drop event in a Drag & Drop workflow. Receives the dragged task ID, 
+ * updates its status in Firebase, and re-renders the board.
+ *
+ * @async
+ * @param {DragEvent} ev - The drop event, containing the dragged task ID.
+ * @param {string} targetColumn - The board column ID, e.g., 'todo', 'done'.
+ * @returns {Promise<void>}
+ */
 async function drop(ev, targetColumn) {
   ev.preventDefault();
   removeHighlight(targetColumn);
@@ -195,6 +207,14 @@ async function drop(ev, targetColumn) {
   }
 }
 
+/**
+ * Updates the status of a given task in Firebase (e.g. moving from "todo" to "done").
+ *
+ * @async
+ * @param {string} taskId - The ID of the task in Firebase.
+ * @param {string} newStatus - The new status ('todo', 'progress', 'feedback', or 'done').
+ * @returns {Promise<void>}
+ */
 async function updateTaskStatusInFirebase(taskId, newStatus) {
   try {
     taskStatusTry(taskId, newStatus);

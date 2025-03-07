@@ -1,3 +1,9 @@
+/**
+ * Retrieves the full details for a specific task (by taskId) from the global tasks array
+ * and populates the detail view with that data.
+ *
+ * @param {string} taskId - The ID of the task to display.
+ */
 function getTaskDetails(taskId) {
   let targetId = taskId;
   taskKey = Object.keys(tasks).find((key) => tasks[key].id == targetId);
@@ -271,6 +277,15 @@ function editSubtasksList(mainTaskKey) {
   }
 }
 
+/**
+ * Toggles the checked status of a subtask and updates Firebase accordingly.
+ *
+ * @async
+ * @param {string} subtaskId - The ID of the subtask in Firebase.
+ * @param {string} taskKey - The Firebase ID of the parent task.
+ * @param {string} subtaskEditId - The DOM ID for the subtask checkbox element.
+ * @param {string} statusText - The text of the subtask (used for reference in updates).
+ */
 async function subtaskStatusChange(
   subtaskId,
   taskKey,

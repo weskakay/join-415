@@ -56,6 +56,17 @@ function openContactDetails(indexContacts) {
     detailsContactInsert(contact);
 }
 
+/**
+ * Reads the input fields for name, email, and phone, validates them, 
+ * and saves the new contact to Firebase. Closes the overlay on success.
+ *
+ * @async
+ * @param {string} inputName - The ID of the name input field.
+ * @param {string} inputEmail - The ID of the email input field.
+ * @param {string} inputPhone - The ID of the phone input field.
+ * @param {string} overId - The ID of the overlay element to close.
+ * @returns {Promise<void>}
+ */
 async function getContactData(inputName, inputEmail, inputPhone, overId) {
   if (
     [inputName, inputEmail, inputPhone].some((input, i) =>
@@ -201,6 +212,18 @@ async function deleteContact(path) {
   window.location.reload();
 }
 
+/**
+ * Reads updated contact info from the edit form, validates it, 
+ * and applies changes to the existing contact in Firebase.
+ *
+ * @async
+ * @param {string} name - The ID of the name input element.
+ * @param {string} email - The ID of the email input element.
+ * @param {string} tel - The ID of the phone input element.
+ * @param {string} id - The Firebase ID (key) for the contact.
+ * @param {number} indexContacts - The position of this contact in the contacts array.
+ * @returns {Promise<void>}
+ */
 async function editUser(name, email, tel, id, indexContacts) {
   if (checkName("nameInputEdit") === true) {
     return;

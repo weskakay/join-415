@@ -87,6 +87,14 @@ function greetingAnimation() {
   }
 }
 
+/**
+ * Sends a POST request to Firebase at the specified path, creating a new entry.
+ *
+ * @async
+ * @param {string} [path=""] - The path in the Firebase Realtime DB (e.g. 'contacts/')
+ * @param {object} [data={}] - The data to store
+ * @returns {Promise<object>} - The response from Firebase, often containing a generated key
+ */
 async function update_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
@@ -99,6 +107,13 @@ async function update_data(path = "", data = {}) {
   return await response.json();
 }
 
+/**
+ * Deletes data at the specified path in the Firebase Realtime DB.
+ *
+ * @async
+ * @param {string} path - The path where data should be removed (e.g. 'contacts/<id>')
+ * @returns {Promise<object>} - The JSON response from Firebase
+ */
 async function delete_data(path) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "DELETE",
@@ -106,6 +121,14 @@ async function delete_data(path) {
   return await response.json();
 }
 
+/**
+ * Sends a PUT request to the specified path in Firebase (replacing existing data).
+ *
+ * @async
+ * @param {string} [path=""] - The path in the Firebase Realtime DB
+ * @param {object} [data={}] - The data to replace at that path
+ * @returns {Promise<object>} - The updated data from Firebase
+ */
 async function edit_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
@@ -115,6 +138,14 @@ async function edit_data(path = "", data = {}) {
   return await response.json();
 }
 
+/**
+ * Sends a PATCH request to update partially the data at the specified path in Firebase.
+ *
+ * @async
+ * @param {string} [path=""] - The path in the Firebase Realtime DB
+ * @param {object} [data={}] - The partial data to merge at that path
+ * @returns {Promise<object>} - The updated data from Firebase
+ */
 async function patch_data(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PATCH",

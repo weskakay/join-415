@@ -67,6 +67,13 @@ async function loadDataAddTask() {
   minDate("date");
 }
 
+/**
+ * Fetches all contacts from the Firebase Realtime DB and populates the global 'contacts' array.
+ *
+ * @async
+ * @param {string} [path='contacts/'] - The path to the contacts collection in Firebase.
+ * @returns {Promise<void>}
+ */
 async function getContacts(path = `contacts/`) {
   contacts = [];
   let response = await fetch(BASE_URL + path + ".json");
@@ -85,6 +92,14 @@ async function getContacts(path = `contacts/`) {
   }
 }
 
+/**
+ * Fetches all tasks from the Firebase Realtime DB and populates the global 'tasks' array.
+ * Also processes subtasks and assigned contacts from the fetched data.
+ *
+ * @async
+ * @param {string} [path='tasks/'] - The path to the tasks collection in Firebase.
+ * @returns {Promise<void>}
+ */
 async function getTasks(path = `tasks/`) {
   tasks = [];
   let response = await fetch(BASE_URL + path + ".json");
@@ -115,6 +130,15 @@ async function getTasks(path = `tasks/`) {
   }
 }
 
+/**
+ * Builds a Task object from the downloaded data and pushes it into the global tasks array.
+ *
+ * @param {Array} tasks - Reference to the global tasks array.
+ * @param {string} id - The Firebase ID of the task.
+ * @param {object} content - The raw task data from Firebase.
+ * @param {Array} subtasksArray - Array of parsed subtask objects.
+ * @param {Array} contactArray - Array of assigned contact objects.
+ */
 function tasksPush(tasks, id, content, subtasksArray, contactArray){
 tasks.push({
   id: id,
