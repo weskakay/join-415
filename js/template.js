@@ -244,7 +244,7 @@ function listSubtasks(i, content) {
 }
 
 function listTasks(task, i, category) {
-  return /*html*/ `
+  return `
     <div
       class="board-card"
       id="${task.id}"
@@ -252,12 +252,48 @@ function listTasks(task, i, category) {
       ondragstart="drag(event)"
       onclick="getTaskDetails(this.id), openUserStory()"
     >
-      <div class="crad-category size16 ${category}">${task.category}</div>
+      <div class="spaceBetween">
+        <div class="crad-category size16 ${category}">${task.category}</div>
+        <div class="boardChangeStatus">
+          <button
+            onclick="noBubble(event), d_none('mobileEditStatusPosition${
+              task.id
+            }')"
+          >
+            <img src="../assets/icons/board/plus button.svg" />
+          </button>
+          <div
+            id="mobileEditStatusPosition${task.id}"
+            class="mobileEditStatusPosition d_none"
+            onclick="noBubble(event)"
+          >
+            <div class="mobileEditStatus">
+              <p>Select Status:</p>
+              <button onclick="changeMobileTaskStatus('${task.id}', 'todo')">
+                To do
+              </button>
+              <button
+                onclick="changeMobileTaskStatus('${task.id}', 'progress')"
+              >
+                In progress
+              </button>
+              <button
+                onclick="changeMobileTaskStatus('${task.id}', 'feedback')"
+              >
+                Await feedback
+              </button>
+              <button onclick="changeMobileTaskStatus('${task.id}', 'done')">
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-title-discription">
         <p class="size16 weight700">${task.title}</p>
         <p class="size16 weight400 colorGrey">
           ${truncateText(
-            task.description === undefined ? "" : task.description,
+            task.description === undefined ? "" : task.description
           )}
         </p>
       </div>

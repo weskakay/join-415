@@ -94,6 +94,15 @@
     }
   }
 
+  .boardChangeStatus {
+    display: block;
+  }
+  .boardChangeStatus button {
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+  }
+
   .board-add-task-button {
     width: 40px;
     height: 40px;
@@ -119,7 +128,6 @@
   }
   .board-card-container {
     flex-direction: column;
-    height: 300px;
     flex-wrap: wrap;
     max-width: 960px;
     overflow-x: scroll;

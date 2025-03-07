@@ -111,3 +111,8 @@ function updatePrio(chosenPrio) {
   newPrio = "";
   newPrio = chosenPrio;
 }
+
+async function changeMobileTaskStatus(taskId, newStatus) {
+  await patch_data((path = `tasks/${taskId}`), (data = { status: newStatus }));
+  loadDataBoard();
+}
