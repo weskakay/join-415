@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: db.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: db.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let tasks = [];
+let subtasks = [];
+let subtaskInputs = [];
+let contacts = [];
+let taskKey = 0;
+let assigneeEditKey = [];
+let selectedContactsIDs = [];
+let selectedAssignee = [];
+let newPrio = "";
+//let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let urgencySymbols = [
+  "../assets/icons/add_task/prio-low-icon.svg",
+  "../assets/icons/add_task/prio-medium-icon.svg",
+  "../assets/icons/add_task/prio-urgent-icon.svg",
+];
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+let bgcolors = [
+  { id: 0, rgba: "rgba(255, 105, 135, 1)" },
+  { id: 1, rgba: "rgba(255, 180, 120, 1)" },
+  { id: 2, rgba: "rgba(186, 85, 211, 1)" },
+  { id: 3, rgba: "rgba(100, 200, 250, 1)" },
+  { id: 4, rgba: "rgba(60, 179, 113, 1)" },
+  { id: 5, rgba: "rgb(153, 197, 43)" },
+  { id: 6, rgba: "rgba(218, 165, 32, 1)" },
+  { id: 7, rgba: "rgb(205, 127, 224)" },
+  { id: 8, rgba: "rgba(138, 43, 226, 1)" },
+  { id: 9, rgba: "rgba(255, 165, 0, 1)" },
+];
+let tagColors = ["rgba(0, 56, 255, 1)", "rgba(31, 215, 193, 1)"];
+
+async function loadDataBoard() {
+  await getContacts();
+  await getTasks();
+  renderTasks();
+  renderContacts(contacts, "contacts-checkbox");
+  minDate("date");
+}
+
+async function loadDataContacts() {
+  await getContacts();
+  orderContactsBoard();
+}
+
+async function loadDataSummary() {
+  await getContacts();
+  await getTasks();
+  showTaskNumbers();
+}
+
+async function loadDataAddTask() {
+  await getContacts();
+  renderContacts(contacts, "contacts-checkbox");
+  setButtonColor("Medium", "#FFA800");
+  minDate("date");
+}
+
+/**
+ * Fetches all contacts from the Firebase Realtime DB and populates the global 'contacts' array.
+ *
+ * @async
+ * @param {string} [path='contacts/'] - The path to the contacts collection in Firebase.
+ * @returns {Promise&lt;void>}
+ */
+async function getContacts(path = `contacts/`) {
+  contacts = [];
+  let response = await fetch(BASE_URL + path + ".json");
+  let contactData = await response.json();
+  if (contactData != 0) {
+    Object.entries(contactData).forEach(([id, details]) => {
+      contacts.push({
+        id: id,
+        name: details.name,
+        email: details.email,
+        phone: details.phone,
+        colorId: details.colorId,
+        initials: getInitials(details.name),
+      });
+    });
+  }
+}
+
+/**
+ * Fetches all tasks from the Firebase Realtime DB and populates the global 'tasks' array.
+ * Also processes subtasks and assigned contacts from the fetched data.
+ *
+ * @async
+ * @param {string} [path='tasks/'] - The path to the tasks collection in Firebase.
+ * @returns {Promise&lt;void>}
+ */
+async function getTasks(path = `tasks/`) {
+  tasks = [];
+  let response = await fetch(BASE_URL + path + ".json");
+  let tasksData = await response.json();
+  if (tasksData != null) {
+    Object.entries(tasksData).forEach(([id, content]) => {
+      let subtasksArray = [];
+      if (content.subtask) {
+        subtasksArray = Object.entries(content.subtask)
+          .filter(([key, value]) => value !== null &amp;&amp; value !== undefined)
+          .map(([subtaskId, subtaskContent]) => ({
+            id: subtaskId,
+            checked: subtaskContent.checked,
+            text: subtaskContent.text,
+          }));
+      }
+      let contactArray = [];
+      if (content.contact) {
+        contactArray = Object.entries(content.contact)
+          .filter(([key, value]) => value !== null &amp;&amp; value !== undefined)
+          .map(([assigneeId, assigneeContent]) => ({
+            "assigneeId": assigneeId,
+            "mainContactId": assigneeContent.id,
+          }));
+      }
+      tasksPush(tasks, id, content, subtasksArray, contactArray);
+    });
+  }
+}
+
+/**
+ * Builds a Task object from the downloaded data and pushes it into the global tasks array.
+ *
+ * @param {Array} tasks - Reference to the global tasks array.
+ * @param {string} id - The Firebase ID of the task.
+ * @param {object} content - The raw task data from Firebase.
+ * @param {Array} subtasksArray - Array of parsed subtask objects.
+ * @param {Array} contactArray - Array of assigned contact objects.
+ */
+function tasksPush(tasks, id, content, subtasksArray, contactArray){
+tasks.push({
+  id: id,
+  status: content.status,
+  category: content.category,
+  title: content.title,
+  description: content.description,
+  subtasks: subtasksArray,
+  assigned: contactArray,
+  prio: content.prio,
+  date: content.date,
+});
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#assignEditContact">assignEditContact</a></li><li><a href="global.html#changeConfPWImage">changeConfPWImage</a></li><li><a href="global.html#changeImageLogin">changeImageLogin</a></li><li><a href="global.html#changeLogoSize">changeLogoSize</a></li><li><a href="global.html#changePWImage">changePWImage</a></li><li><a href="global.html#checkBoxValidity">checkBoxValidity</a></li><li><a href="global.html#checkRegistrationData">checkRegistrationData</a></li><li><a href="global.html#clearTasksContent">clearTasksContent</a></li><li><a href="global.html#closeAddTaskOverlay">closeAddTaskOverlay</a></li><li><a href="global.html#collectiveColumnEmpty">collectiveColumnEmpty</a></li><li><a href="global.html#confirmPassword">confirmPassword</a></li><li><a href="global.html#delete_data">delete_data</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#editUser">editUser</a></li><li><a href="global.html#edit_data">edit_data</a></li><li><a href="global.html#getAssignedContacts">getAssignedContacts</a></li><li><a href="global.html#getContactData">getContactData</a></li><li><a href="global.html#getContacts">getContacts</a></li><li><a href="global.html#getContent">getContent</a></li><li><a href="global.html#getLoggedIn">getLoggedIn</a></li><li><a href="global.html#getLoginData">getLoginData</a></li><li><a href="global.html#getTaskData">getTaskData</a></li><li><a href="global.html#getTaskDetails">getTaskDetails</a></li><li><a href="global.html#getTasks">getTasks</a></li><li><a href="global.html#handleBlur">handleBlur</a></li><li><a href="global.html#handleFocus">handleFocus</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#openAddTaskOverlay">openAddTaskOverlay</a></li><li><a href="global.html#openGuestLogin">openGuestLogin</a></li><li><a href="global.html#patch_data">patch_data</a></li><li><a href="global.html#prepareTaskData">prepareTaskData</a></li><li><a href="global.html#proofLoginData">proofLoginData</a></li><li><a href="global.html#proofLoginTry">proofLoginTry</a></li><li><a href="global.html#regAlright">regAlright</a></li><li><a href="global.html#regError">regError</a></li><li><a href="global.html#registrationData">registrationData</a></li><li><a href="global.html#registrationValidation">registrationValidation</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#renderTasksStatus">renderTasksStatus</a></li><li><a href="global.html#resetAllInputs">resetAllInputs</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#setPasswordHidden">setPasswordHidden</a></li><li><a href="global.html#setPasswordVisible">setPasswordVisible</a></li><li><a href="global.html#showNoTask">showNoTask</a></li><li><a href="global.html#subtaskStatusChange">subtaskStatusChange</a></li><li><a href="global.html#successNotice">successNotice</a></li><li><a href="global.html#tasksPush">tasksPush</a></li><li><a href="global.html#togglePasswordVisibility">togglePasswordVisibility</a></li><li><a href="global.html#updateTaskStatusInFirebase">updateTaskStatusInFirebase</a></li><li><a href="global.html#update_data">update_data</a></li><li><a href="global.html#validateData">validateData</a></li><li><a href="global.html#wait">wait</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sat Mar 08 2025 00:40:17 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
