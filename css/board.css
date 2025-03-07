@@ -275,7 +275,7 @@
 
 .mobileEditStatus {
   flex-direction: column;
-  width: 116px;
+  width: 140px;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -286,7 +286,7 @@
 
 .mobileEditStatus button {
   width: 100%;
-  height: 16x;
+  display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px;
